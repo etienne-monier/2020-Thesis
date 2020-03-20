@@ -1,0 +1,35 @@
+\documentclass{standalone}
+\usepackage{tikzstyle}
+
+\begin{document}
+
+\begin{tikzpicture}
+
+    \begin{axis}[%
+        width=7.2cm,
+        height=5cm,
+        at={(0cm,0cm)},
+        %
+        xmin=420, xmax=980,
+        grid=none,
+        %ymin=-0.1, ymax=0.1,
+        %
+        % xlabel={Perte d'énergie (eV)},
+        % ylabel={Amplitude},
+        line width=1pt,
+        %
+        enlargelimits=true,
+        %
+        % legend entries={Composante 0, Composante 1, Composante 2, Composante 3, 
+        %     Composante 4, Composante 5},
+        % legend-on-top,
+        % legend num cols=3,
+        ]
+        
+        \addplot+ [] table [x=eV, y=mean] {data/pca_spectra.dat};
+        
+    \end{axis}
+
+\end{tikzpicture}
+
+\end{document}

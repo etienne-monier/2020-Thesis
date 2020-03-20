@@ -1,0 +1,66 @@
+\documentclass{standalone}
+\usepackage{tikzstyle}
+
+\begin{document}
+
+\begin{tikzpicture}[ampersand replacement=\&]
+
+\begin{axis}[
+    xlabel={Perte d'énergie (eV)},
+    ylabel={Intensité},
+    %
+    ymin=0, ymax=1700,
+    width=14cm, height=6cm,
+    %
+    enlargelimits=false,
+    %
+    grid=none,
+    name=aa,
+    ]
+
+% Draw regression section
+\addplot+ [name path=A, forget plot, draw=none] coordinates {(720, 0) (720, 1700)};
+\addplot+ [name path=B, forget plot, draw=none] coordinates {(800, 0) (800, 1700)};
+
+\addplot+ [orange!70, opacity=0.6] fill between[of=A and B];
+\label{plot-regression-zone}
+
+% Integration section
+\addplot+ [name path=Abis, forget plot, draw=none] coordinates {(815, 0) (815, 1700)};
+\addplot+ [name path=Bbis, forget plot, draw=none] coordinates {(823, 0) (823, 1700)};
+
+\addplot+ [gray!50, opacity=0.6] fill between[of=Abis and Bbis];
+\label{plot-integration-zone}
+
+\addplot+ [] table {data/spectrum_1.dat};
+\label{plot-spectrum}
+
+\addplot+ [] table {data/spectrum_model.dat};
+\label{plot-spectrum-model}
+
+\addplot+ [line width=2pt] table {data/model.dat};
+\label{plot-model}
+
+\end{axis}
+
+\matrix [
+matrix of nodes,
+nodes={anchor=west},
+anchor=south,
+at={([shift={(-15pt,5pt)}]aa.north)},
+draw=none,
+inner sep=2pt,
+row sep=2pt
+] {
+    \ref{plot-spectrum}  \& Spectre étudié   \&[0.5cm] 
+    \ref{plot-regression-zone}  \& Zone de régression  \&[0.5cm] 
+    \ref{plot-integration-zone}  \& Zone d'intégration \\
+    %
+    \& \& 
+    \ref{plot-model} \& Régression \&
+    \ref{plot-spectrum-model} \& Spectre après correction \\
+};
+
+\end{tikzpicture}
+
+\end{document}

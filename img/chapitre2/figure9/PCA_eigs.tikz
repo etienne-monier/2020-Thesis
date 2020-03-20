@@ -1,0 +1,38 @@
+\documentclass{standalone}
+\usepackage{tikzstyle}
+
+\begin{document}
+
+\begin{tikzpicture}
+
+    \begin{axis}[%
+        width=9cm,
+        height=7cm,
+        at={(0cm,0cm)},
+        ymode=log,
+        xmode=log,
+        grid=none,
+        %
+        % xmin=420, xmax=980,
+        % ymin=-0.1, ymax=0.1,
+        %
+        xlabel={index de l'ACP},
+        ylabel={Valeur propre associée},
+        line width=1pt,
+        %
+        enlargelimits=true,
+        %
+        % legend entries={Composante 0, Composante 1, Composante 2, Composante 3, 
+        %     Composante 4, Composante 5},
+        % legend-on-top,
+        % legend num cols=3,
+        ]
+        
+        \addplot+ [] table [x=xd, y=d] {data/pca_spectra.dat};
+        
+    \end{axis}
+
+\end{tikzpicture}
+
+
+\end{document}

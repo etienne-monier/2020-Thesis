@@ -1,0 +1,91 @@
+% Tikz & co
+\RequirePackage{tikz,pgfplots}
+\pgfplotsset{compat=1.16}
+
+% Setup tikzlibraries to use -------------------------------------------
+%
+
+% PGFplots
+\usepgfplotslibrary{fillbetween}
+
+% Tikz
+\usetikzlibrary{babel}
+\usetikzlibrary{patterns}
+\usetikzlibrary{intersections}
+\usetikzlibrary{matrix}
+\usetikzlibrary{decorations.markings}
+
+% Colowbrew settings ---------------------------------------------------
+%
+
+\usepgfplotslibrary{colorbrewer}
+\pgfplotsset{cycle list/Dark2}
+
+
+% Arrow style ----------------------------------------------------------
+%
+% Can be used with \draw [ray arrow, arrowstep=0.2] (0, 0) -- (0, 1);
+%   with arrowstep optional.
+%
+
+\def\arrowstep{0.2}
+\tikzset{
+    arrowstep/.store in=\arrowstep,arrowstep=0.2
+}
+
+\tikzset{
+    ray arrow/.style={
+        decoration={%
+            markings,   
+            mark=between positions 0.1 and 1 step \arrowstep with 
+                {\arrow[line width=1.5pt]{stealth};},
+        },
+        postaction={decorate}
+    }
+}
+
+
+% Axis default style ---------------------------------------------------
+%
+
+\pgfplotsset{every axis/.append style={%
+    %
+    axis line style = {semithick},
+    axis x line = bottom,
+    axis y line = left,
+    %
+    grid=both,
+    %
+    grid style={line width=.1pt, draw=gray!10},
+    major grid style={line width=.2pt,draw=gray!50},
+    %
+    ticklabel style={font=\tiny},
+    enlargelimits=true,
+    %
+    % legend
+    legend style={draw=none},
+    legend cell align={left},
+}}%
+
+% Legend on top --------------------------------------------------------
+%
+
+\def\legendnumcols{3}
+\tikzset{
+    legend num cols/.store in=\legendnumcols,
+    legend num cols=3
+}
+
+\pgfplotsset{
+    legend-on-top/.style={
+        legend style={
+            at={(0.5, 1.03)},
+            anchor=south,
+            legend columns=\legendnumcols,
+            /tikz/every even column/.append style={
+                column sep=0.5cm
+            }
+        }
+    }
+}
+

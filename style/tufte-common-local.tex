@@ -1,0 +1,129 @@
+%!TEX root = ./main.tex
+
+% chapter format
+\titleformat{\chapter}
+  [display]%
+  {\bfseries\huge}
+  {\marginnote[0em]{\resizebox{!}{1.2cm}{\fboxsep=1pt%
+  \colorbox{black!60}{\color{white}{\thechapter}}
+  }\filright}}
+  {-2em}
+  {\raggedleft}
+  []
+
+% % section format
+\titleformat{\section}%
+  [hang]%
+  {\color{myblue}\Large\normalfont\scshape}%
+  {\makebox[30pt][r]{\smallcaps{\thesection}}}{15pt}{}
+
+% subsection format
+\titleformat{\subsection}%
+  [hang]%
+  {\normalfont\scshape\color{myblue}}%
+  {\makebox[30pt][r]{\thesubsection}}{15pt}{\normalfont\itshape\color{myblue}}
+
+% subsection format
+\titleformat{\subsubsection}%
+    [hang]%
+    {\normalfont\scshape\color{myblue}}%
+    {\makebox[30pt][r]{\thesubsubsection}}{15pt}{\normalfont\itshape\color{Black}}
+
+\titlespacing*{\chapter}
+    {0pt}
+    {30pt}
+    {20pt}
+\titlespacing*{\section}
+  {-45pt}
+  {3.5ex plus 1ex minus .2ex}
+  {2.3ex plus .2ex}
+\titlespacing*{\subsection}
+  {-45pt}
+  {3.5ex plus 1ex minus .2ex}
+  {2.3ex plus .2ex}
+
+\titlespacing*{\subsubsection}
+    {-45pt}
+    {3.5ex plus 1ex minus .2ex}
+    {2.3ex plus .2ex}
+
+\renewcommand{\thesubsubsection}{\alph{subsubsection}}
+
+% ------------------------------------- %
+%           Table of content
+% ------------------------------------- %
+
+% Part
+\titlecontents{part}
+  [0em]
+  {\vskip12pt\scshape \hypersetup{linkcolor=myblue}\Large}
+  {\hypersetup{linkcolor=myblue}\thecontentslabel\enspace}
+  {}
+  {\color{burgundy}\hfill\contentspage}
+  [\color{burgundy}\vskip -2mm\rule{\linewidth}{1.5pt}\vskip 6pt]
+
+% Chapter
+\newcounter{chapcntr}
+\setcounter{chapcntr}{-1}
+
+\titlecontents{chapter}
+  [0em]
+  {\vskip12pt\scshape \stepcounter{chapcntr} \large}
+  {\color{myblue}\thecontentslabel\enspace}
+  {}
+  {\dotfill\color{burgundy}\contentspage}[\vskip 6pt]  % \hspace{0.5em}
+
+% Section
+\titlecontents{section}
+  [1em]
+  {\ifboolexpr{test {\ifnumequal{\thechapcntr}{0}}}
+                    {\color{white}}
+                    {\ifboolexpr{test {\ifnumequal{\thechapcntr}{8}}}
+                                {\color{white}}
+                                {\color{black}}}}
+  {\hypersetup{linkcolor=black}\thecontentslabel\enspace}
+  {}
+  {\hfill\color{burgundy}\contentspage}[\vskip 4pt]
+
+% Sub-section
+\titlecontents{subsection}
+  [2em]
+  {}
+  {\hypersetup{linkcolor=black}\itshape\thecontentslabel\enspace}
+  {}
+  {\hspace{0.5em}\color{burgundy}\contentspage}
+  [\vskip 3pt]
+
+% \subsubsection
+\titlecontents{subsubsection}
+  [3em]
+  {}
+  {\hypersetup{linkcolor=black}\itshape\thecontentslabel\enspace}
+  {}
+  {\hspace{0.5em}\color{burgundy}\contentspage}[\vskip 3pt]
+
+%%%%%%%% MINITOCs for Chapters
+\newcommand\partialtocname{Chapter contents}
+
+\titlecontents{lsection}
+  [2em]
+  {\vspace{1em}\footnotesize\normalfont}
+  {\contentslabel{2em}\hspace{4cm}\contentspage[\thecontentspage]\hspace{-4cm}}
+  {}
+  {}% \hfill\color{burgundy}
+
+\titlecontents{lsubsection}[2.5em]
+  {\vspace{0.65em}\scriptsize}
+  {}
+  {}
+  {}% \space\textbullet
+
+\newcommand{\dochaptoc}{%
+    \marginnote{%
+        \startcontents%
+        \vbox{\noindent\scshape\normalsize}%
+        \vskip1ex%
+        \vspace{-1em}%
+        \printcontents{l}{1}{}%
+    }
+}

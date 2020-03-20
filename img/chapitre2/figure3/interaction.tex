@@ -1,0 +1,112 @@
+\subfigure[Diffusion élastique]{
+    \begin{tikzpicture}[scale=0.5]
+        \clip (-2.5, -4) rectangle (2.5, 4);
+        \coordinate (O) at (0, 0);
+        \coordinate (A) at (0.4, 4);
+        \coordinate (B) at (1.9, 4);
+
+        % Circles
+        \draw (O) circle (1cm);
+        \draw (O) circle (2cm);
+
+        % Central atom
+        \fill[black] (O) circle (0.1cm);
+
+        % Atoms on layers # 1
+        \fill[black] (0:1) circle (0.1cm);
+        \fill[black] (180:1) circle (0.1cm);
+
+        % Atoms on layers # 2
+        \fill[black] (45:2) circle (0.1cm);
+        \fill[black] (90+45:2) circle (0.1cm);
+        \fill[black] (180+45:2) circle (0.1cm);
+        \fill[black] (270+45:2) circle (0.1cm);
+
+        % Incident atoms
+        \fill[black] (A) circle (0.1cm);
+        \fill[black] (B) circle (0.1cm);
+
+        \draw[->, thick ] (A) -- (0.4, 0) arc (0:-140:0.4) -- ++ (140:3);
+        \draw[->, thick, rounded corners=1cm ] (B) -- ++(0, -4.5) -- (-2.5, -3);
+
+    \end{tikzpicture}
+    \label{fig-chap2-interactions-a}
+}\quad
+\subfigure[Diffusion inélastique en couche électronique basse]{
+    \begin{tikzpicture}[scale=0.5]
+        \clip (-2.5, -4) rectangle (2.5, 4);
+
+        \coordinate (O) at (0, 0);
+        \coordinate (A) at (1, 4);
+
+        % Circles
+        \draw (O) circle (1cm);
+        \draw (O) circle (2cm);
+
+        % Central atom
+        \fill[black] (O) circle (0.1cm);
+
+        % Atoms on layers # 1
+        \filldraw[draw=black, fill=white] (0:1) circle (0.1cm);
+        \fill[black] (180:1) circle (0.1cm);
+        \draw (120:1) node [above left] {K};
+
+        % Atoms on layers # 2
+        \fill[black] (45:2) circle (0.1cm);
+        \fill[black] (90+45:2) circle (0.1cm);
+        \fill[black] (180+45:2) circle (0.1cm);
+        \fill[black] (270+45:2) circle (0.1cm);
+        \draw (120:2) node [above left] {L};
+
+        % Incident atoms
+        \fill[black] (A) circle (0.1cm);
+        \draw[->, thick, rounded corners=0.7cm ] (A) -- (1, 0) -- (-2.5, -3.5);
+
+        % Other atom and arrows
+        \fill[black] (2, 0) circle (0.1cm);
+        \draw [->] (1.2, 0.1) -- ++ (0.6, 0);
+        \draw [<-, dashed] (1.2,- 0.1) -- ++ (0.6, 0);
+
+    \end{tikzpicture}
+    \label{fig-chap2-interactions-b}
+}\quad
+\subfigure[Diffusion inélastique en couche électronique haute]{
+    \begin{tikzpicture}[scale=0.5]
+        \clip (-3.25, -4) rectangle (3.25, 4);
+
+        \coordinate (O) at (0, 0);
+        \coordinate (A) at (1.4, 4);
+
+        % Circles
+        \draw (O) circle (1cm);
+        \draw (O) circle (2cm);
+
+        % Central atom
+        \fill[black] (O) circle (0.1cm);
+
+        % Atoms on layers # 1
+        \fill[black] (0:1) circle (0.1cm);
+        \fill[black] (180:1) circle (0.1cm);
+
+        % Atoms on layers # 2
+        \filldraw [draw=black, fill=white] (45:2) circle (0.1cm);
+        \fill[black] (90+45:2) circle (0.1cm);
+        \fill[black] (180+45:2) circle (0.1cm);
+        \fill[black] (270+45:2) circle (0.1cm);
+
+        % Layer # 3
+        \fill [black!15, even odd rule] (O) circle (3.25cm) circle (2.75cm);
+        \draw [densely dashed] (O) circle (3cm);
+
+        % Incident atoms
+        \fill[black] (A) circle (0.1cm);
+        \draw[->, thick, rounded corners=1cm ] (A) -- ++(0, -2.55) -- (-1.5, -3.5);
+
+        % Other atom and arrows
+        \fill [black] (45:3) circle (0.1cm);
+        \draw [->, rotate=45] (2.2, 0.1) -- ++ (0.6, 0);
+        \draw [<-, dashed, rotate=45] (2.2,- 0.1) -- ++ (0.6, 0);
+
+    \end{tikzpicture}
+    \label{fig-chap2-interactions-c}
+}

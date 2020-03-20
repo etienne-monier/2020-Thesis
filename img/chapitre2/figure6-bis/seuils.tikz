@@ -1,0 +1,45 @@
+\documentclass{standalone}
+\usepackage{tikzstyle}
+\usepackage{colorbrewer}
+
+\begin{document}
+
+\begin{tikzpicture}
+
+    \begin{axis}[%
+        width=8cm,
+        height=6cm,
+        at={(0cm,0cm)},
+        grid=none,
+        xtick=\empty,
+        ytick=\empty,
+        %
+        xlabel={Perte d'énergie (eV)},
+        ylabel={Amplitude},
+%        ymin=0,
+%        xmin=350, xmax=1050,
+%        ymax=1500,
+        %
+        x label style={font=\footnotesize},
+        y label style={font=\footnotesize}, 
+        %
+        line width=1pt,
+        %
+        enlargelimits=true,
+        ]
+        \addplot+ [gray] table [x=ev, y=sig] {python/full.dat};
+        \addplot+ [dotted, Dark2-5-2] table [x=ev, y=fond] {python/full.dat};
+        \addplot+ [dotted, Dark2-5-3] table [x=ev, y=sig] {python/cseuil1.dat};
+        \addplot+ [dotted, Dark2-5-4] table [x=ev, y=sig] {python/cseuil2.dat};
+        \addplot+ [dotted, Dark2-5-5] table [x=ev, y=sig] {python/cseuil3.dat};
+        
+        \draw (500, 1360) node {\color{Dark2-5-3}1};
+        \draw (700, 1050) node {\color{Dark2-5-4}2};
+        \draw (800, 900) node {\color{Dark2-5-5}3};
+        
+    \end{axis}
+
+\end{tikzpicture}
+
+
+\end{document}

@@ -1,0 +1,79 @@
+\documentclass{standalone}
+\usepackage{tikzstyle}
+
+\begin{document}
+
+\colorlet{c_lenses}{black}
+\colorlet{c_ray}{red}
+
+\begin{tikzpicture}[scale=0.6]  % transform shape = false
+
+    % Gun
+    \draw [pattern=north west lines] (-1, -1) -- ++ (1, 0) -- ++(0, 2) -- ++(-1, 0) -- ++(0, 0.5) -- ++(-0.5, 0) -- ++(0, -3) -- ++(0.5, 0) -- cycle;
+
+
+    % Lense
+    \begin{scope}[xshift=5cm]
+        \filldraw [draw=c_lenses, fill=c_lenses!60, xshift=-1cm] (0, 2) rectangle ++(2, 2);
+        \filldraw [draw=c_lenses, fill=c_lenses!60, xshift=-1cm] (0, -2) rectangle ++(2, -2);
+        \filldraw[fill=c_lenses!10, draw=c_lenses] (-1, -2) rectangle ++(2, 4);
+    \end{scope}
+
+
+    % Haadf detector
+    \filldraw[fill=black!10, draw=black, xshift=15cm] (0, 0.5) rectangle ++(0.5, -1);
+    \filldraw[fill=black!20, draw=black, xshift=15cm] (0, 0.5) rectangle ++(0.5, 2);
+    \filldraw[fill=black!20, draw=black, xshift=15cm] (0, -0.5) rectangle ++(0.5, -2);
+    % Rays from sample to haadf
+    \fill[c_ray!60, opacity=0.6] (12.25, 0) -- ++(2.75, 2.5) -- ++(0, -2) -- cycle;
+    \fill[c_ray!60, opacity=0.6, yscale=-1] (12.25, 0) -- ++(2.75, 2.5) -- ++(0, -2) -- cycle;
+    \fill[c_ray!60, opacity=0.2] (12.25, 0) -- ++(2.75, 0.5) -- ++(0, -1) -- cycle;
+
+
+    % Cathodoluminescence
+    % Two pre-rays from sample to mirror
+    \draw [name path = A, draw=none] (11.75, 0) -- (10, 1.5) -- (10, -6);
+    \draw [name path = B, draw=none] (11.75, 0) -- (8.5, -2) -- (8.5, -6);  
+    % Fills ray area
+    \fill [blue!20, name intersections={of=A and B}]  (10, 1.5) arc [start angle=90, end angle=180, x radius=1.5cm, y radius=3.5cm] -- (8.5, -2) -- (8.5, -6) -- (10, -6) -- (intersection-2) -- (11.75, 0) -- (10, 1.5);
+    % Mirror
+    \draw [xshift=8cm, pattern=north west lines] (0.5, -2) -- (0, -2) -- ++(0, 4) -- ++ (2, 0) -- (2, 1.5)  arc [start angle=90, end angle=180, x radius=1.5cm, y radius=3.5cm];
+    % The two blue rays
+    \draw [blue, ray arrow] (11.75, 0) -- (10, 1.5) -- (10, -6);
+    \draw [blue, ray arrow] (11.75, 0) -- (8.5, -2) -- (8.5, -6);   
+    % The detector
+    \filldraw [fill=black!20] (8, -6) rectangle ++(2.5, -0.5);
+
+
+    % EELS
+    % output color
+    \shade [left color = blue!60, right color = red!60] (18, -1.5) rectangle ++(1, -2);
+    % The spectrometer
+    \draw [xshift=17cm,  pattern=north west lines] (0, 0.5) arc (90:0:2) -- ++ (-1, 0) arc (0:90:1) -- cycle;
+    % Detector
+    \filldraw[fill=black!20, draw=black, xshift=18.5cm] (-1, -4) rectangle ++ (2, 0.5);
+    % Two output rays
+    \draw [ray arrow, red, arrowstep=0.3] (18, -1.5) -- ++ (0, -2);
+    \draw [ray arrow, red, arrowstep=0.3] (19, -1.5) -- ++ (0, -2);
+
+
+    % Emmited rays
+    \fill[c_ray!60, opacity=0.8] (0, 0) -- (5, 2) -- (11.75, 0) -- (5, -2) -- cycle;
+    \draw[c_ray, ray arrow] (0, 0) -- (5, 2) -- (11.75, 0) -- (17, 0);
+    \draw[c_ray, ray arrow] (0, 0) -- (5, -2) -- (11.75, 0) -- (17, 0);
+
+    % Sample
+    \filldraw [xshift=12cm] (-0.25, -2.5) rectangle ++(0.5, 5);
+
+    \draw (9.25, -6.5) node  [below, text width=2cm, align=center]{Capteur cathodo.};
+    \draw (9, 2) node  [above, text width=2cm, align=center]{Miroir cathodo.};
+    \draw (12, -2.5) node  [below]{Echantillon};
+    \draw (-0.75, 1.5) node  [above]{Canon};
+    \draw (15.25, 2.5) node  [above, text width=2cm, align=center]{Capteur HAADF};
+    \draw (18.5, -4) node  [below, text width=2cm, align=center]{Capteur EELS};
+    \draw (18, 0.5) node  [above, text width=2cm, align=center]{Spectromètre EELS};
+    \draw (5, 4) node  [above, text width=4cm, align=center]{Lentille électromagnétique};
+
+\end{tikzpicture}
+
+\end{document}

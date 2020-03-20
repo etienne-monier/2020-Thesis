@@ -1,0 +1,32 @@
+\documentclass[11pt]{standalone}
+\usepackage{tikzstyle}
+\begin{document}
+
+\colorlet{c_lenses}{black}
+\colorlet{c_ray}{red}
+
+\begin{tikzpicture}[rotate=-90, scale=0.3]  % transform shape = false
+
+    % Gun
+    \draw [pattern=north west lines] (-1, -1) -- ++ (1, 0) -- ++(0, 2) -- ++(-1, 0) -- ++(0, 0.5) -- ++(-0.5, 0) -- ++(0, -3) -- ++(0.5, 0) -- cycle;
+
+    % Lense
+    \begin{scope}[xshift=5cm]
+        \filldraw [draw=c_lenses, fill=c_lenses!60, xshift=-1cm] (0, 2) rectangle ++(2, 2);
+        \filldraw [draw=c_lenses, fill=c_lenses!60, xshift=-1cm] (0, -2) rectangle ++(2, -2);
+        \filldraw[fill=c_lenses!10, draw=c_lenses] (-1, -2) rectangle ++(2, 4);
+    \end{scope}
+
+    % Rays
+    \fill[c_ray!60, opacity=0.8] (0, 0) -- (5, 2) -- (12, 2) -- (16, 2) -- (16, -2) -- (5, -2) -- cycle;
+    \draw[name path=ray1, c_ray, ray arrow] (0, 0) -- (5, 2) -- (12, 2) -- (16, 2);
+    \draw[name path=ray2, c_ray, ray arrow, yscale=-1] (0, 0) -- (5, 2) -- (12, 2) -- (16, 2);
+
+    % Sample
+    \filldraw [xshift=12cm] (-0.25, -2.5) rectangle ++(0.5, 5);
+
+    % Detector
+    \filldraw[fill=black!20, draw=black, xshift=16cm] (0, -2) rectangle (0.5, 2);
+
+\end{tikzpicture}
+\end{document}

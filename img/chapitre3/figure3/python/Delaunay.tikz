@@ -1,0 +1,55 @@
+\documentclass[10pt]{standalone}
+\usepackage{tikzstyle}
+
+\usepackage{tikz, pgf}
+\begin{document}
+
+\begin{tikzpicture}
+
+    \begin{axis}[
+        width=7cm, height=7cm,
+        xmin=0, xmax=1,
+        ymin=0, ymax=1,
+        xtick=\empty, ytick=\empty,
+        hide axis,
+        ]
+    
+
+% Circles.
+
+	\draw [draw=gray, opacity=0.5, thick] (axis cs:0.43756854620583563, 0.7684398834266319) circle [radius=0.1233331187678187];
+	\draw [draw=gray, opacity=0.5, thick] (axis cs:1.43273870051872, 1.3952764937657416) circle [radius=1.1152767611742107];
+	\draw [draw=gray, opacity=0.5, thick] (axis cs:0.5233875094418632, 0.6134366219427879) circle [radius=0.10488137200922165];
+	\draw [draw=gray, opacity=0.5, thick] (axis cs:0.9039107310198546, 0.733979392294294) circle [radius=0.35559401817655545];
+
+
+% Delaunay triangulation.
+
+	\path [draw=black, thick] (axis cs:0.5488135039273248, 0.7151893663724195) -- 
+		(axis cs:0.4375872112626925, 0.8917730007820798) -- 
+		(axis cs:0.4236547993389047, 0.6458941130666561) -- cycle;
+	\path [draw=black, thick] (axis cs:0.4375872112626925, 0.8917730007820798) -- 
+		(axis cs:0.5488135039273248, 0.7151893663724195) -- 
+		(axis cs:0.9636627605010293, 0.3834415188257777) -- cycle;
+	\path [draw=black, thick] (axis cs:0.6027633760716439, 0.5448831829968969) -- 
+		(axis cs:0.5488135039273248, 0.7151893663724195) -- 
+		(axis cs:0.4236547993389047, 0.6458941130666561) -- cycle;
+	\path [draw=black, thick] (axis cs:0.5488135039273248, 0.7151893663724195) -- 
+		(axis cs:0.6027633760716439, 0.5448831829968969) -- 
+		(axis cs:0.9636627605010293, 0.3834415188257777) -- cycle;
+
+
+% Samp. points.
+
+	\addplot+[only marks] coordinates{
+		(0.5488135039273248, 0.7151893663724195)
+		(0.6027633760716439, 0.5448831829968969)
+		(0.4236547993389047, 0.6458941130666561)
+		(0.4375872112626925, 0.8917730007820798)
+		(0.9636627605010293, 0.3834415188257777)
+	};
+
+	\end{axis}
+\end{tikzpicture}
+
+\end{document}
