@@ -1,0 +1,26 @@
+%!TEX root = ../main.tex
+\begin{fullwidth}
+
+\chapter*{Abstract}
+\label{ch:english_resume}
+\addcontentsline{toc}{chapter}{Abstract}
+
+In electron energy loss spectroscopy (EELS), the sample to be analyzed is exposed to an electron beam and quantifying the energy lost after crossing the material informs about the compound chemical composition. For samples particularly sensitive to electronic irradiation damages, such as organic materials, the experimenter is constrained to reduce the total electron dose received by the sample while obtaining a satisfying signal-to-noise ratio.
+
+With the recent development of sampling modules adapted to scanning transmission electron microscopes (STEM), the initial raster acquisition (i.e., line-by-line) has become highly configurable. Henceforth, it is now possible to visit any set of spatial positions during the acquisition. Based on these technical advances, a lot of works proposed optimized acquisition schemes for preserving sensitive samples. For a global electron dose equivalent to standard sampling, these strategies consist in visiting less spatial positions, i.e., to perform partial sampling. As a consequence, a higher electron dose per spatial position is allowed, which permits to increase the signal-to-noise ratio for each sampled spectrum. Yet, a post-processing step is required to reconstruct the whole image, in particular for the spectra associated with non-locations. Among the reconstruction techniques used in the literature, the interpolation methods are fast but rather inaccurate~; they are particularly efficient for displaying the full image along the acquisition process. On the contrary, the dictionary learning-based methods are very performant, but are memory and computation demanding. They are chosen in priority to refine the reconstructed image after experimenting.
+
+Finally, only a few works attempt to fill this gap. The main objective of this Ph.D. thesis is to propose fast and accurate reconstruction algorithms for STEM-EELS imaging. Similarly to the interpolation methods, they should be fast enough to visualize the reconstructed image along the acquisition. Meanwhile, they should also achieve better reconstruction performances than those reached by interpolation, nay close to the those of dictionary learning-based methods. To that end, regularized least square methods are proposed in the context of spatially smooth samples or of periodic crystalline samples. The proposed algorithms are then tested based on synthetic as real data experiments. The interest of partial-sampling based methods and the performances with respect to other reconstruction methods are studied.
+
+
+\vspace{1em}
+\noindent{\color{myblue}\bfseries Keywords :} 
+%
+electron energy loss spectroscopy, 
+scanning transmission electron microscope, 
+multi-band imaging, 
+spectrum-image,
+image reconstruction, 
+partial sampling,
+inpainting.
+
+\end{fullwidth}

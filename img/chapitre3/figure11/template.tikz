@@ -1,0 +1,109 @@
+\documentclass{standalone}
+\usepackage{tikzstyle}
+\usepackage{colorbrewer,etoolbox}
+
+\pgfplotsset{compat=1.17}
+\usepgfplotslibrary{groupplots}
+
+\def\bxmin{300}
+\def\bxmax{400}
+\def\bymin{1000}
+\def\bymax{2500}
+
+\newcommand{\redbox}{\draw [red] (axis cs:\bxmin, \bymin) rectangle (axis cs:\bxmax, \bymax);}
+
+\pgfplotsset{
+    limits-1/.style={ymin=-500, ymax=3500,},
+    limits-2/.style={ymin=0, ymax=5000,},
+    limits-3/.style={ymin=0, ymax=4500,},
+    clipped/.style={xmin=\bxmin, xmax=\bxmax, ymin=\bymin, ymax=\bymax, axis line style={red},},
+}
+
+
+\begin{document}
+
+\begin{tikzpicture}
+
+    \begin{groupplot}[
+        group style={
+            group size=5 by 3,
+            %
+            horizontal sep=0.5cm,
+            vertical sep=0.5cm, 
+            %
+            xticklabels at= edge bottom,
+            yticklabels at=edge left,
+            },
+        %
+        height=4cm, width=5.7cm,
+        %
+        xmin=150, xmax=900,
+        %
+        axis lines=box,
+        enlargelimits=false,
+        %
+        ylabel style={font=\small},
+        every axis plot/.append style={line width=0.5pt},
+        ]
+        %
+        % 1st line
+        \nextgroupplot[limits-1, ylabel={Spectre 1}, title={$\mathcal{P}_0$-Full\textsubscript{10ms}}]
+        \addplot+ file {data/data_1_1.dat};
+
+        \nextgroupplot[limits-1, title={$\mathcal{P}_1$-Full\textsubscript{2ms}}]
+        \addplot+ file {data/data_1_2.dat};
+
+        \nextgroupplot[limits-1, title={$\mathcal{P}_1$-ACP+NL-means}]
+        \addplot+ file {data/data_1_3.dat};
+
+        \nextgroupplot[limits-1, title={$\mathcal{P}_2$-S2N}]
+        \addplot+ file {data/data_1_4.dat};
+
+        \nextgroupplot[limits-1, title={$\mathcal{P}_2$-3S}]
+        \addplot+ file {data/data_1_5.dat};
+
+        % 2nd line
+        \nextgroupplot[limits-2, ylabel={Spectre 2}]
+        \addplot+ file {data/data_2_1.dat};
+        \redbox
+
+        \nextgroupplot[limits-2]
+        \addplot+ file {data/data_2_2.dat};
+        \redbox
+
+        \nextgroupplot[limits-2]
+        \addplot+ file {data/data_2_3.dat};
+        \redbox
+
+        \nextgroupplot[limits-2]
+        \addplot+ file {data/data_2_4.dat};
+        \redbox
+
+        \nextgroupplot[limits-2]
+        \addplot+ file {data/data_2_5.dat};
+        \redbox
+
+        % 3rd line
+        \nextgroupplot[limits-3, ylabel={Spectre 3}]
+        \addplot+ file {data/data_3_1.dat};
+
+        \nextgroupplot[limits-3]
+        \addplot+ file {data/data_3_2.dat};
+
+        \nextgroupplot[limits-3]
+        \addplot+ file {data/data_3_3.dat};
+
+        \nextgroupplot[limits-3]
+        \addplot+ file {data/data_3_4.dat};
+
+        \nextgroupplot[limits-3]
+        \addplot+ file {data/data_3_5.dat}; 
+
+    \end{groupplot}
+
+\end{tikzpicture}
+
+
+
+
+\end{document}

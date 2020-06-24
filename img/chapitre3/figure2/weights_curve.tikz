@@ -1,0 +1,48 @@
+\documentclass{standalone}
+\usepackage{tikzstyle}
+\usepackage{colorbrewer}
+
+\pgfplotsset{
+    my-axis/.style={
+        width=10cm,
+        height=6cm,
+        grid=none,
+        xmin=0.9, xmax=700, 
+        enlargelimits=false,
+        % scale only axis,
+        line width=0.75pt, 
+    },
+}
+
+\begin{document}
+
+\begin{tikzpicture}
+
+    \begin{axis}[%
+        my-axis,
+        ymode=log,
+        xmode=log,
+        axis y line*=left,
+        xlabel={Indice},
+        ylabel={\color{Dark2-5-1}Valeur propre corrigée},
+        ymin=1e3, ymax=1e6,
+        ]
+        \addplot+ [Dark2-5-1] table [x=x, y=d] {d_w.dat};
+        
+    \end{axis}
+    \begin{axis}[
+        my-axis,
+        ymode=log,
+        xmode=log,
+        axis y line*=right,
+        axis x line=none,
+        ylabel={\color{Dark2-5-2}Poids},
+        % ymin=0, ymax=600,
+        ]
+        \addplot+ [Dark2-5-2] table [x=x, y=w] {w_w.dat};
+    \end{axis}
+
+\end{tikzpicture}
+
+\end{document} 
+

@@ -1,0 +1,56 @@
+\documentclass{standalone}
+\usepackage{tikzstyle}
+\usepackage{colorbrewer}
+
+\pgfplotsset{
+    compat=1.15,
+    acp/.style={
+        %
+        width=5cm,
+        height=5cm,
+        at={(0cm,0cm)},
+        %
+        grid=none,
+        %
+        minor tick num = 3,           
+        ymin=-4, ymax=4,
+        xmin=-4, xmax=4,
+        %
+        axis x line = middle,
+        axis y line = center,
+        line width = 1pt,
+        %
+        x label style={font=\footnotesize},
+        y label style={font=\footnotesize}, 
+        %
+        enlargelimits=false,
+        %
+        every axis x label/.style={
+            at={(ticklabel* cs:1.05)},
+            anchor=west,
+        },
+        every axis y label/.style={
+            at={(ticklabel* cs:1.05)},
+            anchor=south,
+        },
+    },
+}
+
+\begin{document}
+
+\begin{tikzpicture}
+
+    \begin{axis}[%
+        acp,
+        xlabel={$\mathbf{Y}_1$},
+        ylabel={$\mathbf{Y}_2$},
+        ]
+        \addplot+ [Dark2-5-1, only marks, mark size=0.5] table[x=x1, y=x2] {python/approximations_1.dat};
+        \addplot+ [Dark2-5-2, only marks, mark size=0.5] table[x=y1, y=y2] {python/approximations_1.dat};
+
+    \end{axis}
+
+\end{tikzpicture}
+
+
+\end{document}

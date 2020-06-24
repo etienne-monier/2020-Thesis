@@ -1,0 +1,45 @@
+\documentclass[]{standalone}
+\usepackage{tikzstyle}
+\usepackage{colorbrewer}
+
+\def\fileplot{synth_HR2_non_samp.dat}
+
+\begin{document}
+
+    \begin{tikzpicture}[]
+        \begin{axis}[
+            %
+            xlabel={Perte d'énergie (eV)},
+            ylabel={Amplitude},
+            %
+            ymin=0, ymax=2200,
+            xmin=450, xmax=1050,
+            enlargelimits=false,
+            %
+            xlabel style={font=\small},
+            ylabel style={font=\small},
+            %
+            width=10cm, height=6cm,
+            %
+            % legend
+            legend entries={Référence, NN, 3S, CLS, ITKrMM, wKSVD, BPFA},
+            legend-on-top,
+            %
+            line width=1pt,
+            ]
+            \addplot+ [] table [x=eV, y=GT]{\fileplot};
+            \addplot+ [] table [x=eV, y=NN]{\fileplot};
+            \addplot+ [] table [x=eV, y=SSS]{\fileplot};
+            \addplot+ [] table [x=eV, y=FS3D]{\fileplot};
+            \addplot+ [] table [x=eV, y=ITKrMM]{\fileplot};
+            \addplot+ [] table [x=eV, y=wKSVD]{\fileplot};
+            \addplot+ [] table [x=eV, y=BPFA]{\fileplot}; 
+            
+            \addplot+ [name path=llim, blue, opacity=0.2] coordinates {(829, 0) (829, 2200)};
+            \addplot+ [name path=rlim, blue, opacity=0.2] coordinates {(839, 0) (839, 2200)};
+            \addplot+ [blue, opacity=0.2] fill between[of=llim and rlim];
+        \end{axis}
+
+    \end{tikzpicture}
+
+\end{document}

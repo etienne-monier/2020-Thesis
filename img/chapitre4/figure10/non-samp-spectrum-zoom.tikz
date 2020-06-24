@@ -1,0 +1,35 @@
+\documentclass[]{standalone}
+\usepackage{tikzstyle}
+\usepackage{colorbrewer}
+
+\def\fileplot{real_non_samp.dat}
+
+\begin{document}
+
+    \begin{tikzpicture}[]
+        \begin{axis}[
+            %
+            xlabel={Perte d'énergie (eV)},
+            ylabel={Amplitude},
+            %
+            xlabel style={font=\small},
+            ylabel style={font=\small},
+            %
+            xmin=829, xmax=839,
+            %
+            width=10cm, height=6cm,
+            %
+            line width=0.5pt,
+            ]
+            \addplot+ [] table [x=eV, y=GT]{\fileplot};
+            \addplot+ [] table [x=eV, y=NN]{\fileplot};
+            \addplot+ [] table [x=eV, y=SSS]{\fileplot};
+            \addplot+ [] table [x=eV, y=FS3D]{\fileplot};
+            \addplot+ [] table [x=eV, y=ITKrMM]{\fileplot};
+            \addplot+ [] table [x=eV, y=wKSVD]{\fileplot};
+            \addplot+ [] table [x=eV, y=BPFA]{\fileplot};
+        \end{axis}
+
+    \end{tikzpicture}
+
+\end{document}

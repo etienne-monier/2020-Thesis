@@ -1,0 +1,70 @@
+\documentclass{standalone}
+\usepackage{tikzstyle}
+\usepackage{colorbrewer,etoolbox}
+
+\pgfplotsset{compat=1.17}
+\usepgfplotslibrary{groupplots}
+
+\def\bxmin{300}
+\def\bxmax{400}
+\def\bymin{1000}
+\def\bymax{2500}
+
+\newcommand{\redbox}{\draw [red] (axis cs:\bxmin, \bymin) rectangle (axis cs:\bxmax, \bymax);}
+
+\pgfplotsset{
+    limits-1/.style={ymin=-500, ymax=3500,},
+    limits-2/.style={ymin=0, ymax=5000,},
+    limits-3/.style={ymin=0, ymax=4500,},
+    clipped/.style={xmin=\bxmin, xmax=\bxmax, ymin=\bymin, ymax=\bymax, axis line style={red},},
+}
+
+
+\begin{document}
+
+\begin{tikzpicture}
+
+    \begin{groupplot}[
+        group style={
+            group size=5 by 1,
+            %
+            horizontal sep=0.5cm,
+            vertical sep=0.5cm, 
+            %
+            xticklabels at= edge bottom,
+            yticklabels at=edge left,
+            },
+        %
+        height=4cm, width=5.7cm,
+        %
+        xmin=150, xmax=900,
+        %
+        axis lines=box,
+        enlargelimits=false,
+        %
+        ylabel style={font=\small},
+        every axis plot/.append style={line width=0.5pt},
+        ]
+        %
+        % 2nd line
+        \nextgroupplot[clipped, ylabel={Spectre 2 - zoom}]
+        \addplot+ file {data/data_2_1.dat};
+
+        \nextgroupplot[clipped]
+        \addplot+ file {data/data_2_2.dat};
+
+        \nextgroupplot[clipped]
+        \addplot+ file {data/data_2_3.dat};
+
+        \nextgroupplot[clipped]
+        \addplot+ file {data/data_2_4.dat};
+
+        \nextgroupplot[clipped]
+        \addplot+ file {data/data_2_5.dat};
+
+    \end{groupplot}
+
+\end{tikzpicture}
+
+
+\end{document}

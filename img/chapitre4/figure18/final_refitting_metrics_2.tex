@@ -1,0 +1,30 @@
+\bgroup
+    \renewcommand{\arraystretch}{1,2}
+    %
+    \begin{tabular}{*{3}{M{2cm}}}%
+        \toprule
+        \multirow{2}{*}{Méthode}& \multicolumn{2}{c}{SNR}\\
+        %
+        &$\mathsf{R}_2^*$&$\mathsf{S}^*$\\
+        %
+        \midrule
+        %
+        NN          & 28,71 & 21,32 \\
+        3S          & 30,17 & 22,12 \\
+        \midrule
+        CLS         & 33,15 & 42,14 \\
+        post-MC     & 32,45 & 42,22 \\
+        BBR-HO      & 33,07 & 42,36 \\
+        BBR-HD      & 33,07 & 42,36 \\
+        BBR-QO      & 32,75 & 42,40 \\
+        BBR-QD      & 32,80 & 42,40 \\
+        BBR-SO      & 33,07 & 42,36 \\
+        BBR-SD      & 32,78 & 42,38 \\
+        \midrule
+        ITKrMM      & 33,67 & 44,16 \\
+        wKSVD       & 34,52 & 45,59 \\
+        BPFA        & 35,01 & 52,70 \\
+        %
+        \bottomrule
+    \end{tabular}
+\egroup

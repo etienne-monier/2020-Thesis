@@ -1,0 +1,76 @@
+\documentclass{standalone}
+\usepackage{tikzstyle}
+\usepackage{colorbrewer}
+
+\pgfplotsset{
+    compat=1.15,
+    acp/.style={
+        %
+        width=6cm,
+        at={(0cm,0cm)},
+        %
+        grid=none,
+        %
+        minor tick num = 3,           
+        ymin=-4, ymax=4,
+        xmin=-4, xmax=4,
+        %
+        axis x line = middle,
+        axis y line = center,
+        line width = 1pt,
+        %
+        x label style={font=\footnotesize},
+        y label style={font=\footnotesize}, 
+        %
+        enlargelimits=false,
+        %
+        every axis x label/.style={
+            at={(ticklabel* cs:1.05)},
+            anchor=west,
+        },
+        every axis y label/.style={
+            at={(ticklabel* cs:1.05)},
+            anchor=south,
+        },
+    },
+}
+
+\begin{document}
+
+\begin{tikzpicture}
+
+    \begin{axis}[%
+        height=6cm,
+        acp,
+        xlabel={$\mathbf{Y}_1$},
+        ylabel={$\mathbf{Y}_2$},
+        legend entries={$y=-x$,$y=10x$, $y=x$},
+        legend pos = {outer north east}
+        ]
+        \addplot+ [Dark2-5-2, domain=-2:2] {-x};
+        \addplot+ [Dark2-5-3, domain=-4:4] {10*x};
+        \addplot+ [Dark2-5-4, domain=-3.5:3.5] {x};
+        \addplot+ [Dark2-5-1, only marks, mark size=0.5] table[x=x1, y=x2] {python/data.dat};
+
+    \end{axis}
+    \begin{axis}[
+        acp,
+        height=3cm,
+        at={(0cm,-2.5cm)},
+        ymin=0,ymax=3,
+        hide y axis,
+        xlabel={$\mathbf{s}_1$},
+        ]
+
+    \addplot+ [Dark2-5-2,only marks, mark size=0.5] table [x=p, y=pyyyy] {python/worst_data.dat};
+
+    \addplot+ [Dark2-5-3,only marks, mark size=0.5] table [x=p, y=pyyy] {python/better_data.dat};
+    \addplot+ [Dark2-5-4,only marks, mark size=0.5] table [x=p, y=pyy] {python/best_data.dat};
+    \end{axis}
+
+
+\end{tikzpicture}
+
+
+
+\end{document}

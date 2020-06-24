@@ -1,0 +1,71 @@
+\bgroup
+    \renewcommand{\arraystretch}{1.2}
+    %
+    \subfigure[ $\mathsf{R}_2^*$]{
+        \begin{tabular}{%
+                c%
+                c%
+                c%
+                c%
+                c}%
+            \toprule
+            Method& 
+            SNR&
+            aSAD (100$\times$)&
+            SSIM&
+            Time(s)\\
+            %
+            \midrule
+            %
+NN          & 28,71          & 1,815          & 0,635          & $\mathbf{7,94\cdot 10^{-2}}$\\
+3S          & 30,17          & 1,496          & 0,621          & 3,38\\
+CLS         & 33,15          & 1,233          & 0,790          & 3,09\\
+CLS_POST_LS & 32.45          & 1.397          & 0.752          & 0.86\\
+CLS_BBR_HO  & 33.07          & 1.227          & 0.788          & 1.46\\
+CLS_BBR_HD  & 33.07          & 1.225          & 0.789          & 1.87\\
+CLS_BBR_QO  & 32.75          & 1.278          & 0.780          & 2.56\\
+CLS_BBR_QD  & 32.80          & 1.275          & 0.783          & 2.45\\
+CLS_BBR_SO  & 33.07          & 1.224          & 0.789          & 1.58\\
+CLS_BBR_SD  & 32.78          & 1.274          & 0.781          & 2.27\\
+ITKrMM      & 33,67          & 1,253          & 0,819          & $9,55\cdot 10^3$\\
+wKSVD       & 34,52          & 1,163          & 0,841          & $2,59\cdot 10^4$\\
+BPFA        & \textbf{35,01} & \textbf{1,106} & \textbf{0,852} & $6,18\cdot 10^4$\\
+            %
+            \bottomrule
+        \end{tabular}
+    }
+    %
+    \subfigure[ $\mathsf{S}^*$]{
+        \begin{tabular}{%
+                c%
+                c%
+                c%
+                c%
+                c}%
+            \toprule
+            Method& 
+            SNR&
+            aSAD (100$\times$)&
+            SSIM&
+            Time(s)\\
+            %
+            \midrule
+            %
+NN          & 21,32          & 1,462          & 0,735          & $\mathbf{6,82\cdot 10^{-2}}$\\
+3S          & 22,12          & 1,174          & 0,710          & 3,33\\
+CLS         & 42,14          & 0,224          & 0,997          & 1,48\\
+CLS_POST_LS & 42.22          & 0.261          & 0.997          & 3.00s\\
+CLS_BBR_HO  & 42.36          & 0.226          & 0.997          & 3.44s\\
+CLS_BBR_HD  & 42.36          & 0.226          & 0.997          & 3.28s\\
+CLS_BBR_QO  & 42.40          & 0.220          & 0.997          & 3.92s\\
+CLS_BBR_QD  & 42.40          & 0.220          & 0.997          & 3.56s\\
+CLS_BBR_SO  & 42.36          & 0.226          & 0.997          & 3.50s\\
+CLS_BBR_SD  & 42.38          & 0.221          & 0.997          & 3.33s\\
+ITKrMM      & 44,16          & 0,338          & 0,998          & $9,61\cdot 10^3$\\
+wKSVD       & 45,59          & 0,277          & 0,999          & $1,57\cdot 10^4$\\
+BPFA        & \textbf{52,70} & \textbf{0,150} & \textbf{1,000} & $4,06\cdot 10^4$\\
+            %
+            \bottomrule
+        \end{tabular}
+    }
+\egroup

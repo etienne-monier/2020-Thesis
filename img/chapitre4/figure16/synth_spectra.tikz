@@ -1,0 +1,38 @@
+\documentclass[varwidth]{standalone}
+\usepackage{tikzstyle}
+\usepackage{colorbrewer}
+
+\begin{document}
+
+\begin{tikzpicture}
+    \begin{axis}[
+        %
+        xlabel={Perte d'énergie (eV)},
+        ylabel={Amplitude},
+        %
+        xlabel style={font=\small},
+        ylabel style={font=\small},
+        %
+        legend entries={
+            Comp. 1 ($\mathrm{Ni-L}_{2,3}$), 
+            Comp. 2 ($\mathrm{Nd-M}_{4,5}$), 
+            Comp. 3 ($\mathrm{O-K}$), 
+            Comp. 4 ($\mathrm{La-M}_{4,5}$)},
+        %
+        width=10cm,
+        height=5cm,
+        %
+        % legend
+        legend-on-top, legend num cols=2,
+        %
+        line width=1pt,
+        ]
+        
+        \addplot+ file {data/spectrum_0.dat};
+        \addplot+ file {data/spectrum_1.dat};
+        \addplot+ file {data/spectrum_2.dat};
+        \addplot+ file {data/spectrum_3.dat};
+    \end{axis}
+\end{tikzpicture}
+
+\end{document}

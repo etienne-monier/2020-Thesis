@@ -1,0 +1,84 @@
+\chapter{Annexes du chapitre 3}\label{annexe-2}
+\dochaptoc
+
+    \section{L'estimateur de Stein et la régression isotonique}\label{abstr-regression-isotonique}
+    
+    Dans le chapitre~\ref{ch-chapter_3}, la méthode \gls{3s} a été présentée afin de résoudre le problème de reconstruction d'un spectre-image spatialement sous-échantillonné. Cette technique s'appuie sur l'estimation de poids $(w_m)_{m=1,\dots,\gls{M}}$ dont l'expression a été déterminée à la \cref{subsec-3s-poids} en se basant sur une analyse bayésienne. Or, cette expression requiert les valeurs propres $(\tilde{d}^2_m)_{m=1,\dots,\gls{M}}$ associées aux composantes principales des observations \gls{Yi}, qui ne peuvent être évaluées avec fiabilité puisque le nombre d'échantillons \gls{N} est du même ordre de grandeur que la dimension des données \gls{M}. C'est pourquoi l'estimateur de Stein a été proposé à la \cref{subsec-3s-acp} afin de corriger les estimées issues de l'\gls{acp} $(\tilde{d}_m)_{m=1,\dots,\gls{M}}$. Seulement, les valeurs corrigées par l'estimateur de Stein ne conservent ni la positivité, ni la propriété de non-croissance propres aux estimées $(\tilde{d}_m)_{m}$. Cette constatation a motivé l'usage d'une régression isotonique comme post-traitement dans~\cite{LinPerl1985} afin de restituer ces deux propriétés primordiales dans la construction des poids. Cette stratégie est détaillée dans ce qui suit et la procédure comme l'exemple sont issus de~\cite{LinPerl1985}.
+    
+    D'abord, il convient de simplifier les notations en notant les estimées de Stein corrigées et celles issues de l'\gls{acp} $\varphi_m$ et $d_m$ respectivement\footnote{Ces notations ne sont propres qu'à cette section uniquement.}. A la suite de l'équation~\eqref{eq-Stein-corr}, l'estimateur de Stein (avant correction) se réécrit donc $d_m/\alpha_m$ où $\alpha_m$ dépend de $d_m$ et constitue le dénominateur de l'expression~\eqref{eq-Stein-corr}. Afin de faciliter la discussion, nous allons disposer les $d_m$ en colonne et les $\alpha_m$ à côté comme suit
+    \begin{equation}
+    \begin{matrix}
+    d_1&\alpha_1\\
+    d_2&\alpha_2\\
+    d_3&\alpha_1\\
+    \vdots&\vdots\\
+    d_{\gls{M}}&\alpha_{\gls{M}}\\
+    \end{matrix}
+    \end{equation}
+    Notons d'ailleurs que l'estimateur de Stein avant correction s'obtient en faisant le rapport de la première colonne par la deuxième
+    \begin{equation}
+    \begin{matrix}
+    d_1&\alpha_1&d_1/\alpha_1\\
+    d_2&\alpha_2&d_2/\alpha_2\\
+    d_3&\alpha_1&d_3/\alpha_3\\
+    \vdots&\vdots&\vdots\\
+    d_{\gls{M}}&\alpha_{\gls{M}}&d_{\gls{M}}/\alpha_{\gls{M}}\\
+    \end{matrix}
+    \end{equation}
+    Dès lors, la correction s'effectue en trois étapes successives visant à corriger les estimées de Stein afin de restituer les propriétés de positivité et de décroissance désirées.
+    
+    \bigskip\noindent%
+    \textbf{Etape 1 :} Rendre les $\alpha_m$ positifs.
+    \begin{enumerate}[label={(\alph*)}]
+        \item Commencer en bas de la liste et remonter jusqu'à atteindre la première paire, notons-la $(d_m, \alpha_m)$, dont la valeur $\alpha_m$ est négative.\label{sein-iso-1-1}
+        \item Fusionner cette paire avec la paire immédiatement supérieure, en les remplaçant avec la paire $(d_m + d_{m-1}, \alpha_m + \alpha_{m-1})$, afin de former une liste d'une paire plus courte que la précédente.\label{sein-iso-1-2}
+        \item Répéter les étapes~\ref{sein-iso-1-1} et~\ref{sein-iso-1-2} pour la nouvelle liste jusqu'à avoir tous les $\alpha_m$ positifs.
+    \end{enumerate}
+    
+    \bigskip\noindent%
+    \textbf{Etape 2 :} Ré-ordonner les rapports $d_m/\alpha_m$ jusqu'à ce qu'ils soient ordonnés par ordre décroissant.
+    
+    Lister tous les rapports $d_m/\alpha_m$ à la droite de chaque pair $(d_m, \alpha_m)$ obtenus de l'étape 1. Une paire $(d_m, \alpha_m)$ (à l'exception de la paire située en bas de la liste) est appelée \emph{erronée} si le ratio $d_m/\alpha_m$ n'est pas supérieur au ratio $d_{m+1}/\alpha_{m-1m+1}$.
+    \begin{enumerate}[label={(\alph*)}]
+        \item Commencer en bas de la liste obtenue de l'étape 1 et remonter la liste jusqu'à ce que la première paire erronée, notons-la $(d_m, \alpha_m)$, soit atteinte.
+        \item Fusionner cette paire erronée avec la paire immédiatement inférieure en remplaçant ces paires et leur ratio par la paire $(d_m + d_{m+1},\alpha_m + \alpha_{m-1m+1})$ et le ratio $(d_m + d_{m+1})/(\alpha_m + \alpha_{m+1})$. La liste obtenue est donc d'une paire plus courte.\label{sein-iso-2-2}
+        \item Continuer à la paire immédiatement en dessous de la paire modifiée issue de l'étape~\ref{sein-iso-2-2} (ou la paire modifiée elle-même s'il s'agit de la paire en bas de la liste) et remonter jusqu'à atteindre la première paire erronée, puis répéter l'étape~\ref{sein-iso-2-2}.\label{sein-iso-2-3}
+        \item Répéter l'étape~\ref{sein-iso-2-2} jusqu'à ce que tous les rapports $d_m/\alpha_m$ soient ordonnés par ordre décroissant.
+    \end{enumerate}
+    Si les calculs sont effectués à la main, l'étape 2 peut être simplifiée en fusionnant tout blocs de deux paires consécutives ou plus de la liste dont les rapports correspondants ne sont pas triés par ordre décroissant.
+    
+    \bigskip\noindent%
+    \textbf{Etape 3 :} Chacun des rapports présents dans la liste finale a été obtenu en fusionnant un bloc d'une ou plusieurs paires consécutives $(d_m,\alpha_m)$ issues de la liste initiale. Pour obtenir les estimée de Stein corrigées, on assignece rapport à toutes les paires du bloc.
+    
+    \bigskip\noindent%
+    \textbf{Exemple :} Un exemple est donné à la \tabname~\ref{tab-stein-corr-example} afin d'illustrer les trois étapes détaillées ci-dessus. Une matrice aléatoire $\mathbf{A}$ de taille $10\times 10$ dont les éléments sont les réalisations d'une varible aléatoire gaussienne centrée réduite a été tirée par ordinateur. Les valeurs propres $d_m$ de $\mathbf{A}^T\mathbf{A}$ et les $\alpha_m$ ont été calculée et sont affichées sur les colonnes de gauche. Puisque $\alpha_6$ est négatif, les deux colonnes suivantes, c'est-à-dire la nouvelle liste de paires $(d_m, \alpha_m)$, sont obtenus lors de la première étape en fusionnant les paires $(d_5, \alpha_5)$ et $(d_6,\alpha_6)$ de la liste originale. Pour améliorer la lisibilité, les paire n'étant pas modifiées par l'étape~1 n'ont pas été réécrites dans la nouvelle liste. Lors de l'étape~2, la première colonne liste les rapports $d_m/\alpha_m$ correspondants aux paires $(d_m, \alpha_m)$ issues de la première étape. Puisque les quatre rapports du haut ne sont pas triés par ordre décroissant, les quatre paires correspondantes sont fusionnées afin d'obtenir le nouveau rapport \np{11.96}. La nouvelle liste de rapports, \ie{} la seconde colonne de l'étape 2, est maintenant dans l'ordre décroissant, donc aucune nouvelle fusion n'est nécessaire. Dans l'étape 3, nous assignons simplement chaque rapport issu de l'étape 2 à l'ensemble des paires qui ont été fusionnées au cours des deux premières étapes afin d'obtenir ce rapport.
+    
+    
+    
+    
+    \begin{table*}[]
+        \centering
+        \begin{tabular}{crrcllc}
+            \toprule
+            &\multicolumn{3}{c}{\textbf{Etape 1}}& \multicolumn{2}{c}{\textbf{Etape 2}}&\textbf{Etape 3}\\
+            indice&\multicolumn{2}{c}{$(d_m, \alpha_m)$}&$(d_m, \alpha_m)$&$d_m/\alpha_m$&$d_m/\alpha_m$&$\varphi_m$\\
+            \midrule
+            1&32.03&	3.15&&10.17&\rdelim\}{4}{*}[\parbox{1cm}{\centering 11.96}]&11.96\\
+            2&24.42&	2.30&&10.62&&11.96\\
+            3&19.42&	1.21&&16.05&&11.96\\
+            4&13.95&	0.85&&16.41&&11.96\\
+            5&7.33&	2.70&\rdelim\}{2}{*}[\parbox{2.5cm}{\centering 13.96\quad 1.53}]&\multirow{2}{*}{9.12}&&9.12\\
+            6&6.63&	-1.17&&&&9.12\\
+            7&3.01&	0.45&&6.69&&6.69\\
+            8&1.35&	0.28&&4.82&&4.82\\
+            9&0.35&	0.33&\rdelim\}{2}{*}[\parbox{2.5cm}{\centering 0.50\quad 0.22}]&\multirow{2}{*}{2.27}&&2.27\\
+            10&0.15&	-0.11&&&&2.27\\
+            \bottomrule
+        \end{tabular}
+        \vspace{1em}
+        \caption{Exemple illustrant les étapes 1 à 3.
+            \protect\label{tab-stein-corr-example}}
+    \end{table*} 
+    
+
+    

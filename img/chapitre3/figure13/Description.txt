@@ -1,0 +1,26 @@
+Données manquantes (attention, non publiées)
+--------------------------------------------
+
+On ne voit pas de structures cristallines parce que l'échantillon est partiellement amorphe/mal orienté. La taille de pixel est de 0.3 nm.
+
+
+
+Image HAADF jointe
+------------------
+
+L'autre image correspond à des filaments d'ADN marqués avec U et Th. Les échantillons sont déposés sur une couche de carbone amorphe. Là non plus on n'a pas d'image périodique bien que la taille de pixel soit 0.035 nm. J'ai un spim filtré par ACP avec 12 composantes mais ma connexion est trop mauvaise pour pouvoir le transférer. Je joins une image HADF
+
+
+Autre exemple 1
+---------------
+
+http://www.nion.com/results.html
+
+Paragraphe "A series of unprocessed images of a single-wall carbon nanotube stuffed with C82 nanopods". 
+
+Tu vois d'après la barre d'échelle que la taille de pixel est de l'ordre de 0.1 nm (voire moins), mais on n'obtient pas une image de structure cristalline périodique.
+
+
+Autre exemple 2 (pas évident)
+---------------
+des échantillons biologiques étudiés avec le frère de l'UStem : https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5404715/ Il n'y a pas de structure cristalline dans ce type d'échantillon.

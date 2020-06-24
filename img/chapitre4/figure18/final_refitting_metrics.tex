@@ -1,0 +1,63 @@
+\bgroup
+    \renewcommand{\arraystretch}{1,2}
+    %
+    \subfigure[ $\mathsf{R}_2^*$]{
+        \begin{tabular}{*{4}{M{2cm}}}%
+            \toprule
+            Méthode& 
+            SNR&
+            aSAD (100$\times$)&
+            SSIM\\
+            %
+            \midrule
+            %
+            NN          & 28,71 & 1,815 & 0,635\\
+            3S          & 30,17 & 1,496 & 0,621\\
+            \midrule
+            CLS         & 33,15 & 1,233 & 0,790\\
+            post-MC     & 32,45 & 1,397 & 0,752\\
+            BBR-HO      & 33,07 & 1,227 & 0,788\\
+            BBR-HD      & 33,07 & 1,225 & 0,789\\
+            BBR-QO      & 32,75 & 1,278 & 0,780\\
+            BBR-QD      & 32,80 & 1,275 & 0,783\\
+            BBR-SO      & 33,07 & 1,224 & 0,789\\
+            BBR-SD      & 32,78 & 1,274 & 0,781\\
+            \midrule
+            ITKrMM      & 33,67 & 1,253 & 0,819\\
+            wKSVD       & 34,52 & 1,163 & 0,841\\
+            BPFA        & 35,01 & 1,106 & 0,852\\
+            %
+            \bottomrule
+        \end{tabular}
+    }\\[1em]
+    %
+    \subfigure[ $\mathsf{S}^*$]{
+        \begin{tabular}{*{4}{M{2cm}}}%
+            \toprule
+            Méthode& 
+            SNR&
+            aSAD (100$\times$)&
+            SSIM\\
+            %
+            \midrule
+            %
+            NN          & 21,32 & 1,462 & 0,735\\
+            3S          & 22,12 & 1,174 & 0,710\\
+            \midrule
+            CLS         & 42,14 & 0,224 & 0,997\\
+            post-MC     & 42,22 & 0,261 & 0,997\\
+            BBR-HO      & 42,36 & 0,226 & 0,997\\
+            BBR-HD      & 42,36 & 0,226 & 0,997\\
+            BBR-QO      & 42,40 & 0,220 & 0,997\\
+            BBR-QD      & 42,40 & 0,220 & 0,997\\
+            BBR-SO      & 42,36 & 0,226 & 0,997\\
+            BBR-SD      & 42,38 & 0,221 & 0,997\\
+            \midrule
+            ITKrMM      & 44,16 & 0,338 & 0,998\\
+            wKSVD       & 45,59 & 0,277 & 0,999\\
+            BPFA        & 52,70 & 0,150 & 1,000\\
+            %
+            \bottomrule
+        \end{tabular}
+    }
+\egroup

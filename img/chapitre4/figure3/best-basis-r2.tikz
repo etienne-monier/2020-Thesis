@@ -1,0 +1,48 @@
+\documentclass[varwidth]{standalone}
+\usepackage{tikzstyle}
+\usepackage{colorbrewer}
+
+\usetikzlibrary{matrix}
+
+\pgfplotsset{
+    my-axis/.style={
+        %
+        % xlabel={$r$},
+        label style={font=\small},
+        %
+        width=10cm,
+        height=5cm,
+        %
+        % ylabel={Reconstruction error},
+        %
+        line width=1pt,
+        %
+        name=aa,
+    },
+    matrix-node/.style={
+        nodes={anchor=west},
+        anchor=south,
+        at={([shift={(-15pt,5pt)}]aa.north)},
+        draw=none,
+        inner sep=2pt,
+        row sep=2pt
+    }
+}
+
+
+\begin{document}
+
+\begin{tikzpicture}[]
+    \begin{axis}[my-axis, ymode=log,]
+        \addplot+ table [x=rTab, y=fourier]{HR2.dat};
+        \addplot+ table [x=rTab, y=dct]{HR2.dat};
+        \addplot+ table [x=rTab, y=db3]{HR2.dat};
+        \addplot+ table [x=rTab, y=db10]{HR2.dat};
+        \addplot+ table [x=rTab, y=db20]{HR2.dat};
+        \addplot+ table [x=rTab, y=sym3]{HR2.dat};
+        \addplot+ table [x=rTab, y=sym10]{HR2.dat};
+        \addplot+ table [x=rTab, y=sym20]{HR2.dat};
+    \end{axis}
+\end{tikzpicture}\\
+%
+\end{document}

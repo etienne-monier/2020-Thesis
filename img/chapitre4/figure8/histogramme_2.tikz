@@ -1,0 +1,44 @@
+\documentclass{standalone}
+\usepackage{tikzstyle}
+\usepackage{colorbrewer}
+
+\pgfplotsset{
+    hist/.style={
+        xlabel={Valeur de la NMSE},
+        ylabel={Nombre},
+        ymin=0.5, ymax=1e4,
+        xlabel style={font=\small},
+        ylabel style={font=\small}, 
+        %
+        legend entries={NN, 3S, CLS, ITKrMM, wKSVD, BPFA},%
+        %
+        width=15cm,
+        height=6cm,
+        enlargelimits=false,
+        %
+        % legend
+        legend style={draw=none, legend pos=north east, font=\small},
+        const plot,
+        mark=no
+        line width=0.5,
+        log origin=infty,   
+    },
+}
+
+\begin{document}
+
+    \begin{tikzpicture}
+        \begin{axis}[hist, xmax=0.18, ymode=log,] % xmax=7e-2
+            \addplot+ table [x=NN_bins_1, y=NN_hist_1]{R2_hist.dat};
+            \addplot+ table [x=3S_bins_1, y=3S_hist_1]{R2_hist.dat};
+            \addplot+ table [x=CLS_bins_1, y=CLS_hist_1]{R2_hist.dat};
+            \addplot+ table [x=ITKrMM_bins_1, y=ITKrMM_hist_1]{R2_hist.dat};
+            \addplot+ table [x=wKSVD_bins_1, y=wKSVD_hist_1]{R2_hist.dat};
+            \addplot+ table [x=BPFA_bins_1, y=BPFA_hist_1]{R2_hist.dat};
+            \addplot [dashed, gray, line width=2pt] coordinates {(1e-2, 0.5) (1e-2, 1e4)};
+            \node [right] at (axis cs: 1e-2, 1e3) {Seuil};
+            %
+        \end{axis}
+    \end{tikzpicture}
+
+\end{document}

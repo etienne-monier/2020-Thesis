@@ -1,0 +1,44 @@
+\documentclass{standalone}
+\usepackage{tikzstyle}
+\usepackage{colorbrewer}
+
+\pgfplotsset{
+    my-axis/.style={
+        width=10cm,
+        height=5cm,
+        grid=none,
+        xmin=460, xmax=1010,
+        enlargelimits=false,
+        % scale only axis,
+        line width=0.75pt,
+    },
+}
+
+\begin{document}
+
+\begin{tikzpicture}
+
+    \begin{axis}[%
+        my-axis,
+        axis y line*=left,
+        xlabel={Perte d'énergie (eV)},
+        ylabel={\color{Dark2-5-1}Amplitude},
+        ymin=200, ymax=1400,
+        ]
+        \addplot+ [Dark2-5-1] table [x=eV, y=mean] {python/data_variance.dat};
+        
+    \end{axis}
+    \begin{axis}[
+        my-axis,
+        axis y line*=right,
+        axis x line=none,
+        ylabel={\color{Dark2-5-2}\'Eccart-type},
+        ymin=0, ymax=600,
+        ]
+        \addplot+ [Dark2-5-2] table [x=eV, y=std] {python/data_variance.dat};
+    \end{axis}
+
+\end{tikzpicture}
+
+\end{document}
+

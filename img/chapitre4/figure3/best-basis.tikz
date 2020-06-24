@@ -1,0 +1,94 @@
+\documentclass[varwidth]{standalone}
+\usepackage{tikzstyle}
+\usepackage{colorbrewer}
+
+\usetikzlibrary{matrix}
+
+\pgfplotsset{
+    my-axis/.style={
+        %
+        % xlabel={$r$},
+        label style={font=\small},
+        %
+        width=10cm,
+        height=5cm,
+        %
+        % ylabel={Reconstruction error},
+        %
+        line width=1pt,
+        %
+        name=aa,
+    },
+    matrix-node/.style={
+        nodes={anchor=west},
+        anchor=south,
+        at={([shift={(-15pt,5pt)}]aa.north)},
+        draw=none,
+        inner sep=2pt,
+        row sep=2pt
+    }
+}
+
+
+\begin{document}
+
+\begin{tikzpicture}[ampersand replacement=\&]
+    \begin{axis}[my-axis, ymode=log,]
+        %
+        \addplot+ table [x=rTab, y=fourier]{HR1.dat};
+        \label{plot:Fourier}
+        \addplot+ table [x=rTab, y=dct]{HR1.dat};
+        \label{plot:DCT}
+        \addplot+ table [x=rTab, y=db3]{HR1.dat};
+        \label{plot:db3}
+        \addplot+ table [x=rTab, y=db10]{HR1.dat};
+        \label{plot:db10}
+        \addplot+ table [x=rTab, y=db20]{HR1.dat};
+        \label{plot:db20}
+        \addplot+ table [x=rTab, y=sym3]{HR1.dat};
+        \label{plot:sym3}
+        \addplot+ table [x=rTab, y=sym10]{HR1.dat};
+        \label{plot:sym10}
+        \addplot+ table [x=rTab, y=sym20]{HR1.dat};
+        \label{plot:sym20}
+    \end{axis}
+    %
+    \matrix [matrix of nodes, nodes={anchor=west},
+        anchor=south,
+        at={([shift={(-15pt,5pt)}]aa.north)},
+        draw=none,
+        inner sep=2pt,
+        row sep=2pt] {
+        \ref{plot:Fourier}  \& Fourier   \&[0.5cm] \ref{plot:db3}  \& db3  \&[0.5cm] \ref{plot:sym3}  \& sym3 \\
+        \ref{plot:DCT}      \& DCT       \&        \ref{plot:db10} \& db10 \&        \ref{plot:sym10} \& sym10 \\
+                            \&           \&        \ref{plot:db20} \& db20 \&        \ref{plot:sym20} \& sym20 \\
+        };
+\end{tikzpicture}\\
+%
+\begin{tikzpicture}[]
+    \begin{axis}[my-axis, ymode=log,]
+        \addplot+ table [x=rTab, y=fourier]{HR2.dat};
+        \addplot+ table [x=rTab, y=dct]{HR2.dat};
+        \addplot+ table [x=rTab, y=db3]{HR2.dat};
+        \addplot+ table [x=rTab, y=db10]{HR2.dat};
+        \addplot+ table [x=rTab, y=db20]{HR2.dat};
+        \addplot+ table [x=rTab, y=sym3]{HR2.dat};
+        \addplot+ table [x=rTab, y=sym10]{HR2.dat};
+        \addplot+ table [x=rTab, y=sym20]{HR2.dat};
+    \end{axis}
+\end{tikzpicture}\\
+%
+\begin{tikzpicture}[]
+    \begin{axis}[my-axis, ymode=log,]
+        \addplot+ table [x=rTab, y=fourier]{Synth.dat};
+        \addplot+ table [x=rTab, y=dct]{Synth.dat};
+        \addplot+ table [x=rTab, y=db3]{Synth.dat};
+        \addplot+ table [x=rTab, y=db10]{Synth.dat};
+        \addplot+ table [x=rTab, y=db20]{Synth.dat};
+        \addplot+ table [x=rTab, y=sym3]{Synth.dat};
+        \addplot+ table [x=rTab, y=sym10]{Synth.dat};
+        \addplot+ table [x=rTab, y=sym20]{Synth.dat};
+    \end{axis}
+\end{tikzpicture}
+
+\end{document}

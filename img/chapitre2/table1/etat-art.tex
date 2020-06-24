@@ -1,0 +1,49 @@
+\bgroup
+    \renewcommand{\arraystretch}{1.2}
+    \begin{tabular}{>{\arraybackslash\centering}m{3cm}*{5}{c}}
+        \toprule
+        \multirow{2}*{Famille}& \multirow{2}*{Méthode}& \multicolumn{2}{c}{Travaux}& 
+        \multirow{2}*{Temps d'exécution}& \multirow{2}*{Précision}\\
+        %
+        &&2D&3D&&\\
+        %
+        \midrule
+        %
+        \multirow{2}*{Interpolation} & \gls{ppv} & - & - & \plusfa[3] & \minusfa[2]\\
+        %
+        & Voisinage pondéré & \cite{sibson1981interpreting, cazals2006delaunay, trampert2018ultramicroscopy}&
+        - & \plusfa[2] & \minusfa[1]\\
+        %
+        \midrule
+        %
+        \multirow{2}*{\gls{mc} régularisés}&
+        $\ell_1$-\gls{mc} & \cite{han2018optimal,beche2016development,li2018compressed,anderson2013sparse}&
+        & \plusfa & \plusfa\\
+        %
+        & TV-\gls{mc} & \cite{han2018optimal} & - & \plusfa[1] & \plusfa\\
+        %
+        %
+        \midrule
+        %
+        \multirow{6}{3cm}{\centering Méthode par \gls{ad}}&
+        BPFA & {\cite{stevens2014potential,trampert2018ultramicroscopy}} &
+        \textit{\cite{xing2012siam}} & \minusfa[3] & \plusfa[3]\\
+        %
+        & EBI & \cite{trampert2018ultramicroscopy} & {\cite{trampert2018exemplar}} &
+        \minusfa[1] & \plusfa[2]\\
+        %
+        & FEPLL & \textit{\cite{parameswaran2019accelerating}},\cite{hujsak2018high} &
+        - & \minusfa[1] & \plusfa[2]\\
+        %
+        & wKSVD & - & \textit{\cite{mairal2008tip}} & \minusfa[2] & \plusfa[2]\\
+        %
+        &
+        ITKrMM & \textit{\cite{naumova2018fast}} & \textit{\cite{naumova2017dictionary}}&
+        \minusfa[1] & \plusfa[2]\\
+        %
+        & GOAL & \textit{\cite{hawe2013analysis}},\cite{trampert2018ultramicroscopy}&
+        - & \minusfa[1] & \plusfa[2]\\
+        %
+        \bottomrule
+    \end{tabular}
+    \egroup

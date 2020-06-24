@@ -1,0 +1,28 @@
+%!TEX root = ../main.tex
+\begin{fullwidth}
+
+\chapter*{Résumé en français}
+\label{ch:french_resume}
+\addcontentsline{toc}{chapter}{Résumé en français}
+
+En spectroscopie de perte d’énergie des électrons (EELS), l’échantillon à analyser est soumis à un faisceau d’électron et une détection de l’énergie perdue au cours de la traversée du matériau renseigne sur la composition chimique du composé. Pour des échantillons particulièrement sensibles aux dégâts d'irradiation électronique, comme par exemple des matériaux organiques, on cherche à limiter la dose totale d'électrons reçue par l'échantillon tout en obtenant un rapport signal-sur-bruit satisfaisant.
+
+Avec le développement récent de modules d’échantillonnage adaptés aux microscopes en transmission à balayage (STEM), l’acquisition initialement réalisée ligne par ligne est devenue hautement paramétrable. Ainsi, il est désormais possible de visiter un ensemble de positions spatiales quelconques au cours de l’acquisition. De nombreux travaux ont proposé de s’appuyer sur ces avancées techniques pour permettre une acquisition optimisée pour des échantillons sensibles. Pour une dose d’électron globale équivalente à un échantillonnage standard, ces stratégies consistent à visiter moins de positions spatiales, et donc à procéder à un échantillonnage partiel. Par conséquent, une dose d’électron par position spatiale plus élevée est autorisée, ce qui permet d’augmenter le rapport signal-sur-bruit de chaque spectre mesuré. En contrepartie, une étape de post-traitement est nécessaire pour reconstruire l’ensemble de l’image, en particulier les spectres associés aux positions spatiales non visitées au cours de l’acquisition.
+
+Parmi les techniques de reconstruction utilisées dans la littérature, les méthodes d’interpolation sont rapides mais peu précises~; elles sont d’un intérêt tout particulier pour visualiser l’image complète au cours de l’acquisition. Au contraire, les techniques par apprentissage de dictionnaire sont très performantes, mais coûteuses tant en mémoire qu’en temps de calcul, et sont donc privilégiées pour raffiner l’image reconstruite après l’expérimentation. En définitive, peu de travaux ont cherché à combler ce fossé.
+
+L’objectif principal de cette thèse est de proposer des algorithmes de reconstruction rapides et performants en imagerie EELS. Ils devront, comme pour les méthodes d’interpolation, être suffisamment rapides pour visualiser l’image reconstruite au cours de l’acquisition. D’autre part, ces méthodes devront également afficher de meilleures performances que celles données par l’interpolation, voire proches de celles des techniques par apprentissage de dictionnaire. Pour cela, des méthodes par moindres carrés régularisés sont envisagées dans le cas d’échantillons spatialement lisses et d’échantillons cristallins périodiques. Les algorithmes proposés sont ensuite testés en s’appuyant sur des données synthétiques et réelles. L’intérêt de l’approche par acquisition partielle et les performances par rapport à d’autres méthodes de reconstruction sont étudiés. 
+
+
+\vspace{1em}
+\noindent{\color{myblue}\bfseries Mots clefs :} 
+%
+spectroscopie de perte d’énergie des électrons, 
+microscope électronique en transmission à balayage, 
+imagerie multi-bande, 
+spectre-image,
+reconstruction d'image, 
+échantillonnage partiel,
+inpainting.
+
+\end{fullwidth}

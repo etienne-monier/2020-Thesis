@@ -1,0 +1,39 @@
+\documentclass[]{standalone}
+\usepackage{tikzstyle}
+\usepackage{colorbrewer}
+
+\def\localtable{CLS_initialization.dat}
+
+\begin{document}
+
+    \begin{tikzpicture}
+        \begin{axis}[
+            %
+            xlabel={Itération},
+            ylabel={SNR},
+            %
+            xlabel style={font=\small},
+            ylabel style={font=\small},
+            %
+            width=10cm,
+            height=6cm,
+            %
+            % legend
+            legend style={draw=none, legend pos=south east},
+            legend entries={Init. aléatoire, Init. CLS},
+            %
+            ]
+            \addplot+ [Dark2-3-1, line width=1pt] table [x=x, y=random_mean]{\localtable};
+            \addplot+ [Dark2-3-2, line width=1pt] table [x=x, y=CLS_mean]{\localtable};   
+            
+            \addplot+ [name path=A, draw=none] table [x=x, y=random_std1] {\localtable};
+            \addplot+ [name path=B, draw=none] table [x=x, y=random_std2] {\localtable};
+            \addplot+ [name path=C, draw=none] table [x=x, y=CLS_std1] {\localtable};
+            \addplot+ [name path=D, draw=none] table [x=x, y=CLS_std2] {\localtable};
+            
+            \addplot[Dark2-3-1, opacity=0.3] fill between[of=A and B];
+            \addplot[Dark2-3-2, opacity=0.3] fill between[of=C and D];
+        \end{axis}
+    \end{tikzpicture}
+
+\end{document}

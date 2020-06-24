@@ -1,0 +1,54 @@
+\documentclass{standalone}
+\usepackage{tikzstyle}
+\usepackage{colorbrewer}
+
+\newcommand{\position}[2]{%
+    \draw [thin, dashed] (axis cs: #1, 0) -- (axis cs: #1, 0.8);
+    \node at (axis cs: #1, 0.7)[
+        rectangle,
+        draw,
+        line width=0.5pt,
+        fill=black!10,
+        minimum size=0.5cm,
+        label={center:\small #2}] {};
+}
+
+\begin{document}
+
+\begin{tikzpicture}
+
+    \begin{axis}[%
+        width=10cm,
+        height=7cm,
+        %
+        xmin=150, xmax=900,
+        xlabel={Perte d'énergie (eV)},
+        xlabel style={font=\small},
+        %
+        ymin=0, ymax=0.8,
+        ylabel={Amplitude},
+        ylabel style={font=\small},
+        %
+        enlargelimits=false,
+        %
+        legend entries={Résine, Organique 1, Organique 2, Calcification},
+        legend style={font=\small},
+        %
+        line width=1pt,
+        ]
+
+        \position{295.9}{C}
+        \position{351.7}{Ca}
+        \position{400.8}{N}
+        \position{543.3}{O}
+
+        \addplot+ table []{data/spectrum1.dat};
+        \addplot+ table []{data/spectrum2.dat};
+        \addplot+ table []{data/spectrum3.dat};
+        \addplot+ table []{data/spectrum4.dat};
+
+    \end{axis}
+\end{tikzpicture}%
+
+
+\end{document} 

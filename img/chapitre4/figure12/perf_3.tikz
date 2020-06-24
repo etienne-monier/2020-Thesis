@@ -1,0 +1,28 @@
+\documentclass[]{standalone}
+\usepackage{tikzstyle}
+\usepackage{colorbrewer}
+
+
+\begin{document}
+
+    \begin{tikzpicture}
+        \begin{axis}[
+            %
+            width=5cm,
+            height=4cm,
+            scale only axis,
+            %
+            ylabel={SSIM},
+            xlabel={Taux d'échantillonnage $r$},
+            %
+            xlabel style={font=\small},
+            ylabel style={font=\small},
+            ]
+
+            \addplot+ table [x=pix, y=SSIM] {CLS_full.dat};
+            \addplot+ table [x=pix, y=SSIM_F] {CLS_full.dat}; 
+        
+        \end{axis}
+    \end{tikzpicture}
+
+\end{document}

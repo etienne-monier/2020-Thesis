@@ -1,0 +1,57 @@
+\documentclass[]{standalone}
+\usepackage{tikzstyle}
+\usepackage{colorbrewer}
+
+
+\begin{document}
+
+    \begin{tikzpicture}
+        \begin{axis}[
+            %
+            width=5cm,
+            height=4cm,
+            scale only axis,
+            %
+            axis y line=left,
+            %
+            y axis line style={Dark2-3-1},
+            y tick label style={Dark2-3-1},
+            %
+            ylabel={\small \color{Dark2-3-1} Temps d'éxéc. (s) avec ACP},
+            xlabel={Taux d'échantillonnage $r$},
+            %
+            xlabel style={font=\small},
+            ylabel style={font=\small},
+            ]
+
+            \addplot+[Dark2-3-1] table [x=pix, y=time] {CLS_full.dat};
+        
+        \end{axis}
+        \begin{axis}[
+            %
+            width=5cm,
+            height=4cm,
+            scale only axis,
+            %
+            axis y line=right,
+            ylabel near ticks,
+            axis x line=none,
+            %
+            y axis line style={Dark2-3-2},
+            y tick label style={Dark2-3-2},
+            %
+            ylabel={\small \color{Dark2-3-2} Temps d'éxéc. (s) sans ACP},
+            xlabel={Taux d'échantillonnage $r$},
+            %
+            grid=none,
+            %
+            xlabel style={font=\small},
+            ylabel style={font=\small},
+            ]
+
+            \addplot+[Dark2-3-2] table [x=pix, y=time_F] {CLS_full.dat};  
+        
+        \end{axis}
+    \end{tikzpicture}
+
+\end{document}

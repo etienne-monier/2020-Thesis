@@ -1,7 +1,9 @@
-\documentclass[a4paper, twoside, table, justified,
+\documentclass[a4paper, asymetric, table, justified,
                nofonts, nobib, nohyper, 10pt, french]{tufte-book}
 
-\input{input_files/a-preambule}
+\input{input_files/0-preambule}
+
+% To modify alignement : https://groups.google.com/forum/#!topic/tufte-latex/7cqVud-iQkg
 
 \begin{document}
 
@@ -9,25 +11,30 @@
 % The front matter contains title page, acknowledgements, toc, nomenclature and dedication
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\makeflyleaf
 \frontmatter
+\makeflyleaf
+\pagestyle{fancyfrontmatter}
 
 \setcounter{chapter}{-1}
 \setcounter{secnumdepth}{3}
 \setcounter{tocdepth}{1}
 
 
-%
-% Remerciements
-%
-
-\input{input_files/b-acknowledgements}
+\input{input_files/a-acknowledgements}
 
 %
 % Dédicace
 %
 
-\input{input_files/c-dedicace}
+\input{input_files/b-citation}
+
+%
+% Résumés
+%
+
+\input{input_files/c-summary_french}
+
+\input{input_files/d-summary_english}
 
 %
 % Table des matières
@@ -35,27 +42,19 @@
 
 \begin{fullwidth}
     \tableofcontents
+    \markboth{Table des matières}{}
 \end{fullwidth}
 
-
-%
-% Notations
-%
-
-\input{input_files/d-notations}
 
 %
 % Liste des acronymes
 %
-\begin{fullwidth}
-    % \printnomenclature
-    \chapter*{Notations}
-    \addcontentsline{toc}{chapter}{Notations}
-    \glsaddall
-    \printglossary[type=notgen,style=symbunitlong]
-    \printglossary[type=notation,style=symbunitlong]
-    \printglossary[type=\acronymtype, style=acrolong]
-\end{fullwidth}
+\input{input_files/e-acronyms_list}
+
+%
+% Liste des publications
+%
+\input{input_files/f-publication_list}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -68,7 +67,7 @@
 % Introduction générale
 %
 
-\input{input_files/e-introduction}  % Chapter 0
+\input{input_files/chapters/0-introduction}  % Chapter 0
 
 %
 % Introduction et contexte
@@ -78,158 +77,47 @@
 	\part{Introduction et contexte de l'étude}
 \end{fullwidth}
 
+% ---
 \input{input_files/chapters/chapter_1}
 
 % ---
-
 \input{input_files/chapters/chapter_2}
-
-
 
 %
 % Contribs
 %
 
-% ----------------
 \begin{fullwidth}
 	\part{Inpainting rapide en EELS}
 \end{fullwidth}
 
+% ---
+\input{input_files/chapters/chapter_3}
 
 % ---
-\chapter{Inpainting rapide d'images basse-résolution}
-\label{ch-chapter_3}
-\dochaptoc
-%
-\section{Contexte des données basses résolution}
-Expliquer l'échelle des données BR. Donner quelques images pour se fixer les idées.
-
-Revenir sur les informations a priori (images lisses, faible rang).
+\input{input_files/chapters/chapter_4}
 
 %
-\section{La méthode SNN}
+% Conclusion
+%
 
-\subsection{Formulation}
-Décrire les régularisation utilisées et les raisons de ce choix. Donner le problème d'optimisation.
-
-\subsection{Estimation des paramètres de régularisation}
-Parler du principe de discipancy, du choix itératif des paramètres.
+\input{input_files/chapters/conclusion}
 
 %
-\section{La méthode 3S}
-
-\subsection{Formulation}
-Formuler le problème, parler de l'acp, etc.
-
-\subsection{Choix des poids}
-Reprendre l'étude pour le choix des poids.
-
-\subsection{Correction de l'ACP}
-Parler de la correction par Stein et par la régression isotonique. Mettre la régression isotonique en annexe.
-
+% Annexes
 %
-\section{Implémentation}
 
-\subsection{Le framework FISTA}
+\begin{fullwidth}
+    \part{Annexes}
+\end{fullwidth}
 
-\subsection{Application à S2N}
+\appendix
 
-\subsection{Application à 3S}
+\input{input_files/chapters/appendix_1}
 
-\subsection{Etude de la complexité}
+\input{input_files/chapters/appendix_2}
 
-%
-\section{Résultats sur des données synthétiques}
-
-\subsection{Création de données synthétiques}
-
-Modèle pour générer les données, choix des spectres et matrice d'abondance. Création du bruit.
-
-\subsection{Métriques et mesures de vraisemblance}
-
-Discuter des mesures de vraisemblance pour les expériences présentes dans la thèse.
-
-\subsection{Sensibilité aux paramètres}
-
-\subsection{Performances de reconstruction}
-Vérifier quelle méthode est la meilleure.
-
-Y introduire les performances d'algorithmes d'apprentissage par dictionnaire.
-
-\subsection{Comparaison avec un scénario de débruitage}
-Le point de vue ici est plus expérimental.
-
-%
-\section{Résultats sur des données réelles}
-Présenter les matériaux.
-
-%
-\section{Conclusion}
-
-\begin{subappendices}
-
-	\section{L'estimateur de Stein et la régression isotonique}
-	\lipsum[1]
-
-\end{subappendices}
-
-
-
-% ---
-\chapter{Reconstruction rapide d'images haute-résolution}
-\label{ch-chapter_4}
-\dochaptoc
-%
-\section{Contexte des images à échelle atomique}
-
-\subsection{Description des images haute-résolution}
-
-\subsection{Parcimonie groupée dans une base choisie}
-Présenter le principe de parcimonie groupée et faire l'étude afin de déterminer que DCT est la base ``optimale''.
-
-%
-\section{La méthode CLS}
-
-\subsection{Formulation}
-
-\subsection{Implémentation et complexité}
-
-%
-\section{La méthode DL-CLS}
-
-\subsection{Principe de la méthode}
-Décrire le principe : appliquer CLS pour effectuer une opération d'apprentissage de dictionnaire et de code. Ceux-ci serviront d'initialisation aux codes de dictionary learning.
-
-\subsection{Implémentation}
-Parler de la méthode de dico learning.
-
-%
-\section{Expériences sur des données synthétiques}
-
-\subsection{Création de données synthétiques}
-Insister sur le fait qu'on utilise des images ``semi-réelles'' car la structure spatiale est plus importante ici.
-
-Génération des spectres-images semi-réel et synthétique
-
-\subsection{Sensibilité aux paramètres}
-
-\subsection{Performances de reconstruction}
-Vérifier quelle méthode est la meilleure.
-
-Y introduire les performances d'algorithmes d'apprentissage par dictionnaire.
-
-\subsection{Comparaison avec un scénario de débruitage}
-Le point de vue ici est plus expérimental.
-
-%
-\section{Résultats sur des images réelles}
-
-%
-\section{Méthodes n'ayant pas fonctionné}
-Discuter ici du refitting et du non-local regularized qui n'ont pas marchés.
-
-%
-\section{Conclusion}
+\input{input_files/chapters/appendix_3}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % The back matter contains unnumbered chapters
@@ -238,21 +126,14 @@ Discuter ici du refitting et du non-local regularized qui n'ont pas marchés.
 
 \backmatter
 
-\input{input_files/conclusion}
-
-\input{input_files/summary_french}
-
-\begin{fullwidth}
-	\bibliographystyle{IEEEtran}
-	\bibliography{bib/strings_all_ref,bib/biblio}
-\end{fullwidth}
-
-
+%
+% Bibliographie
+%
 
 \begin{fullwidth}
-    \printindex
+    \bibliographystyle{bib/StyleThese}
+    \bibliography{bib/strings_all_ref,bib/biblio}
 \end{fullwidth}
-
 
 
 \end{document}

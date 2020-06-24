@@ -1,0 +1,41 @@
+\documentclass{standalone}
+\usepackage{tikzstyle}
+\usepackage{colorbrewer}
+
+\pgfplotsset{compat=1.17}
+\usepgfplotslibrary{groupplots}
+
+\begin{document}
+
+\begin{tikzpicture}
+    
+    \begin{axis}[
+        %
+        height=6cm, width=10cm,
+        %
+        enlargelimits=false,
+        %
+        xlabel={Perte d'énergie (eV)},
+        xlabel style={font=\small},
+        %
+        % ymin=0, ymax=0.8,
+        ylabel={Amplitude},
+        ylabel style={font=\small},
+        ymin=0, ymax=820,
+        %
+        legend style={font=\small},
+        %
+        legend entries={Position 1, Position 2, Position 3}
+        % line width=0.5pt,
+        ]
+
+        \addplot+ table [x=eV, y=s1]{python/data.dat};
+        \addplot+ table [x=eV, y=s2]{python/data.dat};
+        \addplot+ table [x=eV, y=s3]{python/data.dat};
+
+
+    \end{axis}
+\end{tikzpicture}%
+
+
+\end{document} 

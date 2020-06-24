@@ -1,0 +1,61 @@
+\documentclass{standalone}
+\usepackage{tikzstyle}
+\usepackage{colorbrewer}
+\usepgfplotslibrary{groupplots}
+\pgfplotsset{compat=1.17}  % 1.16
+
+\pgfplotsset{
+    my-axis/.style={
+        width=10cm,
+        height=5cm,
+        grid=none,
+        xmin=460, xmax=1010,
+        enlargelimits=false,
+        % scale only axis,
+        line width=0.75pt,
+    },
+}
+
+\begin{document}
+
+\begin{tikzpicture}
+
+    \begin{groupplot}[
+        group style={group size=1 by 5},
+        width=10cm,
+        height=3cm,
+        grid=none,
+        xmin=460, xmax=1010,
+        enlargelimits=false,
+        % line width=0.75pt,
+        ]
+
+        \nextgroupplot[
+            legend entries={Covariance, Corrélation}, 
+            legend-on-top,legend num cols=2,
+            ylabel={Comp. 1}
+            ]
+            \addplot+ [] table [x=eV, y=Hm0] {python/components.dat};
+            \addplot+ [] table [x=eV, y=Hr0] {python/components.dat};
+
+        \nextgroupplot[ylabel={Comp. 2}]
+            \addplot+ [] table [x=eV, y=Hm1] {python/components.dat};
+            \addplot+ [] table [x=eV, y=Hr1] {python/components.dat};
+
+        \nextgroupplot[ylabel={Comp. 3}]
+            \addplot+ [] table [x=eV, y=Hm2] {python/components.dat};
+            \addplot+ [] table [x=eV, y=Hr2] {python/components.dat};
+
+        \nextgroupplot[ylabel={Comp. 4}]
+            \addplot+ [] table [x=eV, y=Hm3] {python/components.dat};
+            \addplot+ [] table [x=eV, y=Hr3] {python/components.dat};
+
+        \nextgroupplot[ylabel={Comp. 5}, scale ticks below exponent=0] % [xlabel={Perte d'énergie (eV)}]
+            \addplot+ [] table [x=eV, y=Hm4] {python/components.dat};
+            \addplot+ [] table [x=eV, y=Hr4] {python/components.dat};
+
+    
+    \end{groupplot}
+\end{tikzpicture}
+
+\end{document}

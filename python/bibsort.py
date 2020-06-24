@@ -19,7 +19,7 @@ grammar = Grammar(
     tag         = word+
     value       = (word / quoted / quoted_bis)+
 
-    word        = ~r"[\w]+"
+    word        = ~r"[\w&]+"
     text        = ~r"[^\n]*"
 
     quoted      = ~'{([^{}]*|{[^{}]*})*}'

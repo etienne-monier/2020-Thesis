@@ -1,0 +1,43 @@
+\documentclass[]{standalone}
+\usepackage{tikzstyle}
+\usepackage{colorbrewer}
+
+
+\begin{document}
+
+\begin{tikzpicture}
+    \begin{axis}[
+        %
+        xmode=log,
+        %
+        scale only axis,
+        axis y line=left,
+        xmin=4e-4,
+        xmax=2,
+        enlargelimits=false,
+        %
+        width=10cm,
+        height=5cm,
+        %
+        ylabel={$\mathrm{SNR}$ (dB)},
+        xlabel={$\lambda$},
+        xlabel style={font=\small},
+        ylabel style={font=\small},
+        %
+        y axis line style={Dark2-3-1},
+        y tick label style={Dark2-3-1},
+        ]
+
+        \addplot+[Dark2-3-1] table [x=l, y=SNR] {search_param.dat};
+        
+        % Estimate
+        \addplot [mark=*, mark size=2pt, mark options={orange}] coordinates {(0.012, 33.07)};
+        \draw [<-, orange, thick] (axis cs: 0.012, 32.07) -- (axis cs: 0.012, 30) node [below]{Estimée};
+        
+        % Optimal
+        \addplot [mark=*, mark size=2pt, mark options={purple}] coordinates {(0.1194, 33.20)};
+        \draw [<-, purple, thick] (axis cs: 0.1194, 32.20) -- (axis cs: 0.1194, 30) node [below]{Optimal};
+    \end{axis}
+\end{tikzpicture}
+
+\end{document}

@@ -1,0 +1,69 @@
+\setlength\tmplength{2.5cm}
+\bgroup
+    \renewcommand{\arraystretch}{1.2}
+    \begin{tabular}{%
+            c%
+            M{\tmplength}%
+            m{1.3\tmplength}%
+            M{1.9cm}%
+            c%
+            c%
+            M{2cm}}%
+        \toprule
+        \multirow{2}*{Image}& 
+        \multirow{2}*{Echantillon}& 
+        \multirow{2}{1.3\tmplength}{%
+            {Taille ($x$, $y$, $\lambda$)\newline Res. ($\Delta x = \Delta y$, $\Delta \lambda$)}}&
+        \multirow{2}{0.7\tmplength}{%
+            \centering\arraybackslash Temps d'exp. (ms)}&
+        \multicolumn{2}{c}{Seuils d'intérêt}&
+        \multirow{2}{2cm}{\centering\arraybackslash Seuil de l'ACP $R$}\\
+        %\cline{5-7}
+        &&&&\'Elément&Perte d'éner. (eV)&\\
+        \midrule
+        %
+        %
+        \multirow{4}*{$\mathsf{R}_1$}& % Name
+        \multirow{4}{\tmplength}{\centering\arraybackslash 
+                      PbZrTiO\textsubscript{3} / 
+                      LaSrMnO\textsubscript{3} / 
+                      SrTiO\textsubscript{3}
+                      }& % Sample
+        \multirow{4}{1.3\tmplength}{(232, 101, 1530)\newline{(\np[nm]{0.055}, \np[eV]{0.27})}}& % Shape
+        \multirow{4}*{20}& % Dwell time
+        Ti& % Element
+        456& % eV
+        \multirow{4}*{9}\\ % PCA th
+        %
+        &&&&O& 532&\\
+        &&&&Mn& 640&\\
+        &&&&La& 832&\\
+        \midrule
+        %
+        %
+        \multirow{4}*{$\mathsf{R}_2$}& % Name
+        \multirow{4}{\tmplength}{\centering\arraybackslash 
+                      NdNiO\textsubscript{3}/
+                      LaAlO\textsubscript{3}
+                      }& % Sample
+        \multirow{4}{1.3\tmplength}{(63, 115, {1505}){\newline(\np[nm]{0.045}, \np[eV]{0.32})}}& % Shape
+        \multirow{4}*{20}& % Dwell time
+        O& % Element
+        532& % eV
+        \multirow{4}*{7}\\ % PCA th
+        %
+        &&&&La& 832&\\
+        &&&&Ni& 855&\\
+        &&&&Nd& 978&\\
+        \midrule
+        %
+        %
+        $\mathsf{S}$& % Name
+        cf. $\mathsf{R}_2$& % Sample
+        (70, 120, 1435){\newline(\np[nm]{0.045}, \np[eV]{0.32})}& % Shape
+        -& % Dwell time
+        \multicolumn{2}{c}{cf. $\mathsf{R}_2$}&
+        4\\ % PCA th
+        \bottomrule
+    \end{tabular}
+\egroup

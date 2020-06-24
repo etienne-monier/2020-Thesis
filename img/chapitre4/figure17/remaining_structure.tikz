@@ -1,0 +1,32 @@
+\documentclass[varwidth]{standalone}
+\usepackage{tikzstyle}
+\usepackage{colorbrewer}
+
+\begin{document}
+
+\begin{tikzpicture}
+    \begin{axis}[
+        xmode=log,
+        ymode=log,
+        %
+        xlabel={Indice de composante principale},
+        ylabel={$||r||_2^*$},
+        xlabel style={font=\small},
+        ylabel style={font=\small},
+        %
+        width=10cm,
+        height=5cm,
+        %
+        % legend
+        legend entries={$\mathsf{R}_1$, $\mathsf{R}_2$},  % , $\mathsf{S}$},
+        legend style={draw=none, legend pos=north east},
+        %
+        line width=1pt
+        ]
+        %
+        \addplot+ file {Curves_whiteness_HR1.dat};
+        \addplot+ file {Curves_whiteness_HR2.dat};
+    \end{axis}
+\end{tikzpicture}
+
+\end{document}

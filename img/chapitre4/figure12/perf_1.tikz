@@ -1,0 +1,33 @@
+\documentclass[]{standalone}
+\usepackage{tikzstyle}
+\usepackage{colorbrewer}
+
+
+\begin{document}
+
+    \begin{tikzpicture}
+        \begin{axis}[
+            %
+            width=5cm,
+            height=4cm,
+            scale only axis,
+            %
+            ylabel={SNR (dB)},
+            xlabel={Taux d'échantillonnage $r$},
+            %
+            xlabel style={font=\small},
+            ylabel style={font=\small},
+            %
+            legend-on-top,
+            legend num cols=2,
+            legend entries={With PCA, Without PCA},
+            legend style={font=\small},
+            ]
+
+            \addplot+ table [x=pix, y=SNR] {CLS_full.dat};
+            \addplot+ table [x=pix, y=SNR_F] {CLS_full.dat}; 
+        
+        \end{axis}
+    \end{tikzpicture}
+
+\end{document}

@@ -1,0 +1,46 @@
+%!TEX root = ../main.tex
+
+\chapter{Introduction}
+\label{ch:introduction}
+
+
+ %---------------- Contexte et genèse de la thèse -----------------------
+ 
+Le présent manuscrit synthétise l'ensemble du travail de thèse que j'ai réalisé au sein de l'équipe de signal et télécommunication du laboratoire \gls{irit}, à Toulouse, qui rassemble de fortes compétences en analyse multivariée appliquées généralement en télédétection, et plus précisément en imagerie hyperspectrale. Cependant, de nombreux travaux pluridisciplinaires ont vu le jour au sein de cette équipe dès lors qu'il s'agissait de traiter ou d'analyser des images spectroscopiques, comme en astronomie~\cite{guilloteau2020simulated, guilloteau2020fusion} ou en microscopie. En effet, les acquisitions réalisées en microscopie STEM-EELS s'apparentent à des images hyperspectrales pouvant être traitées à l'aide de l'analyse multivariée et des collaborations entre Nicolas \textsc{Dobigeon} de l'\gls{irit} et Nathalie \textsc{Brun} du laboratoire de physique des solides~(LPS~- Université Paris Saclay)\glsunset{lps} à Orsay ont permis l'analyse de telles images sous le paradigme du démélange hyperspectral~\cite{dobigeon2012spectral, dobigeon2016linear}.
+
+Une nouvelle collaboration à l'origine de ce travail de thèse concerne les modalités d'acquisition des échantillons sensibles pour lesquels une dose d'électron délivrée trop importante peut entraîner des dommages irréversibles. Pour limiter cela, l'expérimentateur se fixe une dose maximale d'électron et, puisque le microscope acquiert les données en scannant l'échantillon ligne par ligne, cela conduit à une dose par position spatiale réduite et à une image finale de qualité limité.
+%
+Récemment, l'équipe STEM du \gls{lps} a développé de nouvelles techniques d'acquisition non-standard. Au lieu d'acquérir les spectres en balayant l'échantillon ligne par ligne, la sonde pouvait désormais balayer l'échantillon suivant un chemin d'acquisition hautement paramétrable, ouvrant la voie à des modalités d'échantillonnage aléatoires et partielles. 
+%
+Dès lors, cette nouvelle modalité d'acquisition pose la question de l'utilisation optimale de la dose d'électron autorisée afin d'obtenir la meilleure image en bout de chaîne d'acquisition. 
+%
+En particulier, une méthode alternative qui monte en popularité consiste à acquérir moins de pixels, \ie{}, à échantillonner partiellement, en autorisant une dose d'électron par position spatiale accrue, puis à reconstruire l'image a posteriori pour combler les positions spatiales inconnues. Seulement, les performances de cette approche dépendent fortement du chemin parcouru par la sonde et de l'algorithme de reconstruction employé.
+
+Après avoir étudié la littérature, il s'est avéré que ce problème était généralement abordé de deux façons différentes. D'une part, certains travaux proposaient d'améliorer la qualité de l'image en sélectionnant avec soin les positions spatiales à échantillonner. Une acquisition dynamique est alors réalisée en choisissant à chaque instant le pixel à échantillonner maximisant la qualité de l'image reconstruite. Une technique de reconstruction rapide est alors primordiale, au détriment de la qualité de reconstruction. Au contraire, une fois l'acquisition partielle réalisée, le choix de l'algorithme de reconstruction est dicté par la qualité de l'image reconstruite et des techniques lourdes en temps d'exécution sont alors possibles. 
+
+Peu de travaux ont étudiés un compromis, à savoir un algorithme rapide et performant permettant d'afficher l'image reconstruite au cours de l'échantillonnage pour un chemin d'acquisition prédéfini.  Nous avons donc décidé d'axer les contributions sur cet objectif. Pour cela, nous avons envisagé des méthodes par moindre carrés régularisés, permettant d'allier rapidité et précision, dans le cadre d'images spatialement lisses et d'échantillons cristallins spatialement périodiques. Des expériences menées sur des données synthétiques et réelles ont permis de mettre en évidence l'efficacité des techniques proposées et leur faible coût calculatoire. 
+
+Les travaux réalisés pendant cette thèse ont été valorisés par les publications détaillées à la page~\pageref{ch-liste-publis}.
+
+
+ 
+% ------------------- Organisation du manuscrit ---------------------------
+ 
+Le présent manuscrit est divisé de la façon suivante.
+\begin{itemize}
+    \item Le chapitre~\ref{ch-chapter_1} présente en détail le microscope STEM permettant l'acquisition des images multi-bandes EELS. Les caractéristiques spatiales et spectrales de ces données, leur analyse et leur exploitation sont décrites. Enfin, la problématique posée par les échantillons sensibles  est posée.
+    \item Le chapitre~\ref{ch-chapter_2} fait l'état de l'art des techniques de reconstruction en imagerie. Plus particulièrement, ces méthodes sont regroupées suivant quatre classes et leur utilisation en microscopie est discutée. Finalement, le positionnement et les contributions de la thèse sont posées.
+    \item Le chapitre~\ref{ch-chapter_3} se concentre sur les images spatialement lisses, comme pour les acquisitions basses résolution ou les échantillons amorphes. Deux algorithmes rapides et performants sont proposés et étudiés. Des expériences basées sur des données synthétiques et réelles permettent de montrer l'intérêt de l'approche par acquisition partielle en comparaison à un échantillonnage complet avec une dose d'électron par pixel réduite.
+    \item Le chapitre~\ref{ch-chapter_4} étudie les images d'échantillons cristallins spatialement périodiques et propose un algorithme basé sur des approches parcimonieuses dans la base DCT. Des expériences comparent ses performances avec celles données par d'autres méthodes de reconstruction proposées dans la littérature. Il apparaît que la technique proposée constitue un compromis performant et rapide.
+    \item Le chapitre~\ref{chap-conclusion} apporte une conclusion à ce travail de thèse.
+    \item Les annexes~\ref{annexe-1}, \ref{annexe-2} et \ref{annexe-3} apportent respectivement des compléments aux chapitres~\ref{ch-chapter_2}, \ref{ch-chapter_3} et \ref{ch-chapter_4}.
+\end{itemize} 
+ 
+ 
+ 
+ 
+
+
+
+
+

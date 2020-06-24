@@ -1,0 +1,86 @@
+\documentclass{standalone}
+\usepackage{tikzstyle}
+\usepackage{colorbrewer}
+
+\pgfplotsset{every axis/.append style={%
+    axis line style = {semithick},
+    axis x line = box,
+    axis y line = box,
+}}%
+
+\begin{document}
+
+
+\begin{tikzpicture}
+
+\begin{axis}[%
+    width=9cm,
+    height=7cm,
+    %
+    xmode=log,
+    xmin=0.0001, xmax=100,
+    xlabel={$\lambda_{\mathrm{S2N}}$},
+    %
+    ymode=log,
+    ymin=1e-05, ymax=1000,
+    ylabel={$\mu_{\mathrm{S2N}}$},
+    %
+    enlargelimits=false,
+    %
+    colormap/viridis,
+    colorbar,
+    colorbar/width=0.3cm,
+    colorbar style={
+        ymin=0,
+        ylabel={SNR},
+        ylabel style={font=\tiny},
+        ytick={0,5,...,30}, 
+        tick align=inside
+    },
+    %
+    legend-on-top, legend num cols=2,
+    legend style={font=\tiny},
+    legend entries={$\lambda^{\circ}$,
+                    $\mu^{\circ}$,
+                    $(\lambda^*;\mu^*)$,
+                    $(\lambda^{\textrm{opt}};\mu^{\textrm{opt}})$},
+    ]
+
+    \addplot[%
+        surf,
+        shader=flat corner, draw=black, mesh/rows=25, forget plot]
+        table[point meta=\thisrow{c}]{data/s2n-hyper-snr.dat}; 
+
+
+    \addplot [Dark2-5-2, dashed, line width=2.0pt]
+        table[row sep=crcr]{%
+        0.730078663884062   1e-05\\
+        0.730078663884062   1000\\
+        };
+
+    \addplot [Dark2-5-4, dashed, line width=2.0pt]
+        table[row sep=crcr]{%
+        0.0001  0.850525815443996 1\\
+        100 0.850525815443996 1\\
+        };
+
+
+    \addplot[only marks, mark=*, mark options={}, mark size=2pt, draw=black, fill=white]
+        table[row sep=crcr]{%
+        x   y\\
+        0.37433642742743    0.436093822403043\\
+        };
+
+
+    \addplot[only marks, mark=*, mark options={}, mark size=2pt, draw=white, fill=black]
+        table[row sep=crcr]{%
+        x   y\\
+        0.316227766016838   0.177827941003892\\
+        };
+
+
+\end{axis}
+\end{tikzpicture}%
+
+
+\end{document} 

@@ -1269,7 +1269,8 @@
     \begin{lrbox}{\@tufte@figure@box}%
       \begin{minipage}[\floatalignment]{\@tufte@float@contents@width}\hbox{}%
   }{% end @tufte@float
-      \par\hbox{}\vspace{-\baselineskip}\ifthenelse{\prevdepth>0}{\vspace{-\prevdepth}}{}% align baselines of boxes
+      \par\hbox{}\vspace{-\baselineskip}%
+      \ifthenelse{\prevdepth>0}{\vspace{-\prevdepth}}{}% align baselines of boxes
       \end{minipage}%
     \end{lrbox}%
     % build the caption box
@@ -1283,12 +1284,12 @@
       \end{lrbox}%
     }{%
       \begin{lrbox}{\@tufte@caption@box}%
-        \begin{minipage}{\@tufte@fullwidth}\hbox{}%
+        \begin{minipage}{\@tufte@float@contents@width}\hbox{}%
           \ifthenelse{\NOT\equal{\@tufte@stored@caption}{}}{\@tufte@orig@caption[\@tufte@stored@shortcaption]{\@tufte@stored@caption}}{}%
           \ifthenelse{\NOT\equal{\@tufte@stored@label}{}}{\@tufte@orig@label{\@tufte@stored@label}}{}%
           \par\vspace{-\prevdepth}%% TODO: DOUBLE-CHECK FOR SAFETY
         \end{minipage}%
-      \end{lrbox}%
+      \end{lrbox}%  
     }%
     % now typeset the stored boxes
     \begin{fullwidth}%
@@ -1327,23 +1328,30 @@
     }
 
 \newcommand{\@tufte@float@textwidth}[3][0pt]{%
-  \ifthenelse{\NOT\boolean{@tufte@symmetric}\OR\boolean{@tufte@float@recto}}{%
-    % asymmetric or page is odd, so caption is on the right
-    \hbox{%
-      \usebox{#2}%
-      \hspace{\marginparsep}%
-      \smash{\raisebox{#1}{\usebox{#3}}}%
+  \ifthenelse{\NOT\boolean{@tufte@float@normal}}{%
+    \ifthenelse{\NOT\boolean{@tufte@symmetric}\OR\boolean{@tufte@float@recto}}{%
+      % asymmetric or page is odd, so caption is on the right
+      \hbox{%
+        \usebox{#2}%
+        \hspace{\marginparsep}%
+        \smash{\raisebox{#1}{\usebox{#3}}}%
+      }%
+      \@tufte@float@debug{Caption position: [right]}%
+    }{% symmetric pages and page is even, so caption is on the left
+      \hbox{%
+        \smash{\raisebox{#1}{\usebox{#3}}}%
+        \hspace{\marginparsep}%
+        \usebox{#2}%
+      }%
+      \@tufte@float@debug{Caption position: [left]}%
     }%
-    \@tufte@float@debug{Caption position: [right]}%
-  }{% symmetric pages and page is even, so caption is on the left
-    \hbox{%
-      \smash{\raisebox{#1}{\usebox{#3}}}%
-      \hspace{\marginparsep}%
-      \usebox{#2}%
-    }%
-    \@tufte@float@debug{Caption position: [left]}%
-  }%
+  }{
+    \hspace{5cm}\usebox{#2}%
+
+    \hspace{5cm}\usebox{#3}%
+    \@tufte@float@debug{Caption position: [below]}%
   }
+}
 
 \newcommand{\@tufte@float@fullwidth}[3][0pt]{%
   % Test if normal figure
@@ -1366,25 +1374,33 @@
           \@tufte@float@debug{Caption position: [below left]}}% caption on the left
       }%
     }{%
-      \usebox{#2}\\\fbox{\usebox{#3}%
-      \@tufte@float@debug{Caption position: [below right]}}% usual style for caption
+      \usebox{#2}\\{\usebox{#3}%
+      \@tufte@float@debug{Caption position: [below]}}% usual style for caption
     }
   }
 
 
 %%
-% Redefine the figure environment to place the captions in the margin space
+% Normal-width figure
 
 \renewenvironment{figure}[1][htbp]%
 {\ifvmode\else\unskip\fi\begin{@tufte@float}[#1]{figure}{}}
 {\end{@tufte@float}}
 
+\newenvironment{normalfigure}[1][htbp]%
+{\normalfloatstyle\ifvmode\else\unskip\fi\begin{@tufte@float}[#1]{figure}{}}
+{\end{@tufte@float}}
+
 
 %%
-% Redefine the table environment to place the captions in the margin space
+% Normal-width table
 
 \renewenvironment{table}[1][htbp]
 {\ifvmode\else\unskip\fi\begin{@tufte@float}[#1]{table}{}}
+{\end{@tufte@float}}
+
+\newenvironment{normaltable}[1][htbp]%
+{\normalfloatstyle\ifvmode\else\unskip\fi\begin{@tufte@float}[#1]{table}{}}
 {\end{@tufte@float}}
 
 
@@ -1396,7 +1412,7 @@
 {\end{@tufte@float}}
 
 
-\newenvironment{normalfigure}[1][htbp]%
+\newenvironment{normalfigure*}[1][htbp]%
 {\normalfloatstyle\ifvmode\else\unskip\fi\begin{@tufte@float}[#1]{figure}{star}}
 {\end{@tufte@float}}
 
@@ -1408,6 +1424,9 @@
 {\ifvmode\else\unskip\fi\begin{@tufte@float}[#1]{table}{star}}
 {\end{@tufte@float}}
 
+\newenvironment{normaltable*}[1][htbp]%
+{\normalfloatstyle\ifvmode\else\unskip\fi\begin{@tufte@float}[#1]{table}{star}}
+{\end{@tufte@float}}
 
 %%
 % Full-page-width area

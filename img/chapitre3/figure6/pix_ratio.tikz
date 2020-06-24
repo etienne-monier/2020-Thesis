@@ -1,0 +1,60 @@
+\documentclass{standalone}
+\usepackage{tikzstyle}
+\usepackage{colorbrewer}
+
+\pgfplotsset{
+    mark1/.style={mark=triangle,mark size=4pt},
+    mark2/.style={mark=square,mark size=4pt},
+    %
+    color1/.style={Dark2-5-1},
+    color2/.style={Dark2-5-2},
+    color3/.style={Dark2-5-3},
+    %
+    plot-A/.style={name path=A, draw=none, forget plot},
+    plot-B/.style={name path=B, draw=none, forget plot},
+}
+
+
+\newcommand{\plotperfs}[3]{
+    \addplot[#1,#2] table [x=SNR, y=Mean] {#3};
+    \addplot[plot-A] table [x=SNR, y=Sup] {#3};
+    \addplot[plot-B] table [x=SNR, y=Low] {#3};
+    \addplot[#1, opacity=0.3, forget plot] fill between[of=A and B];
+}
+
+
+\begin{document}
+
+\begin{tikzpicture}
+
+    \begin{axis}[
+        width=10cm,
+        %
+        xmin=19, xmax=29,
+        ymin=20, ymax=44,
+        %
+        xlabel={SNR du bruit (dB)},
+        ylabel={SNR$(\hat{\mathbf{X}}, \mathbf{X})$ (dB)},
+        %
+        enlargelimits=false,
+        %
+        legend-on-top, legend num cols=2,
+        legend entries={3S - $r = 0.2$, S2N - $r = 0.2$, 
+                        3S - $r = 0.3$, S2N - $r = 0.3$,
+                        3S - $r = 0.4$, S2N - $r = 0.4$},
+        ]
+
+        \plotperfs{color1}{mark1}{data/3s-data-1-snr.dat}  % 3S  r=0.2
+        \plotperfs{color1}{mark2}{data/s2n-data-1-snr.dat} % S2N r=0.2
+
+        \plotperfs{color2}{mark1}{data/3s-data-2-snr.dat}  % 3S  r=0.3
+        \plotperfs{color2}{mark2}{data/s2n-data-2-snr.dat} % S2N r=0.3
+
+        \plotperfs{color3}{mark1}{data/3s-data-3-snr.dat}  % 3S  r=0.4
+        \plotperfs{color3}{mark2}{data/s2n-data-3-snr.dat} % S2N r=0.4
+
+    \end{axis}
+
+\end{tikzpicture}
+
+\end{document} 

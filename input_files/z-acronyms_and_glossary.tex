@@ -1,0 +1,455 @@
+%!TEX root = ../main.tex
+% To build the glossary: makeglossaries main
+
+%%%%% Acronyms
+% \newacronym[plural={<plural acronym>},
+%             first={<text displayed at first occurrence>},
+%             firstplural={<idem, with plural>}]
+%             {<label>}
+%             {<acronym>}
+%             {<full name to display in acronym section>}
+
+% Laboratoires
+\newacronym{irit}{IRIT}{institut de recherche en informatique de Toulouse}
+
+\newacronym{lps}{LPS}{laboratoire de physique des solides}
+
+% Microscopes
+\newacronym{stem}{STEM}{scanning transmission electron microscope}
+
+\newacronym{tem}{TEM}{transmission electron microscopy}
+
+\newacronym{sem}{SEM}{scanning electron microscope}
+
+\newacronym{mfa}{MFA}{microscopie à force atomique}
+
+\newacronym{irm}{IRM}{imagerie par résonance magnétique}
+
+% Modalités
+\newacronym{haadf}{HAADF}{high-angle annular dark-field}
+
+\newacronym{adf}{ADF}{annular dark-field}
+
+\newacronym{eels}{EELS}{electron energy loss spectroscopy}
+
+\newacronym{edx}{EDX}{spectroscopie de rayons X à dispersion d’énergie}
+
+
+% Techniques
+\newacronym{acp}{ACP}{analyse en composantes principales}
+
+\newacronym{aci}{ACI}{analyse en composantes indépendantes}
+
+\newacronym{cs}{CS}{compressed sensing}
+
+\newacronym{ppv}{PPV}{plus proches voisins}
+
+\newacronym{ad}{AD}{apprentissage de dictionnaire}
+
+\newacronym{ebi}{EBI}{exemplar-based inpainting}
+
+\newacronym{mc}{MC}{moindre carré}
+        
+\newacronym{dct}{DCT}{transformée en cosinus discrète}
+
+\newacronym{tv}{TV}{variation totale}
+
+\newacronym{goal}{GOAL}{geometric analysis operator learning}
+
+\newacronym{vca}{VCA}{vertex component analysis}
+
+\newacronym{sisal}{SISAL}{simplex identification via variable
+    splitting and augmented lagrangian}
+
+\newacronym{sunsal}{SUNSAL}{spectral unmixing by splitting and augmented Lagrangian}
+
+\newacronym{map}{MAP}{maximum a posteriori}
+
+\newacronym{mcmc}{MCMC}{Monte Carlo par chaîne de Markov}
+
+
+% \newacronym{}{}{}
+
+% Métriques
+
+\newacronym{snr}{SNR}{rapport signal à bruit}
+
+\newacronym{nmse}{NMSE}{normalized mean square error}
+
+\newacronym{asad}{aSAD}{average spectral angle distance}
+
+\newacronym{ssim}{SSIM}{structural similarity}
+
+% Méthodes proposée
+
+\newacronym{s2n}{S2N}{smoothed nuclear norm}
+
+\newacronym{3s}{3S}{smoothed subspace}
+
+\newacronym{cls}{CLS}{cosine least square}
+
+\newacronym{ista}{ISTA}{iterative shrinkage thresholding}
+
+\newacronym{fista}{FISTA}{fast iterative shrinkage thresholding}
+
+\newacronym{bpfa}{BPFA}{beta-process factor analysis}
+
+\newacronym{itkrmm}{ITKrMM}{iterative thresholding and K residual means for masked data}
+
+\newacronym{wksvd}{wKSVD}{weighted K-SVD}
+
+
+
+
+
+
+
+%% Notations génériques %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newglossaryentry{g-a}{
+    type=notgen, 
+    name={\ensuremath{a}}, 
+    description={Scalaire}, 
+    sort={01}}
+
+\newglossaryentry{g-av}{type=notgen,
+    name={\ensuremath{\mathbf{a}}},
+    description={Vecteur colonne}, 
+    sort={02}}
+
+\newglossaryentry{gavi}{type=notgen, 
+    name={\ensuremath{\mathbf{a}_i}}, 
+    description={$i^\text{ème}$ composante du vecteur \gls{g-av}}, 
+    sort={03}}
+
+\newglossaryentry{g-A}{type=notgen, 
+    name={\ensuremath{\mathbf{A}}},
+    description={Matrice},
+    sort={04}}
+
+\newglossaryentry{g-Aij}{type=notgen,
+    name={\ensuremath{\mathbf{A}_{ij}}},
+    description={Coefficient $(i, j)$ de la matrice \gls{g-A}},
+    sort={05}}
+
+\newglossaryentry{g-Aj}{type=notgen, 
+    name={\ensuremath{\mathbf{A}_j}},
+    description={$j^\text{ème}$ colonne de la matrice \gls{g-A}},
+    sort={06}}
+
+\newglossaryentry{g-Ai}{type=notgen, 
+    name={\ensuremath{\mathbf{A}_{i, :}}},
+    description={$i^\text{ème}$ ligne de la matrice \gls{g-A}},
+    sort={07}}
+
+\newglossaryentry{g-T}{type=notgen, 
+    name={\ensuremath{(\cdot)^{T}}},
+    description={Transposée},
+    sort={08}}
+
+\newglossaryentry{g-pm}{type=notgen, 
+    name={\ensuremath{\mathbf{AB}}},
+    description={Produit matriciel},
+    sort={09}}
+
+\newglossaryentry{g-pmh}{type=notgen, 
+    name={\ensuremath{\mathbf{A\cdot B}}},
+    description={Produit matriciel de Hadamard (terme à terme)},
+    sort={10}}
+
+\newglossaryentry{g-n1}{type=notgen, 
+    name={\ensuremath{||\mathbf{a}||_1}},
+    description={Norme $\ell_1$ de \gls{g-av}},
+    sort={11}}
+
+\newglossaryentry{g-n2}{type=notgen, 
+    name={\ensuremath{||\mathbf{a}||_2}},
+    description={Norme $\ell_2$ de \gls{g-av}},
+    sort={12}}
+
+\newglossaryentry{g-n12}{type=notgen, 
+    name={\ensuremath{||\mathbf{A}||_{2, 1}}},
+    description={Norme $\ell_{2, 1}$ de \gls{g-A}},
+    sort={13}}
+
+\newglossaryentry{g-nf}{type=notgen, 
+    name={\ensuremath{||\mathbf{A}||_\mathrm{F}}},
+    description={Norme de Frobenius de \gls{g-A}},
+    sort={14}}
+
+\newglossaryentry{g-nn}{type=notgen, 
+    name={\ensuremath{||\mathbf{A}||_*}},
+    description={Norme nucléaire de \gls{g-A}},
+    sort={15}}
+
+\newglossaryentry{g-zvec}{type=notgen, 
+    name={\ensuremath{\mathbf{0}_n}},
+    description={Vecteur nul de taille $n$},
+    sort={16}}
+
+%% Ensembles %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newglossaryentry{e-R}{type=sets, 
+    name={\ensuremath{\mathbb{R}}},
+    description={Ensemble des nombres réels},
+    sort={1}}
+
+\newglossaryentry{e-Rn}{type=sets, 
+    name={\ensuremath{\mathbb{R}^n}},
+    description={Ensemble des vecteurs de taille $n$},
+    sort={2}}
+
+\newglossaryentry{e-Rmn}{type=sets, 
+    name={\ensuremath{\mathbb{R}^{m \times n}}},
+    description={Ensemble des matrices de taille $m\times n$},
+    sort={3}}
+
+%% Fonctions %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newglossaryentry{f-signe}{type=functions, 
+    name={sgn},
+    description={Fonction signe},
+    sort={1}}
+
+\newglossaryentry{f-ind}{type=functions, 
+    name={\ensuremath{\iota_{\mathcal{A}}}},
+    description={Fonction indicatrice sur l'ensemble $\mathcal{A}$},
+    sort={2}}
+
+
+%% Probabilité %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newglossaryentry{proba-N}{type=probas, 
+    name={\parbox{2.8cm}{\ensuremath{x\sim \mathcal{N}(m, \sigma^2)}}},
+    description={$x$ suit une loi gaussienne de moyenne $m$ et d'eccart-type $\sigma$},
+    sort={1}}
+
+\newglossaryentry{proba-den}{type=probas, 
+    name={\ensuremath{P(x)}},
+    description={Densité de probabilité de $x$},
+    sort={2}}
+%\multicolumn{2}{c}{  \sim \mathcal{N}(m, \sigma^2)
+
+
+%% Dimensions %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newglossaryentry{P}{
+    type=dimensions,
+    name={\ensuremath{P}},
+    description={Le nombre de pixels},
+    sort={01}
+}
+
+\newglossaryentry{M}{
+    type=dimensions,
+    name={\ensuremath{M}},
+    description={Le nombre de canaux},
+    sort={02}
+}
+
+\newglossaryentry{N}{
+    type=dimensions,
+    name={\ensuremath{N}},
+    description={Le nombre de pixels acquis},
+    sort={03}
+}
+
+\newglossaryentry{Rt}{
+    type=dimensions,
+    name={\ensuremath{R_{\mathrm{true}}}},
+    description={La dimension du véritable sous-espace signal},
+    sort={03}
+}
+
+\newglossaryentry{R}{
+    type=dimensions,
+    name={\ensuremath{R}},
+    description={La dimension estimée du véritable sous-espace signal},
+    sort={04}
+}
+
+
+%% Modèle direct %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newglossaryentry{r}{
+    type=modele,
+    name={\ensuremath{r}},
+    description={Le rapport d'acquisition $\gls{N}/\gls{P}$},
+    sort={01}
+}
+
+\newglossaryentry{I}{
+    type=modele,
+    name={\ensuremath{\mathcal{I}}},
+    description={L'ensemble des index des positions spatiales acquises},
+    shape={\gls{N}},
+    sort={02}
+}
+
+\newglossaryentry{Phi}{
+    type=modele,
+    name={\ensuremath{\Phi}},
+    description={Opérateur de sous-échantillonnage tel que $\mathbf{X}_{\mathcal{I}} = \mathbf{X}\Phi$},
+    shape={\gls{P}\ensuremath{\times}\gls{N}},
+    sort={03}
+}
+
+\newglossaryentry{Y}{
+    type=modele,
+    name={\ensuremath{\mathbf{Y}}},
+    description={La matrice qui correspondrait aux données EELS complètes},
+    shape={\gls{M} \ensuremath{\times} \gls{P}},
+    sort={04}
+}
+
+\newglossaryentry{Yi}{
+    type=modele,
+    name={\ensuremath{\mathbf{Y}_\mathcal{I}}},
+    description={La matrice d'observation},
+    shape={\gls{M} \ensuremath{\times} \gls{N}},
+    sort={05}
+}
+
+\newglossaryentry{X}{
+    type=modele,
+    name={\ensuremath{\mathbf{X}}},
+    description={Les données inconnues à reconstruire},
+    shape={\gls{M} \ensuremath{\times} \gls{P}},
+    sort={06}
+}
+
+\newglossaryentry{E}{
+    type=modele,
+    name={\ensuremath{\mathbf{E}}},
+    description={La matrice de bruit},
+    shape={\gls{M} \ensuremath{\times} \gls{N}},
+    sort={07}
+}
+
+\newglossaryentry{sig}{
+    type=modele,
+    name={\ensuremath{\sigma}},
+    description={L'éccart-type du bruit blanc additif gaussien},
+    sort={08}
+}
+
+\newglossaryentry{Xh}{
+    type=modele,
+    name={\ensuremath{\hat{\mathbf{X}}}},
+    description={L'image reconstruites},
+    shape={\gls{M} \ensuremath{\times} \gls{P}},
+    sort={09}
+}
+
+
+%% Démélange %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newglossaryentry{Mu}{
+    type=demelange,
+    name={\ensuremath{\mathbf{M}}},
+    description={La matrice des composantes spectrales},
+    shape={\gls{M} \ensuremath{\times} \gls{P}},
+    sort={1}
+}
+
+\newglossaryentry{A}{
+    type=demelange,
+    name={\ensuremath{\mathbf{A}}},
+    description={La matrice des abondances},
+    shape={\gls{M} \ensuremath{\times} \gls{P}},
+    sort={2}
+}
+
+%% ACP %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newglossaryentry{H}{
+    type=acp,
+    name={\ensuremath{\mathbf{H}}},
+    description={La base des composantes principales associées aux données},
+    shape={\gls{M} \ensuremath{\times} \gls{M}},
+    sort={1}
+}
+
+\newglossaryentry{d}{
+    type=acp,
+    name={\ensuremath{d^2}},
+    description={Les valeurs propres associées aux colonnes de \gls{H}},
+    shape={\gls{M}},
+    sort={2}
+}
+
+\newglossaryentry{S}{
+    type=acp,
+    name={\ensuremath{\mathbf{S}}},
+    description={Les coefficients de représentation des données dans la base \gls{H}},
+    shape={\gls{M} \ensuremath{\times} \gls{P}},
+    sort={3}
+}
+
+
+
+% %% 3S %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% Operators
+\newglossaryentry{D}{
+    type=chap3,
+    name={\ensuremath{\mathbf{D}}},
+    description={Opérateur de gradient spatial discret avec $P' = m(n-1) + (m-1)n$, où $m$ et $n$ sont respectivement le nombre de lignes et de colonnes de l'image},
+    shape={\gls{P} \ensuremath{\times} \gls{P}'},
+    sort={01}
+}
+
+\newglossaryentry{Delta}{
+    type=chap3,
+    name={\ensuremath{\Delta}},
+    description={Opérateur de laplacien spatial discret, $\Delta = -\mathbf{D}\mathbf{D}^T$},
+    shape={\gls{P} \ensuremath{\times} \gls{P}},
+    sort={02}
+}
+
+% Hyperparamètres
+\newglossaryentry{ls2n}{
+    type=chap3,
+    name={\ensuremath{\lambda_{\mathrm{S2N}}}},
+    description={Premier paramètre de la méthode S2N},
+    sort={03}
+}
+
+\newglossaryentry{ms2n}{
+    type=chap3,
+    name={\ensuremath{\mu_{\mathrm{S2N}}}},
+    description={Premier paramètre de la méthode S2N},
+    sort={04}
+}
+
+\newglossaryentry{m3s}{
+    type=chap3,
+    name={\ensuremath{\mu_{\mathrm{3S}}}},
+    description={Paramètre de la méthode 3S},
+    sort={05}
+}
+
+\newglossaryentry{w}{
+    type=chap3,
+    name={\ensuremath{w}},
+    description={Les poids associés à la méthode 3S},
+    sort={06}
+}
+
+\newglossaryentry{hsig}{
+    type=chap3,
+    name={\ensuremath{\hat{\sigma}}},
+    description={L'éccart-type estimé du bruit blanc additif gaussien},
+    sort={07}
+}
+
+
+% %% CLS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newglossaryentry{lcls}{
+    type=chap4,
+    name={\ensuremath{\lambda_{\mathrm{CLS}}}},
+    description={Paramètre de la méthode CLS},
+    sort={01}
+}
+
+

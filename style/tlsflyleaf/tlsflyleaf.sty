@@ -666,9 +666,9 @@
 }
 % textline
 \newcommand\textline[4][t]{%
-  \par\noindent\parbox[#1]{.333\textwidth}{\raggedright{\scshape #2}}%
-  \parbox[#1]{.333\textwidth}{\centering#3}%
-  \parbox[#1]{.333\textwidth}{\raggedleft#4}\par%
+  \par\noindent\parbox[#1]{.25\textwidth}{\raggedright{\scshape #2}}%
+  \parbox[#1]{.5\textwidth}{\centering#3}%
+  \parbox[#1]{.25\textwidth}{\raggedleft#4}\\[5pt]%\par%
 }
 % makesomeone
 \gdef\showline{show}% Permet de tester si la ligne doit etre affichee
@@ -831,6 +831,9 @@
                         \vfill
                         %%%% JURY %%%%
                         {\bfseries JURY}
+
+                        \vspace{5mm}
+                        
                         \ifnum \@njudge=0
                           \\Membres du jury
                         \else
