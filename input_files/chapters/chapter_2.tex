@@ -66,7 +66,7 @@ Le problème de reconstruction consiste à estimer un spectre-image de taille \t
 %
 \section{Les différentes classes d'inpainting}
 
-Cette section présente les méthodes de reconstructions classiquement rencontrées dans la littérature en les classant en quatre sections : les techniques d'interpolation, les techniques de \gls{mc} régularisés, les techniques par diffusion et les techniques par patch.
+Cette section présente les méthodes de reconstructions classiquement rencontrées dans la littérature en les classant en cinq sections : les techniques d'interpolation, les techniques de \gls{mc} régularisés, les techniques par diffusion, les techniques par patch et les techniques par réseaux de neurones.
 
 
 \subsection{Les techniques d'interpolation}\label{sec-interpolation}
@@ -251,6 +251,21 @@ Enfin, il faut bien mettre en avant que la reconstruction d'une image par \gls{a
     \item le contenu spatial de l'image à reconstruire doit être similaire au contenu des données d'entraînement.
 \end{itemize}
 Les performances sont particulièrement dégradées si les structures, leur orientation ou leur échelle diffèrent.
+
+
+\subsection{Les techniques par réseaux de neurones}
+
+We employ DA to perform pre-training in our method because it naturally lends itself to denoising
+and inpainting tasks. DA is a two-layer neural network that tries to reconstruct the original input
+from a noisy version of it. The structure of a DA is shown in Fig.1a. A series of DAs can be stacked
+to form a deep network called Stacked Denoising Auto-encoders (SDA) by using the hidden layer
+activation of the previous layer as input of the next layer.
+
+
+
+
+
+
 
 
 %
