@@ -1,3 +1,42 @@
 \chapter{Conclusion}\label{chap-conclusion}
 
-\lipsum[1-4]
+Dans cette thèse, nous avons étudié une approche particulière permettant de limiter la détérioration des échantillons sensibles en microscopie EELS. Comme souligné au chapitre~\ref{ch-chapter_1}, ces matériaux sont généralement préservés en réduisant la dose d'électron par position spatiale, conduisant à une image de faible SNR. 
+%
+Pour améliorer la qualité de l'image, une alternative récente rendue possible par le développement de systèmes d'acquisition hautement paramétrables~\cite{tararan2016random, zobelli2019spatial, tence2019following} consiste à n'acquérir l'échantillon qu’en quelques positions spatiales. \`A dose d'électron équivalente, une plus forte dose peut être utilisée par pixel, ce qui améliore le SNR. Toutefois, cette approche nécessite une étape de reconstruction en post-traitement. 
+%
+Le chapitre~\ref{ch-chapter_2} a fait le point sur les approches généralement rencontrées en traitement du signal et a synthétisé les méthodes de reconstruction utilisées en microscopie. Cela a fait apparaître une lacune puisque très peu de méthodes à la fois rapide et efficace ont été utilisées dans la littérature pour reconstruire un spectre-image au cours de l'acquisition. C'est cette lacune que ce travail de thèse a tenté de combler.
+
+Une approche prometteuse pour respecter les contraintes de rapidité et de performances réside dans les approches par \gls{mc} régularisés, plus rapides que les méthodes par \gls{ad} et plus précises que les techniques par \gls{ppv}. Dans le chapitre~\ref{ch-chapter_3}, deux méthodes ont été proposées dans le cadre d'images spatialement lisses, reposant sur des régularisations spectrales et spatiales adaptées. En particulier, une régularisation par norme nucléaire a été utilisé dans la méthode S2N pour contraindre le rang de l'image EELS à être faible. Quant à la méthode 3S, une ACP réalisée en pré-traitement contraint fortement la nature faible-rang de l'image et accélère l'implémentation. Des expériences conduites sur des données synthétiques et réelles ont mis en évidence l'intérêt de l'échantillonnage partiel pour restituer une information spectrale riche, tandis que les approches par échantillonnage complet semblaient rendre un meilleur contenu spatial.
+
+Dans le chapitre~\ref{ch-chapter_4}, une autre méthode par \gls{mc} régularisés appelée CLS a été proposée dans le cadre d'échantillons cristallins spatialement périodiques. En particulier, la régularisation $\ell_{2,1}$ a été utilisé pour favoriser les reconstructions présentant une grande parcimonie groupée dans la base DCT. Des expériences menées sur des images synthétiques et réelles ont comparées les performances de CLS et des techniques classiquement rencontrées en reconstruction d'images en microscopie. Les résultats ont montré l'intérêt de CLS comme compromis de rapidité et de précision.
+
+
+\section*{Discussions et perspectives}
+
+\paragraph{Intérêt de l'inpainting par rapport au débruitage.} Dans la section~\ref{sec-lr-demelange-res}, nous avons tenté d'évaluer le gain en performances de la technique d'échantillonnage partiel couplé à la reconstruction par rapport à une acquisition complète couplée à une étape de débruitage, la dose d'électron totale utilisée au cours de l'acquisition restant constante. Les résultats ont permis de conclure que l'image obtenue après débruitage présente un contenu spatial plus riche tandis que l'image obtenue par reconstruction affiche une meilleure qualité spectrale.
+
+D'autres études ont étudiés cet intérêt, comme~\cite{trampert2018ultramicroscopy} qui a comparé entre autres les deux approches et qui a conclu que l'approche par inpainting était supérieure. Au contraire,~\cite{sanders2018inpainting} a conclu que l'acquisition conventionnelle couplée à une étape de débruitage donne de meilleurs résultats si le bruit est de nature poissonienne, tandis que les performances sont semblables pour un bruit mixte. D'une façon générale, il est compliqué de savoir quelle approche privilégier et cela demeure une question ouverte.
+
+\paragraph{Intérêt de la super-résolution en basse résolution.} Dans la section~\ref{sec-donnees-sous-echantillonnees}, la nécessité pour l'expérimentateur de réduire volontairement la résolution de l'image acquise en vue de préserver l'échantillon a été décrite. Dès lors, une solution possible pour restituer la résolution permise par le pouvoir séparateur de l'instrument est la super-résolution. D'un point de vue plus général, un sous-échantillonnage régulier a été proposé dans~\cite{trampert2018ultramicroscopy} comme alternative au sous-échantillonnage aléatoire et un algorithme de super-résolution est à préférer. Cependant, les expériences conduites indiquent que le masque régulier conduit à des performances moindres. De même que l'intérêt de l'inpainting par rapport au débruitage est à étudier, cette approche mérite de s'y attarder.
+% Papier introuvable
+
+\paragraph{Meilleur choix du chemin d'acquisition.} Au cours des expériences menées dans les chapitres~\ref{ch-chapter_3} et~\ref{ch-chapter_4}, le chemin d'acquisition a été aléatoirement et uniformément choisi. Puisque les performances dépendent également fortement du masque d'échantillonnage, de nombreux autres masques statiques et de méthodes d'échantillonnage dynamique ont été développés, \cf\ section~\ref{sec-art-micro}. En particulier, deux méthodes peuvent être réalisées assez facilement.
+
+La première consiste à utiliser l'imagerie STEM-HAADF qui est plus rapide, et donc moins destructrice pour l'échantillon. Plus précisément, une acquisition HAADF de même résolution et de même taille que l'image EELS à acquérir peut être réalisée auparavant. La structure spatiale de l'échantillon peut être déduite de l'image 2D et un chemin intelligent visitera davantage les contours des structures pour permettre une meilleure reconstruction. Une part aléatoire devra également être conservée pour visiter les zones lisses, d'autant que l'image HAADF ne révèle pas toutes les structures de l'échantillon. En effet, il se peut que certaines structures n'apparaissant pas dans l'image HAADF et soient visibles sur l'image EELS autours de seuils particuliers. Ainsi, l'imagerie HAADF peut fortement aider à améliorer la qualité de la reconstruction en réalisant un meilleur choix de chemin d'acquisition.
+
+La seconde, assez similaire, consiste à réaliser une première acquisition EELS standard avec une dose d'électron très faible et à localiser les contours des structures. Une seconde acquisition à dose totale plus élevée peut ensuite être effectuée sur les contours détectés. Enfin, une étape de fusion restitue une image reconstruite. Une méthode semblable a été réalisée dans~\cite{dahmen2016feature} pour l'imagerie SEM. 
+
+
+\paragraph{\`A propos du modèle de bruit.} Dans la section~\ref{sec-nature-bruit}, la nature mixte poisson-gaussien du bruit d'acquisition a été décrite. Toutefois, pour plus de simplicité, les méthodes et les expériences ont été élaborées en ne considérant qu'un bruit gaussien. Ceci est discutable, d'autant plus que des travaux~\cite{sanders2018inpainting} ont mis en évidence l'influence du modèle de bruit sur la qualité de reconstruction. Pour s'assurer de la validité des méthodes proposées, des expériences ont été conduites à l'annexe~\ref{sec-bruit-mixte} pour évaluer la robustesse de CLS dans le cas d'une image entachée d'un bruit mixte. Les résultats ont permis de conclure que l'ajout d'une composante poissonienne n'influençais pas les performances de manière significative. Toutefois, une perspective intéressante concerne l'adaptation des méthodes par \gls{mc} régularisées dans le cas d'un bruit mixte et des techniques de stabilisation de variance comme la transformée de Anscombe~\cite{anscombe1948transformation} pourraient être utilisées. Malheureusement, évaluer la statistique du bruit d'acquisition reste compliqué.
+
+
+\paragraph{Méthodes par réseaux de neurones.} Le travail exposé dans ce manuscrit s'est focalisé sur la reconstruction \emph{rapide} et aucune méthode \emph{coûteuse} mais performante n'a été développé. En effet, les méthodes généralement rencontrées pour raffiner la reconstruction après coup sont des méthodes par \gls{ad}. Toutefois, des techniques par réseaux de neurones convolutifs ont été décris à la section~\ref{sec-methodes-convnets} et il serait intéressant de les comparer à l'algorithme populaire BPFA.
+
+
+
+
+
+
+% - Reconstruction en ligne : comment mettre à jour l'espace dans lequel vivent les données ? (GROUSE https://arxiv.org/abs/1006.4046, descente de riemanienne)
+
+% - Correction du drift

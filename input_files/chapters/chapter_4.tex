@@ -190,12 +190,12 @@ Dans cette section, les techniques de reconstruction ont été appliquées aux d
 
 Les valeurs des métriques comme le temps d'exécution sont reportés à la \tabname~\ref{table-results-time-hr}. Ces résultats montrent qu'il y a un écart de performances très marqué, tant en termes de qualité que de temps d'exécution, entre NN et les méthodes par \gls{ad}. C'est particulièrement visible pour BPFA qui affiche un temps de calcul dépassant les 24 heures, mais qui offre souvent la meilleure reconstruction. Les techniques par \gls{mc} régularisés 3S et CLS semblent apporter un compromis, aussi bien en termes de précision que de rapidité. CLS est particulièrement performante puisqu'elle affiche un SNR proche des meilleures méthodes avec un temps d'exécution très réduit. 3S affiche des performances plus faibles (même si supérieures à NN) puisque la régularisation est inappropriée pour décrire précisément la structure périodique des images de réseaux cristallins. Notons également que BPFA donne généralement les meilleurs SNR et aSAD, à l'exception de $\mathsf{R}_1^*$ pour lequel CLS donne le meilleur aSAD tandis que NN affiche le aSAD le plus faible.
 
-\begin{table}[htbp]
+\begin{normalfigure*}[htbp]
     \centering
     \input{img/chapitre4/figure4/synth-results-table.tex}
     \caption{Performances en reconstruction en termes de SNR, aSAD et SSIM pour les images semi-réelles $\mathsf{R}_1^*$ et $\mathsf{R}_2^*$ et pour l'image synthétique $\mathsf{S}^*$. Le temps d'exécution est aussi donné pour être considéré conjointement avec la précision. Il y a un écart de performances très marqué tant en termes de qualité que de temps d'exécution entre NN et les méthodes par \gls{ad}. Les méthodes par \gls{mc} régularisés forment un compromis, tout particulièrement CLS qui est plus performant que 3S.
         \protect\label{table-results-time-hr}}
-\end{table}
+\end{normalfigure*}
 
 La reconstruction d'un pixel non-échantillonné dont la position est donné à la figure~\ref{fig-synth-image-spectra-locations} est aussi affichée à la figure~\ref{fig-synth-image-spectra}. Pour cette figure, les données de référence correspondent à l'image non-bruitée $\bar{\mathsf{R}}_2$. Les courbes équivalentes pour un pixel échantillonné sont omises ici puisqu'elles n'apportent aucune information complémentaire, les spectres reconstruits étant trop proches pour être distingués.
 %
@@ -222,17 +222,17 @@ Les cartes d'erreur en termes de NMSE sont représentés à la figure~\ref{fig-r
 \end{figure}
 
 % Pixel représenté
-\begin{figure}[htbp]
+\begin{normalfigure*}[htbp]
     \centering
     %
     \subfigure[Pixel non-acquis]{
-        \includegraphics{img/chapitre4/figure6/non-samp-spectrum.pdf}}\\
+        \includegraphics{img/chapitre4/figure6/non-samp-spectrum.pdf}}\\[0.75cm]
     \subfigure[Pixel non-acquis (zoom)]{
-        \includegraphics{img/chapitre4/figure6/non-samp-spectrum-zoom.pdf}}\\
+        \includegraphics{img/chapitre4/figure6/non-samp-spectrum-zoom.pdf}}\\[0.75cm]
     %
     \caption{Spectres reconstruits pour $\mathsf{R}_2^*$ et pour un pixel non-échantillonné dont la position dans l'image est donné à la figure~\protect\ref{fig-synth-image-spectra-locations}. Les spectres de référence correspondent à l'image non-bruitée $\bar{\mathsf{R}}_2$. Le zoom représente la région d'intérêt mise en évidence par la région transparente bleue. Les spectres de NN et 3S sont significativement décalés par rapport à la référence tandis que les spectres reconstruits par CLS et es méthodes par \gls{ad} sont proches du spectre de référence.
         \protect\label{fig-synth-image-spectra}}
-\end{figure}
+\end{normalfigure*}
 
 % Cartes d'erreur
 \begin{normalfigure*}[p]
@@ -331,16 +331,16 @@ Comme précédemment observé, les méthodes par \gls{ad} donnent des images rec
 \end{normalfigure*}
 
 
-\begin{figure}[]
+\begin{normalfigure*}[]
     \centering
     \subfigure[Pixel non-acquis]{
-        \includegraphics{img/chapitre4/figure10/non-samp-spectrum.pdf}}\\
+        \includegraphics{img/chapitre4/figure10/non-samp-spectrum.pdf}}\\[0.75cm]
     \subfigure[Pixel non-acquis (zoom)]{
-        \includegraphics{img/chapitre4/figure10/non-samp-spectrum-zoom.pdf}}\\
+        \includegraphics{img/chapitre4/figure10/non-samp-spectrum-zoom.pdf}}\\[0.75cm]
     %
     \caption{Spectres résultant de la reconstruction de $\mathsf{R}_2$ pour un spectre non-échantillonné avec la même position que celle de la figure~\protect\ref{fig-synth-image-spectra}. Le spectre de référence correspond à l'image réelle $\mathsf{R}_2$. Le zoom représente la région d'intérêt mise en évidence par la région transparente bleue. Comme pour les résultats synthétiques, le spectre reconstruit par NN est significativement décalé comparé au spectre de référence tandis que les résultats pour CLS et les méthodes par \gls{ad} (tout particulièrement BPFA) sont proches de la référence. Encore, CLS apparaît comme un compromis pertinent.
         \protect\label{fig-real-image-spectra}}
-\end{figure}
+\end{normalfigure*}
 
  
 \subsection{Résultats des approches DL-CLS}\label{sec-DL-CLS}

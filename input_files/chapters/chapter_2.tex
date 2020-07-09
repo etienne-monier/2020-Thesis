@@ -253,19 +253,36 @@ Enfin, il faut bien mettre en avant que la reconstruction d'une image par \gls{a
 Les performances sont particulièrement dégradées si les structures, leur orientation ou leur échelle diffèrent.
 
 
-\subsection{Les techniques par réseaux de neurones}
+\subsection{Les techniques par réseaux de neurones}\label{sec-methodes-convnets}
 
-We employ DA to perform pre-training in our method because it naturally lends itself to denoising
-and inpainting tasks. DA is a two-layer neural network that tries to reconstruct the original input
-from a noisy version of it. The structure of a DA is shown in Fig.1a. A series of DAs can be stacked
-to form a deep network called Stacked Denoising Auto-encoders (SDA) by using the hidden layer
-activation of the previous layer as input of the next layer.
+Les réseaux de neurones profonds ont connus une popularité grandissante ces dernières décennies pour traiter des données complexes et massives. Leur avantage réside dans leur capacité à extraire les caractéristiques propres à des données pour mieux effectuer leur tâche de classification~\cite{lecun1989backpropagation} ou de détection d'objets~\cite{szegedy2013deep, zhao2019object}, par exemple. Ces techniques sont également d'un grand intérêt pour la résolution de problèmes inverses puisqu'elles permettent d'inverser le processus de dégradation sans nécessiter \emph{aucune information a priori}. En effet, contrairement aux méthodes par \gls{mc} régularisés qui requièrent une régularisation adaptée aux données, les méthodes par réseaux de neurones usent d'un a priori implicite capturé par la paramétrisation du réseau de neurone lors de l'entraînement. Par conséquent, comme pour les méthodes par \gls{ad}, un grand ensemble de données d'entraînement doit être soigneusement choisi. Notons que toutes ces méthodes fonctionnent que le masque soit fortement ou faiblement structuré.
+
+Parmi ces méthodes, les architectures de type auto-encodeur débruiteur~\cite{vincent2010stacked,xie2012image} sont classiquement utilisées en débruitage et en inpainting et la figure~\ref{fig-denoising_deep} en donne une illustration. Elles se caractérisent par une couche de sortie de même taille que la couche d'entrée et comporte plusieurs couches cachées. Elles consistent à fournir en entrée l'image corrompue pour extraire des variables latentes d'intérêt (c'est la partie encodeur), puis à restituer une image corrigée à partir de celles-ci (c'est la partie décodeur). La fonction coût généralement utilisée est la différence quadratique $\frobnorm{\gls{Y}-\gls{X}}$. Ces architectures présentent cependant l'inconvénient d'être denses et l'apprentissage est lourd d'un point de vue calculatoire. C'est pourquoi l'on préfère généralement réduire la dimension en usant de couches convolutives, comme dans~\cite{iizuka2017globally} pour un modèle génératif.
+%
+\begin{figure}
+    \centering
+    \includegraphics{img/chapitre2/figure6/denoising_deep.pdf}
+    \caption{Illustration d'un auto-encodeur débruiteur. Après entraînement sur des données d'entraînement, l'observation corrompue \gls{Y} est fournie en entrée de l'encodeur afin d'extraire des variables latentes (ou code) caractéristiques de l'image. Un décodeur restitue ensuite une image corrigée \gls{Xh} à partir du code. Le réseau de neurone est dense.
+        \protect\label{fig-denoising_deep}}
+\end{figure}
+
+Récemment, Ulyanov \etal~\cite{ulyanov2020deep} ont suggéré que les performances excellentes des réseaux de neurones, \ie\ leur capacité à capturer la statistique des images non-corrompues, ne sont pas dues à la phase d'entraînement et au large ensemble d'entraînement associé.
+%
+Au contraire, la structure du réseau seule serait suffisante à capturer la statistique des données, et cela, sans apprentissage. 
+%
+Les auteurs ont confirmé cette hypothèse en concevant un réseau génératif, défini par la fonction $f_\theta$ paramétrée par $\theta$, associant à un code $\mathbf{Z}$ une image $\gls{X}=f_\theta(\mathbf{Z})$. Après tirage d'un code aléatoire $\mathbf{Z}$, l'estimation de l'image reconstruite s'écrit donc
+\begin{align}
+    \hat{\theta} &= \argmin_\theta \frobnorm{\gls{Yi}-f_\theta(\mathbf{Z})_{\gls{I}}}\\
+    \gls{Xh} &= f_{\hat{\theta}} (\mathbf{Z}).
+\end{align}
+En particulier, un réseau convolutif de type auto-encodeur a été utilisé par les auteurs. Cette implémentation affiche des performances supérieures aux autres méthodes par réseaux de neurones et indique que, pour extraire les caractéristiques de l'image à reconstruire, l'image corrompue seule est suffisante. Cette méthode n'a pas été utilisée dans ce manuscrit, faute de temps, mais elle demeure une perspective intéressante.
 
 
-
-
-
-
+%We employ DA to perform pre-training in our method because it naturally lends itself to denoising
+%and inpainting tasks. DA is a two-layer neural network that tries to reconstruct the original input
+%from a noisy version of it. The structure of a DA is shown in Fig.1a. A series of DAs can be stacked
+%to form a deep network called Stacked Denoising Auto-encoders (SDA) by using the hidden layer
+%activation of the previous layer as input of the next layer.
 
 
 %

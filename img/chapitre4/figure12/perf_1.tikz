@@ -20,7 +20,7 @@
             %
             legend-on-top,
             legend num cols=2,
-            legend entries={With PCA, Without PCA},
+            legend entries={Avec ACP, Sans ACP},
             legend style={font=\small},
             ]
 

@@ -516,7 +516,7 @@ Cette différence entre les deux algorithmes peut s'expliquer de trois manières
         \protect\label{fig-s2n-3s-noise-ratio}}
 \end{figure}
 
-\subsection{Comparaison reconstruction / débruitage dans un scénario de débruitage}\label{sec-lr-demelange-res}
+\subsection{Comparaison reconstruction / débruitage dans un scénario de démélange}\label{sec-lr-demelange-res}
 
 Des conditions d'acquisition typiques (désigné comme le protocole $\mathcal{P}_0$) sont définies par un échantillonnage séquentiel ($r=1$) avec une durée d'exposition de $\Delta t = \np[ms]{10}$ par pixel. Comme expliqué à la section~\ref{sec-ech-sensibles}, les échantillons biologiques sont facilement détériorés par le faisceau d'électron durant le processus d'acquisition.  Pour résoudre ce problème, la dose totale d'électrons devra être réduite en ajustant soit le taux $r$ de positions visitées, soit le temps $\Delta t$ à acquérir le spectre à chaque position spatiale.
 Deux stratégies d'échantillonnage ont été envisagées afin de réduire les dégâts subis par l'échantillon pour une dose d'électrons donnée.
@@ -537,7 +537,7 @@ Pour évaluer l'intérêt du paradigme de l'acquisition partielle, l'exploitabil
 La dimension $R_{\mathrm{ACP}}$ a été choisie comme légèrement supérieure à $R$ pour éviter que l'ACP n'enlève de l'information pertinente (en ce qui concerne l'image synthétique où $R_{\mathrm{true}}=3$, $R_{\mathrm{ACP}}$ a été fixé à 10). Notons que des algorithmes de débruitage alternatifs peuvent être considérés, tel que FastHyDe spécialement dédié aux images hyperspectrales~\cite{bioucaspaper}. Par conséquent, 7 spectre-images seront considérés ici:
 \begin{itemize}
     \item Oracle : l'image synthétique sans bruit,
-    \item les images basées sur un spectre-image complètement acquis suivant le protocole $\mathcal{P}_1$ (désigné comme Full\textsubscript{2ms}) à savoir l'image Full\textsubscript{2ms} et les versions débruitée en utilisant les algorithmes PCA+NL-means, S2N et 3S.
+    \item les images basées sur un spectre-image complètement acquis suivant le protocole $\mathcal{P}_1$ (désigné comme Full\textsubscript{2ms}) à savoir l'image Full\textsubscript{2ms} et les versions débruitée en utilisant les algorithmes ACP+NL-means, S2N et 3S.
     \item les images basées sur le spectre-image partiellement acquis suivant le protocole $\mathcal{P}_2$ et reconstruit en utilisant S2N et 3S.
 \end{itemize}
 Ces spectre-images seront désignés par la suite suivant le modèle Protocole-algorithme (\eg{}, $\mathcal{P}_2$-3S est l'image reconstruite en appliquant 3S au spectre-image acquis suivant le protocole $\mathcal{P}_2$).
@@ -588,21 +588,21 @@ Dans cette section, les techniques de reconstruction proposées sont appliquées
 %
 Cet échantillon est un tissu biologique analysé dans~\cite{gay2020nanoscale} contenant des particules faites de phosphate de calcium. L'échantillon a été chimiquement fixé, déshydraté et incrusté dans une résine époxy. Les éléments analysés sont listés dans la section~\ref{sec-synth-data-lr}, à savoir le carbone, le calcium, l'azote et l'oxygène. Cet échantillon a été acquis à l'aide du microscope STEM VG HB 501 équipé d'un système d'échantillonnage partiel.
 
-\begin{figure}
+\begin{normalfigure*}
     \centering
     \subfigure[\protect\label{fig-lr-real-data-spectra-a}Position des pixels et des zones représentées]{
-        \includegraphics[width=0.4\textwidth]{img/chapitre3/figure12/loc-image-bis.png}}\\
+        \includegraphics[width=0.3\textwidth]{img/chapitre3/figure12/loc-image-bis.png}}\\
     \subfigure[\protect\label{fig-lr-real-data-spectra-b}Spectres centraux]{
-        \includegraphics[width=\textwidth]{img/chapitre3/figure12/spectra-center.pdf}}\\
+        \includegraphics[width=0.7\textwidth]{img/chapitre3/figure12/spectra-center.pdf}}\\
     \subfigure[\protect\label{fig-lr-real-data-spectra-c}Spectres moyennés]{
-        \includegraphics[width=\textwidth]{img/chapitre3/figure12/spectra-mean.pdf}}\\
+        \includegraphics[width=0.7\textwidth]{img/chapitre3/figure12/spectra-mean.pdf}}\\
     \caption{\protect\label{fig-lr-real-data-spectra}
         Représentations spectrales de l'échantillon réel étudié acquis suivant le protocole $\mathcal{P}_0$ ($\Delta t=\np[ms]{10}$, $r = 1$).
         \subref{fig-lr-real-data-spectra-a}~Image HAADF de l'échantillon où trois zones distinctes sont représentées. Les pixels centraux de ces zones sont également mis en évidence.
         \subref{fig-lr-real-data-spectra-b}~Représentation des trois spectres associés aux pixels centraux.
         \subref{fig-lr-real-data-spectra-c}~Représentation de la moyennes des spectres pour chaque zone.
     }
-\end{figure}
+\end{normalfigure*}
 
 Dans les conditions expérimentales, trois protocoles distincts sont considérés pour acquérir l'échantillon :
 \begin{itemize}

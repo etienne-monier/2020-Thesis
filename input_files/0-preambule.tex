@@ -33,7 +33,7 @@
 %
 \makesomeone{boss}{1}{Nicolas \textsc{Dobigeon}}{Professeur des Universités, Toulouse INP}{Directeur de thèse}
 \makesomeone{boss}{2}{Thomas \textsc{Oberlin}}{Enseignant-chercheur, ISAE-SUPAERO}{Co-directeur de thèse}
-\makesomeone{boss}{3}{Nathalie \textsc{Brun}}{Chargée de Recherche CNRS, LPS }{Co-directrice de thèse}
+\makesomeone{boss}{3}{Nathalie \textsc{Brun}}{Chargé de Recherche CNRS, LPS }{Co-directrice de thèse}
 
 %% Referee
 \nreferee{2}
@@ -49,7 +49,7 @@
 \makesomeone{judge}{5}{Cyril \textsc{Ruckebush}}{Professeur des Universités, Université de Lille}{Examinateur}
 \makesomeone{judge}{6}{Nicolas \textsc{Dobigeon}}{Professeur des Universités, Toulouse INP}{Co-directeur de thèse}
 \makesomeone{judge}{7}{Thomas \textsc{Oberlin}}{Enseignant-chercheur, ISAE-SUPAERO}{Co-directeur de thèse}
-\makesomeone{judge}{8}{Nathalie \textsc{Brun}}{Chargée de Recherche CNRS, LPS}{Co-directrice de thèse}
+\makesomeone{judge}{8}{Nathalie \textsc{Brun}}{Chargé de Recherche CNRS, LPS}{Co-directrice de thèse}
 
 %% ==============================================================
 %% Warning filtering
@@ -470,8 +470,7 @@ savewrites]{glossaries}
 
 \usepackage[noabbrev]{cleveref}
 
+\usepackage{bookmark} % https://tex.stackexchange.com/questions/164248/defining-a-chapter-outside-the-last-part-amsbook
+\usepackage[nottoc]{tocbibind}  % Bib in toc
 
-\usepackage[]{todo}
-\renewcommand\todoformat{\bfseries\small\color{red}}
 
-\newcommand{\mref}{{\bfseries\color{red}[REF]}}
