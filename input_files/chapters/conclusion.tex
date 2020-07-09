@@ -1,14 +1,20 @@
 \chapter{Conclusion}\label{chap-conclusion}
 
-Dans cette thèse, nous avons étudié une approche particulière permettant de limiter la détérioration des échantillons sensibles en microscopie EELS. Comme souligné au chapitre~\ref{ch-chapter_1}, ces matériaux sont généralement préservés en réduisant la dose d'électron par position spatiale, conduisant à une image de faible SNR. 
+Dans cette thèse, nous avons étudié la possibilité de limiter la détérioration des échantillons sensibles en spectromicroscopie EELS par acquisition partielle de l'image multi-bande, couplée à une reconstruction a posteriori des pixels manquants. 
 %
-Pour améliorer la qualité de l'image, une alternative récente rendue possible par le développement de systèmes d'acquisition hautement paramétrables~\cite{tararan2016random, zobelli2019spatial, tence2019following} consiste à n'acquérir l'échantillon qu’en quelques positions spatiales. \`A dose d'électron équivalente, une plus forte dose peut être utilisée par pixel, ce qui améliore le SNR. Toutefois, cette approche nécessite une étape de reconstruction en post-traitement. 
+Plus précisément, les images correspondent à des acquisitions incomplètes en balayage aléatoire, ce qui permet le découplage des informations spatiales et spectrales.
 %
-Le chapitre~\ref{ch-chapter_2} a fait le point sur les approches généralement rencontrées en traitement du signal et a synthétisé les méthodes de reconstruction utilisées en microscopie. Cela a fait apparaître une lacune puisque très peu de méthodes à la fois rapide et efficace ont été utilisées dans la littérature pour reconstruire un spectre-image au cours de l'acquisition. C'est cette lacune que ce travail de thèse a tenté de combler.
+Cette technique détaillée au chapitre~\ref{ch-chapter_1} a été rendue possible par le développement de systèmes d'acquisition hautement paramétrables~\cite{tararan2016random, zobelli2019spatial, tence2019following} et cela permet à la fois d'étudier l'évolution temporelle de la zone analysée et de limiter les dégâts d'irradiation dus à l'accumulation de la dose électronique.
+%
+Or, les expérimentateurs recherchent de plus en plus à traiter les données en ligne, \ie{} au cours de l'acquisition, ce qui requiert une technique de reconstruction d'autant plus rapide que l'acquisition est de courte durée. Toutefois, l'état de l'art réalisé dans le chapitre~\ref{ch-chapter_2} met en lumière une lacune puisque les méthodes utilisées dans la littérature sont soit rapides mais peu performantes, soit très efficaces mais lentes. C'est cette lacune que ce travail de thèse a tenté de combler en proposant des solutions rapides et performantes à la fois.
 
-Une approche prometteuse pour respecter les contraintes de rapidité et de performances réside dans les approches par \gls{mc} régularisés, plus rapides que les méthodes par \gls{ad} et plus précises que les techniques par \gls{ppv}. Dans le chapitre~\ref{ch-chapter_3}, deux méthodes ont été proposées dans le cadre d'images spatialement lisses, reposant sur des régularisations spectrales et spatiales adaptées. En particulier, une régularisation par norme nucléaire a été utilisé dans la méthode S2N pour contraindre le rang de l'image EELS à être faible. Quant à la méthode 3S, une ACP réalisée en pré-traitement contraint fortement la nature faible-rang de l'image et accélère l'implémentation. Des expériences conduites sur des données synthétiques et réelles ont mis en évidence l'intérêt de l'échantillonnage partiel pour restituer une information spectrale riche, tandis que les approches par échantillonnage complet semblaient rendre un meilleur contenu spatial.
+Une approche prometteuse pour respecter les contraintes de rapidité et de performances réside dans les approches par \glsentrylong{mc} régularisés, plus rapides que les méthodes par \glsentrylong{ad} et plus performantes que les techniques par \glsentrylong{ppv}. Dans le chapitre~\ref{ch-chapter_3}, deux méthodes ont été proposées dans le cadre d'images spatialement lisses, reposant sur des régularisations spectrales et spatiales adaptées. 
+%
+En particulier, la nature faible-rand de l'image reconstruite a été contrainte par une norme nucléaire pour la méthode S2N et par une \glsentrylong{acp} dont seules les composantes les plus puissantes ont été conservées pour 3S.
+%
+Des expériences conduites sur des données synthétiques et réelles ont mis en évidence l'intérêt de l'échantillonnage partiel pour restituer une information spectrale riche, tandis que, à dose totale d'électron équivalente, les approches par échantillonnage complet semblaient rendre un meilleur contenu spatial.
 
-Dans le chapitre~\ref{ch-chapter_4}, une autre méthode par \gls{mc} régularisés appelée CLS a été proposée dans le cadre d'échantillons cristallins spatialement périodiques. En particulier, la régularisation $\ell_{2,1}$ a été utilisé pour favoriser les reconstructions présentant une grande parcimonie groupée dans la base DCT. Des expériences menées sur des images synthétiques et réelles ont comparées les performances de CLS et des techniques classiquement rencontrées en reconstruction d'images en microscopie. Les résultats ont montré l'intérêt de CLS comme compromis de rapidité et de précision.
+Dans le chapitre~\ref{ch-chapter_4}, une autre méthode par \glsentrylong{mc} régularisés appelée CLS a été proposée dans le cadre d'échantillons spatialement périodiques. En particulier, la régularisation $\ell_{2,1}$ a été utilisé pour favoriser les reconstructions présentant une grande parcimonie groupée dans la base DCT. Des expériences menées sur des images synthétiques et réelles ont comparés les performances de CLS et des techniques rencontrées en reconstruction d'images en microscopie. Les résultats ont montré l'intérêt de CLS comme compromis de rapidité et de précision.
 
 
 \section*{Discussions et perspectives}
@@ -33,7 +39,7 @@ La seconde, assez similaire, consiste à réaliser une première acquisition EEL
 \paragraph{Méthodes par réseaux de neurones.} Le travail exposé dans ce manuscrit s'est focalisé sur la reconstruction \emph{rapide} et aucune méthode \emph{coûteuse} mais performante n'a été développé. En effet, les méthodes généralement rencontrées pour raffiner la reconstruction après coup sont des méthodes par \gls{ad}. Toutefois, des techniques par réseaux de neurones convolutifs ont été décris à la section~\ref{sec-methodes-convnets} et il serait intéressant de les comparer à l'algorithme populaire BPFA.
 
 
-
+% sanders2020inpainting
 
 
 
