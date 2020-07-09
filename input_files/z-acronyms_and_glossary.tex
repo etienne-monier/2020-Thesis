@@ -32,7 +32,7 @@
 
 \newacronym{eels}{EELS}{electron energy loss spectroscopy}
 
-\newacronym{edx}{EDX}{spectroscopie de rayons X à dispersion d’énergie}
+\newacronym{edx}{EDX}{energy-dispersive X-ray spectroscopy}
 
 
 % Techniques
@@ -48,11 +48,11 @@
 
 \newacronym{ebi}{EBI}{exemplar-based inpainting}
 
-\newacronym{mc}{MC}{moindre carré}
+\newacronym{mc}{MC}{moindres carrés}
         
-\newacronym{dct}{DCT}{transformée en cosinus discrète}
+\newacronym{dct}{DCT}{discrete cosine transform}
 
-\newacronym{tv}{TV}{variation totale}
+\newacronym{tv}{TV}{total variation}
 
 \newacronym{goal}{GOAL}{geometric analysis operator learning}
 
@@ -65,14 +65,14 @@
 
 \newacronym{map}{MAP}{maximum a posteriori}
 
-\newacronym{mcmc}{MCMC}{Monte Carlo par chaîne de Markov}
+\newacronym{mcmc}{MCMC}{Markov chain Monte Carlo}
 
 
 % \newacronym{}{}{}
 
 % Métriques
 
-\newacronym{snr}{SNR}{rapport signal à bruit}
+\newacronym{snr}{SNR}{signal to noise ratio}
 
 \newacronym{nmse}{NMSE}{normalized mean square error}
 
@@ -88,9 +88,9 @@
 
 \newacronym{cls}{CLS}{cosine least square}
 
-\newacronym{ista}{ISTA}{iterative shrinkage thresholding}
+\newacronym{ista}{ISTA}{iterative shrinkage thresholding algorithm}
 
-\newacronym{fista}{FISTA}{fast iterative shrinkage thresholding}
+\newacronym{fista}{FISTA}{fast iterative shrinkage thresholding algorithm}
 
 \newacronym{bpfa}{BPFA}{beta-process factor analysis}
 
@@ -154,7 +154,7 @@
 
 \newglossaryentry{g-pmh}{type=notgen, 
     name={\ensuremath{\mathbf{A\cdot B}}},
-    description={Produit matriciel de Hadamard (terme à terme)},
+    description={Produit de Hadamard (terme à terme)},
     sort={10}}
 
 \newglossaryentry{g-n1}{type=notgen, 
@@ -169,7 +169,7 @@
 
 \newglossaryentry{g-n12}{type=notgen, 
     name={\ensuremath{||\mathbf{A}||_{2, 1}}},
-    description={Norme $\ell_{2, 1}$ de \gls{g-A}},
+    description={Norme $\ell_{2, 1}$ de \gls{g-A} (norme $\ell_1$ des normes $\ell_2$ associées aux colonnes de $\mathbf{A}$)},
     sort={13}}
 
 \newglossaryentry{g-nf}{type=notgen, 
@@ -206,12 +206,12 @@
 
 \newglossaryentry{e-Rn}{type=sets, 
     name={\ensuremath{\mathbb{R}^n}},
-    description={Ensemble des vecteurs de taille $n$},
+    description={Ensemble des vecteurs réels de taille $n$},
     sort={3}}
 
 \newglossaryentry{e-Rmn}{type=sets, 
     name={\ensuremath{\mathbb{R}^{m \times n}}},
-    description={Ensemble des matrices de taille $m\times n$},
+    description={Ensemble des matrices réelles de taille $m\times n$},
     sort={4}}
 
 
@@ -232,8 +232,8 @@
 %% Probabilité %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \newglossaryentry{proba-N}{type=probas, 
-    name={\parbox{2.8cm}{\ensuremath{x\sim \mathcal{N}(m, \sigma^2)}}},
-    description={$x$ suit une loi gaussienne de moyenne $m$ et d'eccart-type $\sigma$},
+    name={\ensuremath{\mathcal{N}(\mu, \sigma^2)}},  % \parbox{2.8cm}{\ensuremath{x\sim \mathcal{N}(m, \sigma^2)}}
+    description={Loi normale de moyenne $\mu$ et d'ecart-type $\sigma$},
     sort={1}}
 
 \newglossaryentry{proba-den}{type=probas, 
@@ -248,35 +248,35 @@
 \newglossaryentry{P}{
     type=dimensions,
     name={\ensuremath{P}},
-    description={Le nombre de pixels},
+    description={Nombre de pixels},
     sort={01}
 }
 
 \newglossaryentry{M}{
     type=dimensions,
     name={\ensuremath{M}},
-    description={Le nombre de canaux},
+    description={Nombre de canaux},
     sort={02}
 }
 
 \newglossaryentry{N}{
     type=dimensions,
     name={\ensuremath{N}},
-    description={Le nombre de pixels acquis},
+    description={Nombre de pixels acquis},
     sort={03}
 }
 
 \newglossaryentry{Rt}{
     type=dimensions,
     name={\ensuremath{R_{\mathrm{true}}}},
-    description={La dimension du véritable sous-espace signal},
+    description={Dimension du véritable sous-espace signal},
     sort={03}
 }
 
 \newglossaryentry{R}{
     type=dimensions,
     name={\ensuremath{R}},
-    description={La dimension estimée du véritable sous-espace signal},
+    description={Dimension estimée du véritable sous-espace signal},
     sort={04}
 }
 
@@ -286,14 +286,14 @@
 \newglossaryentry{r}{
     type=modele,
     name={\ensuremath{r}},
-    description={Le rapport d'acquisition $\gls{N}/\gls{P}$},
+    description={Rapport d'acquisition $\gls{N}/\gls{P}$},
     sort={01}
 }
 
 \newglossaryentry{I}{
     type=modele,
     name={\ensuremath{\mathcal{I}}},
-    description={L'ensemble des index des positions spatiales acquises},
+    description={Ensemble des index des positions spatiales acquises},
     shape={\gls{N}},
     sort={02}
 }
@@ -309,7 +309,7 @@
 \newglossaryentry{Y}{
     type=modele,
     name={\ensuremath{\mathbf{Y}}},
-    description={La matrice qui correspondrait aux données EELS complètes},
+    description={Matrice qui correspondrait aux données EELS complètes},
     shape={\gls{M} \ensuremath{\times} \gls{P}},
     sort={04}
 }
@@ -317,7 +317,7 @@
 \newglossaryentry{Yi}{
     type=modele,
     name={\ensuremath{\mathbf{Y}_\mathcal{I}}},
-    description={La matrice d'observation},
+    description={Matrice d'observation},
     shape={\gls{M} \ensuremath{\times} \gls{N}},
     sort={05}
 }
@@ -325,7 +325,7 @@
 \newglossaryentry{X}{
     type=modele,
     name={\ensuremath{\mathbf{X}}},
-    description={Les données inconnues à reconstruire},
+    description={Données inconnues à reconstruire},
     shape={\gls{M} \ensuremath{\times} \gls{P}},
     sort={06}
 }
@@ -333,7 +333,7 @@
 \newglossaryentry{E}{
     type=modele,
     name={\ensuremath{\mathbf{E}}},
-    description={La matrice de bruit},
+    description={Matrice de bruit},
     shape={\gls{M} \ensuremath{\times} \gls{N}},
     sort={07}
 }
@@ -341,7 +341,7 @@
 \newglossaryentry{sig}{
     type=modele,
     name={\ensuremath{\sigma}},
-    description={L'éccart-type du bruit blanc additif gaussien},
+    description={\'Ecart-type du bruit blanc additif gaussien},
     sort={08}
 }
 
@@ -358,7 +358,7 @@
 \newglossaryentry{Mu}{
     type=demelange,
     name={\ensuremath{\mathbf{M}}},
-    description={La matrice des composantes spectrales},
+    description={Matrice des composantes spectrales},
     shape={\gls{M} \ensuremath{\times} \gls{P}},
     sort={1}
 }
@@ -366,7 +366,7 @@
 \newglossaryentry{A}{
     type=demelange,
     name={\ensuremath{\mathbf{A}}},
-    description={La matrice des abondances},
+    description={Matrice des abondances},
     shape={\gls{M} \ensuremath{\times} \gls{P}},
     sort={2}
 }
@@ -376,7 +376,7 @@
 \newglossaryentry{H}{
     type=acp,
     name={\ensuremath{\mathbf{H}}},
-    description={La base des composantes principales associées aux données},
+    description={Base des composantes principales associées aux données},
     shape={\gls{M} \ensuremath{\times} \gls{M}},
     sort={1}
 }
@@ -384,7 +384,7 @@
 \newglossaryentry{d}{
     type=acp,
     name={\ensuremath{d^2}},
-    description={Les valeurs propres associées aux colonnes de \gls{H}},
+    description={Valeurs propres associées aux colonnes de \gls{H}},
     shape={\gls{M}},
     sort={2}
 }
@@ -392,7 +392,7 @@
 \newglossaryentry{S}{
     type=acp,
     name={\ensuremath{\mathbf{S}}},
-    description={Les coefficients de représentation des données dans la base \gls{H}},
+    description={Coefficients de représentation des données dans la base \gls{H}},
     shape={\gls{M} \ensuremath{\times} \gls{P}},
     sort={3}
 }
@@ -443,14 +443,14 @@
 \newglossaryentry{w}{
     type=chap3,
     name={\ensuremath{w}},
-    description={Les poids associés à la méthode 3S},
+    description={Poids associés à la méthode 3S},
     sort={06}
 }
 
 \newglossaryentry{hsig}{
     type=chap3,
     name={\ensuremath{\hat{\sigma}}},
-    description={L'éccart-type estimé du bruit blanc additif gaussien},
+    description={\'Ecart-type estimé du bruit blanc additif gaussien},
     sort={07}
 }
 
