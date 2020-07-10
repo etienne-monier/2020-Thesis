@@ -11,7 +11,7 @@
   {\raggedleft}
   []
 
-% % section format
+% section format
 \titleformat{\section}%
   [hang]%
   {\color{myblue}\Large\normalfont\scshape}%
@@ -76,11 +76,7 @@
 % Section
 \titlecontents{section}
   [1em]
-  {\ifboolexpr{test {\ifnumequal{\thechapcntr}{0}}}
-                    {\color{white}}
-                    {\ifboolexpr{test {\ifnumequal{\thechapcntr}{8}}}
-                                {\color{white}}
-                                {\color{black}}}}
+  {}
   {\hypersetup{linkcolor=black}\thecontentslabel\enspace}
   {}
   {\hfill\color{burgundy}\contentspage}[\vskip 4pt]

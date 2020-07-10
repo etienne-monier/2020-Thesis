@@ -10,29 +10,29 @@
 %             {<full name to display in acronym section>}
 
 % Laboratoires
-\newacronym{irit}{IRIT}{institut de recherche en informatique de Toulouse}
+\newacronym{irit}{IRIT}{Institut de Recherche en Informatique de Toulouse}
 
-\newacronym{lps}{LPS}{laboratoire de physique des solides}
+\newacronym{lps}{LPS}{Laboratoire de Physique des Solides}
 
 % Microscopes
-\newacronym{stem}{STEM}{scanning transmission electron microscope}
+\newacronym{stem}{STEM}{\textit{scanning transmission electron microscope}}
 
-\newacronym{tem}{TEM}{transmission electron microscopy}
+\newacronym{tem}{TEM}{\textit{transmission electron microscopy}}
 
-\newacronym{sem}{SEM}{scanning electron microscope}
+\newacronym{sem}{SEM}{\textit{scanning electron microscope}}
 
-\newacronym{mfa}{MFA}{microscopie à force atomique}
+\newacronym{mfa}{AFM}{\textit{atomic force microscopy}}
 
 \newacronym{irm}{IRM}{imagerie par résonance magnétique}
 
 % Modalités
-\newacronym{haadf}{HAADF}{high-angle annular dark-field}
+\newacronym{haadf}{HAADF}{\textit{high-angle annular dark-field}}
 
-\newacronym{adf}{ADF}{annular dark-field}
+\newacronym{adf}{ADF}{\textit{annular dark-field}}
 
-\newacronym{eels}{EELS}{electron energy loss spectroscopy}
+\newacronym{eels}{EELS}{\textit{electron energy loss spectroscopy}}
 
-\newacronym{edx}{EDX}{energy-dispersive X-ray spectroscopy}
+\newacronym{edx}{EDX}{\textit{energy-dispersive X-ray spectroscopy}}
 
 
 % Techniques
@@ -40,63 +40,63 @@
 
 \newacronym{aci}{ACI}{analyse en composantes indépendantes}
 
-\newacronym{cs}{CS}{compressed sensing}
+\newacronym{cs}{CS}{\textit{compressed sensing}}
 
 \newacronym{ppv}{PPV}{plus proches voisins}
 
 \newacronym{ad}{AD}{apprentissage de dictionnaire}
 
-\newacronym{ebi}{EBI}{exemplar-based inpainting}
+\newacronym{ebi}{EBI}{\textit{exemplar-based inpainting}}
 
 \newacronym{mc}{MC}{moindres carrés}
         
-\newacronym{dct}{DCT}{discrete cosine transform}
+\newacronym{dct}{DCT}{\textit{discrete cosine transform}}
 
-\newacronym{tv}{TV}{total variation}
+\newacronym{tv}{TV}{\textit{total variation}}
 
-\newacronym{goal}{GOAL}{geometric analysis operator learning}
+\newacronym{goal}{GOAL}{\textit{geometric analysis operator learning}}
 
-\newacronym{vca}{VCA}{vertex component analysis}
+\newacronym{vca}{VCA}{\textit{vertex component analysis}}
 
-\newacronym{sisal}{SISAL}{simplex identification via variable
-    splitting and augmented lagrangian}
+\newacronym{sisal}{SISAL}{\textit{simplex identification via variable
+    splitting and augmented lagrangian}}
 
-\newacronym{sunsal}{SUNSAL}{spectral unmixing by splitting and augmented Lagrangian}
+\newacronym{sunsal}{SUNSAL}{\textit{spectral unmixing by splitting and augmented Lagrangian}}
 
 \newacronym{map}{MAP}{maximum a posteriori}
 
-\newacronym{mcmc}{MCMC}{Markov chain Monte Carlo}
+\newacronym{mcmc}{MCMC}{\textit{Markov chain Monte Carlo}}
 
 
 % \newacronym{}{}{}
 
 % Métriques
 
-\newacronym{snr}{SNR}{signal to noise ratio}
+\newacronym{snr}{SNR}{\textit{signal to noise ratio}}
 
-\newacronym{nmse}{NMSE}{normalized mean square error}
+\newacronym{nmse}{NMSE}{\textit{normalized mean square error}}
 
-\newacronym{asad}{aSAD}{average spectral angle distance}
+\newacronym{asad}{aSAD}{\textit{average spectral angle distance}}
 
-\newacronym{ssim}{SSIM}{structural similarity}
+\newacronym{ssim}{SSIM}{\textit{structural similarity}}
 
 % Méthodes proposée
 
-\newacronym{s2n}{S2N}{smoothed nuclear norm}
+\newacronym{s2n}{S2N}{\textit{smoothed nuclear norm}}
 
-\newacronym{3s}{3S}{smoothed subspace}
+\newacronym{3s}{3S}{\textit{smoothed subspace}}
 
-\newacronym{cls}{CLS}{cosine least square}
+\newacronym{cls}{CLS}{\textit{cosine least square}}
 
-\newacronym{ista}{ISTA}{iterative shrinkage thresholding algorithm}
+\newacronym{ista}{ISTA}{\textit{iterative shrinkage thresholding algorithm}}
 
-\newacronym{fista}{FISTA}{fast iterative shrinkage thresholding algorithm}
+\newacronym{fista}{FISTA}{\textit{fast iterative shrinkage thresholding algorithm}}
 
-\newacronym{bpfa}{BPFA}{beta-process factor analysis}
+\newacronym{bpfa}{BPFA}{\textit{beta-process factor analysis}}
 
-\newacronym{itkrmm}{ITKrMM}{iterative thresholding and K residual means for masked data}
+\newacronym{itkrmm}{ITKrMM}{\textit{iterative thresholding and K residual means for masked data}}
 
-\newacronym{wksvd}{wKSVD}{weighted K-SVD}
+\newacronym{wksvd}{wKSVD}{\textit{weighted K-SVD}}
 
 
 
@@ -301,7 +301,7 @@
 \newglossaryentry{Phi}{
     type=modele,
     name={\ensuremath{\Phi}},
-    description={Opérateur de sous-échantillonnage tel que $\mathbf{X}_{\mathcal{I}} = \mathbf{X}\Phi$},
+    description={Opérateur de sous-échantillonnage spatial tel que $\mathbf{Y}_{\mathcal{I}} = \mathbf{Y}\Phi$},
     shape={\gls{P}\ensuremath{\times}\gls{N}},
     sort={03}
 }
@@ -348,7 +348,7 @@
 \newglossaryentry{Xh}{
     type=modele,
     name={\ensuremath{\hat{\mathbf{X}}}},
-    description={L'image reconstruites},
+    description={L'image reconstruite},
     shape={\gls{M} \ensuremath{\times} \gls{P}},
     sort={09}
 }
@@ -437,7 +437,7 @@
 \newglossaryentry{ms2n}{
     type=chap3,
     name={\ensuremath{\mu_{\mathrm{S2N}}}},
-    description={Premier paramètre de la méthode S2N},
+    description={Second paramètre de la méthode S2N},
     sort={04}
 }
 
