@@ -5,14 +5,16 @@
 
         Lors du calcul de l'ACP, l'opérateur doit choisir quelle matrice analyser spectralement : la matrice de covariance ou la matrice de corrélation. Le défaut de la matrice de covariance est que les composantes principales sont \guillemets{tirées} en direction des variables dont la variance est la plus forte tandis que la matrice de corrélation capture un nombre important de composantes mineures dont certaines peuvent être aparentées au bruit.
 
-        Afin de visualiser ces effets et de choisir quelle matrice utiliser dans nos études, le spectre-image $\mathsf{R}_2$ présenté à la \cref{sec-donnees-hr} est chargé et le spectre moyen ainsi que l'évolution de l'écart-type associé à chaque canal sont d'abord affichés à la \cref{fig-pca-variance-data}.
+        Nous utilisons le spectre-image $\mathsf{R}_2$ présenté à la \cref{sec-donnees-hr} afin de visualiser ces effets et de choisir quelle matrice utiliser dans nos études.
+        %
+        Le spectre moyen ainsi que l'évolution de l'écart-type associé à chaque canal sont d'abord affichés à la \cref{fig-pca-variance-data}.
         \begin{figure}
             \centering
             \includegraphics{img/chapitre1/figure16/data_variance.pdf}
             \caption{Le spectre moyen (en vert) et l'éccart-type associé aux canaux (en orange) sont affichés pour le spectre-image $\mathsf{R}_2$ présenté à la \cref{sec-donnees-hr}.
                 \protect\label{fig-pca-variance-data}}
         \end{figure}
-        On observe entre autre une divergence assez importante entre les écarts-types correspondants aux premiers seuils et ceux associés aux deux seuils centraux. En particulier, les pics dont la variance est la plus importante correspond à des signatures caractéristiques d'éléments présents en abondance à certaines positions et absents à d'autres. Les seuils de variance plus faibles correspondraient, au contraire, à des éléments présents en petite quantité sur l'ensemble de l'échantillon. Au vu de cet écart de variance, on peut s'attendre à une différence marquée entre les composantes principales issues des deux matrices de covariance et de corrélation. Pour confirmer cela, les cinq premières composantes principales issues des matrices de covariance et de corrélation sont affichées à la \cref{fig-pca-comps_matrices}.
+        On observe entre autre une divergence assez importante entre les écarts-types correspondants aux premiers seuils et ceux associés aux deux seuils centraux. En particulier, les pics dont la variance est la plus importante correspond à des signatures caractéristiques d'éléments présents en abondance à certaines positions et absents à d'autres. Les seuils de variances plus faibles correspondent, au contraire, à des éléments présents en petite quantité sur l'ensemble de l'échantillon. \`A la vue de cet écart de variance, on peut s'attendre à une différence marquée entre les composantes principales issues des deux matrices de covariance et de corrélation. Pour confirmer cela, les cinq premières composantes principales issues des matrices de covariance et de corrélation sont affichées à la \cref{fig-pca-comps_matrices}.
         \begin{figure}[t]
             \centering
             \includegraphics{img/chapitre1/figure16/centerd_spectra_comp.pdf}
@@ -58,9 +60,9 @@
         \end{marginfigure}
         Les techniques d'interpolation introduites à la \cref{sec-interpolation} requirent deux outils mathématiques simples et complémentaires. Le premier, appelé diagramme de Voronoi~\cite{cazals2006delaunay}, est défini pour un ensemble de points comme suit.
         \begin{mydef}[Diagramme de Voronoi]
-            Soit $\mathbb{R}^n$ muni de la distance euclidienne $d$ et $(s_k)_{1\leq k\leq K}$ un ensemble de $K$ points de $\mathbb{R}^n$. La cellule de Voronoi $R_k$ associée au point $s_k$ est l'ensemble des points de $\mathbb{R}^n$ plus proches de $s_k$ que de tout autre point $s_j$ pour $j$ différent de $k$. En d'autre termes, si $d(s_k, s_j)$ désigne la distance entre $s_k$ et $s_j$, nous avons
+            Soit $\mathbb{R}^n$ muni de la distance euclidienne $d$ et $(s_k)_{1\leq k\leq K}$ un ensemble de $K$ points de $\mathbb{R}^n$. La cellule de Voronoi $R_k$ associée au point $s_k$ est l'ensemble des points de $\mathbb{R}^n$ plus proches de $s_k$ que de tout autre point $s_j$ pour $j$ différent de $k$. En d'autres termes, si $d(s_k, s_j)$ désigne la distance entre $s_k$ et $s_j$, nous avons
             \[R_k=\{x\in X | d(x, s_k) \leq d(x, s_j) \ \forall j\neq k\}.\]
-            Le diagramme de Voronoi est définit comme l'ensemble des cellules $(R_k)_{1\leq k\leq K}$.
+            Le diagramme de Voronoi est défini comme l'ensemble des cellules $(R_k)_{1\leq k\leq K}$.
         \end{mydef}
         Le diagramme de Voronoi se visualise bien si la dimension $n$ vaut 2 et cette notion est illustrée en rouge à la~\cref{fig-voronoi}. Une problématique communément associée à ce graphe est la \emph{triangulation} qui consiste à découper un plan en une collection de triangles. En effet, la triangulation de Delaunay~\cite{cazals2006delaunay} d'un ensemble discret de points est le graphe dual du diagramme de Voronoi et se définit comme suit.
         \begin{mydef}[Triangulation de Delaunay]
@@ -72,4 +74,4 @@
         \caption{Superposition d'un ensemble de points (en vert), de sa triangulation de Delaunay (en noir) et des cercles circonscrit à chaque triangle (en gris).}
         \label{fig-delaunay}
     \end{marginfigure}
-        Notons qu'une hypersphère circonscrite (resp. un simplexe) est la généralisation du cercle circonscrit (resp. du triangle) en dimension quelconque. La triangulation de Delaunay est illustrée en noir à la \cref{fig-voronoi} et les cercles circonscrit associés à chaque triangle sont mis en évidence pour un ensemble de point réduit à la \cref{fig-delaunay}.
+        Notons qu'une hypersphère circonscrite (resp. un simplexe) est la généralisation du cercle circonscrit (resp. du triangle) en dimension quelconque. La triangulation de Delaunay est illustrée en noir à la \cref{fig-voronoi} et les cercles circonscrit associés à chaque triangle sont mis en évidence pour un ensemble de points réduits à la \cref{fig-delaunay}.

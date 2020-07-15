@@ -50,9 +50,9 @@
 
 \newacronym{mc}{MC}{moindres carrés}
         
-\newacronym{dct}{DCT}{\textit{discrete cosine transform}}
+\newacronym{dct}{DCT}{transformée en cosinus discrète}
 
-\newacronym{tv}{TV}{\textit{total variation}}
+\newacronym{tv}{TV}{variation totale}
 
 \newacronym{goal}{GOAL}{\textit{geometric analysis operator learning}}
 
@@ -65,14 +65,16 @@
 
 \newacronym{map}{MAP}{maximum a posteriori}
 
-\newacronym{mcmc}{MCMC}{\textit{Markov chain Monte Carlo}}
+\newacronym{mcmc}{MCMC}{Monte Carlo par chaîne de Markov}
+
+\newacronym{svd}{SVD}{décomposition en valeurs singulières}
 
 
 % \newacronym{}{}{}
 
 % Métriques
 
-\newacronym{snr}{SNR}{\textit{signal to noise ratio}}
+\newacronym{snr}{SNR}{rapport signal-à-bruit}
 
 \newacronym{nmse}{NMSE}{\textit{normalized mean square error}}
 
@@ -118,7 +120,7 @@
     sort={02}}
 
 \newglossaryentry{gavi}{type=notgen, 
-    name={\ensuremath{\mathbf{a}_i}}, 
+    name={\ensuremath{a_i}}, 
     description={$i^\text{ème}$ composante du vecteur \gls{g-av}}, 
     sort={03}}
 
@@ -128,12 +130,12 @@
     sort={04}}
 
 \newglossaryentry{g-Aij}{type=notgen,
-    name={\ensuremath{\mathbf{A}_{ij}}},
+    name={\ensuremath{a_{i,j}}},
     description={Coefficient $(i, j)$ de la matrice \gls{g-A}},
     sort={05}}
 
 \newglossaryentry{g-Aj}{type=notgen, 
-    name={\ensuremath{\mathbf{A}_j}},
+    name={\ensuremath{\mathbf{a}_j}},
     description={$j^\text{ème}$ colonne de la matrice \gls{g-A}},
     sort={06}}
 
@@ -142,50 +144,65 @@
     description={$i^\text{ème}$ ligne de la matrice \gls{g-A}},
     sort={07}}
 
+\newglossaryentry{g-Amn}{type=notgen, 
+    name={\ensuremath{\mathbf{A}_{m:n}}},
+    description={Concaténation des colonnes de la matrice \gls{g-A} d'indices compris entre $m$ et $n$},
+    sort={08}}
+
+\newglossaryentry{g-AI}{type=notgen, 
+    name={\ensuremath{\mathbf{A}_{\mathcal{E}}}},
+    description={Concaténation des colonnes de la matrice \gls{g-A} indexées par l'ensemble $\mathcal{E}$},
+    sort={09}}
+
 \newglossaryentry{g-T}{type=notgen, 
     name={\ensuremath{(\cdot)^{T}}},
     description={Transposée},
-    sort={08}}
+    sort={10}}
 
 \newglossaryentry{g-pm}{type=notgen, 
     name={\ensuremath{\mathbf{AB}}},
     description={Produit matriciel},
-    sort={09}}
+    sort={11}}
 
 \newglossaryentry{g-pmh}{type=notgen, 
     name={\ensuremath{\mathbf{A\cdot B}}},
     description={Produit de Hadamard (terme à terme)},
-    sort={10}}
+    sort={12}}
 
 \newglossaryentry{g-n1}{type=notgen, 
     name={\ensuremath{||\mathbf{a}||_1}},
     description={Norme $\ell_1$ de \gls{g-av}},
-    sort={11}}
+    sort={13}}
 
 \newglossaryentry{g-n2}{type=notgen, 
     name={\ensuremath{||\mathbf{a}||_2}},
     description={Norme $\ell_2$ de \gls{g-av}},
-    sort={12}}
+    sort={14}}
 
 \newglossaryentry{g-n12}{type=notgen, 
     name={\ensuremath{||\mathbf{A}||_{2, 1}}},
-    description={Norme $\ell_{2, 1}$ de \gls{g-A} (norme $\ell_1$ des normes $\ell_2$ associées aux colonnes de $\mathbf{A}$)},
-    sort={13}}
+    description={Norme $\ell_{2, 1}$ de \gls{g-A}},
+    sort={15}}
 
 \newglossaryentry{g-nf}{type=notgen, 
     name={\ensuremath{||\mathbf{A}||_\mathrm{F}}},
     description={Norme de Frobenius de \gls{g-A}},
-    sort={14}}
+    sort={16}}
 
 \newglossaryentry{g-nn}{type=notgen, 
     name={\ensuremath{||\mathbf{A}||_*}},
     description={Norme nucléaire de \gls{g-A}},
-    sort={15}}
+    sort={17}}
 
 \newglossaryentry{g-zvec}{type=notgen, 
     name={\ensuremath{\mathbf{0}_n}},
     description={Vecteur nul de taille $n$},
-    sort={16}}
+    sort={18}}
+
+\newglossaryentry{g-Id}{type=notgen, 
+    name={\ensuremath{\mathds{1}_n}},
+    description={Matrice identité de taille $n$},
+    sort={18}}
 
 %% Ensembles %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -213,6 +230,12 @@
     name={\ensuremath{\mathbb{R}^{m \times n}}},
     description={Ensemble des matrices réelles de taille $m\times n$},
     sort={4}}
+
+\newglossaryentry{e-boule}{type=sets, 
+    name={\ensuremath{\mathcal{B}(x_0,r)}},
+    description={Boule fermée en norme $\ell_2$ de centre $x_0$ et de rayon $r$},
+    sort={5}}
+
 
 
 
@@ -300,7 +323,7 @@
 
 \newglossaryentry{Phi}{
     type=modele,
-    name={\ensuremath{\Phi}},
+    name={\ensuremath{\boldsymbol\Phi}},
     description={Opérateur de sous-échantillonnage spatial tel que $\mathbf{Y}_{\mathcal{I}} = \mathbf{Y}\Phi$},
     shape={\gls{P}\ensuremath{\times}\gls{N}},
     sort={03}
@@ -471,5 +494,6 @@
     description={Paramètre de la méthode CLS},
     sort={01}
 }
+
 
 

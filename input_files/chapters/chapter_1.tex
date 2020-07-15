@@ -18,7 +18,7 @@
     	\item la microscopie \gls{stem} pour laquelle le faisceau d'électrons est focalisé sur un point de l'échantillon et le traverse pour être ensuite analysé,
     	\item la microscopie électronique à balayage (aussi appelée \gls{sem}) pour laquelle le faisceau d'électrons est focalisé sur un point de l'échantillon et le détecteur positionné en amont capte des électrons secondaires ayant été déviés.
     \end{itemize}
-    La \cref{fig-chap2-micros-electron} propose un schéma simplifié de ces configurations. Chacune de ces modalités permettent l'acquisition d'une image contrastée 2D qui est une représentation agrandie de l'échantillon.
+    La \cref{fig-chap2-micros-electron} propose un schéma simplifié de chacune de ces configurations. Toutes ces modalités permettent l'acquisition d'une image contrastée 2D qui est une représentation agrandie de l'échantillon.
 
     \begin{figure*}[t!]
        	\centering
@@ -39,7 +39,7 @@
 
     Les microscopes \gls{stem} et \gls{sem} se différencient du \gls{tem} puisque le faisceau balaye l'échantillon ligne par ligne au lieu de l'illuminer entièrement. Il en résulte que ces premiers sont destinés principalement à la \emph{spectroscopie}, \ie{} à l'acquisition d'un spectre pour chaque position spatiale. Les données peuvent alors être représentées comme un cube ayant deux dimensions spatiales et une dimension spectrale. Les applications classiques de ces systèmes sont la détection et cartographie d'éléments chimiques présents dans l'échantillon (\cf{} \cref{sec-exploitation-eels}). Le \gls{tem} est davantage utilisé en \emph{imagerie} pour représenter l'échantillon sans analyse chimique possible.
 
-    La suite de ce manuscrit se focalisera sur la microscopie \gls{stem} qui est le centre de notre étude. C'est pourquoi le principe physique de la microscopie en transmission est évoqué à la \cref{subsec-principe-physique-tem} et les modalités d'acquisition classiques sont présentées à la \cref{subsec-modalitees-stem}. A cette fin, un schéma plus détaillé de ce système et de ses modalités d'acquisition est donné à la \cref{fig-chap2-stem-detail}. Enfin, le contenu technique de ce chapitre s'inspire des livre de Egerton~\cite{egerton2011electron} et de Colliex~\cite{colliex1998microscopie} et nous renvoyons les lecteurs curieux à ces ouvrages pour de plus amples informations.
+    La suite de ce manuscrit se focalisera sur la microscopie \gls{stem} qui est le centre de notre étude. C'est pourquoi le principe physique de la microscopie en transmission est évoqué à la \cref{subsec-principe-physique-tem} et les modalités d'acquisition classiques sont présentées à la \cref{subsec-modalitees-stem}. A cette fin, un schéma plus détaillé de ce système et de ses modalités d'acquisition est donné à la \cref{fig-chap2-stem-detail}. Enfin, le contenu technique de ce chapitre s'inspire des livres de Egerton~\cite{egerton2011electron} et de Colliex~\cite{colliex1998microscopie} et nous renvoyons les lecteurs curieux à ces ouvrages pour de plus amples informations.
 
     \begin{figure*}[htbp]
     	\centering
@@ -52,14 +52,14 @@
 
     La microscopie en transmission étudie les interactions physiques entre un faisceau d'électron et la matière qu'il traverse. Pour ce faire, un canon fournit une certaine énergie cinétique à un faisceau d'électrons, celui-ci est alors focalisé en un point de l'échantillon à l'aide de lentilles électromagnétiques. Afin que ce faisceau \emph{traverse} l'échantillon, plusieurs conditions doivent être réunies :
     \begin{enumerate}[label=(\alph*)]
-    	\item l'énergie cinétique des électrons doit être suffisante (typiquement 100keV, soit environ 2/3 de la vitesse de la lumière),
+    	\item l'énergie cinétique des électrons doit être suffisante (typiquement 100keV, correspondant à une vitesse d'environ 2/3 de la vitesse de la lumière),
     	\item l'échantillon doit être suffisamment fin (typiquement 100nm pour un faisceau de 100keV).
     \end{enumerate}
-    Dans ces conditions, les électrons traversent l'échantillon sans subir d'absorption ni de réflexion notoire. A noter qu'il est nécessaire de faire le vide dans le corps du microscope afin d'éviter toute collision entre le faisceau et les molécules d'air. Dès lors, deux types d'interactions électron-atome vont avoir lieu \emph{au sein de l'échantillon}, schématisées aux figures~\ref{fig-chap2-interactions-a} et \ref{fig-chap2-interactions-b}.
+    Dans ces conditions, les électrons traversent l'échantillon sans subir d'absorption ni de réflexion notoire. A noter qu'il est nécessaire de faire le vide dans le corps du microscope afin d'éviter toute collision entre le faisceau et les molécules d'air. Dès lors, deux types d'interactions électron-atome vont avoir lieu au sein de l'échantillon, schématisées aux figures~\ref{fig-chap2-interactions-a} et \ref{fig-chap2-interactions-b}.
 
     Tout d'abord, l'électron incident interagit avec le noyau de l'atome fortement chargé par une attraction électrostatique d'autant plus intense que celui-ci s'approche du noyau, comme le montre la figure~\ref{fig-chap2-interactions-a}. Cette interaction est appelée diffusion élastique puisqu'il n'y a pas de perte d'énergie cinétique. Cela dit, la majorité des électrons traversent l'atome suffisamment loin du noyau pour être peu déviés et la déviation angulaire associée est de l'ordre du demi-degré (10\;mrad).
     
-    D'autre part, l'électron incident traversant le nuage électronique peut interagir avec les électrons le constituant et leur communique de l'énergie, c'est-à-dire dans le modèle atomique les faire passer d'un niveau à un autre ou même les expulser complètement de façon à transformer l'atome initialement neutre en ion. La perte  d'énergie subie par l'électron incident est ainsi gagnée par l'électron de la cible, comme montré sur les figures~\ref{fig-chap2-interactions-b} et \ref{fig-chap2-interactions-c}. Ce type d'interaction mettant en jeu un transfert d'énergie est appelé \emph{diffusion inélastique}. La déviation angulaire est en général sensiblement plus faible que dans le cas de la diffusion élastique et les électrons concernés sont concentrés dans un domaine angulaire restreint (de l'ordre de 0.1 à 1\;mrad).
+    D'autre part, l'électron incident traversant le nuage électronique peut interagir avec les électrons le constituant et leur communique de l'énergie, \ie\ dans le modèle atomique les faire passer d'un niveau à un autre, ou même les expulser complètement de façon à transformer l'atome initialement neutre en ion. La perte  d'énergie subie par l'électron incident est ainsi gagnée par l'électron de la cible, comme montré sur les figures~\ref{fig-chap2-interactions-b} et \ref{fig-chap2-interactions-c}. Ce type d'interaction mettant en jeu un transfert d'énergie est appelé \emph{diffusion inélastique}. La déviation angulaire est en général sensiblement plus faible que dans le cas de la diffusion élastique et les électrons concernés sont concentrés dans un domaine angulaire restreint (de l'ordre de 0.1 à 1\;mrad).
     
     Pour résumer, les électrons traversant l'échantillon peuvent être déviés de leur trajectoire par diffusion élastique ou inélastique et une partie d'entre eux ont perdu de l'énergie cinétique par diffusion inélastique. Les modalités d'acquisition du \gls{stem} se basent sur la détection de ces deux effets.
 
@@ -77,11 +77,11 @@
 
     \subsection{Les modalités d'acquisition en microscopie \glsentryshort{stem}}\label{subsec-modalitees-stem}
 
-    Le \gls{stem} permet entre autre trois modalités d'acquisition : la cathodoluminescence, l'acquisition fond noir angulaire à grand angle (ou encore \gls{haadf}) et la spectroscopie par perte d'énergie (ou encore \gls{eels}). La \cref{fig-chap2-stem-detail} sert de support pour situer les capteurs correspondant au sein du \gls{stem}.
+    Le \gls{stem} permet entres autre trois modalités d'acquisition : la cathodoluminescence, l'acquisition fond noir angulaire à grand angle (ou encore \gls{haadf}) et la spectroscopie par perte d'énergie (ou encore \gls{eels}). La \cref{fig-chap2-stem-detail} sert de support pour situer les capteurs correspondant au sein du \gls{stem}.
 
-    \paragraph*{Cathodoluminescence.} Pour certains échantillons, le faisceau incident produit un phénomène de fluorescence dépendant de la nature de l'échantillon et de ses défauts. La technique consistant à acquérir ce signal et à l'étudier s'appelle \emph{la cathodoluminescence}. Le flux lumineux est recueilli à l'aide d'un miroir situé en amont de l'échantillon puis envoyé vers un spectromètre qui procède à l'analyse.
+    \paragraph*{Cathodoluminescence.} Pour certains échantillons, le faisceau incident produit un phénomène de fluorescence dépendant de la nature de l'échantillon et de ses défauts. La technique consistant à acquérir ce signal et à l'étudier s'appelle \emph{la cathodoluminescence}. Le flux lumineux est recueilli à l'aide d'un miroir situé en amont de l'échantillon puis envoyé vers un spectromètre qui procède à la mesure.
 
-    \paragraph{\gls{haadf}.} Le faisceau incident se situe dans l'axe optique de l'appareil et une grande partie des électrons traversent l'échantillon en demeurant dans cet axe, la diffusion élastique est alors négligeable. Néanmoins, une partie des électrons sont significativement déviés de l'axe optique en sortie.  Un capteur annulaire placé en aval de l'échantillon capte ces électrons et délivre un signal proportionnel. Cette technique appelée \gls{haadf} permet de fournir une image 2D de l'échantillon. Un exemple d'acquisition \gls{haadf} est fourni à la \cref{fig-chap2-haadf-ex}.
+    \paragraph{\gls{haadf}.} Le faisceau incident se situe dans l'axe optique de l'appareil et une grande partie des électrons traversent l'échantillon en demeurant dans cet axe, la diffusion élastique est alors négligeable. Néanmoins, une partie des électrons sont significativement déviés de l'axe optique en sortie.  Un capteur annulaire placé en aval de l'échantillon capte ces électrons et délivre un signal proportionnel. Cette technique appelée \gls{haadf} permet de fournir une image 2D de l'échantillon. Deux exemples d'acquisition \gls{haadf} sont fournis à la \cref{fig-chap2-haadf-ex}.
 
     \begin{figure}%[htbp]
     	\centering
@@ -113,7 +113,7 @@
     	\item un pic plus étalé correspondant à une excitation collective de la bande de valence,
     	\item une zone d'intérêt où un ensemble de pics caractéristiques (appelés \emph{seuils}) émergent du fond décroissant.
     \end{itemize}
-    \emph{L'information utile est portée par la position, la forme et l'amplitude des seuils}. En effet, la position d'un seuil permet de déterminer l'élément présent dans l'échantillon tandis que son amplitude nous renseigne sur son abondance pour chaque position spatiale. Enfin, la forme du seuil peut varier suivant la configuration électronique de l'élément étudié.
+    L'information utile est portée par la position, la forme et l'amplitude des seuils. En effet, la position d'un seuil permet de déterminer l'élément présent dans l'échantillon tandis que son amplitude nous renseigne sur son abondance pour chaque position spatiale. Enfin, la forme du seuil peut varier suivant la configuration électronique de l'élément étudié.
     %
     \`A titre d'exemple, les seuils généralement rencontrés dans nos données se situent à des pertes d'énergie de l'ordre de \np{500} à \np[eV]{1000} (pour rappel, une énergie typique en amont de l'échantillon est \np[keV]{100}).
     %
@@ -175,84 +175,86 @@
 
     \subsection{Nature du bruit}\label{sec-nature-bruit}
     
-    Les sources de bruit sont multiples en imagerie \gls{eels}, mais le type de bruit le plus attendu est poissonnien. Cela modélise tant la probabilité qu'un électron du faisceau subisse un certain nombre de diffusions inélastique au sein de l'échantillon~\cite[Section~4.1.1]{egerton2011electron} que la probabilité qu'une cellule du capteur reçoive un électron sur une période donnée. \`A cela s'ajoute un bruit gaussien dû à l'électronique d'acquisition.
+    Les sources de bruit sont multiples en imagerie \gls{eels}, mais le type de bruit le plus attendu est poissonnien. Cela modélise tant la probabilité qu'un électron du faisceau subisse un certain nombre de diffusions inélastiques au sein de l'échantillon~\cite[Section~4.1.1]{egerton2011electron} que la probabilité qu'une cellule du capteur reçoive un électron sur une période donnée. \`A cela s'ajoute un bruit gaussien dû à l'électronique d'acquisition.
     %
     En pratique, la nature du bruit est expérimentalement complexe à déterminer.
     %
     \`A ce bruit d'acquisition vient s'ajouter les instabilités spatiales de l'échantillon : celui-ci dérive au cours de l'acquisition à cause de variations de température et de mouvements d'air~\cite{zobelli2019spatial}. Ces déplacements ne sont pas visibles pour des images basse-résolution mais deviennent critiques à des échelles atomiques puisque le réseau atomique initialement aligné peu apparaître déformé\footnote{Ce n'est pas systématiquement le cas puisque l'expérimentateur limite la dérive, comme expliqué à la section~\ref{sec-ech-sensibles}.}, comme le montre la \cref{fig-drift}.
     %
-
-
-    \subsection{ACP et redondance spectrale}\label{sec-acp-redondance}
-
-    Le spectre-image \gls{eels} comporte généralement une grande quantité de pixels $\gls{P}\approx 10^4$ et de canaux $\gls{M}\approx 10^3$, conduisant à un nombre de coefficients de l'ordre de $10^7$. La très grande dimension de ces données complique toute analyse directe de l'image et l'on cherche à simplifier l'étude \emph{en réduisant la taille des données tout en conservant le maximum d'information intrinsèque}. Un outil fondamental permettant cela est l'\gls{acp} qui réduit la dimension des données en extrayant les composantes les plus informatives. Cette technique présentée dans cette section s'appuie sur une propriété essentielle des données \gls{eels} : la redondance spectrale.
-
-    \begin{marginfigure}
+    
+    \begin{marginfigure}[5\baselineskip]
         \centering
         \includegraphics[width=0.7\textwidth]{img/chapitre1/figure7/drift-sc.png}
-        \caption{Un exemple de défaut en haute résolution : la dérive de l'échantillon. L'échantillonnage se fait ligne par ligne. On observe que, dans ce cas, l'échantillon dérivait sur la gauche, puis vers le haut. Il en résulte une déformation notable et préjudiciable du réseau atomique.
+        \caption{Un exemple de défaut en haute résolution : la dérive de l'échantillon. L'échantillonnage se fait ligne par ligne. On observe que, dans ce cas, l'échantillon dérive sur la gauche, puis vers le haut. Il en résulte une déformation notable et préjudiciable du réseau atomique.
             \protect\label{fig-drift}}
     \end{marginfigure}
 
-    \paragraph{Présentation générale de l'ACP.} L'\gls{acp} est une technique utilisée en analyse multivariée qui consiste à transformer $M$ variables corrélées entre elles en autant de nouvelles variables décorrélées les unes des autres. Pour cela, la transformation estime successivement les axes dans $\mathbb{R}^M$ maximisant la variance des variables projetées sur cet axe (à chaque nouvel axe estimé, sa contribution est soustraite aux données avant d'estimer l'axe suivant). Ces axes successifs sont appelés les \emph{composantes principales des données}.
-    Plus précisément, cette transformation décrite plus en détail dans~\cite{jolliffe2002springer} requiert le spectre-image \gls{Y} de taille \taille{M}{P} où chaque colonne correspond à un spectre \gls{eels} et où chaque ligne est une image pour un canal donné. Notons que la moyenne empirique des spectres est supposée être soustraite de sorte que les données $\tilde{\mathbf{Y}}=\gls{Y}-\frac{1}{P}\sum_p\mathbf{Y}_p$ soient centrées.
+    \subsection{ACP et redondance spectrale}\label{sec-acp-redondance}
+
+    Le spectre-image \gls{eels} comporte généralement une grande quantité de pixels $\gls{P}\approx 10^4$ et de canaux $\gls{M}\approx 10^3$, conduisant à un nombre de coefficients de l'ordre de $10^7$. La très grande dimension de ces données complique toute analyse directe de l'image et l'on cherche à simplifier l'étude en réduisant la taille des données tout en conservant le maximum d'information intrinsèque. Un outil fondamental permettant cela est l'\gls{acp} qui réduit la dimension des données en extrayant les composantes les plus informatives. Cette technique présentée dans cette section s'appuie sur une propriété essentielle des données \gls{eels} : la redondance spectrale.
+
+    \paragraph{Présentation générale de l'ACP.} L'\gls{acp} est une technique utilisée en analyse multivariée qui consiste à transformer $M$ variables corrélées entre elles en autant de nouvelles variables décorrélées les unes des autres~\cite{jolliffe2002springer}. Pour cela, la transformation estime successivement les axes dans $\mathbb{R}^M$ maximisant la variance des variables projetées sur cet axe (à chaque nouvel axe estimé, sa contribution est soustraite aux données avant d'estimer l'axe suivant). Ces axes successifs sont appelés les \emph{composantes principales des données}.
     %
-    Ainsi, l'ACP transforme l'image $\tilde{\gls{Y}}$ dont les spectres sont possiblement corrélés en les données transformées $\mathbf{S} = [\mathbf{s}_1,\dots,\mathbf{s}_M]^T$ (aussi appelées \emph{variables de représentation}) décorrélées de telle sorte que
+    Nous décrivons succinctement l'application de l'\gls{acp} à un spectre-image constituée de $P$ pixels et $M$ canaux, représenté par la matrice $\gls{Y} \in \mathbb{R}^{M\times P}$. Chaque ligne de cette matrice est une image 2D associé à un canal tandis que chaque colonne est le spectre mesuré en une position spatiale donnée.
+    %
+    Par simplicité de l'exposé, à l'image $\mathbf{Y}$ est associée une image centrée $\tilde{\mathbf{Y}}$, \ie\ obtenue après soustraction de la moyenne empirique des spectres, $\tilde{\mathbf{Y}}=\gls{Y}-\frac{1}{P}\sum_p\mathbf{y}_p$.
+    %
+    Ainsi, l'ACP transforme l'image $\tilde{\gls{Y}}$ dont les canaux sont possiblement corrélés en les données transformées $\mathbf{S}$ (aussi appelées \emph{variables de représentation}) décorrélées
     \begin{equation}\label{eq-decomposition-acp}
-    \mathbf{S}_\mathbf{Y} = \gls{H}^T\tilde{\gls{Y}}
+    \mathbf{S} = \gls{H}^T\tilde{\gls{Y}}
     \end{equation}
     où $\gls{H} = [\mathbf{h}_1,\dots,\mathbf{h}_M]$ est une matrice orthogonale de taille \taille{M}{M} contenant les composantes principales de \gls{Y}. Remarquons que l'orthogonalité de \gls{H} dans la transformation~\eqref{eq-decomposition-acp} permet de considérer l'\gls{acp} comme un changement de base dans $\mathbb{R}^M$ dont les vecteurs $\mathbf{h}_1,\dots,\mathbf{h}_M$ forment la nouvelle base. 
     %
     En pratique, la matrice $\gls{H}$ est obtenue en diagonalisant la matrice de variance-covariance $\tilde{\mathbf{C}} = \frac{1}{p-1}\tilde{\gls{Y}}\tilde{\gls{Y}}^T$. Les vecteurs propres constituent la matrice $\gls{H}$ tandis que chaque valeur propre $\gls{d}_m$ correspond à la variance de la représentation $\mathbf{s}_m$ pour une composante principale $\mathbf{h}_m$ donnée. On désigne ainsi la valeur propre $\gls{d}_m$ comme la puissance associée à la composante principale $\mathbf{h}_m$ et les colonnes de \gls{H} sont triées par puissance décroissante. 
     %
-    Enfin, précisons que l'estimation des composantes principales est d'autant meilleure que la matrice de covariance est correctement estimée, à savoir $P\gg M$.
+    Enfin, précisons que l'estimation des composantes principales est d'autant meilleure que la matrice de covariance est correctement estimée, \ie\ dans des régimes tels que $P\gg M$.
 
     \paragraph{Matrice de covariance ou matrice de corrélation ?} Dans le paragraphe précédent, la moyenne empirique $\boldsymbol\mu = [\mu_1,\dots,\mu_M]^T$ a été soustraite aux données afin d'obtenir les données centrées
     \begin{equation}
      \tilde{\mathbf{Y}} =
         \begin{pmatrix}
-        \mathbf{Y}_{1 1} - \mu_1&\mathbf{Y}_{1 2} - \mu_1&\cdots&\mathbf{Y}_{1 P} - \mu_1\\
-        \mathbf{Y}_{2 1} - \mu_2&\mathbf{Y}_{2 2} - \mu_2&\cdots&\mathbf{Y}_{2 P} - \mu_2\\
+        y_{1,1} - \mu_1&y_{1,2} - \mu_1&\cdots&y_{1,P} - \mu_1\\
+        y_{2,1} - \mu_2&y_{2,2} - \mu_2&\cdots&y_{2,P} - \mu_2\\
         \vdots&\vdots&\ddots&\vdots\\
-        \mathbf{Y}_{M 1} - \mu_M&\mathbf{Y}_{M 2} - \mu_M&\cdots&\mathbf{Y}_{M P} - \mu_M
+        y_{M,1} - \mu_M&y_{M,2} - \mu_M&\cdots&y_{M,P} - \mu_M
         \end{pmatrix}.
     \end{equation}
     La matrice de covariance $\tilde{\mathbf{C}} = \frac{1}{p-1}\tilde{\gls{Y}}\tilde{\gls{Y}}^T$ est ensuite calculée afin d'extraire les composantes principales. Cette méthode a un défaut majeur : si un canal d'indice $m_0\in\llbracket 1,M\rrbracket$ correspond à un seuil d'amplitude très supérieure aux amplitudes des autres seuils, alors celui-ci va \guillemets{tirer} les résultats de l'ACP vers lui au détriment des autres caractéristiques~\cite[Section~3.3]{jolliffe2002springer}.
     %
-    Dans ce genre de cas, l'alternative consiste estimer les écarts-types empiriques $\boldsymbol\sigma=[\sigma_1,\dots,\sigma_M]^T$, puis à réduire les données
+    Dans ce genre de cas, l'alternative consiste à estimer les écarts-types empiriques $\boldsymbol\sigma=[\sigma_1,\dots,\sigma_M]^T$, puis à réduire les données centrées
     \begin{equation}
     \bar{\mathbf{Y}} =
     \begin{pmatrix}
-    \frac{\mathbf{Y}_{1 1} - \mu_1}{\sigma_1}&
-    \frac{\mathbf{Y}_{1 2} - \mu_1}{\sigma_1}&
+    \frac{y_{1,1} - \mu_1}{\sigma_1}&
+    \frac{y_{1,2} - \mu_1}{\sigma_1}&
     \cdots&
-    \frac{\mathbf{Y}_{1 P} - \mu_1}{\sigma_1}\\
+    \frac{y_{1,P} - \mu_1}{\sigma_1}\\
     %
-    \frac{\mathbf{Y}_{2 1} - \mu_2}{\sigma_2}&
-    \frac{\mathbf{Y}_{2 2} - \mu_2}{\sigma_2}&
+    \frac{y_{2,1} - \mu_2}{\sigma_2}&
+    \frac{y_{2,2} - \mu_2}{\sigma_2}&
     \cdots&
-    \frac{\mathbf{Y}_{2 P} - \mu_2}{\sigma_2}\\
+    \frac{y_{2,P} - \mu_2}{\sigma_2}\\
     %
     \vdots&\vdots&\ddots&\vdots\\
     %
-    \frac{\mathbf{Y}_{M 1} - \mu_M}{\sigma_M}&
-    \frac{\mathbf{Y}_{M 2} - \mu_M}{\sigma_M}&
+    \frac{y_{M,1} - \mu_M}{\sigma_M}&
+    \frac{y_{M,2} - \mu_M}{\sigma_M}&
     \cdots&
-    \frac{\mathbf{Y}_{M P} - \mu_M}{\sigma_M}
+    \frac{y_{M,P} - \mu_M}{\sigma_M}
     \end{pmatrix}.
     \end{equation}
     La matrice de \emph{corrélation} $\bar{\mathbf{C}} = \frac{1}{p-1}\bar{\gls{Y}}\bar{\gls{Y}}^T$ est ensuite diagonalisée afin d'extraire les composantes principales. %
     %
     Si cette technique permet de prévenir le défaut lié à la matrice de covariance, elle présente elle-même un inconvénient puisqu'elle est plus apte à capturer des seuils apparentés au bruit.
     %
-    Ces aspects sont détaillés et discutés a l'annexe~\ref{abstr-pca-corr-cov}. Dans le cadre de cette étude, la matrice de covariance sera utilisée.
+    Ces aspects sont détaillés et discutés à l'annexe~\ref{abstr-pca-corr-cov}. Dans le cadre de cette étude, la matrice de covariance sera utilisée.
 
 
     \paragraph{L'ACP en vue de réduire la dimension.} L'ACP est d'autant plus performante à réduire la dimension des données que celles-ci sont corrélées. En effet, si les observations sont fortement corrélées, on observe que les variances des variables de représentation associées aux premières composantes principales sont particulièrement élevées par rapport aux variances des variables de représentation associées aux dernières composantes principales.
     %
-    Ainsi, l'on observe généralement un changement de comportement à un indice $\gls{R}\ll M$ d'autant plus faible que les données sont corrélées, ou à défaut de variation brutale de la courbe des puissances, on choisit l'indice \gls{R} tel que les \gls{R} premières composantes principales regroupent une fraction élevée de la puissance totale.
+    Ainsi, l'on observe généralement un changement de comportement à un indice $\gls{R}\ll M$ d'autant plus faible que les données sont corrélées. \`A défaut de variation brutale de la courbe des puissances, on choisit l'indice \gls{R} tel que les \gls{R} premières composantes principales regroupent une fraction élevée de la puissance totale.
     %
-    Dans ce cas, il est possible d'approximer les données \gls{Y} par une matrice $\hat{\gls{Y}}_{1:R}$ en projetant les données sur le sous-espace de dimension \gls{R} généré par les \gls{R} premières composantes principales, puis en les rétro-projetant dans $\mathbb{R}^M$. Ainsi, l'approximation à l'ordre \gls{R} s'écrit
+    Dans ce cas, il est possible d'approcher les données \gls{Y} par une matrice $\hat{\gls{Y}}_{1:R}$ en projetant les données sur le sous-espace de dimension \gls{R} généré par les \gls{R} premières composantes principales, puis en les rétro-projetant dans $\mathbb{R}^M$. Ainsi, l'approximation à l'ordre \gls{R} s'écrit
     \begin{equation}
     \hat{\gls{Y}}_{1:R} = \gls{H}_{1:R}\gls{H}_{1:R}^T\gls{Y}
     \end{equation}
@@ -270,11 +272,11 @@
             \protect\label{fig-pca-data-corr}}
     \end{figure*}
 
-    \paragraph{Application aux données EELS.} L’imagerie hyperspectrale est une technique combinant l’imagerie et la spectroscopie où chaque pixel de l'image est caractérisé par un spectre électromagnétique. Ces images spectroscopiques sont utilisés dans de nombreux domaines incluant la télédétection~\cite{schaepman2009earth}, la planétologie~\cite{smith1985quantitative}, le contrôle des aliments~\cite{gowen2007hyperspectral} et l'ingénierie biomédicale~\cite{akbari2010detection}. Si les spectres \gls{eels} ne sont pas de nature électromagnétiques, les spectre-images sont néanmoins un cas particulier d'images hyperspectrales puisqu'elles partagent un très grand nombre de propriétés et de méthodes d'analyse.
+    \paragraph{Application aux données EELS.} L’imagerie hyperspectrale est une technique combinant l’imagerie et la spectroscopie où chaque pixel de l'image est caractérisé par un spectre électromagnétique. Ces images spectroscopiques sont utilisés dans de nombreux domaines incluant la télédétection~\cite{schaepman2009earth}, la planétologie~\cite{smith1985quantitative}, le contrôle des aliments~\cite{gowen2007hyperspectral} et l'ingénierie biomédicale~\cite{akbari2010detection}. Si les spectres \gls{eels} ne sont pas de nature électromagnétiques, ils partagent néanmoins avec les images hyperspectrales un très grand nombre de propriétés et de méthodes d'analyse.
     %
     La popularité de ces techniques découle d'une propriété fondamentale des données hyperspectrales~: la redondance spectrale. En effet, les spectres issus de ces images sont connus pour être fortement corrélés spectralement~\cite{dobigeon2016linear, bioucas2012hyperspectral, dobigeon2012spectral} et le paradigme du démélange (discuté en détail à la \cref{sec-demelange}) en donne une interprétation physique. Dans ce paradigme, chaque spectre acquis est supposé être le mélange de signatures spectrales élémentaires appelés \emph{endmembers} correspondant à des éléments particuliers de la scène (\eg{} de l'eau, des bâtiments ou de la végétation en télédétection).
     %
-    Tout cela permet de conclure que les spectres, loin de remplir $\mathbb{R}^M$ uniformément, évoluent dans une variété de dimension $\gls{R}\ll M$. Par défaut, cette variété n'est pas plane puisque des non-linéarités interviennent dans le mélange, causés par des phénomènes physiques au niveau local. Néanmoins, une approximation linéaire peut être réalisée afin d'estimer le sous-espace de dimension réduite appelé \emph{sous-espace signal}, possiblement à l'aide d'une \gls{acp}. L'identification de ce sous-espace permet d'obtenir des variables de représentation de dimension réduite pourtant très précises, ouvrant la voie à un gain considérable en temps de calcul, en complexité et en stockage de donnée pour une qualité d'image équivalente. Comme expliqué plus haut, l'\gls{acp} réduit d'autant la dimension du spectre-image (ou encore \gls{R} est d'autant plus faible) que les données sont corrélées \ie{} que peu d'éléments élémentaires sont présent dans la scène. La \cref{fig-ACP} montre les composantes principales d'un spectre-image réel. L'évolution des puissances issues de l'\gls{acp} affichées à la \cref{fig-sub-pca-eigs} nous permet de déterminer trois comportements\footnote{Il faut noter que les puissances ont été corrigées afin de compenser l'erreur d'estimation dû au faible nombre d'observations (le nombre de pixels est du même ordre de grandeur que le nombre de canaux), comme expliqué à la \cref{subsec-3s-acp}.}.
+    Tout cela permet de conclure que les spectres, loin de remplir $\mathbb{R}^M$ uniformément, évoluent dans une variété de dimension $\gls{R}\ll M$. Par défaut, cette variété n'est pas plane puisque des non-linéarités interviennent dans le mélange, causés par des phénomènes physiques au niveau local\footnote{Voir par exemple~\cite{dobigeon2014nonlinear} pour une discussion de ces phénomènes dans le cas de l'imagerie hyperspectrale.}. Néanmoins, une approximation linéaire peut être réalisée afin d'estimer le sous-espace de dimension réduite appelé \emph{sous-espace signal}, possiblement à l'aide d'une \gls{acp}. L'identification de ce sous-espace permet d'obtenir des variables de représentation de dimension réduite pourtant très précises, ouvrant la voie à un gain considérable en temps de calcul, en complexité et en stockage de donnée pour une qualité d'image équivalente. Comme expliqué plus haut, l'\gls{acp} réduit d'autant la dimension du spectre-image (ou encore \gls{R} est d'autant plus faible) que les données sont corrélées \ie{} que peu d'éléments élémentaires sont présent dans la scène. La \cref{fig-ACP} montre les composantes principales d'un spectre-image réel. L'évolution des puissances issues de l'\gls{acp} affichées à la \cref{fig-sub-pca-eigs} nous permet de déterminer trois comportements\footnote{Il faut noter que les puissances ont été corrigées afin de compenser l'erreur d'estimation dû au faible nombre d'observations (le nombre de pixels est du même ordre de grandeur que le nombre de canaux), comme expliqué à la \cref{subsec-3s-acp}.}.
     \begin{normalfigure*}[htbp]
         \centering
         \subfigure[Evolution des valeurs propres associées à l'\gls{acp}]{
@@ -305,7 +307,7 @@
             \includegraphics[]{img/chapitre1/figure9/PCA_spectra_2.pdf}
             \label{fig-sub-pca-spectrum-0}}
         %
-        \caption{L'analyse par \gls{acp} de données \gls{eels}. La figure~\subref{fig-sub-pca-eigs} représente l'évolution des valeurs propres associées à l'\gls{acp}. On observe, entre autres, que seules les 5 premières composantes sont vraiment significatives. Les figures \subref{fig-sub-pca-comp1} à \subref{fig-sub-pca-comp6} représentent les variables de représentation associées aux composantes principales les plus puissantes. Le spectre moyen donné à la figure~\subref{fig-sub-pca-mean} est soustrait aux données avant d'appliquer l'\gls{acp}. Il en résulte que les spectres associés aux composantes principales sont des variations par rapport à ce spectre moyen, ce qui explique que la première composante affichée à la figure~\subref{fig-sub-pca-spectrum-0} soit parfois négative.
+        \caption{\gls{acp} de données \gls{eels}. La figure~\subref{fig-sub-pca-eigs} représente l'évolution des valeurs propres associées à l'\gls{acp}. On observe, entre autres, que seules les 5 premières composantes sont vraiment significatives. Les figures \subref{fig-sub-pca-comp1} à \subref{fig-sub-pca-comp6} représentent les variables de représentation associées aux composantes principales les plus puissantes. Le spectre moyen donné à la figure~\subref{fig-sub-pca-mean} est soustrait aux données avant d'appliquer l'\gls{acp}. Il en résulte que les spectres associés aux composantes principales sont des variations par rapport à ce spectre moyen, ce qui explique que la première composante affichée à la figure~\subref{fig-sub-pca-spectrum-0} soit parfois à valeurs négatives.
             \protect\label{fig-ACP}}
     \end{normalfigure*}    
     \begin{itemize}
@@ -328,7 +330,9 @@
     %
     La technique historique classiquement utilisée en imagerie \gls{eels} analyse de manière supervisée les spectres pris indépendamment afin de quantifier un élément particulier.
     %
-    A l'inverse, des approches plus récentes analysent le spectre-image dans son entièreté de manière non-supervisée afin de cartographier l'ensemble des composantes d'intérêt. 
+    A l'inverse, des approches plus récentes analysent le spectre-image dans son entièreté de manière non-supervisée afin de cartographier l'ensemble des composants d'intérêt. 
+    %
+    La cartographie de composés chimiques ne constitue pas le c\oe{}ur de la thèse, mais elle peut être utilisée pour évaluer la qualité de la reconstruction, comme à la section~\ref{sec-lr-demelange-res}.
 
 
     \subsection{Quantification par ajustement d'exponentielle}
@@ -343,11 +347,11 @@
             \includegraphics[]{img/chapitre1/figure11/separation.pdf}}\hspace{1em}
         \subfigure[\label{fig-carto-separation-b}]{
             \includegraphics[width=5cm]{img/chapitre1/figure11/regression-sc.png}}
-        \caption{Illustration de la méthode de cartographie par ajustement d'exponentielles spectrales. \protect\subref{fig-carto-separation-a} Régression pour une position particulière. Une régression exponentielle est effectuée sur la zone de régression, puis est soustraite au spectre pour obtenir le spectre corrigé. L'abondance est finalement calculée en intégrant le spectre autours du pic d'intérêt. \protect\subref{fig-carto-separation-b} Résultat en effectuant cette action sur tous les pixels (l'élément cartographié est $\mathrm{La-M}_{4, 5}$). A noter que les paramètres de la régression dépendent de la position spatiale.
+        \caption{Illustration de la méthode de cartographie par ajustement d'exponentielles spectrales. \protect\subref{fig-carto-separation-a} Régression pour une position particulière. Une régression exponentielle est effectuée sur la zone de régression, puis est soustraite au spectre pour obtenir le spectre corrigé. L'abondance est finalement calculée en intégrant le spectre autour du pic d'intérêt. \protect\subref{fig-carto-separation-b} Résultat en effectuant cette action sur tous les pixels (l'élément cartographié est $\mathrm{La-M}_{4, 5}$). A noter que les paramètres de la régression dépendent de la position spatiale.
             \protect\label{fig-carto-separation}}
     \end{figure*}
     
-    Cependant, cette technique ne permet que la \emph{quantification} de l'élément à une constante près quel que soit son environnement\,; elle ne permet entre autres pas d'obtenir des proportions contrairement au démélange discuté à la section suivante. Or, la structure fine, c'est-à-dire la forme du seuil, renseigne sur l'état du composé étudié et la technique ci-dessus ne fait aucune distinction lors de la quantification. Par exemple, les travaux menés dans~\cite{dobigeon2012spectral} s'intéressent à l'état d'oxydation du bore et tentent de cartographier deux états distincts, la forme oxydée B\textsubscript{2}O\textsubscript{3} et la forme azotée BN. Dans ce cas, la technique proposée ne fait pas cette distinction.
+    Cependant, cette technique ne permet que la \emph{quantification} de l'élément à une constante près quel que soit son environnement\,; elle ne permet entre autres pas d'obtenir des proportions contrairement au démélange discuté à la section suivante. Or, la structure fine, \ie\ la forme du seuil, renseigne sur l'état du composé étudié et la technique ci-dessus ne fait aucune distinction lors de la quantification. Par exemple, les travaux menés dans~\cite{dobigeon2012spectral} s'intéressent à l'état d'oxydation du bore et tentent de cartographier deux états distincts, la forme oxydée B\textsubscript{2}O\textsubscript{3} et la forme azotée BN. Dans ce cas, la technique proposée ne fait pas cette distinction.
     %
     Pour résoudre cette impasse, des techniques de cartographie non-supervisée ont été proposées ces dernières décennies afin de ne pas considérer le pic uniquement, mais l'ensemble du spectre.
 
@@ -355,35 +359,39 @@
 
     \subsection{Techniques de cartographie non-supervisée}\label{sec-demelange}
     
-    \paragraph{Approches par ACP et ACI.} La redondance spectrale présentée à la section précédente suggère que les spectres acquis soient le résultat d'un mélange de $N_c$ spectres élémentaires $\mathbf{m}_1,\dots,\mathbf{m}_{N_c}$ appelés \emph{endmember}, correspondant aux signatures associées aux composés caractéristiques présents dans l'échantillon.
+    \paragraph{Approches par ACP et ACI.} La redondance spectrale présentée à la section précédente suggère que les spectres acquis soient le résultat d'un mélange de $N_c$ spectres élémentaires $\mathbf{m}_1,\dots,\mathbf{m}_{N_c}$ appelés \emph{endmembers}, correspondant aux signatures associées aux composés caractéristiques présents dans l'échantillon.
     %    
-    Estimer les signatures $\mathbf{m}_k$ s'apparente à de la séparation aveugle de sources et les premières techniques non-supervisée proposées l'ont considéré d'un point de vue statistique en usant des techniques d'analyse multivariée. Dans cette perspective, l'\gls{acp} a été utilisée afin d'extraire les signatures de spectre-images \gls{eels} dans~\cite{bonnet1999extracting, bosman2006mapping, trebbia1990eels}, mais cette méthode renvoie des spectres difficiles à interpréter physiquement, à cause notamment de la contrainte d'orthogonalité inhérente à l'\gls{acp} imposée aux endmembers. L'\gls{aci} a été envisagée comme alternative afin d'analyser les données hyperspectrales issues de la télédétection~\cite{bayliss1998analyzing, chen1999independent} ou de l'imagerie \gls{stem}-\gls{eels}~\cite{delapena2011mapping, bonnet2005independent, bosman2006mapping}. Malheureusement, l'\gls{aci} repose sur l'hypothèse que les signatures spectrales comme leur abondance soient indépendantes, ce qui n'est pas le cas puisque si un élément est fortement présent, les autres le seront généralement moins. Cela compromet l'utilisation de l'\gls{aci} en démélange hyperspectral, d'autant que ni l'\gls{acp}, ni l'\gls{aci} ne permettent de contraindre l'abondance à être positive et leurs résultats demeurent en général difficile à interpréter d'un point de vue physique. Toutefois, l'ACI peut donner des résultats intéressants et rapides pour certains jeux de données et cela peut être un point de départ dans l'analyse de l'image.
+    Estimer les signatures $\mathbf{m}_k$ s'apparente à de la séparation aveugle de sources et les premières techniques non-supervisée proposées l'ont considérée d'un point de vue statistique en usant des techniques d'analyse multivariée. Dans cette perspective, l'\gls{acp} a été utilisée afin d'extraire les signatures de spectre-images \gls{eels} dans~\cite{bonnet1999extracting, bosman2006mapping, trebbia1990eels}, mais cette méthode renvoie des spectres difficiles à interpréter physiquement, à cause notamment de la contrainte d'orthogonalité inhérente à l'\gls{acp} imposée aux endmembers. L'\gls{aci} a été envisagée comme alternative afin d'analyser les données hyperspectrales issues de la télédétection~\cite{bayliss1998analyzing, chen1999independent} ou de l'imagerie \gls{stem}-\gls{eels}~\cite{delapena2011mapping, bonnet2005independent, bosman2006mapping}. Malheureusement, l'\gls{aci} repose sur l'hypothèse que les signatures spectrales comme leur abondance soient indépendantes, ce qui n'est pas le cas puisque si un élément est fortement présent, les autres le seront généralement moins. Cela compromet l'utilisation de l'\gls{aci} en démélange hyperspectral, d'autant que ni l'\gls{acp}, ni l'\gls{aci} ne permettent de contraindre l'abondance à être positive et leurs résultats demeurent en général difficile à interpréter d'un point de vue physique. Toutefois, l'ACI peut donner des résultats intéressants et rapides pour certains jeux de données et cela peut être un point de départ dans l'analyse de l'image.
     
-    \paragraph{Approches par démélange.} Comme expliqué précédemment, les spectres acquis sont supposés être le résultat d'un mélange de $N_c$ spectres élémentaires\,; une hypothèse de mélange linéaire est souvent réalisée afin de simplifier l'interprétation et la résolution du problème inverse associé. Dans ce cas, le modèle direct s'écrit~\cite{dobigeon2016linear}
+    \paragraph{Approches par démélange.} Comme expliqué précédemment, les spectres acquis sont supposés être le résultat d'un mélange de $N_c$ spectres élémentaires\,; une hypothèse de mélange linéaire est souvent réalisée afin de simplifier l'interprétation et la résolution du problème inverse associé. %
+    %
+    Notons que ce modèle permet également de générer des spectres-images EELS réalistes, à partir de spectres caractéristiques (endmembers) réels et de carte d'abondances réalistes. Ce procédé a notamment été mis en oeuvre à la section~\ref{sec-synth-data-lr}.
+    %
+    Dans ce cas, le modèle s'écrit~\cite{dobigeon2016linear}
     \begin{align}
-    &\gls{Y} = \mathbf{M}\mathbf{A}\\
+    &\gls{Y} \approx \mathbf{M}\mathbf{A}\\
     \text{tel que}\quad &\mathbf{A} \geq 0\qquad \mathbf{M} \geq 0\label{eq-positivity}\\
-    &\sum_k \mathbf{A}_{kp} = 1 \quad \forall p\in\llbracket 1 , P \rrbracket \label{eq-sum-to-one}
+    &\sum_k a_{kp} = 1 \quad \forall p\in\llbracket 1 , P \rrbracket \label{eq-sum-to-one}
     \end{align}
-    où $\mathbf{M}=[\mathbf{m}_1,\dots,\mathbf{m}_{N_c}]$ de taille $M\times N_c$ est la matrice contenant les signatures spectrales et où $\mathbf{A} = [\mathbf{a}_1,\dots,\mathbf{a}_{N_c}]^T$ est la matrice d'abondance de taille $N_c\times P$. Chaque ligne $\mathbf{a}_c$ est une image représentant la proportion de l'endmember $\mathbf{m}_k$ au sein de l'échantillon, il s'agit de la carte d'abondance. Deux hypothèses portant sur $\mathbf{A}$ sont réalisées : l'hypothèse de positivité à l'équation~\eqref{eq-positivity} et l'hypothèse de somme à un à l'équation~\eqref{eq-sum-to-one}.
+    où $\mathbf{M}=[\mathbf{m}_1,\dots,\mathbf{m}_{N_c}]$ de taille $M\times N_c$ est la matrice contenant les signatures spectrales et où $\mathbf{A}$ est la matrice d'abondance de taille $N_c\times P$. Chaque ligne $\mathbf{A}_{k,:}$ est une image représentant la proportion de l'endmember $\mathbf{m}_k$ au sein de l'échantillon, il s'agit de la carte d'abondance. Deux hypothèses portant sur $\mathbf{A}$ sont réalisées : l'hypothèse de positivité à l'équation~\eqref{eq-positivity} et l'hypothèse de somme à un à l'équation~\eqref{eq-sum-to-one}.
     \begin{description}
         \item[Positivité] L'abondance de l'élément ne peut être négative puisqu'il s'agit d'une proportion. Et puisque le spectre est positif, les entrées de $\mathbf{A}$ et de $\mathbf{M}$ sont donc positives.
         \item[Somme à un] La somme des abondances vaut un pour toute position spatiale. Cette hypothèse traduit le fait que les éléments de $\mathbf{A}$ soient des proportions. Cependant, pour que l'on puisse comparer les proportions d'un pixel à l'autre, il est nécessaire que la quantité de matière traversée par le faisceau soit la même sur l'ensemble de l'échantillon, sans quoi deux proportions identiques ne traduiraient pas une quantité égale de l'élément.
     \end{description}
-    Une représentation géométrique du mélange linéaire est donné à la \cref{fig-melange-lineaire} pour $M=3$ et $N_c=3$. Les coordonnées des trois endmembers $\mathbf{m}_1,\mathbf{m}_2,\mathbf{m}_3$ sont représentés dans $\mathbb{R}_3$ et puisque la contrainte de somme à un est utilisée ici, l'ensemble des spectres obtenus par mélange linéaire se situent dans le plan de dimension $M-1=2$ généré par ces trois vecteurs (à condition qu'ils soient linéairement indépendants). Enfin, l'hypothèse de positivité contraint l'ensemble des spectres de \gls{Y} à évoluer dans le simplexe formé par $\mathbf{m}_1$, $\mathbf{m}_2$ et $\mathbf{m}_3$.
+    Une représentation géométrique du mélange linéaire est donné à la \cref{fig-melange-lineaire} pour $M=3$ et $N_c=3$. Les coordonnées des trois endmembers $\mathbf{m}_1,\mathbf{m}_2,\mathbf{m}_3$ sont représentés dans $\mathbb{R}^3$ et puisque la contrainte de somme à un est utilisée ici, l'ensemble des spectres obtenus par mélange linéaire se situent dans le plan de dimension $M-1=2$ généré par ces trois vecteurs (à condition qu'ils soient linéairement indépendants). Enfin, l'hypothèse de positivité contraint l'ensemble des spectres de \gls{Y} à évoluer dans le simplexe formé par $\mathbf{m}_1$, $\mathbf{m}_2$ et $\mathbf{m}_3$.
     \begin{figure}
         \centering
         \includegraphics[]{img/chapitre1/figure17/melange_lineaire.pdf}
         \caption{Une représentation géométrique du modèle de mélange linéaire pour $M=3$ et $N_c=3$. Les spectres élémentaires sont notés $\mathbf{m}_1$, $\mathbf{m}_2$ et $\mathbf{m}_3$. La contrainte de somme à un contraint les spectres constitutifs de \gls{Y} (en orange) à évoluer dans le plan formé par ces trois vecteurs tandis que la contrainte de positivité les contraint à demeurer dans le simplexe formé par les endmembers.
             \protect\label{fig-melange-lineaire}}
     \end{figure}
-    Maintenant que le modèle direct est posé, le problème inverse consiste à estimer conjointement les spectres élémentaires $(\mathbf{m}_k)_{k=1,\dots,N_c}$ ainsi que les cartes d'abondance associées. Ce problème inverse est appelé \emph{démélange hyperspectral}~\cite{bioucas2012hyperspectral, dobigeon2016linear} ou \emph{unmixing} et s'apparente à un problème de séparation aveugle de source~\cite{comon2010handbook}. Il requiert la connaissance du nombre de composantes $N_c$.
+    Maintenant que le modèle est posé, le problème consiste à estimer conjointement les spectres élémentaires $(\mathbf{m}_k)_{k=1,\dots,N_c}$ ainsi que les cartes d'abondance associées. Ce problème est appelé \emph{démélange hyperspectral}~\cite{bioucas2012hyperspectral, dobigeon2016linear} ou \emph{unmixing} et s'apparente à un problème de séparation aveugle de source~\cite{comon2010handbook}. Il requiert la connaissance du nombre de composantes $N_c$.
     %
     Une technique de démélange non-supervisée a pour but d'estimer les endmembers, ou de manière géométrique le simplexe dans lequel évoluent les spectres acquis et dont les endmembers constituent les sommets, et la matrice d'abondance associée\footnote{Le nombre d'endmember est lui-aussi inconnu dans la plupart des situations, mais il peut être estimé par une autre méthode a priori.}. Souvent, ce problème d'estimation est généralement non-convexe et on lui préfère une résolution sous-optimale en deux temps. D'abord, les signatures élémentaires sont déterminées à l'aide d'un algorithme d'extraction d'endmember, puis la matrice d'abondance est déterminée. Néanmoins, des méthodes bayésiennes permettent une estimation conjointe des endmembers et de des abondances basées sur un modèle statistique.
 
     \paragraph{Estimation des endmembers.} Les premières méthodes d'extraction d'endmember utilisées furent l'ACP et l'ACI avec les inconvénients relevés plus haut.
     % 
-    Une autre approche du problème consiste à user de l'interprétation géométrique réalisée plus haut afin d'estimer les endmembers $\mathbf{m}_k$. Dans l'hypothèse où les composantes pures sont présentes dans l'échantillon, des techniques efficaces et rapides permettent de déterminer les spectres acquis correspondant aux endmembers. Par exemple, \gls{vca}~\cite{nascimento2005vertex} projette itérativement les données sur un axe orthogonal au sous-espace généré par les endmembers déjà déterminés. Le nouvel endmember correspond au point extrême de la projection et l'algorithme est itéré jusqu'à obtenir toutes les composantes. Néanmoins, l'hypothèse de pixels purs est généralement trop forte. En microscopie \gls{stem}-\gls{eels}, par exemple, à cause d'une résolution insuffisante ou d'une épaisseur d'échantillon permettant la superposition d'éléments différents, on n'acquiert pas de spectre pur. Pour relâcher cette contrainte, les techniques par minimisation de volume estiment la matrice $\mathbf{M}$ de sorte que le simplexe généré par les endmembers $\mathbf{m}_i$ soit de volume minimal tout en contenant l'ensemble des spectres acquis. Ce problème devient plus difficile à résoudre puisqu'il est non-convexe, c'est pourquoi il est initialisé à l'aide d'une autre technique comme \gls{vca}. L'algorithme \gls{sisal}~\cite{bioucas2009variable} implémente une version plus robuste en autorisant la violation de la contrainte de positivité, c'est pourquoi certains spectres estimés par SISAL peuvent être négatifs, mais cette violation est contrainte à l'aide de la fonction hinge $h$ ($h(x) = 0$ si $x \geq 0$ et $h(x)=-x$ si $x<0$). Les techniques par approche géométrique sont rapides et efficaces si l'image présente des pixels purs, autrement, ces performances sont réduites et des techniques statistiques sont à préférer.
+    Une autre approche du problème consiste à user de l'interprétation géométrique réalisée plus haut afin d'estimer les endmembers $\mathbf{m}_k$. Dans l'hypothèse où les composantes pures sont présentes dans l'échantillon, des techniques efficaces et rapides permettent de déterminer les spectres acquis correspondant aux endmembers. Par exemple, \gls{vca}~\cite{nascimento2005vertex} projette itérativement les données sur un axe orthogonal au sous-espace généré par les endmembers déjà déterminés. Le nouvel endmember correspond au point extrême de la projection et l'algorithme est itéré jusqu'à obtenir toutes les composantes. Néanmoins, l'hypothèse de pixels purs est généralement trop forte. En microscopie \gls{stem}-\gls{eels}, par exemple, à cause d'une résolution insuffisante ou d'une épaisseur d'échantillon permettant la superposition d'éléments différents, on n'acquiert pas de spectre pur. Pour relâcher cette contrainte, les techniques par minimisation de volume estiment la matrice $\mathbf{M}$ de sorte que le simplexe généré par les endmembers $\mathbf{m}_k$ soit de volume minimal tout en contenant l'ensemble des spectres acquis. Ce problème devient plus difficile à résoudre puisqu'il est non-convexe, c'est pourquoi il est initialisé à l'aide d'une autre technique comme \gls{vca}. L'algorithme \gls{sisal}~\cite{bioucas2009variable} implémente une version plus robuste en autorisant la violation de la contrainte de positivité, c'est pourquoi certains spectres estimés par SISAL peuvent être négatifs, mais cette violation est contrainte à l'aide de la fonction hinge $h$ ($h(x) = 0$ si $x \geq 0$ et $h(x)=-x$ si $x<0$). Les techniques par approche géométrique sont rapides et efficaces si l'image présente des pixels purs, autrement, ces performances sont réduites et des techniques statistiques sont à préférer.
     
     \paragraph{Estimation des abondances.} Une fois l'extraction des endmembers réalisée, on doit estimer les abondances.  Cela consiste à déterminer le sous-ensemble optimal de signatures spectrales ainsi que les proportions associées pouvant décrire chaque pixel mélangé de l'échantillon. En pratique, il s'agit d'une régression parcimonieuse linéaire faisant appel à des régularisations parcimonieuses telles que décrites à la \cref{sec-MC-regul}, puisque le nombre de signatures spectrales utilisées pour décrire chaque pixel est supposé être faible devant $N_c$. Un représentant de cette famille de méthodes est \gls{sunsal}~\cite{bioucas2010alternating} qui propose de contraindre la parcimonie des abondances à l'aide d'une norme $\ell_1$ et de résoudre le problème d'optimisation par l'algorithme ADMM~\cite{eckstein1992douglas, combettes2011proximal}.
     
@@ -393,9 +401,9 @@
     %
     \section{L'acquisition d'échantillons sensibles : problématiques et stratégies}\label{sec-ech-sensibles}
 
-    \paragraph{Problématique des échantillons sensibles.} Une problématique récurrente en microscopie est la détection de structures fines dont le seuil associé est de faible amplitude. Dans une telle situation, le \gls{snr} du spectre-image acquis doit être supérieur à un \gls{snr} minimum, nécessaire à la détection précise des structures fines. A cette fin, l'expérimentateur doit augmenter la dose totale d'électrons délivrée à chaque position de l'échantillon. Pour cela, il peut agir sur l'intensité du faisceau ou sur la durée d'exposition par position spatiale (appelé \emph{dwell time}). Quelle que soit l'approche, augmenter la dose accroît la détérioration subie par l'échantillon~\cite{egerton2004radiation}. Cela est particulièrement problématique pour les échantillons sensibles tels que les tissus biologiques. 
+    \paragraph{Problématique des échantillons sensibles.} Une problématique récurrente en microscopie est la détection de structures fines dont le seuil associé est de faible amplitude. Dans une telle situation, le \gls{snr} du spectre-image acquis doit être supérieur à un \gls{snr} minimum, nécessaire à la détection précise des structures fines. A cette fin, l'expérimentateur doit augmenter la dose totale d'électrons délivrée à chaque position de l'échantillon. Pour cela, il peut agir sur l'intensité du faisceau ou sur la durée d'exposition par position spatiale (appelé \emph{dwell time}). Quelle que soit l'approche, augmenter la dose totale accroît la détérioration subie par l'échantillon~\cite{egerton2004radiation}. Cela est particulièrement problématique pour les échantillons sensibles tels que les tissus biologiques. 
     %
-    \emph{Il en résulte un compromis entre une qualité d'image satisfaisante et la préservation de l'échantillon d'étude}. Pour illustrer cela, un exemple d'échantillon détérioré par une concentration trop importante d'énergie est donné à la \cref{fig-echantillon-deteriore}. Dès lors, des stratégies sont nécessaires afin d'améliorer la qualité du spectre-image (\ie{}, son \gls{snr}) sans augmenter la quantité d'énergie délivrée à l'échantillon.
+    Il en résulte un compromis entre une qualité d'image satisfaisante et la préservation de l'échantillon d'étude. Pour illustrer cela, un exemple d'échantillon détérioré par une concentration trop importante d'énergie est donné à la \cref{fig-echantillon-deteriore}. Dès lors, des stratégies sont nécessaires afin d'améliorer la qualité du spectre-image (\ie{}, son \gls{snr}) sans augmenter la quantité d'énergie délivrée à l'échantillon.
 
     \begin{figure}[t]
         \centering
@@ -455,7 +463,7 @@
     
     Cependant, la grande flexibilité du paramétrage du chemin d'acquisition ouvre la voie à une nouvelle alternative, celle d'accroître la dose d'électron par pixel (et donc le \gls{snr} associé), mais à ne visiter qu'un nombre réduit de positions spatiales en stoppant l'acquisition aléatoire avant son terme. Un algorithme de reconstruction d'image vient enfin compléter les positions manquantes en post-traitement. En paramétrant correctement la dose d'électrons par pixels et le nombre de positions visités, la dose d'électron utilisée est la même que pour les techniques d'acquisition standards et la dégradation de l'échantillon reste identique. 
     %
-    Cette façon de procéder a motivé l'usage de techniques de reconstruction performantes issues de la communauté du traitement du signal et il s'agit d'un domaine de recherche très actif en microscopie \gls{stem}~\cite{beche2016compressed,stevens2014potential} et \gls{sem}~\cite{anderson2013sparse} entre autres.
+    Cette façon de procéder a motivé l'usage de techniques de reconstruction performantes issues de la communauté du traitement du signal et il s'agit d'un domaine de recherche très actif en microscopies \gls{stem}~\cite{beche2016compressed,stevens2014potential} et \gls{sem}~\cite{anderson2013sparse} entre autres.
     %
     D'autre part, les performances de cette approche sont intimement liées au choix du chemin d'acquisition et différents travaux présentés à la \cref{sec-art-micro} se sont intéressés à la part d'aléatoire et de régularité à introduire dans ce choix. Certains d'entre eux ont également proposé d'acquérir l'image partielle de manière dynamique en déterminant à chaque instant d'acquisition le pixel à visiter à l'instant suivant.
     %
@@ -466,7 +474,7 @@
     Les efforts récents se sont concentrés sur la reconstruction en ligne du spectre-image dans une bande et sa visualisation afin de déterminer si l'élément d'intérêt est présent dans la région observée%
     %
     \footnote[][-10\baselineskip]{%
-    Il ne s'agit pas ici de reconstruire le spectre-image complet, mais seulement de sommer des bandes du spectre-image incomplet autours d'un seuil d'intérêt, puis de reconstruire l'image 2D partielle obtenue. Il ne s'agit pas d'une technique d'analyse complètement fiable puisque l'on visualise aussi les effets des seuils précédents, mais cela permet de donner une première idée quant à la présence de l'élément cherché au cours de l'acquisition.}%
+    Il ne s'agit pas ici de reconstruire le spectre-image complet, mais seulement de sommer des bandes du spectre-image incomplet autour d'un seuil d'intérêt, puis de reconstruire l'image 2D partielle obtenue. Il ne s'agit pas d'une technique d'analyse complètement fiable puisque l'on visualise aussi les effets des seuils précédents, mais cela permet de donner une première idée quant à la présence de l'élément cherché au cours de l'acquisition.}%
     . 
     Cela permettrait d'arrêter prématurément l'acquisition si l'élément est absent, préservant ainsi l'échantillon et accélérant la recherche d'une zone d'intérêt. 
     %

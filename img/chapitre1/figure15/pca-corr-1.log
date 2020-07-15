@@ -1,9 +1,9 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.10.17)  11 APR 2020 17:23
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.10.17)  12 JUL 2020 20:24
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**/home/etienne/ownCloud/Manuscrit/img/chapitre2/figure15/pca-corr-1.tikz
-(/home/etienne/ownCloud/Manuscrit/img/chapitre2/figure15/pca-corr-1.tikz
+**/home/etienne/ownCloud/Manuscrit/img/chapitre1/figure15/pca-corr-1.tikz
+(/home/etienne/ownCloud/Manuscrit/img/chapitre1/figure15/pca-corr-1.tikz
 LaTeX2e <2019-10-01> patch level 1
 (/home/etienne/.texlive/2019/texmf-dist/tex/latex/standalone/standalone.cls
 Document Class: standalone 2018/03/26 v1.3a Class to compile TeX sub-files stan
@@ -461,7 +461,7 @@ x
 e.tex
 (/home/etienne/.texmf/tex/latex/pgfplots/tex/tikzlibrarycolorbrewer.code.tex)))
 (/home/etienne/.texmf/tex/latex/style/colorbrewer.sty)
-(/home/etienne/ownCloud/Manuscrit/img/chapitre2/figure15//pca-corr-1.aux)
+(/home/etienne/ownCloud/Manuscrit/img/chapitre1/figure15//pca-corr-1.aux)
 \openout1 = `pca-corr-1.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 39.
@@ -546,26 +546,27 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 [1
 
 {/home/etienne/.texlive/2019/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-(/home/etienne/ownCloud/Manuscrit/img/chapitre2/figure15//pca-corr-1.aux) ) 
+(/home/etienne/ownCloud/Manuscrit/img/chapitre1/figure15//pca-corr-1.aux) ) 
 Here is how much of TeX's memory you used:
  28301 strings out of 492167
  724244 string characters out of 6123477
- 1335009 words of memory out of 5000000
+ 1334875 words of memory out of 5000000
  32274 multiletter control sequences out of 15000+600000
  4567 words of font info for 17 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 81i,10n,131p,813b,1958s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 71i,10n,119p,820b,1958s stack positions out of 5000i,500n,10000p,200000b,80000s
 </ho
 me/etienne/.texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb><
-/home/etienne/.texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb>
-</home/etienne/.texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb
-></home/etienne/.texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.p
-fb>
-Output written on /home/etienne/ownCloud/Manuscrit/img/chapitre2/figure15//pca-
-corr-1.pdf (1 page, 45849 bytes).
+/home/etienne/.texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb
+></home/etienne/.texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pf
+b></home/etienne/.texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.p
+fb></home/etienne/.texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5
+.pfb>
+Output written on /home/etienne/ownCloud/Manuscrit/img/chapitre1/figure15//pca-
+corr-1.pdf (1 page, 53309 bytes).
 PDF statistics:
- 27 PDF objects out of 1000 (max. 8388607)
- 19 compressed objects within 1 object stream
+ 31 PDF objects out of 1000 (max. 8388607)
+ 22 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  13 words of extra memory for PDF output out of 10000 (max. 10000000)
 

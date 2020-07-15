@@ -63,7 +63,7 @@
 
     % Texts
     \node[text width=2cm, align=center] (A) at (-1.7,5.5) {\footnotesize Pic de perte nulle};
-    \node[text width=2cm, align=center, above] (B) at (2.5,2) {\footnotesize Plasmon resonance};
+    \node[text width=2cm, align=center, above] (B) at (2.5,2) {\footnotesize Excitation collective};
     \node [text width=3cm, align=center] (C) at (10,7) {\footnotesize Pics de perte atomique};
 
     % Arrows between small pics and text

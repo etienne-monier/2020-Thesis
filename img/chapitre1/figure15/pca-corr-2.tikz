@@ -42,8 +42,8 @@
 
     \begin{axis}[%
         acp,
-        xlabel={$\mathbf{Y}_1$},
-        ylabel={$\mathbf{Y}_2$},
+        xlabel={$\mathbf{Y}_{1,:}$},
+        ylabel={$\mathbf{Y}_{2,:}$},
         ]
         \addplot+ [Dark2-5-1, only marks, mark size=0.5] table[x=x1, y=x2] {python/approximations_1.dat};
         \addplot+ [Dark2-5-2, only marks, mark size=0.5] table[x=y1, y=y2] {python/approximations_1.dat};

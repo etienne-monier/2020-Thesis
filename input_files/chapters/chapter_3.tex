@@ -8,15 +8,12 @@ Ce chapitre se focalise sur les images spatialement lisses, \ie{}, dont l'évolu
 
 \subsection{Contexte des images basses résolution}\label{sec-donnees-sous-echantillonnees}
 
-% la résolution au sens pouvoir séparateur dépend de l'instrument et est relativement fixée. Le nombre de pixels et la zone échantillonnée sont facilement choisis par l'expérimentateur et donc on va beaucoup jouer là-dessus.
-La première stratégie de réduction de dose est donc le sous-échantillonnage. Mais ce n'est pas systématique
-
 
 Les images basse résolution déjà présentées à la \cref{sec-prop-eels} sont acquises sur des échelles relativement grandes (typiquement 100nm) afin de visualiser les structures présentes dans l'échantillon. 
 %
 Or, le nombre de pixels que l'on peut s'autoriser à échantillonner est limité afin d'empêcher une trop grande détérioration de l'échantillon. 
 %
-C'est pourquoi les images \gls{eels} acquises sur de telles échelles sont volontairement fortement sous-échantillonnées, elles ont généralement une résolution relativement faible comparée au pouvoir séparateur de l'instrument, c'est-à-dire qu'un pixel d'une image basse résolution représente de nombreuses colonnes atomiques. 
+C'est pourquoi les images \gls{eels} acquises sur de telles échelles sont volontairement fortement sous-échantillonnées, elles ont généralement une résolution relativement faible comparée au pouvoir séparateur de l'instrument, \ie\ qu'un pixel d'une image basse résolution représente de nombreuses colonnes atomiques. 
 %
 Par exemple, l'image \gls{haadf} (acquise simultanément à l'image \gls{eels}) donnée sur la figure~\ref{fig-BR-haadf-b} a une taille de pixel de \np[nm]{2}, soit approximativement 20 colonnes atomiques, ou encore 2 fois (resp. 20 fois) le pouvoir de séparation du VG-HB501 (resp. du Nion UltraSTEM 200) dont dispose le \gls{lps}.
 %
@@ -24,7 +21,7 @@ Il en résulte que, dans le cas d'une acquisition complète du spectre-image, un
 
 En ce qui concerne les images basse résolution, les distorsions associées à l'acquisition, en particulier la dérive de l'échantillon, sont supposées être négligeables par rapport à la taille du pixel (ce qui n'est pas vrai pour les données haute résolution comme nous le verrons au \cref{ch-chapter_4}). Et puisque la résolution de l'image est faible, celle-ci est généralement spatialement lisse et rentre dans le cadre de ce chapitre.
 
-Il faut noter que l'acquisition d'une image \gls{haadf} requiert un temps d'exposition de l'ordre le la $\mu$s, contre un temps de l'ordre de la ms pour l'acquisition \gls{eels}, ce qui permet de visiter davantage de pixels à dose totale fixée. En général, cela permet de visualiser les structures suivant un angle de vue plus large et de localiser la zone d'intérêt, comme le montre la \cref{fig-BR-haadf-a}. A contrario, l'acquisition \gls{eels} (ainsi que l'image \gls{haadf} acquise de manière simultanée) est très localisée et sa taille est très réduite, comme le montre la \cref{fig-BR-haadf-b}.
+Il faut noter que l'acquisition d'une image \gls{haadf} requiert un temps d'exposition de l'ordre le la microseconde, contre un temps de l'ordre de la milliseconde pour l'acquisition \gls{eels}, ce qui permet de visiter davantage de pixels à dose totale fixée. En général, cela permet de visualiser les structures suivant un angle de vue plus large et de localiser la zone d'intérêt, comme le montre la \cref{fig-BR-haadf-a}. A contrario, l'acquisition \gls{eels} (ainsi que l'image \gls{haadf} acquise de manière simultanée) est très localisée et sa taille est très réduite, comme le montre la \cref{fig-BR-haadf-b}.
 
 \begin{figure}[t]
     \centering
@@ -82,7 +79,7 @@ Nous considérerons également une régularisation spectrale alternative basée 
 Les régularisations spatiale et spectrale décrites précédemment conduisent à deux formulations variationnelles différentes pour le problème de reconstruction de spectre-image \gls{eels}, qui sont détaillées dans les sections suivantes.
 
 %
-\section{La méthode SNN}
+\section{La méthode S2N}
 
 \subsection{Formulation}\label{s2n-formulation}
 
@@ -94,14 +91,14 @@ Les régularisations spatiale et spectrale décrites précédemment conduisent �
     \frac{\gls{ls2n}}{2} \frobnorm{\gls{X}\gls{D}} + 
     \gls{ms2n} ||\gls{X}||_*
 \end{equation}
-où \gls{D} est l'opérateur de gradient spatial discret appliqué à tous les canaux indépendamment. Ce problème d'optimisation appelé \gls{s2n} repose sur deux paramètres \gls{ls2n} et \gls{ms2n} ajustant respectivement les poids des régularisations spatiale et spectrales. Le choix de ces paramètres est discuté dans la sous-section suivante.
+où \gls{D} est l'opérateur de gradient spatial discret appliqué à tous les canaux indépendamment. Ce problème d'optimisation appelé \gls{s2n} repose sur deux paramètres \gls{ls2n} et \gls{ms2n} ajustant respectivement les poids des régularisations spatiale et spectrales. Le choix de ces paramètres est discuté dans la section suivante.
 
 
 \subsection{Estimation des paramètres de régularisation}\label{sec-s2n-param-tuning}
 
-Nous allons à présent discuter le choix des paramètres \gls{ls2n} et \gls{ms2n} ajustant les régularisations spatiale et spectrale dans la fonction objectif de \gls{s2n} décrite à l'équation~\eqref{eq-s2n}. Afin d'ajuster correctement la paire de paramètres\footnote{Afin d'alléger les notations, les lettres \gls{s2n} en indice sont omises dans cette sous-section.} $(\lambda,\mu)$, et en notant $\gls{Y}_{m,\gls{I}(n)}$ la $m$\textsuperscript{ième} composante du spectre  $\gls{Y}_{\gls{I}(n)}$ mesuré à la position spatiale indexée par $\gls{I}(n)$, la stratégie proposée repose sur l'hypothèse suivante
+Nous allons à présent discuter le choix des paramètres \gls{ls2n} et \gls{ms2n} ajustant les régularisations spatiale et spectrale dans la fonction objectif de \gls{s2n} décrite à l'équation~\eqref{eq-s2n}. Afin d'ajuster correctement la paire de paramètres\footnote{Afin d'alléger les notations, les lettres \gls{s2n} en indice sont omises dans cette section.} $(\lambda,\mu)$, et en notant $y_{m,\gls{I}(n)}$ la $m$\textsuperscript{ième} composante du spectre  $\gls{Y}_{\gls{I}(n)}$ mesuré à la position spatiale indexée par $\gls{I}(n)$, la stratégie proposée repose sur l'hypothèse suivante
 \begin{equation}
-    \mathrm{E}\left[ \left(  \gls{Y}_{m,\gls{I}(n)} - \gls{X}_{m,\gls{I}(n)}  \right)^2 \right] = \gls{sig}^2
+    \mathrm{E}\left[ \left(  y_{m,\gls{I}(n)} - x_{m,\gls{I}(n)}  \right)^2 \right] = \gls{sig}^2
 \end{equation}
 qui met en relation la variance du bruit $\gls{sig}^2$ avec l'erreur de reconstruction attendue en chaque bande et en chaque pixel.
 %
@@ -117,7 +114,7 @@ avec
 \begin{equation}
 \mathcal{J}\left(\lambda,\mu\right) \triangleq \left(\frac{1}{\gls{M}\gls{N}}\left\|\gls{Yi}-\gls{Xh}_{\gls{I}}{(\lambda,\mu)}\right\|_{\mathrm{F}}^2-\hat{\gls{sig}}^2\right)^2
 \end{equation}
-où $\hat{\gls{sig}}^2$ est une estimation de la variance du bruit (\cf\ \cref{subsec-formulation-3s}). Puisque la résolution du problème SNN est lourde d'un point de vue calculatoire, on préfère simplifier l'estimation de $\left(\lambda^{\textrm{opt}},\mu^{\textrm{opt}}\right)$ en fixant les paramètres de régularisation $(\lambda, \mu)$ comme suit
+où $\hat{\gls{sig}}^2$ est une estimation de la variance du bruit (\cf\ \cref{subsec-formulation-3s}). Puisque la résolution du problème S2N est lourde d'un point de vue calculatoire, on préfère simplifier l'estimation de $\left(\lambda^{\textrm{opt}},\mu^{\textrm{opt}}\right)$ en fixant les paramètres de régularisation $(\lambda, \mu)$ comme suit
 \begin{equation*}
 \left\{
 \begin{array}{cc}
@@ -128,15 +125,15 @@ où $\hat{\gls{sig}}^2$ est une estimation de la variance du bruit (\cf\ \cref{s
 \end{equation*}
 où $\lambda^{\circ}$, $\mu^{\circ}$ et $c^{\circ}$ sont successivement estimés en résolvant
 \begin{align}
-\lambda^{\circ} &\in \argmin_{\lambda\in\mathcal{G}_{\lambda}} \mathcal{J}(\lambda,0) \label{eq-adjust_lambdaSNN}\\
+\lambda^{\circ} &\in \argmin_{\lambda\in\mathcal{G}_{\lambda}} \mathcal{J}(\lambda,0) \label{eq-adjust_lambdaS2N}\\
 %
-\mu^{\circ} &\in \argmin_{\mu\in\mathcal{G}_{\mu}} \mathcal{J}(0,\mu) \label{eq-adjust_muSNN}\\
+\mu^{\circ} &\in \argmin_{\mu\in\mathcal{G}_{\mu}} \mathcal{J}(0,\mu) \label{eq-adjust_muS2N}\\
 %
-c^\circ &\in \argmin_{c\in\mathcal{G}_c} \mathcal{J}(c\lambda^{\circ},c\mu^{\circ})\label{eq-adjust_cSNN}
+c^\circ &\in \argmin_{c\in\mathcal{G}_c} \mathcal{J}(c\lambda^{\circ},c\mu^{\circ})\label{eq-adjust_cS2N}
 \end{align} 
 respectivement sur les grilles de recherches $\mathcal{G}_{\lambda}$, $\mathcal{G}_{\mu}$ et $\mathcal{G}_{c}$ construites dynamiquement à l'aide d'un processus dichotomique. 
-Les deux premières étapes \eqref{eq-adjust_lambdaSNN} et \eqref{eq-adjust_muSNN} ajustent de manière indépendante les poids des régularisations spatiale et spectrale présentes dans la fonction coût \eqref{eq-s2n} de \gls{s2n}.
-La troisième étape \eqref{eq-adjust_cSNN} vise à réajuster les paramètres $\lambda^{\circ}$ et $\mu^{\circ}$ afin de réduire l'impact des régularisations spatiale et spectrale considérés conjointement tout en préservant leurs proportions respectives dans l'équation~\eqref{eq-s2n}.
+Les deux premières étapes \eqref{eq-adjust_lambdaS2N} et \eqref{eq-adjust_muS2N} ajustent de manière indépendante les poids des régularisations spatiale et spectrale présentes dans la fonction coût \eqref{eq-s2n} de \gls{s2n}.
+La troisième étape \eqref{eq-adjust_cS2N} vise à réajuster les paramètres $\lambda^{\circ}$ et $\mu^{\circ}$ afin de réduire l'impact des régularisations spatiale et spectrale considérés conjointement tout en préservant leurs proportions respectives dans l'équation~\eqref{eq-s2n}.
 
 %
 \section{La méthode 3S}
@@ -144,8 +141,8 @@ La troisième étape \eqref{eq-adjust_cSNN} vise à réajuster les paramètres $
 \subsection{Formulation}\label{subsec-formulation-3s}
 
 Afin de promouvoir la propriété faible-rang du spectre-image \gls{eels} reconstruit, l'approche \gls{s2n} présentée dans la section précédente repose sur une pénalisation faible-rang induite par la norme nucléaire. A l'inverse, l'approche \gls{3s} décrite à présent impose cette propriété à l'aide d'une contrainte forte.
-Plus précisément, l'image à recouvrer est supposée s'écrire $\gls{X} = \gls{H}\gls{S}$ où \gls{H} est une matrice orthonormale de taille \taille{M}{M} spécifiant la base des composantes principales propres aux données et $\gls{S}=[\mathbf{s}_1, \dots, \mathbf{s}_P]$ est une matrice de taille \taille{M}{P} rassemblant les coefficients de représentation associés aux spectres $\gls{X}_n$ dans cette base.
-Dans ce contexte, la base \gls{H} est supposée être estimée a priori en appliquant une \gls{acp} aux données observées \gls{Yi}%
+Plus précisément, l'image à recouvrer est supposée s'écrire $\gls{X} = \gls{H}\gls{S}$ où \gls{H} est une matrice orthonormale de taille \taille{M}{M} spécifiant la base des composantes principales propres aux données et $\gls{S}=[\mathbf{s}_1, \dots, \mathbf{s}_P]$ est une matrice de taille \taille{M}{P} rassemblant les coefficients de représentation associés aux spectres $\mathbf{x}_n$ dans cette base.
+Dans ce contexte, la base \gls{H} est supposée être estimée a priori en appliquant une \gls{acp} aux données observées \gls{Yi}.%
 %
 \`A noter que, comme expliqué à la \cref{sec-ech-sensibles}, le \gls{snr} obtenu en réalisant une acquisition partielle de la scène est supérieur à celui obtenu avec un échantillonnage conventionnel. Par conséquent, l'espace engendré par les premières composantes dont les puissances sont les plus élevées constitue une estimation fiable du véritable sous-espace signal (dont la dimension est notée \gls{Rt}).
 
@@ -153,7 +150,7 @@ Dans ce contexte, la base \gls{H} est supposée être estimée a priori en appli
 
 De plus, lorsque les vecteurs propres $\mathbf{h}_1,\dots,\mathbf{h}_M$ identifiés par \gls{acp} et composant les colonnes de \gls{H} sont ordonnés par rapport aux valeurs propres triées par valeurs décroissantes, les vecteurs de représentation correspondants $\gls{S}_{1, :},\dots,\gls{S}_{M, :}$ sont supposés être de puissance décroissante, où $\gls{S}_{m, :}$ désigne la $m$\textsuperscript{ième} ligne de \gls{S}. En particulier, si les spectres de l'image évoluent dans un sous-espace de dimension \gls{Rt} avec $\gls{Rt}\leq\gls{M}$, la norme quadratique des vecteurs de représentation non pertinents est supposé être proche de 0 pour $m>\gls{Rt}$. Cela suggère une pénalisation pondérée de la forme $\sum_{m=1}^{M}w_m||\gls{S}_{m, :}||_2^2$ avec des poids croissants $(w_m)_{m=1,\dots,M}$.
 %
-Le dimensionnement des poids discuté à la section suivante suggère que $w_m$ soit infini pour $m>\gls{R}$ où \gls{R} est une estimation de la véritable dimension \gls{Rt} ($\gls{R}\leq\gls{M}$). Cette règle implique systématiquement que $\gls{S}_{m, :}$ soit un vecteur nul pour $m> \gls{R}$. En d'autres termes, le problème d'optimisation \gls{3s} peut être écrit de manière équivalente par rapport à une matrice $\gls{S}_{1:R, :}$ de taille \taille{R}{P}.
+Le dimensionnement des poids qui sera discuté à la section suivante suggère que $w_m$ soit infini pour $m>\gls{R}$ où \gls{R} est une estimation de la véritable dimension \gls{Rt} ($\gls{R}\leq\gls{M}$). Cette règle implique systématiquement que $\gls{S}_{m, :}$ soit un vecteur nul pour $m> \gls{R}$. En d'autres termes, le problème d'optimisation \gls{3s} peut être écrit de manière équivalente par rapport à une matrice $\gls{S}_{1:R, :}$ de taille \taille{R}{P}.
 
 Finalement, l'approche \gls{3s} proposée consiste à résoudre le problème d'optimisation suivant
 \begin{align}
@@ -168,13 +165,13 @@ Finalement, l'approche \gls{3s} proposée consiste à résoudre le problème d'o
 \end{align}
 où \gls{m3s} est un paramètre permettant d'ajuster l'impact des régularisations spatiale et spectrale et où $\gls{H}_{1:\gls{R}}$ correspond à la matrice de taille \taille{M}{R} contenant les \gls{R} premières colonnes de \gls{H}. Dans l'équation~\eqref{eq-3s}, le terme d'attache aux données dans \eqref{eq-MC-regul} est converti en une contrainte puisque la distance euclidienne au carré entre les observations et la solution est supposée être bornée par la variance du bruit $\gls{sig}^2$.
 %
-La borne peut être supérieure à $\gls{sig}^2$, elle peut valoir par exemple $\frac{1}{R}F_{\chi^2}^{-1}(1-\alpha)\sigma^2$ où $F_{\chi^2}$ est la fonction cumulative de la loi du $\chi^2$ et $\alpha$ est la probabilité de ne pas respecter la contrainte quand bien même les éléments de $\gls{H}_{1:\gls{R}}^T\gls{Y}_{\gls{I}(n)}-\gls{S}_{\gls{I}(n)}$ suivent réellement une loi gaussienne centrée de variance $\sigma^2$. En pratique, lorsque l'on augmente la borne, l'image reconstruite produite est davantage lissée et  choisir $\sigma^2$ comme borde produit des résultats visuellement meilleurs.
+La borne peut être supérieure à $\gls{sig}^2$, elle peut valoir par exemple $\frac{1}{R}F_{\chi^2}^{-1}(1-\alpha)\sigma^2$ où $F_{\chi^2}$ est la fonction cumulative de la loi du $\chi^2$ et $\alpha$ est la probabilité de ne pas respecter la contrainte quand bien même les éléments de $\gls{H}_{1:\gls{R}}^T\gls{Y}_{\gls{I}(n)}-\gls{S}_{\gls{I}(n)}$ suivent réellement une loi gaussienne centrée de variance $\sigma^2$. En pratique, lorsque l'on augmente la borne, l'image reconstruite produite est davantage lissée et  choisir $\sigma^2$ comme borne produit des résultats visuellement meilleurs.
 %
 
-En pratique, une estimation $\gls{hsig}^2$ de la variance du bruit  $\gls{sig}^2$ et une estimation \gls{R} de \gls{Rt} peuvent être obtenus à partir d'une décomposition en éléments propres de la matrice de covariance empirique des observations (\cf\ sections~\ref{subsec-3s-poids} et \ref{subsec-3s-acp}). L'image reconstruite est finalement définie comme $\gls{Xh} = \gls{H}_{1:\gls{R}}\gls{S}_{1:\gls{R}, :}$\footnote{Afin d'alléger l'écriture, et ce malgré un léger abus de notations, les indices $\cdot_{1:\gls{R}}$ et $\cdot_{1:\gls{R}, :}$ seront omis dans la suite du chapitre.}.
+En pratique, une estimation $\gls{hsig}^2$ de la variance du bruit  $\gls{sig}^2$ et une estimation \gls{R} de \gls{Rt} peuvent être obtenus à partir d'une décomposition en éléments propres de la matrice de covariance empirique des observations (\cf\ sections~\ref{subsec-3s-poids} et \ref{subsec-3s-acp}). L'image reconstruite est finalement définie comme\footnote{Afin d'alléger l'écriture, et ce malgré un léger abus de notations, les indices $\cdot_{1:\gls{R}}$ et $\cdot_{1:\gls{R}, :}$ seront omis dans la suite du chapitre.} $\gls{Xh} = \gls{H}_{1:\gls{R}}\gls{S}_{1:\gls{R}, :}$.
 Il y a un triple avantage à formuler le problème de reconstruction comme énoncé ci-dessus. 
 %
-D'abord, l'ACP impose explicitement une structure faible rang du spectre-image à reconstruire (comme le fait la norme nucléaire pour S2N). Ensuite, comme cela sera vu dans la \cref{subsec-implementation-3s} concernant l'implémentation de \gls{3s}, elle réduit fortement la charge calculatoire de l'algorithme de minimisation résultante puisque, contrairement à S2N, il n'y a plus besoin de réaliser une SVD par itération et puisque \gls{R} est censé être significativement inférieur à \gls{M}. Enfin, la norme nucléaire n'est pas une relaxation optimale de la norme puisqu'il biaise fortement les données.
+D'abord, l'ACP impose explicitement une structure faible rang du spectre-image à reconstruire (comme le fait la norme nucléaire pour S2N). Ensuite, comme cela sera vu dans la \cref{subsec-implementation-3s} concernant l'implémentation de \gls{3s}, elle réduit fortement la charge calculatoire de l'algorithme de minimisation résultantpuisque R est censé être significativement inférieur à M et , contrairement à S2N, il n’y a plus besoin de réaliser une SVD. Enfin, la norme nucléaire n'est pas une relaxation optimale du rang puisqu'il biaise fortement les données.
 
 
 \subsection{Estimation des poids et de la dimension du sous-espace}\label{subsec-3s-poids}
@@ -189,13 +186,13 @@ où \gls{E} est une matrice de bruit de taille \taille{M}{N}. Ce modèle d'acqui
 \begin{equation}\label{eq-weights-sp-model}
     \gls{H}^T\gls{Y} = \gls{S} + \mathbf{N}
 \end{equation}
-avec $\mathbf{N} \triangleq \gls{H}^T\gls{E}$. Dans~\eqref{eq-weights-sp-model}, $\mathbf{N} = [\mathbf{N}_{1, :}^T, \dots, \mathbf{N}_{\gls{M}, :}^T]$ représente une matrice de perturbations dont les lignes $(\mathbf{N}_{m, :})_{m=1,\dots,\gls{M}}$ sont supposées être indépendantes et identiquement distribuées (i.i.d.) selon la distribution normale
+avec $\mathbf{N} \triangleq \gls{H}^T\gls{E}$. Dans~\eqref{eq-weights-sp-model}, $\mathbf{N}$ représente une matrice de perturbations dont les lignes $(\mathbf{N}_{m, :})_{m=1,\dots,\gls{M}}$ sont supposées être indépendantes et identiquement distribuées (i.i.d.) selon la distribution normale
 \begin{equation}
-    \mathbf{N}_{m, :} \sim \mathcal{N}\left(\boldsymbol{0}_{\gls{N}},\gls{sig}^2 \boldsymbol{I}_{\gls{N}}\right).
+    \mathbf{N}_{m, :} \sim \mathcal{N}\left(\boldsymbol{0}_{\gls{N}},\gls{sig}^2 \mathds{1}_{\gls{N}}\right).
 \end{equation}
 Les lignes $(\gls{S}_{m, :})_{m=1,\dots,\gls{M}}$ de \gls{S} sont supposées i.i.d. et on leur assigne la distribution gaussienne conjuguée suivante
 \begin{equation}
-    \gls{S}_{m,:} \sim \mathcal{N}\left(\boldsymbol{0}_{\gls{N}},\eta^2_{m} \boldsymbol{I}_{\gls{N}}\right).
+    \gls{S}_{m,:} \sim \mathcal{N}\left(\boldsymbol{0}_{\gls{N}},\eta^2_{m} \mathds{1}_{\gls{N}}\right).
 \end{equation}
 Calculer l'estimateur du \gls{map} de \gls{S} consiste à résoudre
 \begin{equation}
@@ -210,13 +207,13 @@ Cependant, les variances $\eta_m$ des composantes $(\gls{S}_{m, :})_{m=1,\dots,\
 \begin{equation}
     \gls{d}_m = \eta_m^2 + \gls{sig}^2
 \end{equation}
-où $\gls{d}_m$ peut être approximé pour tout $m$ par la valeur propre empirique estimée par \gls{acp}. Toutefois, il est important de rappeler que, dans le cadre applicatif de cette étude, le nombre de canaux \gls{M} est généralement du même ordre de grandeur que le nombre d'échantillons \gls{N}. Ainsi, l'\gls{acp} conduite afin d'estimer les valeurs propres $\gls{d}_1, \dots, \gls{d}_M$ pourrait souffrir d'un manque d'échantillons et celle-ci fournirait des estimées  peu fiables. Afin d'améliorer cette estimation, la section suivante propose une correction à appliquer aux valeurs propres issues de l'\gls{acp}. Finalement, $\gls{d}_m$ est approximée par $\hat{d}_m^2$ est estimée par \gls{acp} après que la correction détaillée dans la \cref{subsec-3s-acp} ait été appliquée. D'autre part, l'estimée $\gls{hsig}^2$ de $\gls{sig}^2$ est définie comme la valeur propre corrigée $\hat{d}_m^2$ minimale (dont la multiplicité peut être supérieure à un). Les poids sont finalement choisis comme
+où $\gls{d}_m$ peut être approché pour tout $m$ par la valeur propre empirique estimée par \gls{acp}. Toutefois, il est important de rappeler que, dans le cadre applicatif de cette étude, le nombre de canaux \gls{M} est généralement du même ordre de grandeur que le nombre d'échantillons \gls{N}. Ainsi, l'\gls{acp} conduite afin d'estimer les valeurs propres $\gls{d}_1, \dots, \gls{d}_M$ pourrait souffrir d'un manque d'échantillons et celle-ci fournirait des estimées  peu fiables. Afin d'améliorer cette estimation, la section suivante propose une correction à appliquer aux valeurs propres issues de l'\gls{acp}. Finalement, $\gls{d}_m$ est approché par $\hat{d}_m^2$ et estimée par \gls{acp} après que la correction détaillée dans la \cref{subsec-3s-acp} ait été appliquée. D'autre part, l'estimée $\gls{hsig}^2$ de $\gls{sig}^2$ est définie comme la valeur propre corrigée $\hat{d}_m^2$ minimale (dont la multiplicité peut être supérieure à un). Les poids sont finalement choisis comme
 \begin{equation}\label{eq-weights-form}
     \gls{w}_m = \frac{\gls{hsig}^2}{\hat{d}_m^2 - \gls{hsig}^2}.
 \end{equation}
 Une illustration de la dépendance entre $\hat{d}_m^2$ et $\gls{w}_m$ est donnée à la \cref{fig-S_constraint}. 
 
-De plus, la règle~\eqref{eq-weights-form} suggère aussi la définition d'une estimée \gls{R} de la dimension du sous-espace signal réel \gls{Rt} comme l'indice $m$ maximum tel que $\hat{d}_{m}^2 > \gls{hsig}^2$. Pour $m=\gls{R}+1, \dots, \gls{M}$, les poids sont fixés  à $\gls{w}_m = \infty$ puisque les vecteurs de représentation correspondants ne sont censés être composé de bruit uniquement. Par conséquent, ces composantes $(\gls{S}_m)_{m=\gls{R}+1,\dots,\gls{M}}$ sont contraintes à être nulles et le problème d'optimisation~\eqref{eq-3s} de \gls{3s} peut être reformulé afin de minimiser par rapport à une matrice de taille \taille{R}{P}.
+De plus, la règle~\eqref{eq-weights-form} suggère aussi la définition d'une estimée \gls{R} de la dimension du sous-espace signal réel \gls{Rt} comme l'indice $m$ maximum tel que $\hat{d}_{m}^2 > \gls{hsig}^2$. Pour $m=\gls{R}+1, \dots, \gls{M}$, les poids sont fixés  à $\gls{w}_m = \infty$ puisque les vecteurs de représentation correspondants ne sont censés être composés de bruit uniquement. Par conséquent, ces composantes $(\gls{S}_m)_{m=\gls{R}+1,\dots,\gls{M}}$ sont contraintes à être nulles et le problème d'optimisation~\eqref{eq-3s} de \gls{3s} peut être reformulé afin de minimiser par rapport à une matrice de taille \taille{R}{P}.
 
 \begin{figure}[ht]
     \centering
@@ -226,23 +223,23 @@ De plus, la règle~\eqref{eq-weights-form} suggère aussi la définition d'une e
 \end{figure}
 
 
-\subsection{Correction des valeur propres estimées par ACP}\label{subsec-3s-acp}
+\subsection{Correction des valeurs propres estimées par ACP}\label{subsec-3s-acp}
 
 La technique d'estimation des poids de \gls{3s} détaillée à la section précédente requiert une estimation des variances $\gls{d}_1,\dots,\gls{d}_{\gls{M}}$ des composantes du signal dans la base des colonnes de \gls{H}. Quand \gls{H} est identifié par \gls{acp}, cette estimation est généralement réalisée en appliquant une décomposition en éléments propres de la matrice de covariance empirique des spectres observés, \ie{},
 \begin{equation}
-    \hat{\Sigma} = \frac{1}{\gls{N}}\gls{Yi}\gls{Yi}^T = \mathbf{H}\mathbf{G}\mathbf{H}^T
+    \hat{\boldsymbol\Sigma} = \frac{1}{\gls{N}}\gls{Yi}\gls{Yi}^T = \mathbf{H}\mathbf{G}\mathbf{H}^T
 \end{equation}
-où $\mathbf{G} = \mathrm{diag}(\tilde{d}_1^2, \dots, \tilde{d}_{\gls{M}}^2)$. \`A Noter que les valeurs propres empiriques sont triées par ordre décroissant et sont positives, \ie{}, $\tilde{d}_1^2 \geq \tilde{d}_2^2 \geq \dots \geq \tilde{d}_{\gls{M}}^2\geq 0$. Le défaut principal de cet estimateur simple est qu'il est construit afin de donner une estimée fiable quand le nombre d'échantillons \gls{N} est suffisamment grand par rapport à la dimension des observations \gls{M}. Toutefois, ce n'est pas le cas de notre contexte applicatif puisque \gls{N} est du même ordre de grandeur que \gls{M}. Plusieurs stratégies ont été proposées dans la littérature afin d'améliorer l'estimation des valeurs propres. Afin de corriger les valeurs propres empiriques, une alternative consiste à avoir recours à l'estimateur de Stein défini comme~\cite{mestre2008improved}
+où $\mathbf{G} = \mathrm{diag}(\tilde{d}_1^2, \dots, \tilde{d}_{\gls{M}}^2)$. \`A noter que les valeurs propres empiriques sont triées par ordre décroissant et sont positives, \ie{}, $\tilde{d}_1^2 \geq \tilde{d}_2^2 \geq \dots \geq \tilde{d}_{\gls{M}}^2\geq 0$. Le défaut principal de cet estimateur simple est qu'il est construit afin de donner une estimée fiable quand le nombre d'échantillons \gls{N} est suffisamment grand par rapport à la dimension des observations \gls{M}. Toutefois, ce n'est pas le cas de notre contexte applicatif puisque \gls{N} est du même ordre de grandeur que \gls{M}. Plusieurs stratégies ont été proposées dans la littérature afin d'améliorer l'estimation des valeurs propres. Afin de corriger les valeurs propres empiriques, une alternative consiste à avoir recours à l'estimateur de Stein défini comme~\cite{mestre2008improved}
 \begin{equation}\label{eq-Stein-corr}
 \hat{d}^2_m = 
 \frac{\tilde{d}^2_m}{1+ \frac{1}{N}\sum_{\substack{j=1\\j\neq m }}^M \frac{\tilde{d}^2_m+\tilde{d}^2_j}{\tilde{d}^2_m-\tilde{d}^2_j}}.
 \end{equation}
-Cependant, cet estimateur n'impose pas la propriété de non-croissance et quelques valeurs propres corrigées $(\hat{d}_m)_{m=1,\dots,\gls{M}}$ peuvent être négatives. Pour corriger ce problème, une régression isotonique a été proposée dans~\cite{LinPerl1985} comme post-traitement. Cette procédure détaillée à l'annexe~\ref{abstr-regression-isotonique} renvoie généralement un ensemble de valeur propres corrigées et leur multiplicité associes. De plus, une estimation $\gls{hsig}^2$ de la variance du bruit $\gls{sig}^2$ requise dans la définition des poids~\eqref{eq-weights-form} peut être définie comme la valeur propre corrigée de norme minimale dont la multiplicité doit valoir $\gls{M} - \gls{R}$.
+Cependant, cet estimateur n'impose pas la propriété de non-croissance et quelques valeurs propres corrigées $(\hat{d}_m)_{m=1,\dots,\gls{M}}$ peuvent être négatives. Pour corriger ce problème, une régression isotonique a été proposée dans~\cite{LinPerl1985} comme post-traitement. Cette procédure détaillée à l'annexe~\ref{abstr-regression-isotonique} renvoie généralement un ensemble de valeur propres corrigées et leur multiplicités associées. De plus, une estimation $\gls{hsig}^2$ de la variance du bruit $\gls{sig}^2$ requise dans la définition des poids~\eqref{eq-weights-form} peut être définie comme la valeur propre corrigée de valeur minimale dont la multiplicité est $\gls{M} - \gls{R}$.
 
 %
 \section{Implémentation}
 
-Cette section décrit les algorithmique pour résoudre les problèmes d'optimisation~\eqref{eq-s2n} et \eqref{eq-3s}. Tous deux reposent sur l'algorithme \gls{fista}~\cite{beck_fast_2009} présenté dans la section suivante.
+Cette section décrit les algorithmes pour résoudre les problèmes d'optimisation~\eqref{eq-s2n} et \eqref{eq-3s}. Tous deux reposent sur l'algorithme \gls{fista}~\cite{beck_fast_2009} dont la formulation générique est rappelée dans la section suivante..
 
 \subsection{L'algorithme FISTA}\label{sec-fista}
 
@@ -264,7 +261,7 @@ où $\mathrm{prox}_{g}$ est l'opérateur proximal associé à $g(\cdot)$. Seulem
 \end{equation}
 Pour accélérer cette méthode, les travaux de Nesterov~\cite{nesterov1983method} ont conduit à un algorithme \guillemets{optimal} d'ordre un convergeant en $\mathcal{O}(1/i^2)$ à condition que $f$ et $g$ soient \emph{lisses}. Enfin, l'algorithme \gls{fista} proposé par Beck et Teboulle affiche un taux de convergence identique pour une fonction $g$ possiblement non-lisse et sera utilisé pour implémenter les méthodes S2N et 3S. En particulier, pour tout $L> L_{f}$, l'algorithme \gls{fista} donné à l'algorithme~\ref{algo-FISTA} converge vers une solution de ~\eqref{eq:GeneralOP}.
 
-Les implémentations spécifiques aux problèmes~\eqref{eq-s2n} et \eqref{eq-3s} considérés sont présentées dans les sous-sections suivantes.
+Les implémentations spécifiques aux problèmes~\eqref{eq-s2n} et \eqref{eq-3s} considérés sont présentées dans les sections suivantes.
 
 \begin{algorithme}
     \begin{minipage}{\textwidth}
@@ -293,16 +290,16 @@ Afin de résoudre~\eqref{eq-s2n}, la méthode \gls{s2n} consiste à adopter la d
 \end{align}
 Le gradient associé à $f(\cdot)$ requis à la ligne \ref{algostep:gradient} de l'algorithme~\ref{algo-FISTA} est donné par
 \begin{equation}
-    \nabla f(\gls{X}) = (\gls{X}\Phi - \gls{Yi})\Phi^T - \gls{ls2n} \gls{X} \Delta
+    \nabla f(\gls{X}) = (\gls{X}\gls{Phi} - \gls{Yi})\gls{Phi}^T - \gls{ls2n} \gls{X} \Delta
 \end{equation}
-où $\Delta = -\gls{D}\gls{D}^T$ est l'opérateur de laplacien spatial discret et $\phi$ est l'opérateur de sous-échantillonnage tel que $\gls{X}_{\gls{I}} = \gls{X}\Phi$.
+où $\Delta = -\gls{D}\gls{D}^T$ est l'opérateur de laplacien spatial discret et \gls{Phi} est l'opérateur de sous-échantillonnage tel que $\gls{X}_{\gls{I}} = \gls{X}\gls{Phi}$.
 Une borne supérieure de $L_f$ est obtenu par
 \begin{equation}
     ||\nabla f(\gls{X})||\leq (\underbrace{1+\gls{ls2n} \left\|\Delta\right\|}_{L})\ ||\gls{X}||
 \end{equation}
 où $\left\|\Delta\right\|$ est la norme spectrale de l'opérateur de laplacien spatial discret, qui vaut 8 en dimension 2. Une borne supérieure de la constante de Lipschitz associée à $\nabla f$ est donc $L= 1 +8\gls{ls2n}$. 
 
-De plus, en notant $\gls{X}=\mathbf{U}\boldsymbol{\Sigma} \mathbf{V}^T$ la décomposition en valeurs singulières de \gls{X}, où $\boldsymbol{\Sigma} = \mathrm{diag}(\mu_i)$; l'opérateur proximal associé à $g(\cdot)$ est~\cite{cai1956singular}
+De plus, en notant $\gls{X}=\mathbf{U}\boldsymbol{\Sigma} \mathbf{V}^T$ la décomposition en valeurs singulières de \gls{X}, où $\boldsymbol{\Sigma} = \mathrm{diag}(\mu_i)$, l'opérateur proximal associé à $g(\cdot)$ est~\cite{cai1956singular}
 \begin{align}
     \mathrm{prox}_{g/L}(\gls{X}) &\triangleq \argmin_{\mathbf{T}} 
                                     \left\{ \frac{g(\mathbf{T})}{L} + \frac{1}{2}\frobnorm{\mathbf{T} - \gls{X}} \right\}\\
@@ -325,8 +322,8 @@ Concernant le problème~\eqref{eq-3s}, la méthode \gls{3s} proposée repose sur
     %
     g(\gls{S}) &= 
     \sum_{n=1}^{\gls{N}} \iota_{
-        \mathcal{B}(\gls{H}^T\gls{Y}_{\gls{I}(n)},\sqrt{\gls{R}}\gls{hsig})
-    }(\gls{S}_{\gls{I}(n)})
+        \mathcal{B}(\gls{H}^T\mathbf{y}_{\gls{I}(n)},\sqrt{\gls{R}}\gls{hsig})
+    }(\mathbf{s}_{\gls{I}(n)})
     \label{eq-3S_g}
 \end{align}
 où
@@ -350,7 +347,7 @@ De manière similaire à \gls{s2n}, une borne supérieure de $L_f$ est obtenue p
 \end{equation}
 conduisant à $L = 8+\gls{m3s}\max_{m}\left\{\gls{w}_{m}\right\}$.
 
-De plus, comme nous le voyons à l'équation~\eqref{eq-3S_g}, la fonction $g(\cdot)$ est séparable relativement aux indices des pixels $n \in \llbracket 1,\gls{N}\rrbracket$. Par conséquent, l'opérateur proximal associé à $g(\cdot)$ consiste à projeter $\gls{S}_{\gls{I}(n)}$ sur $\mathcal{B}(\gls{H}^T\gls{Y}_{\gls{I}(n)},\sqrt{\gls{R}}\gls{hsig})$ pour tout $n\in \llbracket 1,\gls{N}\rrbracket$.
+De plus, comme nous le voyons à l'équation~\eqref{eq-3S_g}, la fonction $g(\cdot)$ est séparable relativement aux indices des pixels $n \in \llbracket 1,\gls{N}\rrbracket$. Par conséquent, l'opérateur proximal associé à $g(\cdot)$ consiste à projeter $\gls{S}_{\gls{I}(n)}$ sur $\mathcal{B}(\gls{H}^T\mathbf{y}_{\gls{I}(n)},\sqrt{\gls{R}}\gls{hsig})$ pour tout $n\in \llbracket 1,\gls{N}\rrbracket$.
 
 \subsection{Etude de la complexité}
 
@@ -366,7 +363,7 @@ En plus de la complexité algorithmique étudiée ci-dessus, les temps d'exécut
     \def\arraystretch{1.5}
     \begin{tabular}{b{5cm}cc}
         \toprule
-        Line&SNN&SSS\\
+        Line&S2N&3S\\
         \midrule
         Line~\ref{LigneAlgo1} (gradient descent)        &$\mathcal{O}(\gls{M}\gls{P})$      &$\mathcal{O}(\gls{R} \gls{P})$\\
         Line~\ref{LigneAlgo1} (proximal operator)       &$\mathcal{O}(\gls{M}\gls{P}^2)$    &$\mathcal{O}(\gls{R} \gls{N})$\\
@@ -395,9 +392,9 @@ Les performances des méthodes proposées sont évaluées à l'aide d'expérienc
 où \gls{X} est le spectre-image non bruité et \gls{E} est la matrice de bruit gaussien.
 Afin de mimer une aquisition synthétique réaliste, l'image idéale \gls{X} est obtenue par mélange linéaire suivant le modèle $\gls{X} = \mathbf{M}\mathbf{A}$ donné à la section~\ref{sec-demelange} qui décrit la répartition spatiale de matériaux au sein d'un échantillon observé. La matrice $\mathbf{M}=[\mathbf{m}_1, \dots, \mathbf{m}_{N_c}]$ de taille $M\times N_c$ rassemble les $N_c$ spectres associés aux endmembers et $\mathbf{A} = [\mathbf{a}_1, \dots, \mathbf{a}_P]$ de taille $N_c\times P$ correspond aux abondances des endmembers pour chaque pixel.
 
-\paragraph{Choix de la matrice d'endmembers $\mathbf{M}$.} Simuler un spectre EELS complet avec différents seuils et des structures fines associées à chaque seuil est compliqué. C'est pourquoi des spectres représentatifs $\mathbf{m}_1,\dots,\mathbf{m}_{N_c}$ ont été directement extraits de données réelles déjà étudiées pour leur intérêt médical : une section de rein (tissu biologique) incrustée dans une résine et contenant des calcifications~\cite{gay2020nanoscale}. Pour des échantillons biologiques aussi complets, le nombre d'endmember $N_c$ doit être ajusté pour chaque jeu de données et est généralement compris entre 3 et 5. Ici, le nombre d'endmember extraits est fixé à $N_c=4$. L'extraction des endmembers est réalisée en utilisant l'algorithme VCA, un algorithme d'extraction d'endmember populaire initialement développé pour imagerie hyperspectrale mais qui est maintenant fréquemment utilisé dans la communauté \gls{eels}, sa description est donnée à la section~\ref{sec-demelange}.
+\paragraph{Choix de la matrice d'endmembers $\mathbf{M}$.} Simuler un spectre EELS complet avec différents seuils et des structures fines associées à chaque seuil est compliqué. C'est pourquoi des spectres représentatifs $\mathbf{m}_1,\dots,\mathbf{m}_{N_c}$ ont été directement extraits de données réelles déjà étudiées pour leur intérêt médical : une section de rein (tissu biologique) incrustée dans une résine et contenant des calcifications~\cite{gay2020nanoscale}. Pour des échantillons biologiques aussi complets, le nombre d'endmembers $N_c$ doit être ajusté pour chaque jeu de données et est généralement compris entre 3 et 5. Ici, le nombre d'endmembers extraits est fixé à $N_c=4$. L'extraction des endmembers est réalisée en utilisant l'algorithme VCA, un algorithme d'extraction d'endmember populaire initialement développé pour l'imagerie hyperspectrale mais qui est maintenant fréquemment utilisé dans la communauté \gls{eels}, sa description est donnée à la section~\ref{sec-demelange}.
 %
-Les spectres sont représentés à la figure~\ref{fig-spectres-synth} où quatre seuils caractéristiques révèlent la présence d'éléments particuliers : carbone ($K$-seuil à 285~eV), calcium ($L_{2,3}$-seuil à 350~eV), azote ($K$-seuil à 400~eV) et oxygène ($K$-seuil à 530~eV). Ces composantes ne correspondent pas à des composés chimiques bien déterminés. Néanmoins, pour plus de simplicité, par la suite, les endmembers vont être associés à des matériaux particuliers et seront désignés sous les noms de calcification (avec le suil Ca-$L_{2, 3}$), résine, organique 1 (avec le seuil N-$K$) et organique 2. Le nombre de bandes (correspondant au nombre de canaux du spectromètre) est $M=\np{1337}$.
+Les spectres sont représentés à la figure~\ref{fig-spectres-synth} où quatre seuils caractéristiques révèlent la présence d'éléments particuliers : carbone ($K$-seuil à 285~eV), calcium ($L_{2,3}$-seuil à 350~eV), azote ($K$-seuil à 400~eV) et oxygène ($K$-seuil à 530~eV). Ces composantes ne correspondent pas à des composés chimiques bien déterminés. Néanmoins, pour plus de simplicité, par la suite, les endmembers vont être associés à des matériaux particuliers et seront désignés sous les noms de calcification (avec le seuil Ca-$L_{2, 3}$), résine, organique 1 (avec le seuil N-$K$) et organique 2. Le nombre de bandes (correspondant au nombre de canaux du spectromètre) est $M=\np{1337}$.
 
 
 \begin{figure}[h!]
@@ -430,13 +427,13 @@ En respectant ces contraintes, quatre cartes d'abondance $(\mathbf{A}_{k, :})_{k
         \protect\label{fig-cartes-abondance-synth}}
 \end{figure}
 
-\paragraph{Tirage de la matrice de bruit $\mathbf{E}$.} Les composantes de la matrice de bruit $\mathbf{E}$ sont tirées indépendamment et identiquement suivant une loi gaussienne centrée. La variance du bruit a été ajustée afin d'atteindre un \gls{snr} réaliste détaillé plus loin.
+\paragraph{Tirage de la matrice de bruit $\mathbf{E}$.} Les éléments de la matrice de bruit $\mathbf{E}$ sont tirés indépendamment et identiquement suivant une loi gaussienne centrée. La variance du bruit a été ajustée afin d'atteindre des valeurs de \gls{snr} réalistes détaillées plus loin.
 
 \subsection{Métriques et mesures de vraisemblance}\label{sec-metriques}
 
-Afin d'évaluer la qualité de reconstruction, plusieures mesures quantitatives seront utilisées afin de comparer la vérité terrain \gls{X} avec l'image reconstruite \gls{Xh}. D'abord, l'erreur quadratique moyenne normalisée (\gls{nmse} en anglais) est choisie comme erreur de mesure et est définie par
+Afin d'évaluer la qualité de reconstruction, plusieurs mesures quantitatives seront utilisées afin de comparer la vérité terrain \gls{X} avec l'image reconstruite \gls{Xh}. D'abord, l'erreur quadratique moyenne normalisée (\gls{nmse}) est choisie comme erreur de mesure et est définie par
 \begin{equation}
-    \mathrm{NMSE}(\gls{Xh}, \gls{X}) = \frac{\frobnorm{\gls{Xh} - \gls{X}}}{\gls{X}}.
+    \mathrm{NMSE}(\gls{Xh}, \gls{X}) = \frac{\frobnorm{\gls{Xh} - \gls{X}}}{\frobnorm{\gls{X}}}.
 \end{equation}
 Ainsi, plus la NMSE est petite, plus l'image reconstruite est fidèle à l'image idéale \gls{X}. De cette mesure d'erreur, il est possible d'obtenir de définir le SNR qui est une mesure de performance par
 \begin{equation}\label{eq-SNR-def}
@@ -455,7 +452,7 @@ La \gls{asad}, qui est une mesure de la distorsion spectrale, est invariante par
 
 \subsection{Sensibilité aux paramètres}\label{sec-lr-param-tuning}
 
-Nous évaluons d'abord l'impact des paramètres de régularisation $(\gls{ls2n}, \gls{ms2n})$ et \gls{m3s} sur la qualité de reconstruction du spectre-image reconstruit par les deux algorithmes \gls{3s} et \gls{s2n} proposés pour un niveau de bruit de $\mathrm{SNR} = \np[dB]{25}$ et pour un taux d'échantillonnage $r=N/P=0,2$. La mesure de performance utilisée est le SNR défini à l'équation~\eqref{eq-SNR-def}.
+Nous évaluons d'abord l'impact des paramètres de régularisation $(\gls{ls2n}, \gls{ms2n})$ et \gls{m3s} sur la qualité de reconstruction du spectre-image reconstruit par les deux algorithmes \gls{s2n} et \gls{3s} proposés pour un niveau de bruit de $\mathrm{SNR} = \np[dB]{25}$ et pour un taux d'échantillonnage $r=N/P=0,2$. La mesure de performance utilisée est le SNR défini à l'équation~\eqref{eq-SNR-def}.
 
 \begin{figure}[h!]
     \centering
@@ -468,7 +465,7 @@ La figure~\ref{fig-s2n-params-tuning} représente les résultats de performances
 %
 Comme attendu, cette figure montre que le SNR optimal est atteint pour des valeurs non-nulles de chaque paramètre, démontrant ainsi que les deux régularisations spatiale et spectrale sont nécessaires. En effet, des valeurs extrêmes de \gls{ls2n} donnent des images trop lisses ou trop bruitées. De manière similaire, un paramètre \gls{ms2n} trop élevé conduit à une image nulle tandis qu'une valeur trop faible ne régularise pas spectralement l'image. 
 %
-De plus, les valeurs intermédiaires $\gls{ls2n}^{\circ}$ et $\gls{ms2n}^\circ$ obtenues en ajustant séparément les régularisations tendent à sur-estimer chaque paramètre par rapport à sa valeur optimale. Ce comportement était attendu et modifier l'échelle de ces paramètres comme expliqué à la section~\ref{sec-s2n-param-tuning} conduit à un choix raisonnablement efficace. Notons toutefois que les valeurs estimées ont beau être proches des paramètres optimaux, les valeurs du SNR reportées à la \tabname~\ref{table-s2n-3s-params} montrent que le SNR correspondant est plus de 3dB supérieur : l'algorithme semble être assez sensible aux paramètres.
+De plus, les valeurs intermédiaires $\gls{ls2n}^{\circ}$ et $\gls{ms2n}^\circ$ obtenues en ajustant séparément les régularisations tendent à sur-estimer chaque paramètre par rapport à sa valeur optimale. Ce comportement était attendu et modifier l'échelle de ces paramètres comme expliqué à la section~\ref{sec-s2n-param-tuning} conduit à un choix raisonnablement efficace. Notons toutefois que les valeurs estimées ont beau être proches des paramètres optimaux, les valeurs du SNR reportées à la \tabname~\ref{table-s2n-3s-params} montrent que l'ajustement automatique des paramètres conduit à une perte de près de 4dB par rapport à un réglage optimal~: l'algorithme semble être assez sensible aux paramètres.
 
 \begin{table}
     \centering
@@ -501,7 +498,7 @@ Grâce à sa formulation contrainte, l'algorithme 3S requiert seulement l'ajuste
 
 \subsection{Impact du niveau de bruit et du taux d'échantillonnage sur les performances}
 
-Les deux algorithmes ont été mis en \oe{}uvre pour différents niveaux de bruit et taux d'échantillonnage $r$. Nous avons moyenné le SNR sur 10 simulations de Monte Carlo, la matrice de bruit \gls{E} étant tirée indépendamment pour chacune d'entre elle tandis que le masque d'échantillonnage \gls{I} est resté constant. 
+Les deux algorithmes ont été mis en \oe{}uvre pour différents niveaux de bruit et taux d'échantillonnage $r$. Nous avons moyenné le SNR sur 10 simulations de Monte Carlo, la matrice de bruit \gls{E} étant tirée indépendamment pour chacune d'entre elle tandis que le masque d'échantillonnage \gls{Phi} est resté constant. 
 %
 Les résultats sont donnés à la figure~\ref{fig-s2n-3s-noise-ratio}.
 %
@@ -518,10 +515,10 @@ Cette différence entre les deux algorithmes peut s'expliquer de trois manières
 
 \subsection{Comparaison reconstruction / débruitage dans un scénario de démélange}\label{sec-lr-demelange-res}
 
-Des conditions d'acquisition typiques (désigné comme le protocole $\mathcal{P}_0$) sont définies par un échantillonnage séquentiel ($r=1$) avec une durée d'exposition de $\Delta t = \np[ms]{10}$ par pixel. Comme expliqué à la section~\ref{sec-ech-sensibles}, les échantillons biologiques sont facilement détériorés par le faisceau d'électron durant le processus d'acquisition.  Pour résoudre ce problème, la dose totale d'électrons devra être réduite en ajustant soit le taux $r$ de positions visitées, soit le temps $\Delta t$ à acquérir le spectre à chaque position spatiale.
+Des conditions d'acquisition typiques (désigné comme le protocole $\mathcal{P}_0$) sont définies par un échantillonnage séquentiel ($r=1$) avec une durée d'exposition de $\Delta t = \np[ms]{10}$ par pixel. Comme expliqué à la section~\ref{sec-ech-sensibles}, les échantillons biologiques sont facilement détériorés par le faisceau d'électron durant le processus d'acquisition.  Pour résoudre ce problème, la dose totale d'électrons devra être réduite en ajustant soit le taux $r$ de positions visitées, soit le temps $\Delta t$ d'acquisition du spectre à chaque position spatiale.
 Deux stratégies d'échantillonnage ont été envisagées afin de réduire les dégâts subis par l'échantillon pour une dose d'électrons donnée.
 
-Le premier protocole, noté $\mathcal{P}_1$, consiste à échantillonner le spectre pour toutes les positions spatiales ($r=1$), mais en réduisant la durée d'acquisition $\Delta t$ pour chaque pixel. La baisse de SNR peut être réduite à l'aide d'une étape de débruitage a posteriori.
+Le premier protocole, noté $\mathcal{P}_1$, consiste à échantillonner le spectre pour toutes les positions spatiales ($r=1$), mais en réduisant la durée d'acquisition $\Delta t$ pour chaque pixel. La baisse de SNR peut être compensée à l'aide d'une étape de débruitage a posteriori.
 %
 La seconde stratégie d'acquisition $\mathcal{P}_2$, qui a motivé l'ensemble de ces travaux, consiste à acquérir un sous-ensemble des positions spatiales (\ie{}, $r\leq 1$) avec un temps d'acquisition identique $\Delta t= \np[ms]{10}$ (\ie{}, un SNR supérieur). 
 %
@@ -537,19 +534,12 @@ Pour évaluer l'intérêt du paradigme de l'acquisition partielle, l'exploitabil
 La dimension $R_{\mathrm{ACP}}$ a été choisie comme légèrement supérieure à $R$ pour éviter que l'ACP n'enlève de l'information pertinente (en ce qui concerne l'image synthétique où $R_{\mathrm{true}}=3$, $R_{\mathrm{ACP}}$ a été fixé à 10). Notons que des algorithmes de débruitage alternatifs peuvent être considérés, tel que FastHyDe spécialement dédié aux images hyperspectrales~\cite{bioucaspaper}. Par conséquent, 7 spectre-images seront considérés ici:
 \begin{itemize}
     \item Oracle : l'image synthétique sans bruit,
-    \item les images basées sur un spectre-image complètement acquis suivant le protocole $\mathcal{P}_1$ (désigné comme Full\textsubscript{2ms}) à savoir l'image Full\textsubscript{2ms} et les versions débruitée en utilisant les algorithmes ACP+NL-means, S2N et 3S.
+    \item les images basées sur un spectre-image complètement acquis suivant le protocole $\mathcal{P}_1$ (désigné comme Full\textsubscript{2ms}) à savoir l'image Full\textsubscript{2ms} et les versions débruitées en utilisant les algorithmes ACP+NL-means, S2N et 3S.
     \item les images basées sur le spectre-image partiellement acquis suivant le protocole $\mathcal{P}_2$ et reconstruit en utilisant S2N et 3S.
 \end{itemize}
 Ces spectre-images seront désignés par la suite suivant le modèle Protocole-algorithme (\eg{}, $\mathcal{P}_2$-3S est l'image reconstruite en appliquant 3S au spectre-image acquis suivant le protocole $\mathcal{P}_2$).
 
-L'exploitabilité de ces 7 images est évaluée en considérant une tâche conventionnelle fréquemment réalisée en analyse de spectre-image EELS. En effet, puisque les expérimentateurs sont plutôt intéressés par la composition de l'échantillon, ils ont recourt à différentes techniques de démélange introduites à la section~\ref{sec-demelange} en vue de déterminer à la fois les spectres des endmembers et les cartes d'abondance de composants d'intérêt à partir du spectre-image. Par conséquent, pour chaque spectre-image, les spectres élémentaires $(\mathbf{m}_k)_{k=1,\dots,N_c}$ ont été extraits en utilisant l'algorithme SISAL sur les données acquises suivant les protocoles $\mathcal{P}_1$ et $\mathcal{P}_2$. La qualité de la matrice d'endmember estimée $\hat{\mathbf{M}}$ est évaluée en utilisant la métrique aSAD définie à l'équation~\eqref{eq-aSAD-def} afin de se protéger de potentiels changements d'échelle
-\begin{equation}
-\mathrm{aSAD}(\hat{\mathbf{M}},\mathbf{M}) = \frac{1}{N_c}\sum_{k=1}^{N_c}\mathrm{acos}\left(
-\frac
-{\langle\hat{\mathbf{m}}_k, \mathbf{m}_k\rangle}
-{||\hat{\mathbf{m}}_k||_2\times||\mathbf{m}_k||_2}
-\right).
-\end{equation}
+L'exploitabilité de ces 7 images est évaluée en considérant une tâche conventionnelle fréquemment réalisée en analyse de spectre-image EELS. En effet, puisque les expérimentateurs sont plutôt intéressés par la composition de l'échantillon, ils ont recourt à différentes techniques de démélange introduites à la section~\ref{sec-demelange} en vue de déterminer à la fois les spectres des endmembers et les cartes d'abondance de composants d'intérêt à partir du spectre-image. Par conséquent, pour chaque spectre-image, les spectres élémentaires $(\mathbf{m}_k)_{k=1,\dots,N_c}$ ont été extraits en utilisant l'algorithme SISAL sur les données acquises suivant les protocoles $\mathcal{P}_1$ et $\mathcal{P}_2$. La qualité de la matrice d'endmember estimée $\hat{\mathbf{M}}$ est évaluée en utilisant la métrique $\mathrm{aSAD}(\hat{\mathbf{M}},\mathbf{M})$ définie à l'équation~\eqref{eq-aSAD-def} afin de se protéger de potentiels changements d'échelle.
 
 En se basant sur l'estimation des endmembers, les cartes d'abondance $\mathbf{A}$ sont estimées à partir des images comparées en utilisant l'algorithme SUNSAL. La pertinence des cartes d'abondance estimées est évaluée en calculant le $\mathrm{SNR}(\hat{\mathbf{A}}, \mathbf{A})$ comme défini à l'équation~\eqref{eq-SNR-def}.
 
@@ -571,11 +561,11 @@ En plus de cette évaluation quantitative en terme de performances de démélang
     \end{normalfigure}
 \end{mylandscape}
 
-Les résultats quantitatifs sont reportés à la \tabname~\ref{tab-lr-metrics} tandis que les images reconstruites et les cartes d'abondance estimées sont représentées à la figure~\ref{fig-lr-maps}. Notons que les résultats de démélange obtenus des six images acquises, débruitées et reconstruites, sont aussi comparés à ceux obtenus directement sur l'image vérité terrain \gls{X}. Ces estimations oracle donnent les performances les plus optimistes pouvant être atteintes en démélangeant les images débruitées ou reconstruites. Notons également que le SNR associé à l'oracle est infini puisque l'image oracle est exactement la vérité terrain \gls{X}, tandis que la $\mathrm{aSAD}$ $(\hat{\mathbf{M}}, \mathbf{M})$ est non-nul et le $\mathrm{SNR}$ $(\hat{\mathbf{A}}, \mathbf{A})$ n'est pas infini puisque les algorithmes de démélange ne permettent pas de retrouver exactement les endmembers et les cartes d'abondance utilisées pour générer \gls{X}. Notons enfin que la $\mathrm{aSAD}$ $(\hat{\mathbf{M}}, \mathbf{M})$ est constante pour toutes les méthodes au sein d'un protocole puisque SISAL est appliqué aux données acquises.
+Les résultats quantitatifs sont reportés à la \tabname~\ref{tab-lr-metrics} tandis que les images reconstruites et les cartes d'abondance estimées sont représentées à la figure~\ref{fig-lr-maps}. Notons que les résultats de démélange obtenus des six images acquises, débruitées et reconstruites, sont aussi comparés à ceux obtenus directement sur l'image vérité terrain \gls{X}. Ces estimations oracle donnent les performances les plus optimistes pouvant être atteintes en démélangeant les images débruitées ou reconstruites. Notons également que le SNR associé à l'oracle est infini puisque l'image oracle est exactement la vérité terrain \gls{X}, tandis que la $\mathrm{aSAD}(\hat{\mathbf{M}}, \mathbf{M})$ est non-nul et le $\mathrm{SNR}(\hat{\mathbf{A}}, \mathbf{A})$ n'est pas infini puisque les algorithmes de démélange ne permettent pas de retrouver exactement les endmembers et les cartes d'abondance utilisées pour générer \gls{X}. Notons enfin que la $\mathrm{aSAD}(\hat{\mathbf{M}}, \mathbf{M})$ est constante pour toutes les méthodes au sein d'un protocole puisque SISAL est appliqué aux données acquises.
 
-Nous pouvons d'abord observer que débruiter l'image acquise suivant le protocole $\mathcal{P}_1$ conduit à un SNR significativement supérieur pour les spectres-images par rapport à ceux obtenus en reconstruisant l'image acquise suivant le protocole $\mathcal{P}_2$ (mis à part $\mathcal{P}_1$-S2N qui donne des résultats moins bons que $\mathcal{P}_2$-3S). Les algorithmes de reconstruction proposés couplés à l'acquisition partielle semblent être moins performants, malgré que le SNR soit supérieur pendant le processus d'acquisition. Toutefois, les performances concernant la tâche de démélange sont en faveur du protocole $\mathcal{P}_2$. En effet, les spectres élémentaires sont mieux restitués chez les images acquises avec une durée d'exposition plus grande que chez les images acquises avec une durée d'exposition plus courte, même après une étape de débruitage. Ces résultats étaient assez attendus pour les spectres estimés des endmembers, puisque les pixels observés dans le cadre de l'échantillonnage partiel ont un SNR plus grand. Ainsi, l'algorithme d'extraction d'endmember SISAL peut exploiter des spectres plus fiables afin d'estimer les signatures des matériaux élémentaires. De plus, les cartes d'abondances estimées à partir de l'image reconstruite par l'algorithme proposé 3S permettent d'atteindre un SNR supérieur, prouvant que cette image reconstruite peut être exploitée avec confiance pour cartographier les éléments du spectre-image.
+Nous pouvons d'abord observer que débruiter l'image acquise suivant le protocole $\mathcal{P}_1$ conduit à un SNR significativement supérieur pour les spectres-images par rapport à ceux obtenus en reconstruisant l'image acquise suivant le protocole $\mathcal{P}_2$ (mis à part $\mathcal{P}_1$-S2N qui donne des résultats moins bons que $\mathcal{P}_2$-3S). Les algorithmes de reconstruction proposés couplés à l'acquisition partielle semblent être moins performants, bien que le SNR est supérieur pendant le processus d'acquisition. Toutefois, les performances concernant la tâche de démélange sont en faveur du protocole $\mathcal{P}_2$. En effet, les spectres élémentaires sont mieux restitués chez les images acquises avec une durée d'exposition plus grande que chez les images acquises avec une durée d'exposition plus courte, même après une étape de débruitage. Ces résultats étaient assez attendus pour les spectres estimés des endmembers, puisque les pixels observés dans le cadre de l'échantillonnage partiel ont un SNR plus grand. Ainsi, l'algorithme d'extraction d'endmember SISAL peut exploiter des spectres plus fiables afin d'estimer les signatures des matériaux élémentaires. De plus, les cartes d'abondances estimées à partir de l'image reconstruite par l'algorithme proposé 3S permettent d'atteindre un SNR supérieur, prouvant que cette image reconstruite peut être exploitée avec confiance pour cartographier les éléments du spectre-image.
 
-De manière qualitative, une inspection visuelle des cartes d'abondance représentées à la figure~\ref{fig-lr-maps} montre que les techniques de reconstruction produisent des images plus rugueuses, avec quelques trous correspondant aux régions non échantillonnées. Mais il y a moins de mélange entre les différents éléments, par exemple, les cartes de organique 1 et organique 2 sont particulièrement bien dissociées pour l'image reconstruite par 3S. Pour résumer, pour une dose d'électron identique, l'échantillonnage partiel semble permettre une meilleur extraction des endmember et une meilleure restitution de détails du spectre que le débruitage, même si des structures spatiales fines (comme organique 2 dans notre exemple) pourraient être cartographiées avec moins de précision.
+De manière qualitative, une inspection visuelle des cartes d'abondance représentées à la figure~\ref{fig-lr-maps} montre que les techniques S2N et 3S produisent des images plus rugueuses, avec quelques trous correspondant aux régions non échantillonnées. Mais il y a moins de mélange entre les différents éléments, par exemple, les cartes de organique 1 et organique 2 sont particulièrement bien dissociées pour l'image reconstruite par 3S. Pour résumer, pour une dose d'électron identique, l'échantillonnage partiel semble permettre une meilleure extraction des endmembers et une meilleure restitution de détails du spectre que le débruitage, même si des structures spatiales fines (comme organique 2 dans notre exemple) pourraient être cartographiées avec moins de précision.
 
 Finalement, nous pouvons observer qu'utiliser les algorithmes 3S et S2N comme procédure de débruitage donne des erreurs comparables à ACP+NL-means (sauf pour le SNR de $\mathcal{P}_1$-S2N). Cependant, les résultats de démélange de $\mathcal{P}_1$-3S sont significativement moins bons que $\mathcal{P}_1$-ACP+NLmeans. 
 
@@ -600,7 +590,7 @@ Cet échantillon est un tissu biologique analysé dans~\cite{gay2020nanoscale} c
         Représentations spectrales de l'échantillon réel étudié acquis suivant le protocole $\mathcal{P}_0$ ($\Delta t=\np[ms]{10}$, $r = 1$).
         \subref{fig-lr-real-data-spectra-a}~Image HAADF de l'échantillon où trois zones distinctes sont représentées. Les pixels centraux de ces zones sont également mis en évidence.
         \subref{fig-lr-real-data-spectra-b}~Représentation des trois spectres associés aux pixels centraux.
-        \subref{fig-lr-real-data-spectra-c}~Représentation de la moyennes des spectres pour chaque zone.
+        \subref{fig-lr-real-data-spectra-c}~Représentation de la moyenne des spectres pour chaque zone.
     }
 \end{normalfigure*}
 
@@ -656,13 +646,13 @@ Comme à la section précédente, en vue d'évaluer les performances des méthod
     \end{normalfigure}
 \end{mylandscape}
 
-Visuellement parlant, faire l'acquisition suivant le protocole $\mathcal{P}_1$ puis débruiter semble donner les meilleurs résultats puisque les spectre-image comme les cartes d'abondance montrent une meilleure résolution spatiale, permettant de révéler plus de détail dans la carte numéro 2 associée aux calcifications, par exemple. 
+Visuellement parlant, faire l'acquisition suivant le protocole $\mathcal{P}_1$ puis débruiter semble donner les meilleurs résultats puisque les spectre-images comme les cartes d'abondance montrent une meilleure résolution spatiale, permettant de révéler plus de détails dans la carte numéro 2 associée aux calcifications, par exemple. 
 %
 Au contraire, les schémas basés sur l'échantillonnage partiel révèlent des pics de grande intensité dans le spectre-image et dans les cartes d'abondances associées, ce qui réduit la résolution spatiale.
 %
 Remarquons que les spectre-images complets acquis suivant les protocoles $\mathcal{P}_0$ et $\mathcal{P}_1$ sont déjà sous-échantillonnés en vue de préserver l'échantillon, comme discuté à la section~\ref{sec-donnees-sous-echantillonnees}, et leur résolution est faible. Par conséquent, le spectre-image acquis suivant le protocole $\mathcal{P}_2$ est \emph{fortement} sous-échantillonné, ce qui détériore particulièrement les performances spatiales, comme nous l'avons vu.
 
-Toutefois, les caractéristiques spectrales sont mieux restituées sous acquisition partielle avec $\Delta t=\np[ms]{10}$ (c'est-à-dire sous le protocole $\mathcal{P}_2$) et avec 3S comme algorithme de reconstruction. En effet, la séparation des seuils Ca $L_{2, 3}$ est clairement visible sur le spectre numéro 2 extrait des spectre-images reconstruits après le protocole $\mathcal{P}_2$ (voir la ligne 4 dans la figure~\ref{fig-lr-spectra-real}). Ces seuils sont également visibles pour le second spectre de $\mathcal{P}_2$-S2N, mais le troisième spectre donne des résultats insatisfaisants, pouvant venir d'un mauvais choix de paramètres ou du biais introduit par la norme nucléaire. Toutefois, cette séparation $L_{2, 3}$ n'est pas visible pour le 2\textsuperscript{ième} spectre extrait des images débruitées après le protocole $\mathcal{P}_1$. Cependant, il faut noter dans ce cas que le faible nombre de pixels ($51\times 51$) comparé aux données synthétiques générée à la section~\ref{sec-lr-demelange-res} ($100\times 100$) rend l'extraction de composantes par SISAL moins performante. 
+Toutefois, les caractéristiques spectrales sont mieux restituées sous acquisition partielle avec $\Delta t=\np[ms]{10}$ (\ie\ sous le protocole $\mathcal{P}_2$) et avec 3S comme algorithme de reconstruction. En effet, la séparation des seuils Ca $L_{2, 3}$ est clairement visible sur le spectre numéro 2 extrait des spectre-images reconstruits après le protocole $\mathcal{P}_2$ (voir la ligne 4 dans la figure~\ref{fig-lr-spectra-real}). Ces seuils sont également visibles pour le second spectre de $\mathcal{P}_2$-S2N, mais le troisième spectre donne des résultats insatisfaisants, pouvant venir d'un mauvais choix de paramètres ou du biais introduit par la norme nucléaire. Toutefois, cette séparation $L_{2, 3}$ n'est pas visible pour le 2\textsuperscript{ième} spectre extrait des images débruitées après le protocole $\mathcal{P}_1$. Cependant, il faut noter dans ce cas que le faible nombre de pixels ($51\times 51$) comparé aux données synthétiques générée à la section~\ref{sec-lr-demelange-res} ($100\times 100$) rend l'extraction de composantes par SISAL moins performante. 
 %
 Ainsi, le choix de la stratégie d'acquisition doit résulter d'un compromis entre les résolutions spectrales et spatiales requises. 
 %
@@ -672,9 +662,9 @@ Ainsi, le choix de la stratégie d'acquisition doit résulter d'un compromis ent
 %
 \section{Conclusion}
 
-Dans ce chapitre, nous avons introduit de nouvelles techniques de reconstruction afin de préserver l'échantillon dans le cadre de l'acquisition partielle en imagerie EELS. Elles se basent sur des connaissances a priori des spectre-images spatialement lisses, à savoir la régularité spatiale et le faible rang spectral. 
+Dans ce chapitre, nous avons introduit de nouvelles techniques de reconstruction afin de préserver l'échantillon dans le cadre de l'acquisition partielle de spectre-images EELS basse résolution.. Elles se basent sur des connaissances a priori des spectre-images spatialement lisses, à savoir la régularité spatiale et le faible rang spectral. 
 %
-Deux algorithmes étaient proposés pour réaliser l'étape de reconstruction et des expériences ont comparé cette approche avec un schéma d'acquisition standard. Les résultats ont montré que l'algorithme 3S est plus performant que S2N aussi bien en termes de qualité de reconstruction que de temps d'exécution.
+Deux algorithmes ont été proposés pour réaliser l'étape de reconstruction et des expériences ont comparé cette approche avec un schéma d'acquisition standard. Les résultats ont montré que l'algorithme 3S est plus performant que S2N aussi bien en termes de qualité de reconstruction que de temps d'exécution.
 
 En comparant avec une acquisition standard (complète) suivie d'une opération de débruitage, le schéma d'acquisition partielle couplé avec la méthode 3S a permis une meilleure estimation spectrale, tandis que certains détails spatiaux semblaient détériorés. 
 %

@@ -35,11 +35,10 @@ En particulier, afin de respecter les contraintes en temps de calcul, cette base
 %
 Cependant, la base optimale serait celle qui minimiserait le nombre de coefficients non nuls dans cette base~; et en considérant la structure périodique des réseaux cristallins, cela devrait favoriser les bases périodiques, comme la base de Fourier ou la base \gls{dct}. 
 
-Plus précisément, dans le cas de spectre-images EELS de réseaux cristallins, chaque image 2D obtenue pour une certaine perte d'énergie est censée présenter un motif périodique pouvant être décrit par une représentation parcimonieuse. Au contraire, chaque spectre mesuré en une position spatiale quelconque a peu de chance de présenter une périodicité particulière. Ainsi, cette propriété de parcimonie ne tient que dans les directions \emph{spatiales} du cube de donnée 3D et on s'attend à ce qu'un changement de base bande à bande conduise à un niveau de parcimonie supérieur (\ie{}, la proportion de coefficients non-nuls est inférieure) comparé à un changement de base 3D.
+Plus précisément, dans le cas de spectre-images EELS de réseaux cristallins, chaque image 2D obtenue pour une certaine perte d'énergie est censée présenter un motif périodique pouvant être décrit par une représentation parcimonieuse dans une base appropriée. Au contraire, chaque spectre mesuré en une position spatiale quelconque a peu de chance de présenter une périodicité particulière. Ainsi, cette propriété de parcimonie ne tient que dans les directions \emph{spatiales} du cube de donnée 3D.
 %
-De plus, les représentations bande à bande sont censées partager des caractéristiques communes puisque la structure spatiale est probablement la même à travers les bandes et ne dépend que de l'échantillon. 
-%
-Cela tend à promouvoir les images dont les coefficients non-nuls des représentations bande à bande sont localisés au même endroit. Cela signifie que le spectre-image EELS peut être représenté par un nombre restreint de variables de dimensions $M$ après transformation dans la base \gls{dct} bande à bande, on parle alors de \emph{parcimonie groupée}.
+De plus, il est légitime de penser que les représentations dans une même base de ces images 2D partagent des caractéristiques communes puisque la structure spatiale est probablement la même dans tous les canaux et ne dépend que de l'échantillon. Pour à la fois exploiter cette propriété de parcimonie et favoriser cette structure spatiale commune à travers les bandes, nous utiliserons une régularisation basée sur une parcimonie groupée, qui tend à promouvoir les spectre-images dont les coefficients non-nuls de représentations
+associés à chaque bande sont localisés au même endroit endroit.
 %
 Ce phénomène est illustré à la figure~\ref{fig-joint-sparsity} en considérant une représentation dans la base \gls{dct} (le choix de cette base sera discuté à la section~\ref{sec-appropriate-basis}).
 \begin{figure}[t]
@@ -64,13 +63,13 @@ En se basant sur l'état de l'art mené au chapitre~\ref{ch-chapter_2} et sur le
 \end{equation}
 où l'opérateur $\mathcal{R}(\cdot)$ est une régularisation et où \gls{lcls} est un scalaire ajustant l'importance de la régularisation par rapport au terme d'attache aux données. Afin de contraindre le motif spatial périodique à être similaire pour l'ensemble des canaux, la régularisation choisie est
 \begin{equation}\label{eq-regul-cls}
-    \mathcal{R}(\gls{X}) = ||\gls{X}\Psi||_{2, 1}
+    \mathcal{R}(\gls{X}) = ||\gls{X}\boldsymbol\Psi||_{2, 1}
 \end{equation}
-où $\Psi$ est un opérateur orthogonal appliquant un changement de base de manière bande à bande. La norme $\ell_{2, 1}$ est définie comme~\cite{kowalski2009sparse}%
+où $\boldsymbol\Psi$ est un opérateur orthogonal appliquant un changement de base de manière bande à bande. La norme $\ell_{2, 1}$ est définie comme~\cite{kowalski2009sparse}%
 \begin{equation}
 ||\mathbf{U}||_{2, 1} = \sum_j||\mathbf{U}_j||_2 = \sum_j \sqrt{\sum_i |\mathbf{U}_{ij}|^2}.
 \end{equation}
-Minimiser cette norme permet de contraindre la parcimonie groupée puisque qu'elle tend à annuler les colonnes de faible ampleur tout en conservant celles dont la puissance est maximale, et dans ce cas, tous les coefficients sont non-nuls. Dans le cas d'une base périodique (\eg\ Fourier ou \gls{dct}), la régularisation~\eqref{eq-regul-cls} promeut des représentations fréquentielles similaires et parcimonieuses pour l'ensemble des bandes. Dans la suite, cette technique sera appelée \gls{cls}.
+Minimiser cette norme permet de contraindre la parcimonie groupée puisque qu'elle tend à annuler les colonnes de faible énergie tout en conservant celles dont l'énergie est maximale, et dans ce cas, tous les coefficients sont non-nuls. Dans le cas d'une base périodique (\eg\ Fourier ou \gls{dct}), la régularisation~\eqref{eq-regul-cls} promeut des représentations fréquentielles similaires et parcimonieuses pour l'ensemble des bandes. Dans la suite, cette technique sera appelée \gls{cls}.
 
 \gls{cls} peut être directement appliquée au spectre partiellement acquis, comme nous le verrons à l'annexe~\ref{sec-perfs-without-acp}. Cependant, de même que pour la méthode \gls{3s}, nous proposons de conduire une \gls{acp} sur les données acquises \gls{Yi} et d'appliquer \gls{cls} aux $R$ composantes principales les plus puissantes.
 %
@@ -81,6 +80,8 @@ D'abord, cela introduit explicitement une régularisation spectrale au problème
 Ensuite, réduire la taille des données à traiter permer de diminuer significativement le temps d'exécution.
 %
 Ce pré-traitement peut cependant induire quelques artefacts au cours de la reconstruction lorsque l'estimation de la matrice de covariance est imprécise, \eg\ dans le cas d'un taux d'échantillonnage faible. De plus, comme expliqué pour \gls{3s}, le nombre $R$ de composantes principales à conserver (cette valeur correspondant à la dimension du sous-espace signal sera appelé le \emph{seuil} de l'ACP dans la suite) devra être attentivement choisi puisque un seuil trop petit peut faire disparaître des structures de faible puissance~\cite{mevenkamp2017mm}. Deux stratégies pour ajuster ce seuil sont proposées à la section~\ref{subsec-3s-poids} et à l'annexe~\ref{sec-spim-creation-hr}. La pertinence de l'utilisation de l'ACP comme pré-traitement est discutée à l'annexe~\ref{sec-perfs-without-acp}.
+%
+Pour alléger l'écriture, la suite de la présentation sera faite avec les notations $\mathbf{Y}$ et $\mathbf{X}$ associées au problème formulé dans l'espace initial.
 
 \subsection{Choix du paramètre \gls{lcls}}\label{sec-choix-param-CLS}
 
@@ -94,17 +95,17 @@ Reconstruire le spectre-image \gls{X} complet à partir de \gls{Yi} peut être f
 \begin{equation}
 \gls{Xh}=\argmin_{\gls{X}} 
     \underbrace{\frac{1}{2} \frobnorm{\gls{Yi} - \gls{X}_{\gls{I}}}}_{f(\gls{X})} +
-    \underbrace{ \gls{lcls} \mathcal{R}(\gls{X})}_{g(\gls{X})}.
+    \underbrace{ \gls{lcls} ||\gls{X}\boldsymbol\Psi||_{2, 1}}_{g(\gls{X})}.
 \end{equation}
 Ce problème d'optimisation peut être facilement résolu à l'aide de l'algorithme FISTA décrit à la section~\ref{sec-fista}. Pour cela, seuls trois éléments doivent être évalués, à savoir le gradient $\nabla f$, une borne supérieure $L$ de la constante de Lipschitz $L(f)$ de $\nabla f$ et l'opérateur proximal  $\mathrm{prox}_{g}(\gls{X})$. La fonction gradient $\nabla f$ s'écrit facilement comme suit
 \begin{equation}
-    \nabla f(\gls{X}) = (\gls{X}\Phi - \gls{Yi})\Phi^T
+    \nabla f(\gls{X}) = (\gls{X}\gls{Phi} - \gls{Yi})\gls{Phi}^T
 \end{equation}
-où $\Phi$ est l'opérateur de sous-échantillonnage tel que $\gls{X}_{\gls{I}} = \gls{X}\Phi$. La constante de Lipshitz associée vaut
+où $\gls{Phi}$ est l'opérateur de sous-échantillonnage tel que $\gls{X}_{\gls{I}} = \gls{X}\gls{Phi}$. La constante de Lipshitz associée vaut
 \begin{equation}
-    L(f) = ||\nabla^2 f(\gls{X})|| = ||\Phi\Phi^T|| = 1.
+    L(f) = ||\nabla^2 f(\gls{X})|| = ||\gls{Phi}\gls{Phi}^T|| = 1.
 \end{equation}
-Enfin, l'opérateur proximal est séparable suivant les colonnes, et est évalué en réalisant un seuillage doux pour toute colonne $\gls{X}_j$ (avec $j=1, \dots, P$) avec~\cite{jenatton2011proximal}
+Enfin, l'opérateur proximal est séparable suivant les colonnes, et est évalué en réalisant un seuillage doux pour toute colonne $\gls{X}_j$ (avec $j=1, \dots, P$) selon~\cite{jenatton2011proximal}
 \begin{equation}
 [\mathrm{prox}_{\mu g}(\gls{X})]_j = 
 \begin{cases}
@@ -120,7 +121,7 @@ Comme expliqué à la section~\ref{sec-formulation-cls}, la méthode de reconstr
 
 Comme nous le verrons à la section~\ref{sec-hr-results}, l'algorithme CLS reconstruit rapidement et efficacement le spectre-image à partir de données partiellement acquises. Par conséquent, cette section propose d'appliquer CLS comme pré-traitement à des techniques plus avancées, en particulier pour initialiser les méthodes par \gls{ad}. Pour cela, les données reconstruites par CLS sont décomposées en un dictionnaire et en une représentation parcimonieuse à l'aide de l'algorithme conventionnel mini-batch proposé dans~\cite{mairal2009online} couplé à OMP~\cite{mallat1993matching, pati1993orthogonal} (\cf{} section~\ref{sec-art-patch}). Ces dictionnaires et codes sont ensuite utilisés comme initialisation pour les approches par \gls{ad}.
 %
-Cette technique d'initialisation nommée DL-CLS est particulièrement intéressante pour wKSVD et ITKrMM qui résolvent un problème d'optimisation non-convexe basé sur un schéma de directions alternées. En effet, pour de tels problèmes non-convexes, l'initialisation est un problème crucial pour s'assurer de converger vers une solution pertinente.
+Cette technique d'initialisation nommée DL-CLS est particulièrement intéressante pour \gls{wksvd} et ITKrMM qui résolvent un problème d'optimisation non-convexe basé sur un schéma de directions alternées. En effet, pour de tels problèmes non-convexes, l'initialisation est un problème crucial pour s'assurer de converger vers une solution pertinente.
 %
 Par contre, une stratégie similaire ne peut être adoptée pour initialiser BPFA puisque cette technique implémente un algorithme de \gls{mcmc} et que les distributions des codes et du dictionnaire dépendent de la distribution des hyperparamètres.
 %
@@ -133,7 +134,7 @@ La pertinence de CLS comme technique d'initialisation sera discutée à la secti
 
 \paragraph{Données réelles.} Deux spectre-images réels notés $\mathsf{R}_1$ et $\mathsf{R}_2$ ont été acquis sur le Nion UltraSTEM200 au LPS. 
 %
-$\mathsf{R}_1$ est un spectre-image acquis à 100\;kV à partir d'une hétéro-structure $\mathrm{La}_{1‐\mathrm{x}}\mathrm{Sr}_{\mathrm{x}}\mathrm{MnO}_3$/$\mathrm{Pb}(\mathrm{Zr,Ti})\mathrm{O}_3$ (LSMO/PZT) reposant sur un composé $\mathrm{SrTiO}_3$~\cite{li2016charge}. Les spectres ont été échantillonnés sur une gamme d'énergie correspondant aux seuils $\mathrm{Ti-L}_{2,3}$, $\mathrm{O-K}$, $\mathrm{Mn -L}_{2,3}$ et $\mathrm{La-M}_{4,5}$
+$\mathsf{R}_1$ est un spectre-image acquis à 100\;kV à partir d'une hétéro-structure $\mathrm{La}_{1‐\mathrm{x}}\mathrm{Sr}_{\mathrm{x}}\mathrm{MnO}_3$/$\mathrm{Pb}(\mathrm{Zr,Ti})\mathrm{O}_3$ (LSMO/PZT) reposant sur un composé $\mathrm{SrTiO}_3$~\cite{li2016charge}. Les spectres ont été échantillonnés sur une gamme d'énergie correspondant aux seuils $\mathrm{Ti-L}_{2,3}$, $\mathrm{O-K}$, $\mathrm{Mn -L}_{2,3}$ et $\mathrm{La-M}_{4,5}$.
 %
 $\mathsf{R}_2$ est un spectre-image acquis à 100\;kV à partir d'un film fin de $\mathrm{NdNiO}_3$ sur un substrat de $\mathrm{LaAlO}_3$~\cite{preziosi2018direct}. Les spectres ont été acquis sur une gamme correspondant aux seuils de $\mathrm{O-K}$, $\mathrm{La-M}_{4,5}$, $\mathrm{Ni-L}_{2,3}$ et $\mathrm{Nd-M}_{4,5}$.
 %
@@ -149,7 +150,7 @@ Toutes les expériences discutées dans la section suivante~\ref{sec-hr-results}
     }
 \end{table*}
 
-\paragraph{Images synthétiques et semi-réelles.} Puisque $\mathsf{R}_1$ et $\mathsf{R}_2$ sont naturellement corrompues par un bruit, le calcul de métriques pertinentes en vue d'évaluer la performance des techniques de reconstruction risque d'être biaisé par un niveau de bruit inconnu. Pour contourner le problème, des versions débruitées de $\mathsf{R}_1$ et $\mathsf{R}_2$ ont d'abord été générées en appliquant une ACP et en ne conservant que les $R$ premières composantes principales. Le choix du seuil $R$ est, de manière générale, une tâche difficile. Dans ce chapitre, il a été fixé de sorte que les composantes principales supprimées ne contiennent pas d'information spatiale. Pour quantifier la présence ou l’absence d’information spatiale dans une composante principale, la blancheur est vérifiée en se basant sur les métriques proposées dans~\cite[chap. 3]{riot2018residual}.Plus de détails sont donnés à l'annexe~\ref{sec-spim-creation-hr}. Ces images débruitées, notées $\bar{\mathsf{R}}_1$ et $\bar{\mathsf{R}}_2$, sont supposées être l'image vérité terrain \gls{X} à restituer.
+\paragraph{Images synthétiques et semi-réelles.} Puisque $\mathsf{R}_1$ et $\mathsf{R}_2$ sont naturellement corrompues par un bruit, le calcul de métriques pertinentes en vue d'évaluer la performance des techniques de reconstruction risque d'être biaisé par un niveau de bruit inconnu. Pour contourner le problème, des versions débruitées de $\mathsf{R}_1$ et $\mathsf{R}_2$ ont d'abord été générées en appliquant une ACP et en ne conservant que les $R$ premières composantes principales. Le choix du seuil $R$ est, de manière générale, une tâche difficile. Dans ce chapitre, il a été fixé de sorte que les composantes principales supprimées ne contiennent pas d'information spatiale. Pour quantifier la présence ou l’absence d’information spatiale dans une composante principale, la blancheur du bruit résiduel est évaluée en se basant sur les métriques proposées dans~\cite[chap. 3]{riot2018residual}.Plus de détails sont donnés à l'annexe~\ref{sec-spim-creation-hr}. Ces images débruitées, notées $\bar{\mathsf{R}}_1$ et $\bar{\mathsf{R}}_2$, sont supposées être les images vérité terrain \gls{X} à reconstruire.
 
 En plus de ces deux images semi-réelles, un spectre-image synthétique a été généré à partir de l'image $\mathsf{R}_2$. Pour cela, une \gls{aci} a été appliquée à $\mathsf{R}_2$ afin d'extraire quatre spectres caractéristiques qui ont été filtrés ensuite, tandis que les cartes d'abondance associées ont été synthétiquement produites. Ces données ont été mélangées par la suite  afin d'obtenir le spectre-image noté $\mathsf{S}$ (\cf{} annexe~\ref{sec-spim-creation-hr} pour plus de détails concernant la construction de ces données).
 
@@ -157,13 +158,13 @@ Afin de simuler des conditions expérimentales, les trois images verité terrain
 %
 \footnote{La reconstruction dans le cas d'un bruit mixte poisson-gaussien est discutée à l'annexe~\ref{sec-bruit-mixte} en se basant sur des expériences semblables à celles menées à la section~\ref{sec-results-hr-synth}.}%
 %
-. Enfin, ces images pseudo-réelles, notées $\mathsf{R}_1^*$ et $\mathsf{R}_2^*$, et l'image synthétique bruitée $\mathsf{S}^*$, ont été spatialement et aléatoirement sous-échantillonnés suivant une loi uniforme avec un taux d'échantillonnage de 20\% en vue de produire la matrice d'observation \gls{Yi}. Notons que les résultats obtenus pour d'autres taux d'échantillonnage sont donnés à l'annexe~\ref{sec-autres-taux-echantillonnage-hr}. 
+. Enfin, ces images pseudo-réelles, notées $\mathsf{R}_1^*$ et $\mathsf{R}_2^*$, et l'image synthétique bruitée $\mathsf{S}^*$, ont été spatialement et aléatoirement sous-échantillonnées suivant une loi uniforme avec un taux d'échantillonnage de 20\% en vue de produire la matrice d'observation \gls{Yi}. Notons que les résultats obtenus pour d'autres taux d'échantillonnage sont donnés à l'annexe~\ref{sec-autres-taux-echantillonnage-hr}. 
 
 \subsection{Méthodes}
 
-Comme expliqué à la section~\ref{sec-formulation-cls}, pour l'ensemble des algorithmes, une ACP est d'abord appliquée à l'image observée en ne conservant que les $R$ premières composantes, les plus puissantes. Les techniques de reconstruction sont ensuite appliquées dans cet espace de dimension réduite. La transformation inverse sera réalisée en post-traitement pour obtenir l'image reconstruite \gls{Xh}. Les méthodes comparées sont NN, 3S, CLS, ITKrMM, wKSVD et BPFA. En particulier, NN est la seule à être appliquée bande à bande. Pour toutes les techniques, les paramètres de l'algorithme ont été ajustés afin d'atteindre les performances optimales. En particulier, les techniques par \gls{ad} considèrent des patchs 3D de taille $w\times w \times R$ avec $w=25$ pour ITKrMM et wKSVD et $w=41$ pour BPFA. Les métriques utilisées en vue de comparer ces techniques sont données à la section~\ref{sec-metriques}.
+Comme expliqué à la section~\ref{sec-formulation-cls}, pour l'ensemble des algorithmes, une ACP est d'abord appliquée à l'image observée en ne conservant que les $R$ premières composantes les plus puissantes. Les techniques de reconstruction sont ensuite appliquées dans cet espace de dimension réduite. La transformation inverse sera réalisée en post-traitement pour obtenir l'image reconstruite \gls{Xh}. Les méthodes comparées sont NN, 3S, CLS, ITKrMM, \gls{wksvd} et BPFA. En particulier, NN est la seule à être appliquée bande à bande. Pour toutes les techniques, les paramètres de l'algorithme ont été ajustés afin d'atteindre les performances optimales. En particulier, les techniques par \gls{ad} considèrent des patchs 3D de taille $w\times w \times R$ avec $w=25$ pour ITKrMM et \gls{wksvd} et $w=41$ pour BPFA. Les métriques utilisées en vue de comparer ces techniques sont données à la section~\ref{sec-metriques}.
 
-Les implémentations de ITKrMM et de wKSVD utilisées dans ces expériences sont les codes Matlab fournis par la Prof. K. Schnass\footnote{\url{https://www.uibk.ac.at/mathematik/personal/schnass/code/itkrmm.zip}}. L'implémentation de BPFA est le code Matlab fournit par le docteur Z. Xing\footnote{\url{https://drive.google.com/open?id=0B9548VKFKtmiY2ZNRFVUTjhyUFE}}. J'ai implémenté les autres méthodes ;  elles sont disponibles sous la forme d'une librairie Python que j'ai créée nommée \texttt{inpystem}\footnote{\url{https://github.com/etienne-monier/inpystem}}. Les codes permettant de reproduire certaines des expériences de ce chapitre sont également disponibles en ligne\footnote{\url{https://github.com/etienne-monier/2020-Ultramicro-fast}}.
+Les implémentations de ITKrMM et de \gls{wksvd} utilisées dans ces expériences sont les codes Matlab fournis par la Prof. K. Schnass\footnote{\url{https://www.uibk.ac.at/mathematik/personal/schnass/code/itkrmm.zip}}. L'implémentation de BPFA est le code Matlab fournit par le docteur Z. Xing\footnote{\url{https://drive.google.com/open?id=0B9548VKFKtmiY2ZNRFVUTjhyUFE}}. J'ai implémenté les autres méthodes ;  elles sont disponibles sous la forme d'une librairie Python que j'ai créée nommée \texttt{inpystem}\footnote{\url{https://github.com/etienne-monier/inpystem}}. Les codes permettant de reproduire certaines des expériences de ce chapitre sont également disponibles en ligne\footnote{\url{https://github.com/etienne-monier/2020-Ultramicro-fast}}.
 
 
 
@@ -172,7 +173,7 @@ Les implémentations de ITKrMM et de wKSVD utilisées dans ces expériences sont
 
 \subsection{Base appropriée pour la parcimonie}\label{sec-appropriate-basis}
 
-Comme expliqué à la section précédente, le niveau de parcimonie des données dépend grandement de l'image et de la base choisie pour sa représentation. Dans le cas d'images de réseaux cristallins à échelle atomique, des travaux précédents ont considéré les ondelettes~\cite{li2018compressive}, la base de Fourier~\cite{stevens2018apl} ou la base \gls{dct}~\cite{beche2016development,anderson2013sparse}. Toutefois, aucune comparaison systématique de ces transformations n'a été conduite dans ces travaux. Cette section propose de combler cette lacune. Intuitivement, les transformées de Fourier ou la \gls{dct} devraient donner les meilleurs résultats puisque elles sont connues pour donner des représentations très parcimonieuses dans le cadre de structures périodiques et lisses. 
+Comme expliqué à la section précédente, le niveau de parcimonie des données dépend grandement de l'image et de la base choisie pour sa représentation. Dans le cas d'images de réseaux cristallins à échelle atomique, des travaux précédents ont considéré les ondelettes~\cite{li2018compressive}, la base de Fourier~\cite{stevens2018apl} ou la base \gls{dct}~\cite{beche2016development,anderson2013sparse}. Toutefois, aucune comparaison systématique de ces transformations n'a été conduite dans ces travaux. Cette section propose de combler cette lacune. Intuitivement, les transformées de Fourier ou la \gls{dct} devraient donner les meilleurs résultats puisqu'elles sont connues pour donner des représentations très parcimonieuses dans le cadre de structures périodiques et lisses. 
 %
 Pour confirmer cette intuition, nous proposons de tracer l'erreur de reconstruction comme une fonction du ratio $r\in(0, 1)$ de coefficients de représentation non-nuls, \ie{}, en ne conservant seulement que les $r$\% coefficients de représentation dont la magnitude est la plus élevée. La transformation inverse fournit une estimée \gls{Xh} de \gls{X} d'autant dégradée que $r$ décroît. L'erreur de reconstruction correspond à la NMSE entre \gls{Xh} et \gls{X}. la transformation la plus appropriée à une image est celle dont l'erreur de reconstruction décroît le plus vite avec $r$ puisque cela signifie que l'on a besoin de moins de coefficients pour décrire l'image.
 %la valeur absolue des coefficients de représentation qui doivent décroître aussi vite que possible quand ils sont triés par ordre décroissant. Une décroissance rapide de la courbe signifierait que l'on a besoin de moins de coefficients pour représenter précisément les données. 
@@ -185,7 +186,7 @@ Ainsi, l'erreur de reconstruction est évaluée pour chaque image et est représ
 %
 % L'erreur de reconstruction est évaluée comme une fonction du ratio $r\in(0, 1)$ de coefficients de représentation non-nuls, \ie{}, en ne conservant seulement que les $r$\% coefficients de représentation dont la magnitude est la plus élevée. La transformation inverse fournit une estimée \gls{Xh} de \gls{X} d'autant dégradée que $r$ décroît. L'erreur de reconstruction correspond au NMSE entre \gls{Xh} et \gls{X}. Pour résumer, la transformation la plus appropriée à une image est celle dont l'erreur de reconstruction décroît le plus vite avec $r$ puisque cela signifie que l'on a besoin de moins de coefficients pour décrire l'image.
 
-Cette procédure a été appliquée à $\mathsf{R}_1$, $\mathsf{R}_2$ et $\mathsf{S}$ après une ACP. Les résultats sont donnés à la figure~\ref{fig-best-basis}. Ils montrent que la base \gls{dct} est toujours meilleure que la base de Fourier puisque les mesures ont des valeurs réelles, ce qui introduit de la redondance avec un facteur 2 pour chaque axe ans l'espace de la transformée de Fourier 2D tandis que la base \gls{dct} ne subit pas cette redondance. De plus, notre intuition est confirmée puisque les bases \gls{dct} et Fourier sont les meilleures pour les trois images, comparé à toutes les transformations en ondelettes considérées. Finalement, dans le cas des images de réseaux périodiques considérés dans ce chapitre, ces expériences montrent que la base \gls{dct} offre la représentation la plus parcimonieuse et c'est cette transformation bande à bande $\Psi$ qui sera choisie dans~\eqref{eq-regul-cls} pour la méthode CLS proposée.
+Cette procédure a été appliquée à $\mathsf{R}_1$, $\mathsf{R}_2$ et $\mathsf{S}$ après une ACP. Les résultats sont donnés à la figure~\ref{fig-best-basis}. Ils montrent que la base \gls{dct} est toujours meilleure que la base de Fourier puisque les mesures ont des valeurs réelles, ce qui introduit de la redondance avec un facteur 2 pour chaque axe dans l'espace de la transformée de Fourier 2D tandis que la base \gls{dct} ne subit pas cette redondance. De plus, notre intuition est confirmée puisque les bases \gls{dct} et Fourier sont les meilleures pour les trois images, comparé à toutes les transformations en ondelettes considérées. Finalement, dans le cas des images de réseaux périodiques étudiées dans ce chapitre, ces expériences montrent que la base \gls{dct} offre la représentation la plus parcimonieuse et c'est cette transformation bande à bande $\boldsymbol\Psi$ qui sera choisie dans~\eqref{eq-regul-cls} pour la méthode CLS proposée.
 
 \begin{figure}[t]
     \centering
@@ -209,7 +210,7 @@ Les valeurs des métriques comme le temps d'exécution sont reportées à la \ta
 \begin{normalfigure*}[htbp]
     \centering
     \input{img/chapitre4/figure4/synth-results-table.tex}
-    \caption{Performances en reconstruction mesurées par SNR, aSAD et SSIM pour les images semi-réelles $\mathsf{R}_1^*$ et $\mathsf{R}_2^*$ et pour l'image synthétique $\mathsf{S}^*$. Le temps d'exécution est aussi donné pour être considéré conjointement avec la précision. Il y a un écart de performances très marqué tant en qualité qu'en temps d'exécution entre NN et les méthodes par \gls{ad}. Les méthodes par \gls{mc} régularisés forment un compromis, tout particulièrement CLS qui est plus performante que 3S.
+    \caption{Performances de reconstruction mesurées par SNR, aSAD et SSIM pour les images semi-réelles $\mathsf{R}_1^*$ et $\mathsf{R}_2^*$ et pour l'image synthétique $\mathsf{S}^*$. Le temps d'exécution est aussi donné pour être considéré conjointement avec la précision. Il y a un écart de performances très marqué tant en qualité qu'en temps d'exécution entre NN et les méthodes par \gls{ad}. Les méthodes par \gls{mc} régularisés forment un compromis, tout particulièrement CLS qui est plus performante que 3S.
         \protect\label{table-results-time-hr}}
 \end{normalfigure*}
 
@@ -268,7 +269,7 @@ Les cartes d'erreur en NMSE sont représentées à la figure~\ref{fig-results-HR
     \subfigure[Composante $\mathrm{Nd-M}_{4, 5}$]{
         \includegraphics{img/chapitre4/figure8/histogramme_3.pdf}}
     %
-    \caption{Histogrammes des erreurs de reconstruction pour $\mathsf{R}_2^*$ en terme de NMSE autours de 3 seuils particuliers ($\mathrm{O-K}$, $\mathrm{La-M}_{4, 5}$ et $\mathrm{Nd-M}_{4, 5}$). Le seuil utilisé pour saturer les images de la figure~\protect\ref{fig-results-HR2_synth-bands} est représenté par une ligne grise en tirets. On observe que les erreurs de NN sont généralement plus grandes que pour les autres méthodes.
+    \caption{Histogrammes des erreurs de reconstruction pour $\mathsf{R}_2^*$ en terme de NMSE autour de 3 seuils particuliers ($\mathrm{O-K}$, $\mathrm{La-M}_{4, 5}$ et $\mathrm{Nd-M}_{4, 5}$). Le seuil utilisé pour saturer les images de la figure~\protect\ref{fig-results-HR2_synth-bands} est représenté par une ligne grise en tirets. On observe que les erreurs de NN sont généralement plus grandes que pour les autres méthodes.
         \protect\label{fig-qu1-21-histograms}}    
 \end{normalfigure*}
 
@@ -279,11 +280,11 @@ Par conséquence, CLS apparaît comme un compromis pertinent entre précision et
 
 \section{Performances dans le cas de défauts ponctuels}
 
-La présence de défauts ponctuels risque de dégrader les performances de reconstruction pour toutes les méthodes. CLS est cencée être impactée puisque sa régularisation favorise la reconstruction d'images périodiques (\cf{} section~\ref{sec-formulation-cls}). \`A l'inverse, les méthodes par \gls{ad} devraient souffrir de la faible  représentation du défaut ponctuel dans l'échantillon. En effet, si le défaut ponctuel est rare, il est peu probable que les atomes appris puissent le représenter de manière parcimonieuse.
+La présence de défauts ponctuels risque de dégrader les performances de reconstruction pour toutes les méthodes. CLS est censée être impactée puisque sa régularisation favorise la reconstruction d'images périodiques (\cf{} section~\ref{sec-formulation-cls}). \`A l'inverse, les méthodes par \gls{ad} devraient souffrir de la faible  représentation du défaut ponctuel dans l'échantillon. En effet, si le défaut ponctuel est rare, il est peu probable que les atomes appris puissent le représenter de manière parcimonieuse.
 
 Afin d'illustrer cet impact, un nouveau spectre-image synthétique noté $\mathsf{S}_v^*$ a été généré de même que pour l'image $\mathsf{S}^*$, mis à part que deux atomes initialement situés des deux côtés de l'interface ont été échangés. Cela permet d'imiter la présence d'un défaut ponctuel.
 
-La \tabname~\ref{table-vacancy-perfs} expose les performances de reconstruction obtenues pour les images $\mathsf{S}^*$ et $\mathsf{S}_v^*$. Les figures~\ref{fig-vacancy-S} et \ref{fig-vacancy-SV} montrent les cartes d'erreur en NMSE associées aux deux images $\mathsf{S}^*$ et $\mathsf{S}_v^*$ respectivement, calculées autours de trois seuils d'intérêt. On observe que NN et 3S ne sont pas impactées par la présence de défauts ponctuels. Cependant, les performances de CLS et des techniques par \gls{ad}, en particulier \gls{itkrmm}, sont dégradées. Cette dégradation est particulièrement visible dans les cartes d'erreur associées au composant $\mathrm{La-M}_{4, 5}$. On observe que les erreurs de NN et 3S sont globalement les mêmes  pour tous les atomes tandis que, pour les méthodes CLS et par \gls{ad}, les erreurs sont localisées autours des défauts ponctuels.
+La \tabname~\ref{table-vacancy-perfs} expose les performances de reconstruction obtenues pour les images $\mathsf{S}^*$ et $\mathsf{S}_v^*$. Les figures~\ref{fig-vacancy-S} et \ref{fig-vacancy-SV} montrent les cartes d'erreur en NMSE associées aux deux images $\mathsf{S}^*$ et $\mathsf{S}_v^*$ respectivement, calculées autour de trois seuils d'intérêt. On observe que NN et 3S ne sont pas impactées par la présence de défauts ponctuels. Cependant, les performances de CLS et des techniques par \gls{ad}, en particulier \gls{itkrmm}, sont dégradées. Cette dégradation est particulièrement visible dans les cartes d'erreur associées au composant $\mathrm{La-M}_{4, 5}$. On observe que les erreurs de NN et 3S sont globalement les mêmes  pour tous les atomes tandis que, pour les méthodes CLS et par \gls{ad}, les erreurs sont localisées autour des défauts ponctuels.
 
 Pour conclure, dans le cas de défauts ponctuels, les performances de CLS, bien que dégradées, ne semblent pas moins sensibles que les techniques par \gls{ad}.
 
@@ -292,7 +293,7 @@ Pour conclure, dans le cas de défauts ponctuels, les performances de CLS, bien 
     %
     \input{img/chapitre4/figure15/table_without_hole} 
     %
-    \caption{Erreur de reconstruction pour $\mathsf{S}^*$ (NMSE) autours de trois seuils d'intérêt ($\mathrm{O-K}$, $\mathrm{La-M}_{4, 5}$ et $\mathrm{Nd-M}_{4, 5}$). La dynamique est la même pour toutes les images, \ie{}, elles peuvent être comparées pour toutes les méthodes et tous les composants. Les bandes du spectre-image synthétique de référence sont aussi données pour comparaison à la première ligne.
+    \caption{Erreur de reconstruction pour $\mathsf{S}^*$ (NMSE) autour de trois seuils d'intérêt ($\mathrm{O-K}$, $\mathrm{La-M}_{4, 5}$ et $\mathrm{Nd-M}_{4, 5}$). La dynamique est la même pour toutes les images, \ie{}, elles peuvent être comparées pour toutes les méthodes et tous les composants. Les bandes du spectre-image synthétique de référence sont aussi données pour comparaison à la première ligne.
         \protect\label{fig-vacancy-S}}
 \end{normalfigure*}
 
@@ -301,7 +302,7 @@ Pour conclure, dans le cas de défauts ponctuels, les performances de CLS, bien 
     %
     \input{img/chapitre4/figure15/table_with_hole}
     %
-    \caption{Erreur de reconstruction pour $\mathsf{S}_v^*$ (NMSE) autours de trois seuils d'intérêt ($\mathrm{O-K}$, $\mathrm{La-M}_{4, 5}$ et $\mathrm{Nd-M}_{4, 5}$). La dynamique est la même pour toutes les images, \ie{}, elles peuvent être comparées pour toutes les méthodes et tous les composants. Les bandes du spectre-image synthétique de référence sont aussi données pour comparaison à la première ligne. La présence de défauts ponctuels dégrade les performances de reconstruction de CLS et des méthodes par \gls{ad}.
+    \caption{Erreur de reconstruction pour $\mathsf{S}_v^*$ (NMSE) autour de trois seuils d'intérêt ($\mathrm{O-K}$, $\mathrm{La-M}_{4, 5}$ et $\mathrm{Nd-M}_{4, 5}$). La dynamique est la même pour toutes les images, \ie{}, elles peuvent être comparées pour toutes les méthodes et tous les composants. Les bandes du spectre-image synthétique de référence sont aussi données pour comparaison à la première ligne. La présence de défauts ponctuels dégrade les performances de reconstruction de CLS et des méthodes par \gls{ad}.
         \protect\label{fig-vacancy-SV}}
 \end{normalfigure*}
 
@@ -318,7 +319,7 @@ Pour conclure, dans le cas de défauts ponctuels, les performances de CLS, bien 
         3S      &22,12  &1,174  &0,710  &22,13  &1,181  &0,715\\
         CLS     &42,14  &0,224  &0,997  &38,45  &0,346  &0,993\\
         ITKrMM  &44,16  &0,338  &0,998  &34,34  &0,649  &0,987\\
-        wKSVD   &45,59  &0,277  &0,999  &41,49  &0,376  &0,997\\
+        \gls{wksvd}   &45,59  &0,277  &0,999  &41,49  &0,376  &0,997\\
         BPFA    &52,70  &0,150  &1,000  &45,27  &0,236  &0,998\\
         \bottomrule    
     \end{tabular}
@@ -332,7 +333,7 @@ Pour conclure, dans le cas de défauts ponctuels, les performances de CLS, bien 
 
 Des résultats illustratifs sont également donnés pour $\mathbf{R}_2$. Plus précisément, le spectre-image réel $\mathbf{R}_2$ est spatialement sous-échantillonné avec un taux d'échantillonnage de 20\%, puis reconstruit comme à la section précédente~\ref{sec-results-hr-synth}.
 
-Des représentations visuelles des spectre-images reconstruits autours de seuils d'intérêt sont donnés à la figure~\ref{fig-results-HR2_real-bands} et la reconstruction d'un spectre non échantillonné est montrée à la figure~\ref{fig-real-image-spectra}. Dans ces figures, notons que les données de référence correspondent à l'image réelle $\mathsf{R}_2$ possiblement bruitée.
+Des représentations visuelles des spectre-images reconstruits autour de seuils d'intérêt sont données à la figure~\ref{fig-results-HR2_real-bands} et la reconstruction d'un spectre non échantillonné est montrée à la figure~\ref{fig-real-image-spectra}. Dans ces figures, notons que les données de référence correspondent à l'image réelle $\mathsf{R}_2$ possiblement bruitée.
 
 Comme précédemment observé, les méthodes par \gls{ad} donnent des images reconstruites visuellement excellentes comparé aux autres méthodes. Les résultats concernant les spectres reconstruits montrent que le spectre reconstruit par NN pour un pixel non-acquis souffre d'un décalage significatif tandis que les autres algorithmes font preuve de biais bien moins prononcés. 
 
@@ -361,37 +362,37 @@ Comme précédemment observé, les méthodes par \gls{ad} donnent des images rec
  
 \subsection{Résultats des approches DL-CLS}\label{sec-DL-CLS}
 
-Les sous-sections précédentes ont comparés les performances en reconstruction en se basant sur des images synthétique, semi-réelles et réelles. elles ont illustré l'intérêt de CLS en tant que méthode à la fois rapide et efficace pour reconstruire un spectre-image sous-échantillonné de réseau cristallin périodique. De plus, les méthodes de reconstruction par \gls{ad} ont affiché des performances meilleures pour une charge de calcul plus grande. Toutefois, une fois couplées à CLS, ces méthodes pourraient être utilisées comme raffinement après l'expérimentation. 
+Les sections précédentes ont comparés les performances de reconstruction en se basant sur des images synthétique, semi-réelles et réelles. elles ont illustré l'intérêt de CLS en tant que méthode à la fois rapide et efficace pour reconstruire un spectre-image sous-échantillonné de réseau cristallin périodique. De plus, les méthodes de reconstruction par \gls{ad} ont affiché des performances meilleures pour une charge de calcul plus grande. Toutefois, une fois couplées à CLS, ces méthodes pourraient être utilisées comme raffinement après l'expérimentation. 
 %
-Dans cette section, cet intérêt sera confirmé en se basant sur des expériences additionelles conduites sur l'image semi-réelle $\mathsf{R}_2^*$. De manière similaire à la section~\ref{sec-results-hr-synth}, cette image a été sous-échantillonnée, puis reconstruite avec wKSVD en considérant deux initialisations distinctes. 
+Dans cette section, cet intérêt sera confirmé en se basant sur des expériences additionelles conduites sur l'image semi-réelle $\mathsf{R}_2^*$. De manière similaire à la section~\ref{sec-results-hr-synth}, cette image a été sous-échantillonnée, puis reconstruite avec \gls{wksvd} en considérant deux initialisations distinctes. 
 %
-La première est purement aléatoire, comme cela a été initialement implémenté par l'algorithme. La seconde initialisation consiste à initialiser wKSVD avec un dictionnaire et un code parcimonieux associé obtenu à partir de l'image reconstruite par CLS. 
+La première est purement aléatoire, comme cela a été initialement implémenté par l'algorithme. La seconde initialisation consiste à initialiser \gls{wksvd} avec un dictionnaire et un code parcimonieux associé obtenu à partir de l'image reconstruite par CLS. 
 %
 Pour comparer les deux initialisations, la qualité de reconstruction (SNR) est évaluée à chaque itération de l'algorithme pour les deux initialisations. Les résultats sont donnés à la figure~\ref{fig-FS_init}. 
 %
-%Ensuite, la qualité de reconstruction est suivie comme une fonction de l'itération de l'algorithme wKSVD en affichant le SNR lié à la reconstruction. Les résultats sont donnés à la figure~\ref{fig-FS_init} pour les deux initialisations.
+%Ensuite, la qualité de reconstruction est suivie comme une fonction de l'itération de l'algorithme \gls{wksvd} en affichant le SNR lié à la reconstruction. Les résultats sont donnés à la figure~\ref{fig-FS_init} pour les deux initialisations.
 
 \begin{figure}[htbp]
    \centering
    \includegraphics{img/chapitre4/figure11/CLS_init.pdf}
-   \caption{SNR en fonction de l'itération de wKSVD pour les initialisations aléatoires et basées sur CLS. Les régions colorées correspondent à l'intervalle de l'écart-type calculée pour $10$ réalisations. Les résultats montrent que l'initialisation par CLS nécessite moins d'itérations pour atteindre un SNR désiré comparé à l'initialisation aléatoire. Cela encourage l'utilisation de CLS pour initialiser des techniques de reconstruction par \gls{ad}.
+   \caption{SNR en fonction de l'itération de \gls{wksvd} pour les initialisations aléatoires et basées sur CLS. Les régions colorées correspondent à l'intervalle de l'écart-type calculé pour $10$ réalisations. Les résultats montrent que l'initialisation par CLS nécessite moins d'itérations pour atteindre un SNR désiré comparé à l'initialisation aléatoire. Cela encourage l'utilisation de CLS pour initialiser des techniques de reconstruction par \gls{ad}.
        \protect\label{fig-FS_init}}
 \end{figure}
 
 
 Les résultats montrent que l'initialisation basée sur CLS nécessite moins d'itérations pour parvenir à un SNR souhaité comparé à l'initialisation aléatoire. De plus, il semble même qu'à convergence, les performances soient améliorées.
 %
-Cela confirme l'intérêt à utiliser CLS en vue d'élaborer une initialisation pertinente pour accélérer des techniques plus élaborées mais plus lourdes d'un point de vue calculatoire.  Notons que cette stratégie peut être utilisée pour des algorithmes basés sur une descente de gradient, tels que wKSVD ou ITKrMM, mais ne convient pas aux méthodes de \gls{mcmc} comme BPFA.
+Cela confirme l'intérêt à utiliser CLS en vue d'élaborer une initialisation pertinente pour accélérer des techniques plus élaborées mais plus lourdes d'un point de vue calculatoire.  Notons que cette stratégie peut être utilisée pour des algorithmes basés sur une descente de gradient, tels que \gls{wksvd} ou ITKrMM, mais ne convient pas aux méthodes de \gls{mcmc} comme BPFA.
 
 
 %
 \section{Conclusion}
 
-Dans ce chapitre, une nouvelle méthode de reconstruction d'images STEM-EELS nommée CLS a été proposée. Des expériences conduites sur des données synthétiques et réelles ont montrés qu'elle était bien plus rapide que les méthodes par \gls{ad} et plus précise que NN. La combinaison de ces deux avantages est particulièrement intéressante et permet d'envisager son intégration dans une configuration expérimentale en ligne.
+Dans ce chapitre, une nouvelle méthode de reconstruction d'images STEM-EELS nommée CLS a été proposée. Des expériences conduites sur des données synthétiques et réelles ont montré qu'elle était bien plus rapide que les méthodes par \gls{ad} et plus précise que NN. La combinaison de ces deux avantages est particulièrement intéressante et permet d'envisager son intégration dans une configuration expérimentale en ligne.
 
 De plus, des techniques par \gls{ad} plus coûteuses mais plus précises ont été aussi utilisées comme post-traitement des résultats fournis par CLS. 
 %
-Ces méthodes donnent des reconstructions d'excellentes qualité au prix d'un temps d'exécution élevé, pouvant être réduit en initialisant l'algorithme avec le spectre-image obtenu par CLS.
+Ces méthodes donnent des reconstructions d'excellente qualité au prix d'un temps d'exécution élevé, pouvant être réduit en initialisant l'algorithme avec le spectre-image obtenu par CLS.
 
 Mener une acquisition sur un microscope tout en reconstruisant l'image en ligne est un domaine de recherche très actif puisque cela accélère la procédure d'acquisition et l'identification des composantes. Réaliser une reconstruction en ligne avec CLS et le coupler avec une acquisition adaptative est une perspective intéressante vers l'imagerie dynamique en STEM-EELS. Un tel protocole d'acquisition permettrait d'observer l'évolution temporelle de l'échantillon.
 

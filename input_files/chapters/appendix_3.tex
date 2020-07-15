@@ -3,11 +3,11 @@
 
 \section{Performances de CLS sans ACP}\label{sec-perfs-without-acp}
 
-\`A la section~\ref{sec-formulation-cls}, l'ACP a été considérée pré-traitement de l'algorithme proposé CLS. En effet, appliquer une ACP en pré-traitement présente un avantage double : cela permet d'imposer une structure faible-rang de l'image reconstruite tout en réduisant drastiquement le temps d'exécution. Dans cette même section, le risque de voir apparaître des artefacts lorsque l'estimation de la matrice de covariance est imprécise a été souligné.
+\`A la section~\ref{sec-formulation-cls}, l'ACP a été considérée comme pré-traitement de l'algorithme proposé CLS. En effet, appliquer une ACP en pré-traitement présente un avantage double : cela permet d'imposer une structure faible-rang de l'image reconstruite tout en réduisant drastiquement le temps d'exécution. Dans cette même section, le risque de voir apparaître des artefacts lorsque l'estimation de la matrice de covariance est imprécise a été souligné.
 
-Dans cette section, l'amélioration en termes de performances de reconstruction apportée par ce pré-traitement sera illustré. Pour cela, pour différents taux d'échantillonnage, l'image semi-réelle $\mathsf{R}_2^*$ est reconstruite avec CLS en le pré-traitant par ACP ou non.
+Dans cette section, l'amélioration en termes de performances de reconstruction apportée par ce pré-traitement est illustré. Pour cela, pour différents taux d'échantillonnage, l'image semi-réelle $\mathsf{R}_2^*$ est reconstruite avec CLS en le pré-traitant par ACP ou non.
 %
-Les performances de reconstruction en termes de SNR, aSAD et SSIM ainsi que le temps d'exécution sont donnés en fonction du taux d'échantillonnage aux figures~\ref{fig-CLS-full-a}, \ref{fig-CLS-full-b}, \ref{fig-CLS-full-c} et \ref{fig-CLS-full-d} respectivement. Pour toutes les métriques et tous les taux d'échantillonnage, appliquer une ACP en pré-traitement améliore les performances de reconstruction. De plus, cela permet de diviser le temps d'exécution par 200. Enfin, la figure~\ref{fig-CLS-full-images} montre les images reconstruites autours de trois seuils principaux lorsque l'ACP est appliquée et quand elle ne l'est pas (pour un taux d'échantillonnage de 20\%). Aucune différence visuelle ne peut être observée entre les deux procédures.
+Les performances de reconstruction en termes de SNR, aSAD et SSIM ainsi que le temps d'exécution sont donnés en fonction du taux d'échantillonnage aux figures~\ref{fig-CLS-full-a}, \ref{fig-CLS-full-b}, \ref{fig-CLS-full-c} et \ref{fig-CLS-full-d} respectivement. Pour toutes les métriques et tous les taux d'échantillonnage, appliquer une ACP en pré-traitement améliore les performances de reconstruction. De plus, cela permet de diviser le temps d'exécution par 200. Enfin, la figure~\ref{fig-CLS-full-images} montre les images reconstruites autour de trois seuils principaux lorsque l'ACP est appliquée et quand elle ne l'est pas (pour un taux d'échantillonnage de 20\%). Aucune différence visuelle ne peut être observée entre les deux procédures.
  
 \begin{normalfigure*}[]
     \centering
@@ -35,7 +35,7 @@ Les performances de reconstruction en termes de SNR, aSAD et SSIM ainsi que le t
     %
     \input{img/chapitre4/figure13/without-PCA-img}
     %
-    \caption{Résultats de reconstruction de $\mathsf{R}_2^*$ avec ACP (milieu) ou sans ACP (bas) en termes de pré-traitement. Les images montrent la somme de 5 bandes autours de trois seuils caractéristiques ($\mathrm{O-K}$, $\mathrm{La-M}_{4, 5}$ et $\mathrm{Nd-M}_{4, 5}$). La référence correspond à l'image semi-réelle $\mathsf{R}_2^*$.
+    \caption{Résultats de reconstruction de $\mathsf{R}_2^*$ avec ACP (milieu) ou sans ACP (bas) comme étape de pré-traitement. Les images montrent la somme de 5 bandes autour de trois seuils caractéristiques ($\mathrm{O-K}$, $\mathrm{La-M}_{4, 5}$ et $\mathrm{Nd-M}_{4, 5}$). La référence correspond à l'image semi-réelle $\mathsf{R}_2^*$.
         \protect\label{fig-CLS-full-images}}
 \end{normalfigure*}
 
@@ -43,7 +43,7 @@ Les performances de reconstruction en termes de SNR, aSAD et SSIM ainsi que le t
 
 \section{Comparaison des performances pour plusieurs taux d'échantillonnage}\label{sec-autres-taux-echantillonnage-hr}
 
-La méthode CLS proposée peut fonctionner avec n'importe quel taux d'échantillonnage. Toutefois, si un pré-traitement par ACP est réalisé, réduire le taux d'échantillonnage peux dégrader la qualité de l'estimation de la matrice de covariance. En particulier, lorsque le nombre de pixels acquis est inférieur au nombre de bandes (\ie{}, une configuration appelée \guillemets{large $p$, small $n$}), un estimateur robuste de la matrice de covariance serait nécessaire afin de surmonter le problème d'instabilité des estimateurs conventionels~\cite{ledoit2004well}. Dans nos expériences, les images complètes sont composées de \np{10000} pixels tandis que le nombre de bandes spectrales vaut environ \np{1500}. En choisissant un taux d'échantillonnage de 20\%, nous nous assurons que le nombre de pixels acquis est au moins légèrement supérieur au nombre de bandes, ce qui garanti que l'estimation de la matrice de covariance soit un problème bien posé.
+La méthode CLS proposée peut fonctionner avec n'importe quel taux d'échantillonnage. Toutefois, si un pré-traitement par ACP est réalisé, réduire le taux d'échantillonnage peux dégrader la qualité de l'estimation de la matrice de covariance. En particulier, lorsque le nombre de pixels acquis est inférieur au nombre de bandes (\ie{}, une configuration appelée \guillemets{large $p$, small $n$}), un estimateur robuste de la matrice de covariance est nécessaire afin de surmonter le problème d'instabilité des estimateurs conventionels~\cite{ledoit2004well}. Dans nos expériences, les images complètes sont composées de \np{10000} pixels tandis que le nombre de bandes spectrales vaut environ \np{1500}. En choisissant un taux d'échantillonnage de 20\%, nous nous assurons que le nombre de pixels acquis est au moins légèrement supérieur au nombre de bandes, ce qui garanti que l'estimation de la matrice de covariance soit un problème bien posé.
 
 En tant que résultat complémentaire, les performances des algorithmes comparés ont été évaluées pour différents taux d'échantillonnages lors de la reconstruction de $\mathsf{R}_2^*$. Les résultats sont donnés à la \tabname~\ref{table-higher-samp-ratio}. Comme attendu, les performances de toutes les méthodes augmentent avec le taux d'échantillonnage. On peut aussi noter que l'algorithme proposé est toujours performant pour des taux d'échantillonnage faibles ou élevés (\ie{}, 5\% et 50\%).
 
@@ -58,7 +58,7 @@ En tant que résultat complémentaire, les performances des algorithmes comparé
             3S&26,89&27,76&30,17&31,77&34,92\\
             CLS&29,31&30,84&33,15&34,56&37,10\\
             ITKrMM&29,75&31,82&33,67&34,14&34,57\\
-            wKSVD&25,51&29,63&34,52&35,52&35,90\\
+            \gls{wksvd}&25,51&29,63&34,52&35,52&35,90\\
             \bottomrule
         \end{tabular}
     }\\
@@ -72,7 +72,7 @@ En tant que résultat complémentaire, les performances des algorithmes comparé
             3S&2,358&2,041&1,496&1,217&0,857\\
             CLS&1,795&1,539&1,233&1,076&0,856\\
             ITKrMM&1,662&1,406&1,253&1,198&1,163\\
-            wKSVD&2,740&1,690&1,163&1,086&1,072\\
+            \gls{wksvd}&2,740&1,690&1,163&1,086&1,072\\
             \bottomrule
         \end{tabular}
     }\\
@@ -86,11 +86,11 @@ En tant que résultat complémentaire, les performances des algorithmes comparé
             3S&0,216&0,369&0,621&0,742&0,877\\
             CLS&0,545&0,660&0,790&0,843&0,911\\
             ITKrMM&0,620&0,757&0,819&0,831&0,844\\
-            wKSVD&0,499&0,717&0,841&0,858&0,866\\
+            \gls{wksvd}&0,499&0,717&0,841&0,858&0,866\\
             \bottomrule
         \end{tabular}
     }
-    \caption{Performances de reconstruction en terme de SNR, aSAD et SSIM pour l'image semi-réelle $\mathsf{R}_2^*$ pour différents taux d'échantillonnage. Les métriques sont aussi évaluées pour l'image bruitée $\mathsf{R}_2^*$ pour servir de référence.
+    \caption{Performances de reconstruction en termes de SNR, aSAD et SSIM pour l'image semi-réelle $\mathsf{R}_2^*$ pour différents taux d'échantillonnage. Les métriques sont aussi évaluées pour l'image bruitée $\mathsf{R}_2^*$ pour servir de référence.
         \protect\label{table-higher-samp-ratio}}
 \end{table}
 
@@ -99,7 +99,7 @@ En tant que résultat complémentaire, les performances des algorithmes comparé
 %
 \section{Estimation du paramètre de CLS à partir du niveau de bruit estimé}\label{sec-lcls-param-estim}
 
-En s'inspirant de la stratégie décrite à la section~\ref{sec-s2n-param-tuning}, le paramètre de régularisation de CLS peut être ajusté en suivant une approche dichotomique, comme discuté à la section~\ref{sec-choix-param-CLS}. Plus précisément, l'expérimentateur a généralement une certaine connaissance de l'image à reconstruire, telle que le niveau de bruit, pouvant être estimé a priori, ou le niveau de parcimonie, \ie{}, la proportion de coefficients non-nuls dans la représentation par \gls{dct} de l'image. Cette connaissance a priori peut être utilisée afin d'évaluer la qualité de la solution $\gls{Xh}_{\lambda}$ obtenue par CLS pour une valeur donnée $\lambda$\footnote{L'indice CLS de \gls{lcls} est omis pour plus de lisibilité.} du paramètre de régularisation. En effet, le terme d'attache aux données $\frac{1}{2} \frobnorm{\gls{Yi} - (\gls{Xh}_\lambda)_{\gls{I}}}$ devrait être de l'ordre de grandeur du niveau de bruit. De plus, ce terme résiduel (resp. le terme de parcimonie $||\gls{Xh}_\lambda\Psi||_{2, 1}$)  est censé augmenter (resp. diminuer) avce le paramètre $\lambda$ de CLS. Ainsi, une recherche dichotomique peut être menée afin d'ajuster automatiquement le paramètre de régularisation. Cela consiste à exécuter l'algorithme CLS, calculer le terme d'attache aux donnée à convergence, et à ré-exécuter une nouvelle fois CLS après avoir augmenté ou diminué le paramètre de régularisation jusqu'à atteindre une valeur du terme d'attache aux données proche du niveau de bruit. Par exemple, une approche similaire a été utilisée à la section~\ref{sec-lr-param-tuning}.
+En s'inspirant de la stratégie décrite à la section~\ref{sec-s2n-param-tuning}, le paramètre de régularisation de CLS peut être ajusté en suivant une approche dichotomique, comme discuté à la section~\ref{sec-choix-param-CLS}. Plus précisément, l'expérimentateur a généralement une certaine connaissance de l'image à reconstruire, telle que le niveau de bruit, pouvant être estimé a priori, ou le niveau de parcimonie, \ie{}, la proportion de coefficients non-nuls dans la représentation par \gls{dct} de l'image. Cette connaissance a priori peut être utilisée afin d'évaluer la qualité de la solution $\gls{Xh}_{\lambda}$ obtenue par CLS pour une valeur donnée\footnote{L'indice CLS de \gls{lcls} est omis pour plus de lisibilité.} $\lambda$ du paramètre de régularisation. En effet, le terme d'attache aux données $\frac{1}{2} \frobnorm{\gls{Yi} - (\gls{Xh}_\lambda)_{\gls{I}}}$ devrait être de l'ordre de grandeur du niveau de bruit. De plus, ce terme résiduel (resp. le terme de parcimonie $||\gls{Xh}_\lambda\Psi||_{2, 1}$)  est censé augmenter (resp. diminuer) avce le paramètre $\lambda$ de CLS. Ainsi, une recherche dichotomique peut être menée afin d'ajuster automatiquement le paramètre de régularisation. Cela consiste à exécuter l'algorithme CLS, calculer le terme d'attache aux donnée à convergence, et à ré-exécuter une nouvelle fois CLS après avoir augmenté ou diminué le paramètre de régularisation jusqu'à atteindre une valeur du terme d'attache aux données proche du niveau de bruit. Par exemple, une approche similaire a été utilisée à la section~\ref{sec-lr-param-tuning}.
 
 Pour illustrer cela, en suivant le protocole expérimental décrit à la section~\ref{sec-experiments-hr}, CLS est utilisé afin de reconstruire l'image $\mathsf{R}_2^*$ pour une large gamme de valeurs de paramètre $\lambda$. Les performances de reconstruction en termes de SNR sont affichées à la figure~\ref{fig-lambda_estim} en fonction de $\lambda$. Sur cette figure, le paramètre ajusté à l'aide de la recherche dichotomique est indiqué par un point orange tandis que le paramètre optimal (\ie{}, celui conduisant à la meilleure reconstruction) apparaît en rouge. Ces résultats montrent que la stratégie proposée afin d'ajuster automatiquement le paramètre de régularisation donne des performances de reconstruction proches des valeurs optimales.
 
@@ -115,14 +115,14 @@ Notons toutefois que, pour toutes les méthodes comparées aux expériences de l
 
 \section{Reconstruction dans le cas d'un bruit mixte poisson-gaussien}\label{sec-bruit-mixte}
 
-Dans les expériences conduites à la section~\ref{sec-hr-results}, les images semi-réelles sont corrompues par un bruit blanc additif gaussien. Toutefois, cette hypothèse peut être remise en question puisque les données spectroscopiques en microscopie sont sencés être corrompus par un bruit mixte poisson-gaussien, comme détaillé à la section~\ref{sec-nature-bruit}. Puisqu'il est difficile de déduire la proportion des deux composantes à l'origine du bruit composant le mélange, seule la composante gaussienne a été conservée dans les expériences.
+Dans les expériences conduites à la section~\ref{sec-hr-results}, les images semi-réelles sont corrompues par un bruit blanc additif gaussien. Toutefois, cette hypothèse peut être remise en question puisque les données spectroscopiques en microscopie sont généralement corrompues par un bruit mixte poisson-gaussien, comme détaillé à la section~\ref{sec-nature-bruit}. Puisqu'il est difficile de déduire la proportion des deux composantes à l'origine du bruit composant le mélange, seule la composante gaussienne a été conservée dans les expériences.
 
 Pour souligner la robustesse de CLS dans le cas d'un bruit mixte poisson-gaussien, l'image non bruitée $\bar{\mathsf{R}}_2$ a été dégradée en suivant les deux procédures suivantes :
 \begin{itemize}
     \item $\mathcal{P}_{\mathrm{G}}$ : un bruit additif gaussien de variance $\sigma^2$ a été ajouté à $\bar{\mathsf{R}}_2$ afin de construire l'image corrompue $\mathsf{R}_2^{(\mathrm{G})}$,
     \item $\mathcal{P}_{\mathrm{PG}}$ : un bruit poissonnien de variance $\sigma^2/2$ a été appliqué à $\bar{\mathsf{R}}_2$, suivi d'un bruit additif gaussien de variance $\sigma^2/2$ afin d'obtenir l'image corrompue notée $\mathsf{R}_2^{(\mathrm{PG})}$.
 \end{itemize}
-Notons que les deux images corrompues $\mathsf{R}_2^{(\mathrm{G})}$ et $\mathsf{R}_2^{(\mathrm{PG})}$ présentent le même niveau de bruit total $\sigma^2$. Elles sont sous-échantillonnées avec un taux d'échantillonnage de 20\%, puis reconstruites en utilisant NN, 3S et CLS. Les performances de reconstruction en termes de SNR sont données à la \tabname~\ref{table:SNR-poisson-gaussian} pour deux niveaux de bruit $\sigma^2$. Ces résultats montrent que les performances de la méthode ne sont pas significativement dégradées lorsque l'on considère un modèle de bruit plus réaliste.
+Notons que les deux images corrompues $\mathsf{R}_2^{(\mathrm{G})}$ et $\mathsf{R}_2^{(\mathrm{PG})}$ présentent le même niveau de bruit total $\sigma^2$. Elles sont sous-échantillonnées avec un taux d'échantillonnage de 20\%, puis reconstruites en utilisant NN, 3S et CLS. Les performances de reconstruction en terme de SNR sont données à la \tabname~\ref{table:SNR-poisson-gaussian} pour deux niveaux de bruit $\sigma^2$. Ces résultats montrent que les performances de la méthode ne sont pas significativement dégradées lorsque l'on considère un modèle de bruit plus réaliste.
 
 \begin{table}[t]
     \centering
@@ -137,14 +137,14 @@ Notons que les deux images corrompues $\mathsf{R}_2^{(\mathrm{G})}$ et $\mathsf{
         CLS    & 33,15    & 33,15              & 29,05    & 28,67 \\
         \bottomrule
     \end{tabular}
-    \caption{Performances de reconstruction en termes de SNR (dB) pour les images $\mathsf{R}_2^{(\mathrm{G})}$ et $\mathsf{R}_2^{(\mathrm{PG})}$. Les résultats sont similaires pour les deux procédures de corruption $\mathcal{P}_{\mathrm{G}}$ et $\mathcal{P}_{\mathrm{PG}}$, ce qui montre que CLS n'est pas particulièrement impacté par le bruit poissonnien.
+    \caption{Performances de reconstruction en terme de SNR (dB) pour les images $\mathsf{R}_2^{(\mathrm{G})}$ et $\mathsf{R}_2^{(\mathrm{PG})}$. Les résultats sont similaires pour les deux procédures de corruption $\mathcal{P}_{\mathrm{G}}$ et $\mathcal{P}_{\mathrm{PG}}$, ce qui montre que CLS n'est pas particulièrement impacté par le bruit poissonnien.
         \protect\label{table:SNR-poisson-gaussian}}
 \end{table}
 
 
 \section{Création des spectre-images synthétiques et semi-réels}\label{sec-spim-creation-hr}
 
-\paragraph{Synthèse du spectre-image synthétique $\mathsf{S}$.} Pour générer le spectre-image synthétique $\mathsf{S}$, la stratégie utilisée à la section~\ref{sec-synth-data-lr} sera utilisée. Cela consiste à réaliser un mélange linéaire de $N_c=4$ composantes suivant des cartes d'abondances réalistes. Les composantes spectrales ont été obtenues en lissant $N_c$ signatures identifiées par \gls{aci} à partir du spectre-image réel $\mathsf{R}_2$. Elles sont rassemblées dans la matrice $\gls{M}$ de taille $\gls{M}\times N_c$ est sont représentées à la figure~\ref{fig-spectra-synth}. Les cartes d'abondances sont générées synthétiquement en superposant une structure périodique avec un fond évoluant doucement de manière similaire au spectre-image réel $\mathsf{R}_2$. Ces cartes rassemblées dans la matrice \gls{A} de taille $N_c\times\gls{P}$ sont représentées à la figure~\ref{fig-maps-synth}. Enfin, l'image synthétique $\mathsf{S}$ est obtenue en calculant $\gls{Mu}\gls{A}$.
+\paragraph{Synthèse du spectre-image synthétique $\mathsf{S}$.} Pour générer le spectre-image synthétique $\mathsf{S}$, la stratégie détaillée à la section~\ref{sec-synth-data-lr} est utilisée. Cela consiste à réaliser un mélange linéaire de $N_c=4$ composantes suivant des cartes d'abondances réalistes. Les composantes spectrales ont été obtenues en lissant $N_c$ signatures identifiées par \gls{aci} à partir du spectre-image réel $\mathsf{R}_2$. Elles sont rassemblées dans la matrice $\mathbf{M}$ de taille $\gls{M}\times N_c$ et sont représentées à la figure~\ref{fig-spectra-synth}. Les cartes d'abondances sont générées synthétiquement en superposant une structure périodique avec un fond évoluant doucement de manière similaire au spectre-image réel $\mathsf{R}_2$. Ces cartes rassemblées dans la matrice \gls{A} de taille $N_c\times\gls{P}$ sont représentées à la figure~\ref{fig-maps-synth}. Enfin, l'image synthétique $\mathsf{S}$ (sans bruit) est obtenue en calculant $\gls{Mu}\gls{A}$.
 
 \begin{figure}[b]
     \centering
@@ -165,11 +165,11 @@ Notons que les deux images corrompues $\mathsf{R}_2^{(\mathrm{G})}$ et $\mathsf{
 \end{figure}
 
 
-\paragraph{Création des spectre-images semi-réels $\mathsf{R}_1^*$ et $\mathsf{R}_2^*$.} Les spectre-images non bruités $\bar{\mathsf{R}}_1$ et $\bar{\mathsf{R}}_2$ utilisés à la section~\ref{sec-results-hr-synth} sont générés en ne conservant que les $R$ premières composantes principales identifiées par ACP appliqué à $\mathsf{R}_1$ et $\mathsf{R}_2$ respectivement. Dans ces travaux, le seuil $R$ est choisi tel que les $M-R$ composantes restantes ne contiennent pas d'information spatiale. Pour quantifier la présence ou l'absence d'information spatiale dans une composante principale, la blancheur est vérifiée en se basant sur les métriques proposées dans~\cite[chap. 3]{riot2018residual} selon
+\paragraph{Création des spectre-images semi-réels $\mathsf{R}_1^*$ et $\mathsf{R}_2^*$.} Les spectre-images non bruités $\bar{\mathsf{R}}_1$ et $\bar{\mathsf{R}}_2$ utilisés à la section~\ref{sec-results-hr-synth} sont générés en ne conservant que les $R$ premières composantes principales identifiées par ACP appliquée à $\mathsf{R}_1$ et $\mathsf{R}_2$ respectivement. Dans ces travaux, le seuil $R$ est choisi tel que les $M-R$ composantes restantes ne contiennent pas d'information spatiale. Pour quantifier la présence ou l'absence d'information spatiale dans une composante principale, la blancheur est vérifiée en se basant sur les métriques proposées dans~\cite[chap. 3]{riot2018residual} selon
 \begin{equation}
     ||r||_2^* = \sqrt{\sum_{\tau\neq 0} r(\tau)^2}
 \end{equation}
-où $r(\tau)$ est la fonction d'autocorrélation 2D. Plus la valeur est élevée, plus l'image contient d'information spatiale. Pour servir d'illustration, le critère est représenté à la figure~\ref{fig-whiteness-metric} en fonction de l'indice associé à la composante spectrale pour les deux spectre-images $\mathsf{R}_1$ et $\mathsf{R}_2$. Le seuil de l'ACP $R$ est choisi comme l'indice maximum suffisant à atteindre un comportement stationnaire de la courbe. Ces valeurs sont reportées à la \tabname~\ref{table-hr-samples}. Les spectre-images semi-réels $\mathsf{R}_1^*$ et $\mathsf{R}_2^*$ sont finallement obtenus en altérant les spectres-images non bruités $\bar{\mathsf{R}}_1$ et $\bar{\mathsf{R}}_2$ avec des bruits blancs additifs gaussiens dont les variances ont été ajustés pour atteindre des valeurs de SNR en accord avec ceux des spectre-images de référence correspondants $\mathsf{R}_1$ et $\mathsf{R}_2$ respectivement.
+où $r(\tau)$ est la fonction d'autocorrélation 2D. Plus la valeur est élevée, plus l'image contient d'information spatiale. Pour servir d'illustration, le critère est représenté à la figure~\ref{fig-whiteness-metric} en fonction de l'indice associé à la composante spectrale pour les deux spectre-images $\mathsf{R}_1$ et $\mathsf{R}_2$. Le seuil de l'ACP $R$ est choisi comme l'indice maximum suffisant à atteindre un comportement stationnaire de la courbe. Ces valeurs sont reportées à la \tabname~\ref{table-hr-samples}. Les spectre-images semi-réels $\mathsf{R}_1^*$ et $\mathsf{R}_2^*$ sont finalement obtenus en altérant les spectres-images non bruités $\bar{\mathsf{R}}_1$ et $\bar{\mathsf{R}}_2$ avec des bruits blancs additifs gaussiens dont les variances ont été ajustées pour atteindre des valeurs de SNR en accord avec ceux des spectre-images de référence correspondants $\mathsf{R}_1$ et $\mathsf{R}_2$ respectivement.
 
 \begin{figure}[]
     \centering
@@ -192,7 +192,7 @@ Par exemple, dans~\cite{deledalle2017clear}, les auteurs proposent de conserver 
 Si l'on s'intéresse plus préscisément à CLS pour lequel \gls{Xh} présente une parcimonie groupée dans la base \gls{dct}, une première méthode simple consiste à ré-estimer la solution sur le support de la représentation de \gls{Xh} seulement.
 Plus précisément, si l'on note $\hat{\Gamma}$ (resp. $\tilde{\Gamma}$) le support de la représentation parcimonieuse de \gls{Xh} (resp. $\tilde{\mathbf{X}}$), l'image raffinée devra respecter $\tilde{\Gamma} \subseteq \hat{\Gamma}$. En ce qui concerne CLS, le support s'écrit%
 %
-\footnote{Afin d'alléger les notations, nous considérons que les données n'ont pas été traité ACP en pré-traitement. Toutefois, cette décomposition est réalisée dans les expériences décrites dans cette section.}
+\footnote{Afin d'alléger les notations, nous considérons que les données n'ont pas subi d' ACP en pré-traitement. Toutefois, cette décomposition est réalisée dans les expériences décrites dans cette section.}
 %
 \begin{equation}
     \hat{\Gamma} = \mathrm{supp}(\gls{Xh}\Psi)  = \{p\ :\ (\gls{Xh}\Psi)_p \neq \mathbf{0}_M \}.
@@ -233,7 +233,7 @@ et est dite conserver l'orientation (O) si le cosinus vaut 1. Ces deux contraint
 \end{equation}
 Cette méthode appelée \emph{block-based refitting} (BBR) sera notée BBR-SD, BBR-So, etc. suivant la régularisation utilisée.
 
-Les performances de ces méthodes de refitting sont évaluées lors de la reconstruction de $\mathsf{R}_2^*$ et de $\mathsf{S}^*$ pour un taux d'échantillonnage de 20\%. Les résultats sont donnés à la \tabname~\ref{table-refitting} pour touts les méthodes étudiée au chapitre~\ref{ch-chapter_4} et pour les techniques de refitting.
+Les performances de ces méthodes de refitting sont évaluées lors de la reconstruction de $\mathsf{R}_2^*$ et de $\mathsf{S}^*$ pour un taux d'échantillonnage de 20\%. Les résultats sont donnés à la \tabname~\ref{table-refitting} pour touts les méthodes étudiées au chapitre~\ref{ch-chapter_4} et pour les techniques de refitting.
 %
 On observe d'abord que les approches par refitting se classent, comme CLS, entre les méthodes d'interpolation (et 3S) et les méthodes par \gls{ad} en termes de performances. 
 %
@@ -249,7 +249,7 @@ Cela tend à montrer que la norme $\ell_{2, 1}$ est suffisante pour notre applic
 \begin{table}
     \centering
     \input{img/chapitre4/figure18/final_refitting_metrics_2}
-    \caption{Performances en reconstruction des méthodes par refitting en termes de SNR pour l'image semi-réelle $\mathsf{R}_2^*$ et pour l'image synthétique $\mathsf{S}^*$. Les performances des méthodes utilisées au chapitre~\ref{ch-chapter_4} sont également affichées pour comparaison.
+    \caption{Performances de reconstruction des méthodes par refitting en terme de SNR pour l'image semi-réelle $\mathsf{R}_2^*$ et pour l'image synthétique $\mathsf{S}^*$. Les performances des méthodes utilisées au chapitre~\ref{ch-chapter_4} sont également affichées pour comparaison.
         \protect\label{table-refitting}}
 \end{table}
 
