@@ -1,6 +1,11 @@
 \documentclass{standalone}
 \usepackage{tikzstyle}
 
+\usepackage[french]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[autolanguage,np]{numprint}
+
 \begin{document}
 
 \begin{tikzpicture}[scale=0.6]
@@ -24,9 +29,9 @@
     \end{scope}
     
     \draw[] (2,-0.1) -- (2,0.1);
-    \draw (2,-0.5) node[] {\footnotesize $\approx$20eV};
+    \draw (2,-0.5) node[] {\footnotesize $\approx$ \np[eV]{20}};
     \draw[] (8,-0.1) -- (8,0.1);
-    \draw (8,-0.5) node[] {\footnotesize $\approx$1000eV};    
+    \draw (8,-0.5) node[] {\footnotesize $\approx$ \np[eV]{1000}};    
 
     % Small EELS plot
     \begin{axis}[%
@@ -51,7 +56,7 @@
     \draw [](6,4) rectangle ++(8, 4);
     
     \draw[] (7.6,3.9) -- (7.6,4.1);
-    \draw (7.6,3.5) node[] {\footnotesize $\approx$300eV};
+    \draw (7.6,3.5) node[] {\footnotesize $\approx$ \np[eV]{300}};
 
     % Faded red area
     \filldraw [fill=red, draw=black, opacity=0.1]%

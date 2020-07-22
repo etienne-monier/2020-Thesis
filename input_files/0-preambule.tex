@@ -49,7 +49,7 @@
 \makesomeone{judge}{5}{Cyril \textsc{Ruckebush}}{Professeur des Universités, Université de Lille}{Examinateur}
 \makesomeone{judge}{6}{Nicolas \textsc{Dobigeon}}{Professeur des Universités, Toulouse INP}{Co-directeur de thèse}
 \makesomeone{judge}{7}{Thomas \textsc{Oberlin}}{Enseignant-chercheur, ISAE-SUPAERO}{Co-directeur de thèse}
-\makesomeone{judge}{8}{Nathalie \textsc{Brun}}{Chargé de Recherche CNRS, LPS}{Co-directrice de thèse}
+\makesomeone{judge}{8}{Nathalie \textsc{Brun}}{Chargé de Recherche CNRS, LPS}{Co-directeur de thèse}
 
 %% ==============================================================
 %% Warning filtering
@@ -263,7 +263,7 @@ savewrites]{glossaries}
 }
 
 \renewcommand\backmatter{%
-    \cleardoublepage%
+    %\cleardoublepage%
     \pagestyle{empty}
 }
 
@@ -395,6 +395,7 @@ savewrites]{glossaries}
                 marginparsep=8.2mm, marginparwidth=0mm, %49.4mm,
                 headheight=\baselineskip
             }
+            \thispagestyle{empty}
             #1
             % \lipsum[1-10]
             \restoregeometry%

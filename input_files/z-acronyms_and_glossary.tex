@@ -69,6 +69,8 @@
 
 \newacronym{svd}{SVD}{décomposition en valeurs singulières}
 
+\newacronym{admm}{ADMM}{\textit{alternating direction method of multipliers}}
+
 
 % \newacronym{}{}{}
 
@@ -154,55 +156,65 @@
     description={Concaténation des colonnes de la matrice \gls{g-A} indexées par l'ensemble $\mathcal{E}$},
     sort={09}}
 
+\newglossaryentry{g-Amn-row}{type=notgen, 
+    name={\ensuremath{\mathbf{A}_{m:n,:}}},
+    description={Concaténation des lignes de la matrice \gls{g-A} d'indices compris entre $m$ et $n$},
+    sort={10}}
+
+\newglossaryentry{g-AI-row}{type=notgen, 
+    name={\ensuremath{\mathbf{A}_{\mathcal{E},:}}},
+    description={Concaténation des lignes de la matrice \gls{g-A} indexées par l'ensemble $\mathcal{E}$},
+    sort={11}}
+
 \newglossaryentry{g-T}{type=notgen, 
     name={\ensuremath{(\cdot)^{T}}},
     description={Transposée},
-    sort={10}}
+    sort={12}}
 
 \newglossaryentry{g-pm}{type=notgen, 
     name={\ensuremath{\mathbf{AB}}},
     description={Produit matriciel},
-    sort={11}}
+    sort={13}}
 
 \newglossaryentry{g-pmh}{type=notgen, 
     name={\ensuremath{\mathbf{A\cdot B}}},
     description={Produit de Hadamard (terme à terme)},
-    sort={12}}
+    sort={14}}
 
 \newglossaryentry{g-n1}{type=notgen, 
     name={\ensuremath{||\mathbf{a}||_1}},
     description={Norme $\ell_1$ de \gls{g-av}},
-    sort={13}}
+    sort={15}}
 
 \newglossaryentry{g-n2}{type=notgen, 
     name={\ensuremath{||\mathbf{a}||_2}},
     description={Norme $\ell_2$ de \gls{g-av}},
-    sort={14}}
+    sort={16}}
 
 \newglossaryentry{g-n12}{type=notgen, 
     name={\ensuremath{||\mathbf{A}||_{2, 1}}},
     description={Norme $\ell_{2, 1}$ de \gls{g-A}},
-    sort={15}}
+    sort={17}}
 
 \newglossaryentry{g-nf}{type=notgen, 
     name={\ensuremath{||\mathbf{A}||_\mathrm{F}}},
     description={Norme de Frobenius de \gls{g-A}},
-    sort={16}}
+    sort={18}}
 
 \newglossaryentry{g-nn}{type=notgen, 
     name={\ensuremath{||\mathbf{A}||_*}},
     description={Norme nucléaire de \gls{g-A}},
-    sort={17}}
+    sort={19}}
 
 \newglossaryentry{g-zvec}{type=notgen, 
     name={\ensuremath{\mathbf{0}_n}},
     description={Vecteur nul de taille $n$},
-    sort={18}}
+    sort={20}}
 
 \newglossaryentry{g-Id}{type=notgen, 
     name={\ensuremath{\mathds{1}_n}},
     description={Matrice identité de taille $n$},
-    sort={18}}
+    sort={21}}
 
 %% Ensembles %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -260,7 +272,7 @@
     sort={1}}
 
 \newglossaryentry{proba-den}{type=probas, 
-    name={\ensuremath{P(x)}},
+    name={\ensuremath{p(x)}},
     description={Densité de probabilité de $x$},
     sort={2}}
 %\multicolumn{2}{c}{  \sim \mathcal{N}(m, \sigma^2)
@@ -316,7 +328,7 @@
 \newglossaryentry{I}{
     type=modele,
     name={\ensuremath{\mathcal{I}}},
-    description={Ensemble des index des positions spatiales acquises},
+    description={Ensemble des indices des positions spatiales acquises},
     shape={\gls{N}},
     sort={02}
 }
@@ -371,27 +383,36 @@
 \newglossaryentry{Xh}{
     type=modele,
     name={\ensuremath{\hat{\mathbf{X}}}},
-    description={L'image reconstruite},
+    description={Image reconstruite},
     shape={\gls{M} \ensuremath{\times} \gls{P}},
     sort={09}
 }
 
 
 %% Démélange %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newglossaryentry{Nc}{
+    type=demelange,
+    name={\ensuremath{N_c}},
+    description={Nombre de composantes élémentaires},
+    %shape={\gls{M} \ensuremath{\times} \gls{P}},
+    sort={1}
+}
+
 \newglossaryentry{Mu}{
     type=demelange,
     name={\ensuremath{\mathbf{M}}},
     description={Matrice des composantes spectrales},
-    shape={\gls{M} \ensuremath{\times} \gls{P}},
-    sort={1}
+    shape={\gls{M} \ensuremath{\times} \gls{Nc}},
+    sort={2}
 }
 
 \newglossaryentry{A}{
     type=demelange,
     name={\ensuremath{\mathbf{A}}},
     description={Matrice des abondances},
-    shape={\gls{M} \ensuremath{\times} \gls{P}},
-    sort={2}
+    shape={\gls{Nc} \ensuremath{\times} \gls{P}},
+    sort={3}
 }
 
 %% ACP %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

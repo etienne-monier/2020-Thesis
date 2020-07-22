@@ -51,7 +51,7 @@ Ce phénomène est illustré à la figure~\ref{fig-joint-sparsity} en considéra
 \end{figure}
 Notons que dans le cas d'un niveau de bruit important, comme c'est le cas pour la bande \num{} \np{1111}, certains coefficients puissants assimilés aux hautes fréquences correspondent au bruit (dans le coin inférieur droit des représentations). Cependant, en analysant conjointement les représentations dans la base \gls{dct} pour plusieurs bandes, la disposition des coefficients principaux peut être déterminée après soustraction des coefficients associés au bruit.
 
-
+\newpage
 %
 \section{La méthode CLS}
 
@@ -105,12 +105,12 @@ où $\gls{Phi}$ est l'opérateur de sous-échantillonnage tel que $\gls{X}_{\gls
 \begin{equation}
     L(f) = ||\nabla^2 f(\gls{X})|| = ||\gls{Phi}\gls{Phi}^T|| = 1.
 \end{equation}
-Enfin, l'opérateur proximal est séparable suivant les colonnes, et est évalué en réalisant un seuillage doux pour toute colonne $\gls{X}_j$ (avec $j=1, \dots, P$) selon~\cite{jenatton2011proximal}
+Enfin, l'opérateur proximal est séparable suivant les colonnes, et est évalué en réalisant un seuillage doux pour toute colonne $\mathbf{x}_j$ (avec $j=1, \dots, P$) selon~\cite{jenatton2011proximal}
 \begin{equation}
 [\mathrm{prox}_{\mu g}(\gls{X})]_j = 
 \begin{cases}
-0&\text{si}\ ||\gls{X}_j||_2 < \mu \gls{lcls}\\
-\left(1-\frac{\mu\gls{lcls}}{||\gls{X}_j||_2}\right)\gls{X}_j&\text{sinon}\\
+0&\text{si}\ ||\mathbf{x}_j||_2 < \mu \gls{lcls}\\
+\left(1-\frac{\mu\gls{lcls}}{||\mathbf{x}_j||_2}\right)\mathbf{x}_j&\text{sinon}\\
 \end{cases}.\label{eq-prox-op}
 \end{equation}
 Comme expliqué à la section~\ref{sec-formulation-cls}, la méthode de reconstruction peut être appliquée à la matrice d'observation \gls{Yi} ou à sa représentation $\gls{H}_{1:\gls{R}}^T\gls{Yi}$ dans un sous-espace de dimension réduite identifié par ACP. Le seuil $R$ à fixer peut être choisi en suivant les stratégies décrites à la section~\ref{subsec-3s-poids} et à l'annexe~\ref{sec-spim-creation-hr}.
@@ -150,7 +150,7 @@ Toutes les expériences discutées dans la section suivante~\ref{sec-hr-results}
     }
 \end{table*}
 
-\paragraph{Images synthétiques et semi-réelles.} Puisque $\mathsf{R}_1$ et $\mathsf{R}_2$ sont naturellement corrompues par un bruit, le calcul de métriques pertinentes en vue d'évaluer la performance des techniques de reconstruction risque d'être biaisé par un niveau de bruit inconnu. Pour contourner le problème, des versions débruitées de $\mathsf{R}_1$ et $\mathsf{R}_2$ ont d'abord été générées en appliquant une ACP et en ne conservant que les $R$ premières composantes principales. Le choix du seuil $R$ est, de manière générale, une tâche difficile. Dans ce chapitre, il a été fixé de sorte que les composantes principales supprimées ne contiennent pas d'information spatiale. Pour quantifier la présence ou l’absence d’information spatiale dans une composante principale, la blancheur du bruit résiduel est évaluée en se basant sur les métriques proposées dans~\cite[chap. 3]{riot2018residual}.Plus de détails sont donnés à l'annexe~\ref{sec-spim-creation-hr}. Ces images débruitées, notées $\bar{\mathsf{R}}_1$ et $\bar{\mathsf{R}}_2$, sont supposées être les images vérité terrain \gls{X} à reconstruire.
+\paragraph{Images synthétiques et semi-réelles.} Puisque $\mathsf{R}_1$ et $\mathsf{R}_2$ sont naturellement corrompues par un bruit, le calcul de métriques pertinentes en vue d'évaluer la performance des techniques de reconstruction risque d'être biaisé par un niveau de bruit inconnu. Pour contourner le problème, des versions débruitées de $\mathsf{R}_1$ et $\mathsf{R}_2$ ont d'abord été générées en appliquant une ACP et en ne conservant que les $R$ premières composantes principales. Le choix du seuil $R$ est, de manière générale, une tâche difficile. Dans ce chapitre, il a été fixé de sorte que les composantes principales supprimées ne contiennent pas d'information spatiale. Pour quantifier la présence ou l’absence d’information spatiale dans une composante principale, la blancheur du bruit résiduel est évaluée en se basant sur les métriques proposées dans~\cite[chap. 3]{riot2018residual}. Plus de détails sont donnés à l'annexe~\ref{sec-spim-creation-hr}. Ces images débruitées, notées $\bar{\mathsf{R}}_1$ et $\bar{\mathsf{R}}_2$, sont supposées être les images vérité terrain \gls{X} à reconstruire.
 
 En plus de ces deux images semi-réelles, un spectre-image synthétique a été généré à partir de l'image $\mathsf{R}_2$. Pour cela, une \gls{aci} a été appliquée à $\mathsf{R}_2$ afin d'extraire quatre spectres caractéristiques qui ont été filtrés ensuite, tandis que les cartes d'abondance associées ont été synthétiquement produites. Ces données ont été mélangées par la suite  afin d'obtenir le spectre-image noté $\mathsf{S}$ (\cf{} annexe~\ref{sec-spim-creation-hr} pour plus de détails concernant la construction de ces données).
 
@@ -175,7 +175,7 @@ Les implémentations de ITKrMM et de \gls{wksvd} utilisées dans ces expérience
 
 Comme expliqué à la section précédente, le niveau de parcimonie des données dépend grandement de l'image et de la base choisie pour sa représentation. Dans le cas d'images de réseaux cristallins à échelle atomique, des travaux précédents ont considéré les ondelettes~\cite{li2018compressive}, la base de Fourier~\cite{stevens2018apl} ou la base \gls{dct}~\cite{beche2016development,anderson2013sparse}. Toutefois, aucune comparaison systématique de ces transformations n'a été conduite dans ces travaux. Cette section propose de combler cette lacune. Intuitivement, les transformées de Fourier ou la \gls{dct} devraient donner les meilleurs résultats puisqu'elles sont connues pour donner des représentations très parcimonieuses dans le cadre de structures périodiques et lisses. 
 %
-Pour confirmer cette intuition, nous proposons de tracer l'erreur de reconstruction comme une fonction du ratio $r\in(0, 1)$ de coefficients de représentation non-nuls, \ie{}, en ne conservant seulement que les $r$\% coefficients de représentation dont la magnitude est la plus élevée. La transformation inverse fournit une estimée \gls{Xh} de \gls{X} d'autant dégradée que $r$ décroît. L'erreur de reconstruction correspond à la NMSE entre \gls{Xh} et \gls{X}. la transformation la plus appropriée à une image est celle dont l'erreur de reconstruction décroît le plus vite avec $r$ puisque cela signifie que l'on a besoin de moins de coefficients pour décrire l'image.
+Pour confirmer cette intuition, nous proposons de tracer l'erreur de reconstruction comme une fonction du ratio $r\in(0, 1)$ de coefficients de représentation non-nuls, \ie{}, en ne conservant seulement que les $r$\% coefficients de représentation dont la magnitude est la plus élevée. La transformation inverse fournit une estimée \gls{Xh} de \gls{X} d'autant dégradée que $r$ décroît. L'erreur de reconstruction correspond à la NMSE entre \gls{Xh} et \gls{X}. La transformation la plus appropriée à une image est celle dont l'erreur de reconstruction décroît le plus vite avec $r$ puisque cela signifie que l'on a besoin de moins de coefficients pour décrire l'image.
 %la valeur absolue des coefficients de représentation qui doivent décroître aussi vite que possible quand ils sont triés par ordre décroissant. Une décroissance rapide de la courbe signifierait que l'on a besoin de moins de coefficients pour représenter précisément les données. 
 %
 Ainsi, l'erreur de reconstruction est évaluée pour chaque image et est représentée pour les transformées suivantes : la base de Fourier, la base \gls{dct}, les ondelettes de Daubechies et symlet%
@@ -306,7 +306,7 @@ Pour conclure, dans le cas de défauts ponctuels, les performances de CLS, bien 
         \protect\label{fig-vacancy-SV}}
 \end{normalfigure*}
 
-\begin{table*}[]
+\begin{normaltable*}[p]
     \centering
     \begin{tabular}{c*{6}{M{2cm}}}
         \toprule
@@ -325,7 +325,7 @@ Pour conclure, dans le cas de défauts ponctuels, les performances de CLS, bien 
     \end{tabular}
     \caption{Performances de reconstruction avec et sans défaut ponctuel.
         \protect\label{table-vacancy-perfs}}
-\end{table*}
+\end{normaltable*}
 
 
 
