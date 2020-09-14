@@ -140,7 +140,7 @@ $\mathsf{R}_2$ est un spectre-image acquis à 100\;kV à partir d'un film fin de
 %
 Pour réduire le bruit d'acquisition, les images ont été acquis avec un temps d'exposition relativement long. Des informations complémentaires concernant ces images (comme leur taille, leur résolution, leur temps d'exposition et le seuil de l'ACP $R$ utilisé à la section~\ref{sec-results-hr-synth}) sont reportées à la \tabname~\ref{table-hr-samples}.
 
-Toutes les expériences discutées dans la section suivante~\ref{sec-hr-results} sont réalisées sur un CPU Intel Xeon E5540 @ 2,53\,GHz avec 8 c\oe{}urs (en incluant l'hyperthreading) et sur une mémoire de 50\,Gb. \`A noter que seul BPFA requiert une telle mémoire, les autres méthodes peuvent fonctionner avec seulement 13.2\,Gb de mémoire.
+Toutes les expériences discutées dans la section suivante~\ref{sec-hr-results} sont réalisées sur un CPU Intel Xeon E5540 @ \np[GHz]{2.53} avec 8 c\oe{}urs (en incluant l'hyperthreading) et sur une mémoire de \np[Gb]{50}. \`A noter que seul BPFA requiert une telle mémoire, les autres méthodes peuvent fonctionner avec seulement \np[Gb]{13.2} de mémoire.
 
 \begin{table*}
     \centering
@@ -162,7 +162,7 @@ Afin de simuler des conditions expérimentales, les trois images verité terrain
 
 \subsection{Méthodes}
 
-Comme expliqué à la section~\ref{sec-formulation-cls}, pour l'ensemble des algorithmes, une ACP est d'abord appliquée à l'image observée en ne conservant que les $R$ premières composantes les plus puissantes. Les techniques de reconstruction sont ensuite appliquées dans cet espace de dimension réduite. La transformation inverse sera réalisée en post-traitement pour obtenir l'image reconstruite \gls{Xh}. Les méthodes comparées sont NN, 3S, CLS, ITKrMM, \gls{wksvd} et BPFA. En particulier, NN est la seule à être appliquée bande à bande. Pour toutes les techniques, les paramètres de l'algorithme ont été ajustés afin d'atteindre les performances optimales. En particulier, les techniques par \gls{ad} considèrent des patchs 3D de taille $w\times w \times R$ avec $w=25$ pour ITKrMM et \gls{wksvd} et $w=41$ pour BPFA. Les métriques utilisées en vue de comparer ces techniques sont données à la section~\ref{sec-metriques}.
+Comme expliqué à la section~\ref{sec-formulation-cls}, pour l'ensemble des algorithmes, une ACP est d'abord appliquée à l'image observée en ne conservant que les $R$ premières composantes les plus puissantes. Les techniques de reconstruction sont ensuite appliquées dans cet espace de dimension réduite. La transformation inverse sera réalisée en post-traitement pour obtenir l'image reconstruite \gls{Xh}. Les méthodes comparées sont PPV, 3S, CLS, ITKrMM, \gls{wksvd} et BPFA. En particulier, PPV est la seule à être appliquée bande à bande. Pour toutes les techniques, les paramètres de l'algorithme ont été ajustés afin d'atteindre les performances optimales. En particulier, les techniques par \gls{ad} considèrent des patchs 3D de taille $w\times w \times R$ avec $w=25$ pour ITKrMM et \gls{wksvd} et $w=41$ pour BPFA. Les métriques utilisées en vue de comparer ces techniques sont données à la section~\ref{sec-metriques}.
 
 Les implémentations de ITKrMM et de \gls{wksvd} utilisées dans ces expériences sont les codes Matlab fournis par la Prof. K. Schnass\footnote{\url{https://www.uibk.ac.at/mathematik/personal/schnass/code/itkrmm.zip}}. L'implémentation de BPFA est le code Matlab fournit par le docteur Z. Xing\footnote{\url{https://drive.google.com/open?id=0B9548VKFKtmiY2ZNRFVUTjhyUFE}}. J'ai implémenté les autres méthodes ;  elles sont disponibles sous la forme d'une librairie Python que j'ai créée nommée \texttt{inpystem}\footnote{\url{https://github.com/etienne-monier/inpystem}}. Les codes permettant de reproduire certaines des expériences de ce chapitre sont également disponibles en ligne\footnote{\url{https://github.com/etienne-monier/2020-Ultramicro-fast}}.
 
@@ -205,20 +205,20 @@ Cette procédure a été appliquée à $\mathsf{R}_1$, $\mathsf{R}_2$ et $\maths
 
 Dans cette section, les techniques de reconstruction ont été appliquées aux deux images semi-réelles $\mathsf{R}_1^*$ et $\mathsf{R}_2^*$ et à l'image synthétique $\mathsf{S}^*$.
 
-Les valeurs des métriques comme le temps d'exécution sont reportées à la \tabname~\ref{table-results-time-hr}. Ces résultats montrent qu'il y a un écart de performances très marqué, tant en termes de qualité que de temps d'exécution, entre NN et les méthodes par \gls{ad}. C'est particulièrement visible pour BPFA qui affiche un temps de calcul dépassant les 24 heures, mais qui offre souvent la meilleure reconstruction. Les techniques par \gls{mc} régularisés 3S et CLS semblent apporter un compromis, aussi bien en précision qu'en rapidité. CLS est particulièrement performante puisqu'elle affiche un SNR proche des meilleures méthodes avec un temps d'exécution très réduit. 3S affiche des performances plus faibles (même si supérieures à NN), ce qui est logique car la régularisation est inappropriée pour décrire précisément la structure périodique des images de réseaux cristallins. Notons également que BPFA donne généralement les meilleurs SNR et aSAD, à l'exception de $\mathsf{R}_1^*$ pour lequel CLS donne le meilleur aSAD tandis que NN affiche le aSAD le plus faible.
+Les valeurs des métriques comme le temps d'exécution sont reportées à la \tabname~\ref{table-results-time-hr}. Ces résultats montrent qu'il y a un écart de performances très marqué, tant en termes de qualité que de temps d'exécution, entre PPV et les méthodes par \gls{ad}. C'est particulièrement visible pour BPFA qui affiche un temps de calcul dépassant les 24 heures, mais qui offre souvent la meilleure reconstruction. Les techniques par \gls{mc} régularisés 3S et CLS semblent apporter un compromis, aussi bien en précision qu'en rapidité. CLS est particulièrement performante puisqu'elle affiche un SNR proche des meilleures méthodes avec un temps d'exécution très réduit. 3S affiche des performances plus faibles (même si supérieures à PPV), ce qui est logique car la régularisation est inappropriée pour décrire précisément la structure périodique des images de réseaux cristallins. Notons également que BPFA donne généralement les meilleurs SNR et aSAD, à l'exception de $\mathsf{R}_1^*$ pour lequel CLS donne le meilleur aSAD tandis que PPV affiche le aSAD le plus faible.
 
 \begin{normalfigure*}[htbp]
     \centering
     \input{img/chapitre4/figure4/synth-results-table.tex}
-    \caption{Performances de reconstruction mesurées par SNR, aSAD et SSIM pour les images semi-réelles $\mathsf{R}_1^*$ et $\mathsf{R}_2^*$ et pour l'image synthétique $\mathsf{S}^*$. Le temps d'exécution est aussi donné pour être considéré conjointement avec la précision. Il y a un écart de performances très marqué tant en qualité qu'en temps d'exécution entre NN et les méthodes par \gls{ad}. Les méthodes par \gls{mc} régularisés forment un compromis, tout particulièrement CLS qui est plus performante que 3S.
+    \caption{Performances de reconstruction mesurées par SNR, aSAD et SSIM pour les images semi-réelles $\mathsf{R}_1^*$ et $\mathsf{R}_2^*$ et pour l'image synthétique $\mathsf{S}^*$. Le temps d'exécution est aussi donné pour être considéré conjointement avec la précision. Il y a un écart de performances très marqué tant en qualité qu'en temps d'exécution entre PPV et les méthodes par \gls{ad}. Les méthodes par \gls{mc} régularisés forment un compromis, tout particulièrement CLS qui est plus performante que 3S.
         \protect\label{table-results-time-hr}}
 \end{normalfigure*}
 
 La reconstruction d'un pixel non échantillonné dont la position est donnée à la figure~\ref{fig-synth-image-spectra-locations} est aussi affichée à la figure~\ref{fig-synth-image-spectra}. Pour cette figure, les données de référence correspondent à l'image non bruitée $\bar{\mathsf{R}}_2$. Les courbes équivalentes pour un pixel échantillonné sont omises ici puisqu'elles n'apportent aucune information complémentaire, les spectres reconstruits étant trop proches pour être distingués.
 %
-Ces courbes montrent que le spectre reconstruit par NN est significativement décalé par rapport à la référence tandis que BPFA et CLS sont proches du spectre de référence. 
+Ces courbes montrent que le spectre reconstruit par PPV est significativement décalé par rapport à la référence tandis que BPFA et CLS sont proches du spectre de référence. 
 
-Les cartes d'erreur en NMSE sont représentées à la figure~\ref{fig-results-HR2_synth-bands}. Cette représentation peut être utile pour localiser les principales erreurs de reconstruction. De plus, la figure~\ref{fig-qu1-21-histograms} montre les histogrammes des erreurs pour chaque seuil. Ils montrent que l'erreur de NN est généralement supérieure par rapport aux autres méthodes, tout particulièrement pour certains pixels.
+Les cartes d'erreur en NMSE sont représentées à la figure~\ref{fig-results-HR2_synth-bands}. Cette représentation peut être utile pour localiser les principales erreurs de reconstruction. De plus, la figure~\ref{fig-qu1-21-histograms} montre les histogrammes des erreurs pour chaque seuil. Ils montrent que l'erreur de PPV est généralement supérieure par rapport aux autres méthodes, tout particulièrement pour certains pixels.
 
 % Position pixel représenté
 \begin{figure}[htbp]
@@ -247,7 +247,7 @@ Les cartes d'erreur en NMSE sont représentées à la figure~\ref{fig-results-HR
     \subfigure[Pixel non-acquis (zoom)]{
         \includegraphics{img/chapitre4/figure6/non-samp-spectrum-zoom.pdf}}\\[0.75cm]
     %
-    \caption{Spectres reconstruits pour $\mathsf{R}_2^*$ et pour un pixel non échantillonné dont la position dans l'image est donnée à la figure~\protect\ref{fig-synth-image-spectra-locations}. Les spectres de référence correspondent à l'image non bruitée $\bar{\mathsf{R}}_2$. Le zoom représente la région d'intérêt mise en évidence par la région transparente bleue. Les spectres de NN et 3S sont significativement décalés par rapport à la référence tandis que les spectres reconstruits par CLS et les méthodes par \gls{ad} sont proches du spectre de référence.
+    \caption{Spectres reconstruits pour $\mathsf{R}_2^*$ et pour un pixel non échantillonné dont la position dans l'image est donnée à la figure~\protect\ref{fig-synth-image-spectra-locations}. Les spectres de référence correspondent à l'image non bruitée $\bar{\mathsf{R}}_2$. Le zoom représente la région d'intérêt mise en évidence par la région transparente bleue. Les spectres de PPV et 3S sont significativement décalés par rapport à la référence tandis que les spectres reconstruits par CLS et les méthodes par \gls{ad} sont proches du spectre de référence.
         \protect\label{fig-synth-image-spectra}}
 \end{normalfigure*}
 
@@ -269,7 +269,7 @@ Les cartes d'erreur en NMSE sont représentées à la figure~\ref{fig-results-HR
     \subfigure[Composante $\mathrm{Nd-M}_{4, 5}$]{
         \includegraphics{img/chapitre4/figure8/histogramme_3.pdf}}
     %
-    \caption{Histogrammes des erreurs de reconstruction pour $\mathsf{R}_2^*$ en terme de NMSE autour de 3 seuils particuliers ($\mathrm{O-K}$, $\mathrm{La-M}_{4, 5}$ et $\mathrm{Nd-M}_{4, 5}$). Le seuil utilisé pour saturer les images de la figure~\protect\ref{fig-results-HR2_synth-bands} est représenté par une ligne grise en tirets. On observe que les erreurs de NN sont généralement plus grandes que pour les autres méthodes.
+    \caption{Histogrammes des erreurs de reconstruction pour $\mathsf{R}_2^*$ en terme de NMSE autour de 3 seuils particuliers ($\mathrm{O-K}$, $\mathrm{La-M}_{4, 5}$ et $\mathrm{Nd-M}_{4, 5}$). Le seuil utilisé pour saturer les images de la figure~\protect\ref{fig-results-HR2_synth-bands} est représenté par une ligne grise en tirets. On observe que les erreurs de PPV sont généralement plus grandes que pour les autres méthodes.
         \protect\label{fig-qu1-21-histograms}}    
 \end{normalfigure*}
 
@@ -284,7 +284,7 @@ La présence de défauts ponctuels risque de dégrader les performances de recon
 
 Afin d'illustrer cet impact, un nouveau spectre-image synthétique noté $\mathsf{S}_v^*$ a été généré de même que pour l'image $\mathsf{S}^*$, mis à part que deux atomes initialement situés des deux côtés de l'interface ont été échangés. Cela permet d'imiter la présence d'un défaut ponctuel.
 
-La \tabname~\ref{table-vacancy-perfs} expose les performances de reconstruction obtenues pour les images $\mathsf{S}^*$ et $\mathsf{S}_v^*$. Les figures~\ref{fig-vacancy-S} et \ref{fig-vacancy-SV} montrent les cartes d'erreur en NMSE associées aux deux images $\mathsf{S}^*$ et $\mathsf{S}_v^*$ respectivement, calculées autour de trois seuils d'intérêt. On observe que NN et 3S ne sont pas impactées par la présence de défauts ponctuels. Cependant, les performances de CLS et des techniques par \gls{ad}, en particulier \gls{itkrmm}, sont dégradées. Cette dégradation est particulièrement visible dans les cartes d'erreur associées au composant $\mathrm{La-M}_{4, 5}$. On observe que les erreurs de NN et 3S sont globalement les mêmes  pour tous les atomes tandis que, pour les méthodes CLS et par \gls{ad}, les erreurs sont localisées autour des défauts ponctuels.
+La \tabname~\ref{table-vacancy-perfs} expose les performances de reconstruction obtenues pour les images $\mathsf{S}^*$ et $\mathsf{S}_v^*$. Les figures~\ref{fig-vacancy-S} et \ref{fig-vacancy-SV} montrent les cartes d'erreur en NMSE associées aux deux images $\mathsf{S}^*$ et $\mathsf{S}_v^*$ respectivement, calculées autour de trois seuils d'intérêt. On observe que PPV et 3S ne sont pas impactées par la présence de défauts ponctuels. Cependant, les performances de CLS et des techniques par \gls{ad}, en particulier \gls{itkrmm}, sont dégradées. Cette dégradation est particulièrement visible dans les cartes d'erreur associées au composant $\mathrm{La-M}_{4, 5}$. On observe que les erreurs de PPV et 3S sont globalement les mêmes  pour tous les atomes tandis que, pour les méthodes CLS et par \gls{ad}, les erreurs sont localisées autour des défauts ponctuels.
 
 Pour conclure, dans le cas de défauts ponctuels, les performances de CLS, bien que dégradées, ne semblent pas moins sensibles que les techniques par \gls{ad}.
 
@@ -315,7 +315,7 @@ Pour conclure, dans le cas de défauts ponctuels, les performances de CLS, bien 
         \multicolumn{3}{c}{Avec défaut ponctuel}\\
         &SNR&aSAD (100$\times$)&SSIM&SNR&aSAD (100$\times$)&SSIM\\
         \midrule
-        NN      &21,32  &1,462  &0,735  &21,32  &1,475  &0,738\\
+        PPV      &21,32  &1,462  &0,735  &21,32  &1,475  &0,738\\
         3S      &22,12  &1,174  &0,710  &22,13  &1,181  &0,715\\
         CLS     &42,14  &0,224  &0,997  &38,45  &0,346  &0,993\\
         ITKrMM  &44,16  &0,338  &0,998  &34,34  &0,649  &0,987\\
@@ -335,7 +335,7 @@ Des résultats illustratifs sont également donnés pour $\mathbf{R}_2$. Plus pr
 
 Des représentations visuelles des spectre-images reconstruits autour de seuils d'intérêt sont données à la figure~\ref{fig-results-HR2_real-bands} et la reconstruction d'un spectre non échantillonné est montrée à la figure~\ref{fig-real-image-spectra}. Dans ces figures, notons que les données de référence correspondent à l'image réelle $\mathsf{R}_2$ possiblement bruitée.
 
-Comme précédemment observé, les méthodes par \gls{ad} donnent des images reconstruites visuellement excellentes comparé aux autres méthodes. Les résultats concernant les spectres reconstruits montrent que le spectre reconstruit par NN pour un pixel non-acquis souffre d'un décalage significatif tandis que les autres algorithmes font preuve de biais bien moins prononcés. 
+Comme précédemment observé, les méthodes par \gls{ad} donnent des images reconstruites visuellement excellentes comparé aux autres méthodes. Les résultats concernant les spectres reconstruits montrent que le spectre reconstruit par PPV pour un pixel non-acquis souffre d'un décalage significatif tandis que les autres algorithmes font preuve de biais bien moins prononcés. 
 
 
 \begin{normalfigure*}[]
@@ -343,7 +343,7 @@ Comme précédemment observé, les méthodes par \gls{ad} donnent des images rec
     \input{img/chapitre4/figure9/table-im-reelles.tex}
     \caption{Résultats de reconstruction pour $\mathbf{R}_2$. Les images montrent la somme de 5 bandes autour de trois seuils particuliers ($\mathrm{O-K}$, $\mathrm{La-M}_{4, 5}$ et $\mathrm{Nd-M}_{4, 5}$). 
     %
-    Ces résultats confirment l'écart de performances entre NN dont les images ne sont pas assez lisses et les méthodes par \gls{ad} qui sont proches de la référence avec un effet additionnel de débruitage. Les résultats de CLS sont clairement meilleurs que NN et 3S et sont proches des résultats pour les méthodes par \gls{ad}. 
+    Ces résultats confirment l'écart de performances entre PPV dont les images ne sont pas assez lisses et les méthodes par \gls{ad} qui sont proches de la référence avec un effet additionnel de débruitage. Les résultats de CLS sont clairement meilleurs que PPV et 3S et sont proches des résultats pour les méthodes par \gls{ad}. 
         \protect\label{fig-results-HR2_real-bands}}
 \end{normalfigure*}
 
@@ -355,7 +355,7 @@ Comme précédemment observé, les méthodes par \gls{ad} donnent des images rec
     \subfigure[Pixel non-acquis (zoom)]{
         \includegraphics{img/chapitre4/figure10/non-samp-spectrum-zoom.pdf}}\\[0.75cm]
     %
-    \caption{Spectres résultant de la reconstruction de $\mathsf{R}_2$ pour un spectre non échantillonné avec la même position que celle de la figure~\protect\ref{fig-synth-image-spectra}. Le spectre de référence correspond à l'image réelle $\mathsf{R}_2$. Le zoom représente la région d'intérêt mise en évidence par la région transparente bleue. Comme pour les résultats synthétiques, le spectre reconstruit par NN est significativement décalé comparé au spectre de référence tandis que les résultats pour CLS et les méthodes par \gls{ad} (tout particulièrement BPFA) sont proches de la référence. Encore, CLS apparaît comme un compromis pertinent.
+    \caption{Spectres résultant de la reconstruction de $\mathsf{R}_2$ pour un spectre non échantillonné avec la même position que celle de la figure~\protect\ref{fig-synth-image-spectra}. Le spectre de référence correspond à l'image réelle $\mathsf{R}_2$. Le zoom représente la région d'intérêt mise en évidence par la région transparente bleue. Comme pour les résultats synthétiques, le spectre reconstruit par PPV est significativement décalé comparé au spectre de référence tandis que les résultats pour CLS et les méthodes par \gls{ad} (tout particulièrement BPFA) sont proches de la référence. Encore, CLS apparaît comme un compromis pertinent.
         \protect\label{fig-real-image-spectra}}
 \end{normalfigure*}
 
@@ -388,7 +388,7 @@ Cela confirme l'intérêt à utiliser CLS en vue d'élaborer une initialisation 
 %
 \section{Conclusion}
 
-Dans ce chapitre, une nouvelle méthode de reconstruction d'images STEM-EELS nommée CLS a été proposée. Des expériences conduites sur des données synthétiques et réelles ont montré qu'elle était bien plus rapide que les méthodes par \gls{ad} et plus précise que NN. La combinaison de ces deux avantages est particulièrement intéressante et permet d'envisager son intégration dans une configuration expérimentale en ligne.
+Dans ce chapitre, une nouvelle méthode de reconstruction d'images STEM-EELS nommée CLS a été proposée. Des expériences conduites sur des données synthétiques et réelles ont montré qu'elle était bien plus rapide que les méthodes par \gls{ad} et plus précise que PPV. La combinaison de ces deux avantages est particulièrement intéressante et permet d'envisager son intégration dans une configuration expérimentale en ligne.
 
 De plus, des techniques par \gls{ad} plus coûteuses mais plus précises ont été aussi utilisées comme post-traitement des résultats fournis par CLS. 
 %

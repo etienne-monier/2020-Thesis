@@ -54,7 +54,7 @@ En tant que résultat complémentaire, les performances des algorithmes comparé
             \toprule
             Taux d'éch.  & 0.05 & 0.1 & 0.2 & 0.3 & 0.5\\
             \midrule
-            NN&24,81&26,42&28,71&29,91&32,04\\
+            PPV&24,81&26,42&28,71&29,91&32,04\\
             3S&26,89&27,76&30,17&31,77&34,92\\
             CLS&29,31&30,84&33,15&34,56&37,10\\
             ITKrMM&29,75&31,82&33,67&34,14&34,57\\
@@ -68,7 +68,7 @@ En tant que résultat complémentaire, les performances des algorithmes comparé
             \toprule
             Taux d'éch.  & 0,05 & 0,1 & 0,2 & 0,3 & 0,5\\
             \midrule
-            NN&2,846&2,325&1,815&1,542&1,148\\
+            PPV&2,846&2,325&1,815&1,542&1,148\\
             3S&2,358&2,041&1,496&1,217&0,857\\
             CLS&1,795&1,539&1,233&1,076&0,856\\
             ITKrMM&1,662&1,406&1,253&1,198&1,163\\
@@ -82,7 +82,7 @@ En tant que résultat complémentaire, les performances des algorithmes comparé
             \toprule
             Taux d'éch.  & 0,05 & 0,1 & 0,2 & 0,3 & 0,5\\
             \midrule
-            NN&0,233&0,425&0,635&0,720&0,823\\
+            PPV&0,233&0,425&0,635&0,720&0,823\\
             3S&0,216&0,369&0,621&0,742&0,877\\
             CLS&0,545&0,660&0,790&0,843&0,911\\
             ITKrMM&0,620&0,757&0,819&0,831&0,844\\
@@ -122,7 +122,7 @@ Pour souligner la robustesse de CLS dans le cas d'un bruit mixte poisson-gaussie
     \item $\mathcal{P}_{\mathrm{G}}$ : un bruit additif gaussien de variance $\sigma^2$ a été ajouté à $\bar{\mathsf{R}}_2$ afin de construire l'image corrompue $\mathsf{R}_2^{(\mathrm{G})}$,
     \item $\mathcal{P}_{\mathrm{PG}}$ : un bruit poissonnien de variance $\sigma^2/2$ a été appliqué à $\bar{\mathsf{R}}_2$, suivi d'un bruit additif gaussien de variance $\sigma^2/2$ afin d'obtenir l'image corrompue notée $\mathsf{R}_2^{(\mathrm{PG})}$.
 \end{itemize}
-Notons que les deux images corrompues $\mathsf{R}_2^{(\mathrm{G})}$ et $\mathsf{R}_2^{(\mathrm{PG})}$ présentent le même niveau de bruit total $\sigma^2$. Elles sont sous-échantillonnées avec un taux d'échantillonnage de 20\%, puis reconstruites en utilisant NN, 3S et CLS. Les performances de reconstruction en terme de SNR sont données à la \tabname~\ref{table:SNR-poisson-gaussian} pour deux niveaux de bruit $\sigma^2$. Ces résultats montrent que les performances de la méthode ne sont pas significativement dégradées lorsque l'on considère un modèle de bruit plus réaliste.
+Notons que les deux images corrompues $\mathsf{R}_2^{(\mathrm{G})}$ et $\mathsf{R}_2^{(\mathrm{PG})}$ présentent le même niveau de bruit total $\sigma^2$. Elles sont sous-échantillonnées avec un taux d'échantillonnage de 20\%, puis reconstruites en utilisant PPV, 3S et CLS. Les performances de reconstruction en terme de SNR sont données à la \tabname~\ref{table:SNR-poisson-gaussian} pour deux niveaux de bruit $\sigma^2$. Ces résultats montrent que les performances de la méthode ne sont pas significativement dégradées lorsque l'on considère un modèle de bruit plus réaliste.
 
 \begin{table}[t]
     \centering
@@ -132,7 +132,7 @@ Notons que les deux images corrompues $\mathsf{R}_2^{(\mathrm{G})}$ et $\mathsf{
         %
         & $\mathcal{P}_{\mathrm{G}}$ & $\mathcal{P}_{\mathrm{PG}}$ & $\mathcal{P}_{\mathrm{G}}$ & $\mathcal{P}_{\mathrm{PG}}$\\
         \midrule
-        NN     & 28,71    & 28,71              & 25,17    & 24,85 \\
+        PPV     & 28,71    & 28,71              & 25,17    & 24,85 \\
         3S     & 30,17    & 30,18              & 28,02    & 28,05 \\
         CLS    & 33,15    & 33,15              & 29,05    & 28,67 \\
         \bottomrule

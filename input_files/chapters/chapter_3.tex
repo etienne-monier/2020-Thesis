@@ -609,7 +609,7 @@ Le protocole $\mathcal{P}_0$ correspond à des paramètres d'acquisition usuels 
 \end{itemize}
 Les images acquises sont de taille $51\times 51$ et des compositions colorées synthétiques de ces images sont représentées à la figure~\ref{fig-lr-real-spims} où $\mathcal{P}_1$-Full\textsubscript{2ms} est utilisé comme référence pour définir la dynamique commune. Concernant les paramètres de S2N et de 3S, le paramètre de régularisation de S2N à été choisi en effectuant la procédure décrite à la section~\ref{sec-s2n-param-tuning} tandis que le paramètre \gls{m3s} de 3S a été affiné à la main afin d'obtenir un compromis entre les régularisations spatiale et spectrale.
 
-\begin{normalfigure*}[]
+\begin{normalfigure*}[] 
     \centering
     %
     \subfigure[$\mathcal{P}_0$-Full\textsubscript{10ms}]{
@@ -663,7 +663,7 @@ Ainsi, le choix de la stratégie d'acquisition doit résulter d'un compromis ent
 %
 \section{Conclusion}
 
-Dans ce chapitre, nous avons introduit de nouvelles techniques de reconstruction afin de préserver l'échantillon dans le cadre de l'acquisition partielle de spectre-images EELS basse résolution.. Elles se basent sur des connaissances a priori des spectre-images spatialement lisses, à savoir la régularité spatiale et le faible rang spectral. 
+Dans ce chapitre, nous avons introduit de nouvelles techniques de reconstruction afin de préserver l'échantillon dans le cadre de l'acquisition partielle de spectre-images EELS basse résolution. Elles se basent sur des connaissances a priori des spectre-images spatialement lisses, à savoir la régularité spatiale et le faible rang spectral. 
 %
 Deux algorithmes ont été proposés pour réaliser l'étape de reconstruction et des expériences ont comparé cette approche avec un schéma d'acquisition standard. Les résultats ont montré que l'algorithme 3S est plus performant que S2N aussi bien en termes de qualité de reconstruction que de temps d'exécution.
 
