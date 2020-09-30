@@ -22,7 +22,7 @@
         my-axis,
         axis y line*=left,
         xlabel={Perte d'énergie (eV)},
-        ylabel={\color{Dark2-5-1}Amplitude},
+        ylabel={\color{Dark2-5-1}Moyenne},
         ymin=200, ymax=1400,
         ]
         \addplot+ [Dark2-5-1] table [x=eV, y=mean] {python/data_variance.dat};

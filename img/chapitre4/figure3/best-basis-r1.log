@@ -1,23 +1,27 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.11.29)  16 MAY 2020 21:03
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.10.17)  30 SEP 2020 11:04
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**best-basis-r1.tikz
-(./best-basis-r1.tikz
-LaTeX2e <2019-10-01> patch level 3
+**/home/etienne/ownCloud/Manuscrit/img/chapitre4/figure3/best-basis-r1.tikz
+(/home/etienne/ownCloud/Manuscrit/img/chapitre4/figure3/best-basis-r1.tikz
+LaTeX2e <2019-10-01> patch level 1
 (/home/etienne/.texlive/2019/texmf-dist/tex/latex/standalone/standalone.cls
 Document Class: standalone 2018/03/26 v1.3a Class to compile TeX sub-files stan
 dalone
 (/home/etienne/.texlive/2019/texmf-dist/tex/latex/tools/shellesc.sty
-Package: shellesc 2019/11/08 v1.0c unified shell escape interface for LaTeX
-Package shellesc Info: Restricted shell escape enabled on input line 77.
+Package: shellesc 2016/06/07 v0.02b unified shell escape interface for LaTeX
+Package shellesc Info: Restricted shell escape enabled on input line 72.
 )
-(/home/etienne/.texlive/2019/texmf-dist/tex/generic/iftex/ifluatex.sty
-Package: ifluatex 2019/10/25 v1.5 ifluatex legacy package. Use iftex instead.
-
-(/home/etienne/.texlive/2019/texmf-dist/tex/generic/iftex/iftex.sty
-Package: iftex 2019/11/07 v1.0c TeX engine tests
-))
+(/home/etienne/.texlive/2019/texmf-dist/tex/generic/oberdiek/ifluatex.sty
+Package: ifluatex 2016/05/16 v1.4 Provides the ifluatex switch (HO)
+Package ifluatex Info: LuaTeX not detected.
+)
+(/home/etienne/.texlive/2019/texmf-dist/tex/generic/oberdiek/ifpdf.sty
+Package: ifpdf 2018/09/07 v3.3 Provides the ifpdf switch
+)
+(/home/etienne/.texlive/2019/texmf-dist/tex/generic/ifxetex/ifxetex.sty
+Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
+)
 (/home/etienne/.texlive/2019/texmf-dist/tex/latex/xkeyval/xkeyval.sty
 Package: xkeyval 2014/12/03 v2.7a package option processing (HA)
 
@@ -38,9 +42,9 @@ File: standalone.cfg 2018/03/26 v1.3a Default configuration file for 'standalon
 e' class
 )
 (/home/etienne/.texlive/2019/texmf-dist/tex/latex/base/article.cls
-Document Class: article 2019/10/25 v1.4k Standard LaTeX document class
+Document Class: article 2019/08/27 v1.4j Standard LaTeX document class
 (/home/etienne/.texlive/2019/texmf-dist/tex/latex/base/size10.clo
-File: size10.clo 2019/10/25 v1.4k Standard LaTeX file (size option)
+File: size10.clo 2019/08/27 v1.4j Standard LaTeX file (size option)
 )
 \c@part=\count83
 \c@section=\count84
@@ -64,35 +68,33 @@ Package: varwidth 2009/03/30 ver 0.92;  Variable-width minipages
 \sa@box=\box28
 )
 (/home/etienne/.texmf/tex/latex/style/tikzstyle.sty
-(/home/etienne/.texlive/2019/texmf-dist/tex/latex/pgf/frontendlayer/tikz.sty
-(/home/etienne/.texlive/2019/texmf-dist/tex/latex/pgf/basiclayer/pgf.sty
-(/home/etienne/.texlive/2019/texmf-dist/tex/latex/pgf/utilities/pgfrcs.sty
-(/home/etienne/.texlive/2019/texmf-dist/tex/generic/pgf/utilities/pgfutil-commo
-n.tex
+(/home/etienne/.texmf/tex/latex/pgf/tex/tikz.sty
+(/home/etienne/.texmf/tex/latex/pgf/tex/pgf.sty
+(/home/etienne/.texmf/tex/latex/pgf/tex/pgfrcs.sty
+(/home/etienne/.texmf/tex/latex/pgf/tex/pgfutil-common.tex
 \pgfutil@everybye=\toks16
 \pgfutil@tempdima=\dimen105
 \pgfutil@tempdimb=\dimen106
 
-(/home/etienne/.texlive/2019/texmf-dist/tex/generic/pgf/utilities/pgfutil-commo
-n-lists.tex))
-(/home/etienne/.texlive/2019/texmf-dist/tex/generic/pgf/utilities/pgfutil-latex
-.def
+(/home/etienne/.texmf/tex/latex/pgf/tex/pgfutil-common-lists.tex))
+(/home/etienne/.texmf/tex/latex/pgf/tex/pgfutil-latex.def
 \pgfutil@abb=\box29
- (/home/etienne/.texlive/2019/texmf-dist/tex/latex/ms/everyshi.sty
+
+(/home/etienne/.texlive/2019/texmf-dist/tex/latex/ms/everyshi.sty
 Package: everyshi 2001/05/15 v3.00 EveryShipout Package (MS)
 ))
-(/home/etienne/.texlive/2019/texmf-dist/tex/generic/pgf/utilities/pgfrcs.code.t
-ex (/home/etienne/.texlive/2019/texmf-dist/tex/generic/pgf/pgf.revision.tex)
+(/home/etienne/.texmf/tex/latex/pgf/tex/pgfrcs.code.tex
+(/home/etienne/.texmf/tex/latex/pgf/tex/pgf.revision.tex)
 Package: pgfrcs 2019/08/03 v3.1.4b (3.1.4b)
 ))
 Package: pgf 2019/08/03 v3.1.4b (3.1.4b)
 
-(/home/etienne/.texlive/2019/texmf-dist/tex/latex/pgf/basiclayer/pgfcore.sty
+(/home/etienne/.texmf/tex/latex/pgf/tex/pgfcore.sty
 (/home/etienne/.texlive/2019/texmf-dist/tex/latex/graphics/graphicx.sty
 Package: graphicx 2017/06/01 v1.1a Enhanced LaTeX Graphics (DPC,SPQR)
 
 (/home/etienne/.texlive/2019/texmf-dist/tex/latex/graphics/graphics.sty
-Package: graphics 2019/11/01 v1.3d Standard LaTeX Graphics (DPC,SPQR)
+Package: graphics 2019/10/08 v1.3c Standard LaTeX Graphics (DPC,SPQR)
 
 (/home/etienne/.texlive/2019/texmf-dist/tex/latex/graphics/trig.sty
 Package: trig 2016/01/03 v1.10 sin cos tan (DPC)
@@ -108,18 +110,15 @@ File: pdftex.def 2018/01/08 v1.0l Graphics/color driver for pdftex
 \Gin@req@height=\dimen107
 \Gin@req@width=\dimen108
 )
-(/home/etienne/.texlive/2019/texmf-dist/tex/latex/pgf/systemlayer/pgfsys.sty
-(/home/etienne/.texlive/2019/texmf-dist/tex/generic/pgf/systemlayer/pgfsys.code
-.tex
+(/home/etienne/.texmf/tex/latex/pgf/tex/pgfsys.sty
+(/home/etienne/.texmf/tex/latex/pgf/tex/pgfsys.code.tex
 Package: pgfsys 2019/08/03 v3.1.4b (3.1.4b)
 
-(/home/etienne/.texlive/2019/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.
-tex
+(/home/etienne/.texmf/tex/latex/pgf/tex/pgfkeys.code.tex
 \pgfkeys@pathtoks=\toks17
 \pgfkeys@temptoks=\toks18
 
-(/home/etienne/.texlive/2019/texmf-dist/tex/generic/pgf/utilities/pgfkeysfilter
-ed.code.tex
+(/home/etienne/.texmf/tex/latex/pgf/tex/pgfkeysfiltered.code.tex
 \pgfkeys@tmptoks=\toks19
 ))
 \pgf@x=\dimen109
@@ -143,27 +142,23 @@ ed.code.tex
 \t@pgf@tokc=\toks22
 \pgf@sys@id@count=\count96
 
-(/home/etienne/.texlive/2019/texmf-dist/tex/generic/pgf/systemlayer/pgf.cfg
+(/home/etienne/.texmf/tex/latex/pgf/tex/pgf.cfg
 File: pgf.cfg 2019/08/03 v3.1.4b (3.1.4b)
 )
 Driver file for pgf: pgfsys-pdftex.def
 
-(/home/etienne/.texlive/2019/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-pdft
-ex.def
+(/home/etienne/.texmf/tex/latex/pgf/tex/pgfsys-pdftex.def
 File: pgfsys-pdftex.def 2019/08/03 v3.1.4b (3.1.4b)
 
-(/home/etienne/.texlive/2019/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-comm
-on-pdf.def
+(/home/etienne/.texmf/tex/latex/pgf/tex/pgfsys-common-pdf.def
 File: pgfsys-common-pdf.def 2019/08/03 v3.1.4b (3.1.4b)
 )))
-(/home/etienne/.texlive/2019/texmf-dist/tex/generic/pgf/systemlayer/pgfsyssoftp
-ath.code.tex
+(/home/etienne/.texmf/tex/latex/pgf/tex/pgfsyssoftpath.code.tex
 File: pgfsyssoftpath.code.tex 2019/08/03 v3.1.4b (3.1.4b)
 \pgfsyssoftpath@smallbuffer@items=\count97
 \pgfsyssoftpath@bigbuffer@items=\count98
 )
-(/home/etienne/.texlive/2019/texmf-dist/tex/generic/pgf/systemlayer/pgfsysproto
-col.code.tex
+(/home/etienne/.texmf/tex/latex/pgf/tex/pgfsysprotocol.code.tex
 File: pgfsysprotocol.code.tex 2019/08/03 v3.1.4b (3.1.4b)
 ))
 (/home/etienne/.texlive/2019/texmf-dist/tex/latex/xcolor/xcolor.sty
@@ -183,17 +178,13 @@ Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1369.
 Package xcolor Info: Model `Gray' substituted by `gray' on input line 1370.
 Package xcolor Info: Model `wave' substituted by `hsb' on input line 1371.
 )
-(/home/etienne/.texlive/2019/texmf-dist/tex/generic/pgf/basiclayer/pgfcore.code
-.tex
+(/home/etienne/.texmf/tex/latex/pgf/tex/pgfcore.code.tex
 Package: pgfcore 2019/08/03 v3.1.4b (3.1.4b)
 
-(/home/etienne/.texlive/2019/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex
-(/home/etienne/.texlive/2019/texmf-dist/tex/generic/pgf/math/pgfmathcalc.code.t
-ex
-(/home/etienne/.texlive/2019/texmf-dist/tex/generic/pgf/math/pgfmathutil.code.t
-ex)
-(/home/etienne/.texlive/2019/texmf-dist/tex/generic/pgf/math/pgfmathparser.code
-.tex
+(/home/etienne/.texmf/tex/latex/pgf/tex/pgfmath.code.tex
+(/home/etienne/.texmf/tex/latex/pgf/tex/pgfmathcalc.code.tex
+(/home/etienne/.texmf/tex/latex/pgf/tex/pgfmathutil.code.tex)
+(/home/etienne/.texmf/tex/latex/pgf/tex/pgfmathparser.code.tex
 \pgfmath@dimen=\dimen119
 \pgfmath@count=\count99
 \pgfmath@box=\box30
@@ -201,31 +192,20 @@ ex)
 \pgfmath@stack@operand=\toks24
 \pgfmath@stack@operation=\toks25
 )
-(/home/etienne/.texlive/2019/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.c
-ode.tex
-(/home/etienne/.texlive/2019/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.b
-asic.code.tex)
-(/home/etienne/.texlive/2019/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.t
-rigonometric.code.tex)
-(/home/etienne/.texlive/2019/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.r
-andom.code.tex)
-(/home/etienne/.texlive/2019/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.c
-omparison.code.tex)
-(/home/etienne/.texlive/2019/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.b
-ase.code.tex)
-(/home/etienne/.texlive/2019/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.r
-ound.code.tex)
-(/home/etienne/.texlive/2019/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.m
-isc.code.tex)
-(/home/etienne/.texlive/2019/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.i
-ntegerarithmetics.code.tex)))
-(/home/etienne/.texlive/2019/texmf-dist/tex/generic/pgf/math/pgfmathfloat.code.
-tex
+(/home/etienne/.texmf/tex/latex/pgf/tex/pgfmathfunctions.code.tex
+(/home/etienne/.texmf/tex/latex/pgf/tex/pgfmathfunctions.basic.code.tex)
+(/home/etienne/.texmf/tex/latex/pgf/tex/pgfmathfunctions.trigonometric.code.tex
+) (/home/etienne/.texmf/tex/latex/pgf/tex/pgfmathfunctions.random.code.tex)
+(/home/etienne/.texmf/tex/latex/pgf/tex/pgfmathfunctions.comparison.code.tex)
+(/home/etienne/.texmf/tex/latex/pgf/tex/pgfmathfunctions.base.code.tex)
+(/home/etienne/.texmf/tex/latex/pgf/tex/pgfmathfunctions.round.code.tex)
+(/home/etienne/.texmf/tex/latex/pgf/tex/pgfmathfunctions.misc.code.tex)
+(/home/etienne/.texmf/tex/latex/pgf/tex/pgfmathfunctions.integerarithmetics.cod
+e.tex))) (/home/etienne/.texmf/tex/latex/pgf/tex/pgfmathfloat.code.tex
 \c@pgfmathroundto@lastzeros=\count100
 ))
-(/home/etienne/.texlive/2019/texmf-dist/tex/generic/pgf/math/pgfint.code.tex)
-(/home/etienne/.texlive/2019/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepoint
-s.code.tex
+(/home/etienne/.texmf/tex/latex/pgf/tex/pgfint.code.tex)
+(/home/etienne/.texmf/tex/latex/pgf/tex/pgfcorepoints.code.tex
 File: pgfcorepoints.code.tex 2019/08/03 v3.1.4b (3.1.4b)
 \pgf@picminx=\dimen120
 \pgf@picmaxx=\dimen121
@@ -242,128 +222,104 @@ File: pgfcorepoints.code.tex 2019/08/03 v3.1.4b (3.1.4b)
 \pgf@zx=\dimen132
 \pgf@zy=\dimen133
 )
-(/home/etienne/.texlive/2019/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathc
-onstruct.code.tex
+(/home/etienne/.texmf/tex/latex/pgf/tex/pgfcorepathconstruct.code.tex
 File: pgfcorepathconstruct.code.tex 2019/08/03 v3.1.4b (3.1.4b)
 \pgf@path@lastx=\dimen134
 \pgf@path@lasty=\dimen135
 )
-(/home/etienne/.texlive/2019/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathu
-sage.code.tex
+(/home/etienne/.texmf/tex/latex/pgf/tex/pgfcorepathusage.code.tex
 File: pgfcorepathusage.code.tex 2019/08/03 v3.1.4b (3.1.4b)
 \pgf@shorten@end@additional=\dimen136
 \pgf@shorten@start@additional=\dimen137
 )
-(/home/etienne/.texlive/2019/texmf-dist/tex/generic/pgf/basiclayer/pgfcorescope
-s.code.tex
+(/home/etienne/.texmf/tex/latex/pgf/tex/pgfcorescopes.code.tex
 File: pgfcorescopes.code.tex 2019/08/03 v3.1.4b (3.1.4b)
 \pgfpic=\box31
 \pgf@hbox=\box32
 \pgf@layerbox@main=\box33
 \pgf@picture@serial@count=\count101
 )
-(/home/etienne/.texlive/2019/texmf-dist/tex/generic/pgf/basiclayer/pgfcoregraph
-icstate.code.tex
+(/home/etienne/.texmf/tex/latex/pgf/tex/pgfcoregraphicstate.code.tex
 File: pgfcoregraphicstate.code.tex 2019/08/03 v3.1.4b (3.1.4b)
 \pgflinewidth=\dimen138
 )
-(/home/etienne/.texlive/2019/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretrans
-formations.code.tex
+(/home/etienne/.texmf/tex/latex/pgf/tex/pgfcoretransformations.code.tex
 File: pgfcoretransformations.code.tex 2019/08/03 v3.1.4b (3.1.4b)
 \pgf@pt@x=\dimen139
 \pgf@pt@y=\dimen140
 \pgf@pt@temp=\dimen141
 )
-(/home/etienne/.texlive/2019/texmf-dist/tex/generic/pgf/basiclayer/pgfcorequick
-.code.tex
+(/home/etienne/.texmf/tex/latex/pgf/tex/pgfcorequick.code.tex
 File: pgfcorequick.code.tex 2019/08/03 v3.1.4b (3.1.4b)
 )
-(/home/etienne/.texlive/2019/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreobjec
-ts.code.tex
+(/home/etienne/.texmf/tex/latex/pgf/tex/pgfcoreobjects.code.tex
 File: pgfcoreobjects.code.tex 2019/08/03 v3.1.4b (3.1.4b)
 )
-(/home/etienne/.texlive/2019/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathp
-rocessing.code.tex
+(/home/etienne/.texmf/tex/latex/pgf/tex/pgfcorepathprocessing.code.tex
 File: pgfcorepathprocessing.code.tex 2019/08/03 v3.1.4b (3.1.4b)
 )
-(/home/etienne/.texlive/2019/texmf-dist/tex/generic/pgf/basiclayer/pgfcorearrow
-s.code.tex
+(/home/etienne/.texmf/tex/latex/pgf/tex/pgfcorearrows.code.tex
 File: pgfcorearrows.code.tex 2019/08/03 v3.1.4b (3.1.4b)
 \pgfarrowsep=\dimen142
 )
-(/home/etienne/.texlive/2019/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreshade
-.code.tex
+(/home/etienne/.texmf/tex/latex/pgf/tex/pgfcoreshade.code.tex
 File: pgfcoreshade.code.tex 2019/08/03 v3.1.4b (3.1.4b)
 \pgf@max=\dimen143
 \pgf@sys@shading@range@num=\count102
 \pgf@shadingcount=\count103
 )
-(/home/etienne/.texlive/2019/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreimage
-.code.tex
+(/home/etienne/.texmf/tex/latex/pgf/tex/pgfcoreimage.code.tex
 File: pgfcoreimage.code.tex 2019/08/03 v3.1.4b (3.1.4b)
 
-(/home/etienne/.texlive/2019/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreexter
-nal.code.tex
+(/home/etienne/.texmf/tex/latex/pgf/tex/pgfcoreexternal.code.tex
 File: pgfcoreexternal.code.tex 2019/08/03 v3.1.4b (3.1.4b)
 \pgfexternal@startupbox=\box34
 ))
-(/home/etienne/.texlive/2019/texmf-dist/tex/generic/pgf/basiclayer/pgfcorelayer
-s.code.tex
+(/home/etienne/.texmf/tex/latex/pgf/tex/pgfcorelayers.code.tex
 File: pgfcorelayers.code.tex 2019/08/03 v3.1.4b (3.1.4b)
 )
-(/home/etienne/.texlive/2019/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretrans
-parency.code.tex
+(/home/etienne/.texmf/tex/latex/pgf/tex/pgfcoretransparency.code.tex
 File: pgfcoretransparency.code.tex 2019/08/03 v3.1.4b (3.1.4b)
 )
-(/home/etienne/.texlive/2019/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepatte
-rns.code.tex
+(/home/etienne/.texmf/tex/latex/pgf/tex/pgfcorepatterns.code.tex
 File: pgfcorepatterns.code.tex 2019/08/03 v3.1.4b (3.1.4b)
 )
-(/home/etienne/.texlive/2019/texmf-dist/tex/generic/pgf/basiclayer/pgfcorerdf.c
-ode.tex
+(/home/etienne/.texmf/tex/latex/pgf/tex/pgfcorerdf.code.tex
 File: pgfcorerdf.code.tex 2019/08/03 v3.1.4b (3.1.4b)
 )))
-(/home/etienne/.texlive/2019/texmf-dist/tex/generic/pgf/modules/pgfmoduleshapes
-.code.tex
+(/home/etienne/.texmf/tex/latex/pgf/tex/pgfmoduleshapes.code.tex
 File: pgfmoduleshapes.code.tex 2019/08/03 v3.1.4b (3.1.4b)
 \pgfnodeparttextbox=\box35
 )
-(/home/etienne/.texlive/2019/texmf-dist/tex/generic/pgf/modules/pgfmoduleplot.c
-ode.tex
+(/home/etienne/.texmf/tex/latex/pgf/tex/pgfmoduleplot.code.tex
 File: pgfmoduleplot.code.tex 2019/08/03 v3.1.4b (3.1.4b)
 )
-(/home/etienne/.texlive/2019/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-ver
-sion-0-65.sty
+(/home/etienne/.texmf/tex/latex/pgf/tex/pgfcomp-version-0-65.sty
 Package: pgfcomp-version-0-65 2019/08/03 v3.1.4b (3.1.4b)
 \pgf@nodesepstart=\dimen144
 \pgf@nodesepend=\dimen145
 )
-(/home/etienne/.texlive/2019/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-ver
-sion-1-18.sty
+(/home/etienne/.texmf/tex/latex/pgf/tex/pgfcomp-version-1-18.sty
 Package: pgfcomp-version-1-18 2019/08/03 v3.1.4b (3.1.4b)
 ))
-(/home/etienne/.texlive/2019/texmf-dist/tex/latex/pgf/utilities/pgffor.sty
-(/home/etienne/.texlive/2019/texmf-dist/tex/latex/pgf/utilities/pgfkeys.sty
-(/home/etienne/.texlive/2019/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.
-tex)) (/home/etienne/.texlive/2019/texmf-dist/tex/latex/pgf/math/pgfmath.sty
-(/home/etienne/.texlive/2019/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex))
-
-(/home/etienne/.texlive/2019/texmf-dist/tex/generic/pgf/utilities/pgffor.code.t
-ex
+(/home/etienne/.texmf/tex/latex/pgf/tex/pgffor.sty
+(/home/etienne/.texmf/tex/latex/pgf/tex/pgfkeys.sty
+(/home/etienne/.texmf/tex/latex/pgf/tex/pgfkeys.code.tex))
+(/home/etienne/.texmf/tex/latex/pgf/tex/pgfmath.sty
+(/home/etienne/.texmf/tex/latex/pgf/tex/pgfmath.code.tex))
+(/home/etienne/.texmf/tex/latex/pgf/tex/pgffor.code.tex
 Package: pgffor 2019/08/03 v3.1.4b (3.1.4b)
 
-(/home/etienne/.texlive/2019/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex)
+(/home/etienne/.texmf/tex/latex/pgf/tex/pgfmath.code.tex)
 \pgffor@iter=\dimen146
 \pgffor@skip=\dimen147
 \pgffor@stack=\toks26
 \pgffor@toks=\toks27
 ))
-(/home/etienne/.texlive/2019/texmf-dist/tex/generic/pgf/frontendlayer/tikz/tikz
-.code.tex
+(/home/etienne/.texmf/tex/latex/pgf/tex/tikz.code.tex
 Package: tikz 2019/08/03 v3.1.4b (3.1.4b)
 
-(/home/etienne/.texlive/2019/texmf-dist/tex/generic/pgf/libraries/pgflibraryplo
-thandlers.code.tex
+(/home/etienne/.texmf/tex/latex/pgf/tex/pgflibraryplothandlers.code.tex
 File: pgflibraryplothandlers.code.tex 2019/08/03 v3.1.4b (3.1.4b)
 \pgf@plot@mark@count=\count104
 \pgfplotmarksize=\dimen148
@@ -385,8 +341,7 @@ File: pgflibraryplothandlers.code.tex 2019/08/03 v3.1.4b (3.1.4b)
 \tikznumberofcurrentchild=\count107
 \tikz@fig@count=\count108
 
-(/home/etienne/.texlive/2019/texmf-dist/tex/generic/pgf/modules/pgfmodulematrix
-.code.tex
+(/home/etienne/.texmf/tex/latex/pgf/tex/pgfmodulematrix.code.tex
 File: pgfmodulematrix.code.tex 2019/08/03 v3.1.4b (3.1.4b)
 \pgfmatrixcurrentrow=\count109
 \pgfmatrixcurrentcolumn=\count110
@@ -394,18 +349,15 @@ File: pgfmodulematrix.code.tex 2019/08/03 v3.1.4b (3.1.4b)
 )
 \tikz@expandcount=\count112
 
-(/home/etienne/.texlive/2019/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libr
-aries/tikzlibrarytopaths.code.tex
+(/home/etienne/.texmf/tex/latex/pgf/tex/tikzlibrarytopaths.code.tex
 File: tikzlibrarytopaths.code.tex 2019/08/03 v3.1.4b (3.1.4b)
 )))
-(/home/etienne/.texlive/2019/texmf-dist/tex/latex/pgfplots/pgfplots.sty
-(/home/etienne/.texlive/2019/texmf-dist/tex/generic/pgfplots/pgfplots.revision.
-tex)
-Package: pgfplots 2018/03/28 v1.16 Data Visualization (1.16)
+(/home/etienne/.texmf/tex/latex/pgfplots/tex/pgfplots.sty
+(/home/etienne/.texmf/tex/latex/pgfplots/tex/pgfplots.revision.tex)
+Package: pgfplots 2020/02/29 v1.17 Data Visualization (1.17)
 
-(/home/etienne/.texlive/2019/texmf-dist/tex/generic/pgfplots/pgfplots.code.tex
-(/home/etienne/.texlive/2019/texmf-dist/tex/generic/pgfplots/pgfplotscore.code.
-tex
+(/home/etienne/.texmf/tex/latex/pgfplots/tex/pgfplots.code.tex
+(/home/etienne/.texmf/tex/latex/pgfplots/tex/pgfplotscore.code.tex
 \t@pgfplots@toka=\toks28
 \t@pgfplots@tokb=\toks29
 \t@pgfplots@tokc=\toks30
@@ -413,73 +365,45 @@ tex
 \c@pgfplots@coordindex=\count113
 \c@pgfplots@scanlineindex=\count114
 
-(/home/etienne/.texlive/2019/texmf-dist/tex/generic/pgfplots/sys/pgfplotssysgen
-eric.code.tex))
-(/home/etienne/.texlive/2019/texmf-dist/tex/generic/pgfplots/libs/pgfplotslibra
-ry.code.tex)
-(/home/etienne/.texlive/2019/texmf-dist/tex/generic/pgfplots/oldpgfcompatib/pgf
-plotsoldpgfsupp_loader.code.tex
-(/home/etienne/.texlive/2019/texmf-dist/tex/generic/pgf/libraries/pgflibraryfpu
-.code.tex))
-(/home/etienne/.texlive/2019/texmf-dist/tex/generic/pgfplots/util/pgfplotsutil.
-code.tex
-(/home/etienne/.texlive/2019/texmf-dist/tex/generic/pgfplots/liststructure/pgfp
-lotsliststructure.code.tex)
-(/home/etienne/.texlive/2019/texmf-dist/tex/generic/pgfplots/liststructure/pgfp
-lotsliststructureext.code.tex)
-(/home/etienne/.texlive/2019/texmf-dist/tex/generic/pgfplots/liststructure/pgfp
-lotsarray.code.tex
+(/home/etienne/.texmf/tex/latex/pgfplots/tex/pgfplotssysgeneric.code.tex))
+(/home/etienne/.texmf/tex/latex/pgfplots/tex/pgfplotslibrary.code.tex)
+(/home/etienne/.texmf/tex/latex/pgfplots/tex/pgfplotsoldpgfsupp_loader.code.tex
+(/home/etienne/.texmf/tex/latex/pgf/tex/pgflibraryfpu.code.tex))
+(/home/etienne/.texmf/tex/latex/pgfplots/tex/pgfplotsutil.code.tex
+(/home/etienne/.texmf/tex/latex/pgfplots/tex/pgfplotsliststructure.code.tex)
+(/home/etienne/.texmf/tex/latex/pgfplots/tex/pgfplotsliststructureext.code.tex)
+(/home/etienne/.texmf/tex/latex/pgfplots/tex/pgfplotsarray.code.tex
 \c@pgfplotsarray@tmp=\count115
 )
-(/home/etienne/.texlive/2019/texmf-dist/tex/generic/pgfplots/liststructure/pgfp
-lotsmatrix.code.tex)
-(/home/etienne/.texlive/2019/texmf-dist/tex/generic/pgfplots/numtable/pgfplotst
-ableshared.code.tex
+(/home/etienne/.texmf/tex/latex/pgfplots/tex/pgfplotsmatrix.code.tex)
+(/home/etienne/.texmf/tex/latex/pgfplots/tex/pgfplotstableshared.code.tex
 \c@pgfplotstable@counta=\count116
 \t@pgfplotstable@a=\toks31
 )
-(/home/etienne/.texlive/2019/texmf-dist/tex/generic/pgfplots/liststructure/pgfp
-lotsdeque.code.tex)
-(/home/etienne/.texlive/2019/texmf-dist/tex/generic/pgfplots/util/pgfplotsbinar
-y.code.tex
-(/home/etienne/.texlive/2019/texmf-dist/tex/generic/pgfplots/util/pgfplotsbinar
-y.data.code.tex))
-(/home/etienne/.texlive/2019/texmf-dist/tex/generic/pgfplots/util/pgfplotsutil.
-verb.code.tex)
-(/home/etienne/.texlive/2019/texmf-dist/tex/generic/pgfplots/libs/pgflibrarypgf
-plots.surfshading.code.tex
+(/home/etienne/.texmf/tex/latex/pgfplots/tex/pgfplotsdeque.code.tex)
+(/home/etienne/.texmf/tex/latex/pgfplots/tex/pgfplotsbinary.code.tex
+(/home/etienne/.texmf/tex/latex/pgfplots/tex/pgfplotsbinary.data.code.tex))
+(/home/etienne/.texmf/tex/latex/pgfplots/tex/pgfplotsutil.verb.code.tex)
+(/home/etienne/.texmf/tex/latex/pgfplots/tex/pgflibrarypgfplots.surfshading.cod
+e.tex
 \c@pgfplotslibrarysurf@no=\count117
 
-(/home/etienne/.texlive/2019/texmf-dist/tex/generic/pgfplots/sys/pgflibrarypgfp
-lots.surfshading.pgfsys-pdftex.def)))
-(/home/etienne/.texlive/2019/texmf-dist/tex/generic/pgfplots/util/pgfplotscolor
-map.code.tex
-(/home/etienne/.texlive/2019/texmf-dist/tex/generic/pgfplots/util/pgfplotscolor
-.code.tex))
-(/home/etienne/.texlive/2019/texmf-dist/tex/generic/pgfplots/pgfplotsstackedplo
-ts.code.tex)
-(/home/etienne/.texlive/2019/texmf-dist/tex/generic/pgfplots/pgfplotsplothandle
-rs.code.tex
-(/home/etienne/.texlive/2019/texmf-dist/tex/generic/pgfplots/pgfplotsmeshplotha
-ndler.code.tex
-(/home/etienne/.texlive/2019/texmf-dist/tex/generic/pgfplots/pgfplotsmeshplotim
-age.code.tex)))
-(/home/etienne/.texlive/2019/texmf-dist/tex/generic/pgfplots/pgfplots.scaling.c
-ode.tex)
-(/home/etienne/.texlive/2019/texmf-dist/tex/generic/pgfplots/pgfplotscoordproce
-ssing.code.tex)
-(/home/etienne/.texlive/2019/texmf-dist/tex/generic/pgfplots/pgfplots.errorbars
-.code.tex)
-(/home/etienne/.texlive/2019/texmf-dist/tex/generic/pgfplots/pgfplots.markers.c
-ode.tex)
-(/home/etienne/.texlive/2019/texmf-dist/tex/generic/pgfplots/pgfplotsticks.code
-.tex)
-(/home/etienne/.texlive/2019/texmf-dist/tex/generic/pgfplots/pgfplots.paths.cod
-e.tex)
-(/home/etienne/.texlive/2019/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libr
-aries/tikzlibrarydecorations.code.tex
-(/home/etienne/.texlive/2019/texmf-dist/tex/generic/pgf/modules/pgfmoduledecora
-tions.code.tex
+(/home/etienne/.texmf/tex/latex/pgfplots/tex/pgflibrarypgfplots.surfshading.pgf
+sys-pdftex.def)))
+(/home/etienne/.texmf/tex/latex/pgfplots/tex/pgfplotscolormap.code.tex
+(/home/etienne/.texmf/tex/latex/pgfplots/tex/pgfplotscolor.code.tex))
+(/home/etienne/.texmf/tex/latex/pgfplots/tex/pgfplotsstackedplots.code.tex)
+(/home/etienne/.texmf/tex/latex/pgfplots/tex/pgfplotsplothandlers.code.tex
+(/home/etienne/.texmf/tex/latex/pgfplots/tex/pgfplotsmeshplothandler.code.tex
+(/home/etienne/.texmf/tex/latex/pgfplots/tex/pgfplotsmeshplotimage.code.tex)))
+(/home/etienne/.texmf/tex/latex/pgfplots/tex/pgfplots.scaling.code.tex)
+(/home/etienne/.texmf/tex/latex/pgfplots/tex/pgfplotscoordprocessing.code.tex)
+(/home/etienne/.texmf/tex/latex/pgfplots/tex/pgfplots.errorbars.code.tex)
+(/home/etienne/.texmf/tex/latex/pgfplots/tex/pgfplots.markers.code.tex)
+(/home/etienne/.texmf/tex/latex/pgfplots/tex/pgfplotsticks.code.tex)
+(/home/etienne/.texmf/tex/latex/pgfplots/tex/pgfplots.paths.code.tex)
+(/home/etienne/.texmf/tex/latex/pgf/tex/tikzlibrarydecorations.code.tex
+(/home/etienne/.texmf/tex/latex/pgf/tex/pgfmoduledecorations.code.tex
 \pgfdecoratedcompleteddistance=\dimen158
 \pgfdecoratedremainingdistance=\dimen159
 \pgfdecoratedinputsegmentcompleteddistance=\dimen160
@@ -491,14 +415,14 @@ tions.code.tex
 )
 \tikz@lib@dec@box=\box40
 )
-(/home/etienne/.texlive/2019/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libr
-aries/tikzlibrarydecorations.pathmorphing.code.tex
-(/home/etienne/.texlive/2019/texmf-dist/tex/generic/pgf/libraries/decorations/p
-gflibrarydecorations.pathmorphing.code.tex))
-(/home/etienne/.texlive/2019/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libr
-aries/tikzlibrarydecorations.pathreplacing.code.tex
-(/home/etienne/.texlive/2019/texmf-dist/tex/generic/pgf/libraries/decorations/p
-gflibrarydecorations.pathreplacing.code.tex))
+(/home/etienne/.texmf/tex/latex/pgf/tex/tikzlibrarydecorations.pathmorphing.cod
+e.tex
+(/home/etienne/.texmf/tex/latex/pgf/tex/pgflibrarydecorations.pathmorphing.code
+.tex))
+(/home/etienne/.texmf/tex/latex/pgf/tex/tikzlibrarydecorations.pathreplacing.co
+de.tex
+(/home/etienne/.texmf/tex/latex/pgf/tex/pgflibrarydecorations.pathreplacing.cod
+e.tex))
 \pgfplots@numplots=\count119
 \pgfplots@xmin@reg=\dimen165
 \pgfplots@xmax@reg=\dimen166
@@ -506,56 +430,45 @@ gflibrarydecorations.pathreplacing.code.tex))
 \pgfplots@ymax@reg=\dimen168
 \pgfplots@zmin@reg=\dimen169
 \pgfplots@zmax@reg=\dimen170
-)
-(/home/etienne/.texlive/2019/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libr
-aries/tikzlibraryplotmarks.code.tex
+) (/home/etienne/.texmf/tex/latex/pgf/tex/tikzlibraryplotmarks.code.tex
 File: tikzlibraryplotmarks.code.tex 2019/08/03 v3.1.4b (3.1.4b)
 
-(/home/etienne/.texlive/2019/texmf-dist/tex/generic/pgf/libraries/pgflibraryplo
-tmarks.code.tex
+(/home/etienne/.texmf/tex/latex/pgf/tex/pgflibraryplotmarks.code.tex
 File: pgflibraryplotmarks.code.tex 2019/08/03 v3.1.4b (3.1.4b)
 )))
-(/home/etienne/.texlive/2019/texmf-dist/tex/generic/pgfplots/libs/tikzlibrarypg
-fplots.fillbetween.code.tex
-(/home/etienne/.texlive/2019/texmf-dist/tex/generic/pgfplots/pgfcontrib/tikzlib
-raryfillbetween.code.tex
-(/home/etienne/.texlive/2019/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libr
-aries/tikzlibraryintersections.code.tex
-(/home/etienne/.texlive/2019/texmf-dist/tex/generic/pgf/libraries/pgflibraryint
-ersections.code.tex
+(/home/etienne/.texmf/tex/latex/pgfplots/tex/tikzlibrarypgfplots.fillbetween.co
+de.tex
+(/home/etienne/.texmf/tex/latex/pgfplots/tex/tikzlibraryfillbetween.code.tex
+(/home/etienne/.texmf/tex/latex/pgf/tex/tikzlibraryintersections.code.tex
+(/home/etienne/.texmf/tex/latex/pgf/tex/pgflibraryintersections.code.tex
 \pgf@intersect@solutions=\count120
 ))
-(/home/etienne/.texlive/2019/texmf-dist/tex/generic/pgfplots/pgfcontrib/tikzlib
-rarydecorations.softclip.code.tex
-(/home/etienne/.texlive/2019/texmf-dist/tex/generic/pgfplots/pgfcontrib/pgflibr
-aryfillbetween.code.tex)))
-(/home/etienne/.texlive/2019/texmf-dist/tex/generic/pgfplots/libs/tikzlibrarypg
-fplots.decorations.softclip.code.tex))
-(/home/etienne/.texlive/2019/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libr
-aries/tikzlibrarybabel.code.tex
+(/home/etienne/.texmf/tex/latex/pgfplots/tex/tikzlibrarydecorations.softclip.co
+de.tex
+(/home/etienne/.texmf/tex/latex/pgfplots/tex/pgflibraryfillbetween.code.tex)))
+(/home/etienne/.texmf/tex/latex/pgfplots/tex/tikzlibrarypgfplots.decorations.so
+ftclip.code.tex))
+(/home/etienne/.texmf/tex/latex/pgf/tex/tikzlibrarybabel.code.tex
 File: tikzlibrarybabel.code.tex 2019/08/03 v3.1.4b (3.1.4b)
 )
-(/home/etienne/.texlive/2019/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libr
-aries/tikzlibrarypatterns.code.tex
+(/home/etienne/.texmf/tex/latex/pgf/tex/tikzlibrarypatterns.code.tex
 File: tikzlibrarypatterns.code.tex 2019/08/03 v3.1.4b (3.1.4b)
 
-(/home/etienne/.texlive/2019/texmf-dist/tex/generic/pgf/libraries/pgflibrarypat
-terns.code.tex
+(/home/etienne/.texmf/tex/latex/pgf/tex/pgflibrarypatterns.code.tex
 File: pgflibrarypatterns.code.tex 2019/08/03 v3.1.4b (3.1.4b)
 ))
-(/home/etienne/.texlive/2019/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libr
-aries/tikzlibrarymatrix.code.tex
+(/home/etienne/.texmf/tex/latex/pgf/tex/tikzlibrarymatrix.code.tex
 File: tikzlibrarymatrix.code.tex 2019/08/03 v3.1.4b (3.1.4b)
 )
-(/home/etienne/.texlive/2019/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libr
-aries/tikzlibrarydecorations.markings.code.tex
-(/home/etienne/.texlive/2019/texmf-dist/tex/generic/pgf/libraries/decorations/p
-gflibrarydecorations.markings.code.tex))
-(/home/etienne/.texlive/2019/texmf-dist/tex/generic/pgfplots/libs/pgflibrarypgf
-plots.colorbrewer.code.tex
-(/home/etienne/.texlive/2019/texmf-dist/tex/generic/pgfplots/libs/tikzlibraryco
-lorbrewer.code.tex))) (/home/etienne/.texmf/tex/latex/style/colorbrewer.sty)
-(./best-basis-r1.aux)
+(/home/etienne/.texmf/tex/latex/pgf/tex/tikzlibrarydecorations.markings.code.te
+x
+(/home/etienne/.texmf/tex/latex/pgf/tex/pgflibrarydecorations.markings.code.tex
+))
+(/home/etienne/.texmf/tex/latex/pgfplots/tex/pgflibrarypgfplots.colorbrewer.cod
+e.tex
+(/home/etienne/.texmf/tex/latex/pgfplots/tex/tikzlibrarycolorbrewer.code.tex)))
+(/home/etienne/.texmf/tex/latex/style/colorbrewer.sty)
+(/home/etienne/ownCloud/Manuscrit/img/chapitre4/figure3//best-basis-r1.aux)
 \openout1 = `best-basis-r1.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 33.
@@ -570,7 +483,8 @@ LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 33.
 LaTeX Font Info:    ... okay on input line 33.
 LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 33.
 LaTeX Font Info:    ... okay on input line 33.
- ABD: EveryShipout initializing macros
+
+ABD: EveryShipout initializing macros
 (/home/etienne/.texlive/2019/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count121
@@ -584,11 +498,10 @@ LaTeX Font Info:    ... okay on input line 33.
 \MPnumerator=\count125
 \makeMPintoPDFobject=\count126
 \everyMPtoPDFconversion=\toks33
-)
-(/home/etienne/.texlive/2019/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.st
-y
-Package: epstopdf-base 2019/11/24 v2.7 Base part for package epstopdf
- (/home/etienne/.texlive/2019/texmf-dist/tex/generic/oberdiek/infwarerr.sty
+) (/home/etienne/.texlive/2019/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
+Package: epstopdf-base 2016/05/15 v2.6 Base part for package epstopdf
+
+(/home/etienne/.texlive/2019/texmf-dist/tex/generic/oberdiek/infwarerr.sty
 Package: infwarerr 2016/05/16 v1.4 Providing info/warning/error messages (HO)
 )
 (/home/etienne/.texlive/2019/texmf-dist/tex/latex/oberdiek/grfext.sty
@@ -609,26 +522,27 @@ Package: kvsetkeys 2016/05/16 v1.17 Key value parser (HO)
 (/home/etienne/.texlive/2019/texmf-dist/tex/generic/oberdiek/etexcmds.sty
 Package: etexcmds 2016/05/16 v1.6 Avoid name clashes with e-TeX commands (HO)
 )))
-(/home/etienne/.texlive/2019/texmf-dist/tex/latex/pdftexcmds/pdftexcmds.sty
-Package: pdftexcmds 2019/11/24 v0.31 Utility functions of pdfTeX for LuaTeX (HO
+(/home/etienne/.texlive/2019/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
+Package: pdftexcmds 2019/07/25 v0.30 Utility functions of pdfTeX for LuaTeX (HO
 )
+Package pdftexcmds Info: LuaTeX not detected.
 Package pdftexcmds Info: \pdf@primitive is available.
 Package pdftexcmds Info: \pdf@ifprimitive is available.
 Package pdftexcmds Info: \pdfdraftmode found.
 )
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
-42.
+38.
 Package grfext Info: Graphics extension search list:
 (grfext)             [.pdf,.png,.jpg,.mps,.jpeg,.jbig2,.jb2,.PDF,.PNG,.JPG,.JPE
 G,.JBIG2,.JB2,.eps]
-(grfext)             \AppendGraphicsExtensions on input line 460.
+(grfext)             \AppendGraphicsExtensions on input line 456.
 
 (/home/etienne/.texlive/2019/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
 Package pgfplots notification 'compat/show suggested version=true': you might b
-enefit from \pgfplotsset{compat=1.16} (current compat level: 1.3).
+enefit from \pgfplotsset{compat=1.17} (current compat level: 1.3).
 
 PGFPlots: reading {HR1.dat}
 PGFPlots: reading {HR1.dat}
@@ -639,37 +553,39 @@ PGFPlots: reading {HR1.dat}
 PGFPlots: reading {HR1.dat}
 PGFPlots: reading {HR1.dat}
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 54.
+(Font)              <5> on input line 65.
 
-Underfull \hbox (badness 10000) in paragraph at lines 66--67
+Underfull \hbox (badness 10000) in paragraph at lines 77--78
 
  []
 
 
-Underfull \hbox (badness 10000) detected at line 68
+Underfull \hbox (badness 10000) detected at line 79
 
  []
 
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 68.
+(Font)              <7> on input line 79.
 [1
 
 {/home/etienne/.texlive/2019/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-(./best-basis-r1.aux) ) 
+(/home/etienne/ownCloud/Manuscrit/img/chapitre4/figure3//best-basis-r1.aux) ) 
 Here is how much of TeX's memory you used:
- 28513 strings out of 492164
- 733963 string characters out of 6123406
- 1453491 words of memory out of 5000000
- 32468 multiletter control sequences out of 15000+600000
+ 28562 strings out of 492167
+ 730269 string characters out of 6123477
+ 1457147 words of memory out of 5000000
+ 32536 multiletter control sequences out of 15000+600000
  3640 words of font info for 14 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 71i,17n,115p,1731b,2025s stack positions out of 5000i,500n,10000p,200000b,80000s
-</home/etienne/.texlive/2019/texmf-dist/fonts/type1/publ
-ic/amsfonts/cm/cmmi5.pfb></home/etienne/.texlive/2019/texmf-dist/fonts/type1/pu
-blic/amsfonts/cm/cmr10.pfb></home/etienne/.texlive/2019/texmf-dist/fonts/type1/
-public/amsfonts/cm/cmr5.pfb></home/etienne/.texlive/2019/texmf-dist/fonts/type1
-/public/amsfonts/cm/cmsy5.pfb>
-Output written on best-basis-r1.pdf (1 page, 47988 bytes).
+ 71i,17n,115p,1854b,2046s stack positions out of 5000i,500n,10000p,200000b,80000s
+</
+home/etienne/.texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb>
+</home/etienne/.texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pf
+b></home/etienne/.texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.p
+fb></home/etienne/.texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5
+.pfb>
+Output written on /home/etienne/ownCloud/Manuscrit/img/chapitre4/figure3//best-
+basis-r1.pdf (1 page, 48061 bytes).
 PDF statistics:
  27 PDF objects out of 1000 (max. 8388607)
  19 compressed objects within 1 object stream

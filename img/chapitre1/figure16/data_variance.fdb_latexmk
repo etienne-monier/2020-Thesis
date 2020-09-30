@@ -1,6 +1,6 @@
 # Fdb version 3
-["pdflatex"] 1587023104 "data_variance.tikz" "data_variance.pdf" "data_variance" 1587023105
-  "/dev/null" 1587020895 0 d41d8cd98f00b204e9800998ecf8427e ""
+["pdflatex"] 1600175607 "data_variance.tikz" "data_variance.pdf" "data_variance" 1600175609
+  "/dev/null" 1600158243 0 d41d8cd98f00b204e9800998ecf8427e ""
   "/home/etienne/.texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb" 1248133631 37912 77d683123f92148345f3fc36a38d9ab1 ""
   "/home/etienne/.texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb" 1248133631 35752 024fb6c41858982481f6968b5fc26508 ""
   "/home/etienne/.texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb" 1248133631 31809 8670ca339bf94e56da1fc21c80635e2a ""
@@ -159,11 +159,11 @@
   "/home/etienne/.texmf/tex/latex/pgfplots/tex/tikzlibrarypgfplots.decorations.softclip.code.tex" 1583046832 1280 1521249d4f63a803d4675a58b2f8d27b ""
   "/home/etienne/.texmf/tex/latex/pgfplots/tex/tikzlibrarypgfplots.fillbetween.code.tex" 1583046832 8022 09fafe59353dda68e49cb7a9afc12de7 ""
   "/home/etienne/.texmf/tex/latex/style/colorbrewer.sty" 1484732271 139843 f2d4d5f425c69cc75881be793e5471f6 ""
-  "/home/etienne/.texmf/tex/latex/style/tikzstyle.sty" 1581602850 1938 3bd4b17fe98689a83e54356dff5bc49e ""
-  "data_variance.aux" 1587023105 8 a94a2480d3289e625eea47cd1b285758 "pdflatex"
-  "data_variance.tikz" 1587023098 922 f420dd1f5527754cf20d7099dd49aebe ""
-  "python/data_variance.dat" 1586980997 80973 196a141d4dba48066aefd72e68ff78e8 ""
+  "/home/etienne/.texmf/tex/latex/style/tikzstyle.sty" 1588703320 1944 bac8b1bf95a9e9ee4fb426b80cc60b5e ""
+  "data_variance.aux" 1600175609 8 a94a2480d3289e625eea47cd1b285758 "pdflatex"
+  "data_variance.tikz" 1600175593 922 4bee7a94ce0640b3e096bff27b9a691b ""
+  "python/data_variance.dat" 1587028792 80973 196a141d4dba48066aefd72e68ff78e8 ""
   (generated)
-  "data_variance.log"
-  "data_variance.aux"
   "data_variance.pdf"
+  "data_variance.aux"
+  "data_variance.log"

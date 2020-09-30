@@ -34,22 +34,33 @@
 
 \begin{tikzpicture}[ampersand replacement=\&]
     \begin{axis}[my-axis, ymode=log,]
-        %
-        \addplot+ table [x=rTab, y=fourier]{HR1.dat};
+        
+        %Périodique
+
+        \addplot+[Dark2-3-1, line width=1pt] table [x=rTab, y=fourier]{HR1.dat};
         \label{plot:Fourier}
-        \addplot+ table [x=rTab, y=dct]{HR1.dat};
+
+        \addplot+[Dark2-3-2, line width=1pt] table [x=rTab, y=dct]{HR1.dat};
         \label{plot:DCT}
-        \addplot+ table [x=rTab, y=db3]{HR1.dat};
+        
+        % db
+        \addplot+[Dark2-3-1, dashed, line width=1pt] table [x=rTab, y=db3]{HR1.dat};
         \label{plot:db3}
-        \addplot+ table [x=rTab, y=db10]{HR1.dat};
+        
+        \addplot+[Dark2-3-2, dashed, line width=1pt] table [x=rTab, y=db10]{HR1.dat};
         \label{plot:db10}
-        \addplot+ table [x=rTab, y=db20]{HR1.dat};
+        
+        \addplot+[Dark2-3-3, dashed, line width=1pt] table [x=rTab, y=db20]{HR1.dat};
         \label{plot:db20}
-        \addplot+ table [x=rTab, y=sym3]{HR1.dat};
+        
+        % sym
+        \addplot+[Dark2-3-1, dotted, line width=1pt] table [x=rTab, y=sym3]{HR1.dat};
         \label{plot:sym3}
-        \addplot+ table [x=rTab, y=sym10]{HR1.dat};
+        
+        \addplot+[Dark2-3-2, dotted, line width=1pt] table [x=rTab, y=sym10]{HR1.dat};
         \label{plot:sym10}
-        \addplot+ table [x=rTab, y=sym20]{HR1.dat};
+        
+        \addplot+[Dark2-3-3, dotted, line width=1pt] table [x=rTab, y=sym20]{HR1.dat};
         \label{plot:sym20}
     \end{axis}
     %
@@ -63,6 +74,6 @@
         \ref{plot:DCT}      \& DCT       \&        \ref{plot:db10} \& db10 \&        \ref{plot:sym10} \& sym10 \\
                             \&           \&        \ref{plot:db20} \& db20 \&        \ref{plot:sym20} \& sym20 \\
         };
-\end{tikzpicture}\\
+\end{tikzpicture}\\ 
 
 \end{document}
