@@ -1,0 +1,27 @@
+\documentclass{standalone}
+
+\usepackage{pgfplots}
+
+\begin{document}
+
+    \begin{tikzpicture}
+        \begin{axis}[
+            hide axis,
+            scale only axis,
+            height=0pt,
+            width=0pt,
+            colormap/viridis,
+            colorbar horizontal,
+            point meta min=0,
+            point meta max=1e-2,
+            colorbar style={
+                width=10cm,
+                xtick={0,1e-3,2e-3,3e-3,4e-3,5e-3,6e-3,7e-3,8e-3,9e-3},
+                extra x ticks={1e-2},
+                extra x tick labels={$>$1},
+            }]
+            \addplot [draw=none] coordinates {(0,0)};
+        \end{axis}
+    \end{tikzpicture}
+
+\end{document}
