@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.11.29)  18 MAY 2020 15:27
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.11.29)  10 OCT 2020 21:05
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -550,7 +550,8 @@ gflibrarydecorations.markings.code.tex))
 plots.colorbrewer.code.tex
 (/home/etienne/.texlive/2019/texmf-dist/tex/generic/pgfplots/libs/tikzlibraryco
 lorbrewer.code.tex))) (/home/etienne/.texmf/tex/latex/style/colorbrewer.sty)
-No file non-samp-spectrum.aux.
+(/home/etienne/ownCloud/Manuscrit/img/chapitre4/figure10//non-samp-spectrum.aux
+)
 \openout1 = `non-samp-spectrum.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 7.
@@ -565,7 +566,7 @@ LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 7.
 LaTeX Font Info:    ... okay on input line 7.
 LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 7.
 LaTeX Font Info:    ... okay on input line 7.
-ABD: EveryShipout initializing macros
+ ABD: EveryShipout initializing macros
 (/home/etienne/.texlive/2019/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count120
@@ -661,20 +662,20 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 (/home/etienne/ownCloud/Manuscrit/img/chapitre4/figure10//non-samp-spectrum.aux
 ) ) 
 Here is how much of TeX's memory you used:
- 28327 strings out of 492164
- 730182 string characters out of 6123406
- 3078854 words of memory out of 5000000
- 32284 multiletter control sequences out of 15000+600000
+ 28334 strings out of 492164
+ 730459 string characters out of 6123406
+ 3079540 words of memory out of 5000000
+ 32289 multiletter control sequences out of 15000+600000
  3939 words of font info for 15 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 71i,15n,115p,827b,2032s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 71i,15n,115p,827b,2066s stack positions out of 5000i,500n,10000p,200000b,80000s
 </home/etienne/.texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5
 .pfb></home/etienne/.texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr
 10.pfb></home/etienne/.texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/c
 mr5.pfb></home/etienne/.texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/
 cmr9.pfb>
 Output written on /home/etienne/ownCloud/Manuscrit/img/chapitre4/figure10//non-
-samp-spectrum.pdf (1 page, 109861 bytes).
+samp-spectrum.pdf (1 page, 110079 bytes).
 PDF statistics:
  27 PDF objects out of 1000 (max. 8388607)
  19 compressed objects within 1 object stream

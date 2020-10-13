@@ -9,15 +9,15 @@ Ce chapitre se focalise sur les images spatialement lisses, \ie{}, dont l'évolu
 \subsection{Contexte des images basses résolution}\label{sec-donnees-sous-echantillonnees}
 
 
-Les images basse résolution déjà présentées à la \cref{sec-prop-eels} sont acquises sur des échelles relativement grandes (typiquement 100nm) afin de visualiser les structures présentes dans l'échantillon. 
+Les images basse résolution déjà présentées à la \cref{sec-prop-eels} sont acquises sur des échelles relativement grandes (typiquement \np[nm]{100}) afin de visualiser les structures présentes dans l'échantillon. 
 %
 Or, le nombre de pixels que l'on peut s'autoriser à échantillonner est limité afin d'empêcher une trop grande détérioration de l'échantillon. 
 %
-C'est pourquoi les images \gls{eels} acquises sur de telles échelles sont volontairement fortement sous-échantillonnées, elles ont généralement une résolution relativement faible comparée au pouvoir séparateur de l'instrument, \ie\ qu'un pixel d'une image basse résolution représente de nombreuses colonnes atomiques. 
+C'est pourquoi les images \gls{eels} acquises sur de telles échelles sont volontairement fortement sous-échantillonnées, elles ont généralement une résolution relativement faible comparée au pouvoir séparateur de l'instrument, \ie\ qu'un pixel d'une image basse résolution représente de nombreux atomes. 
 %
 Par exemple, l'image \gls{haadf} (acquise simultanément à l'image \gls{eels}) donnée sur la figure~\ref{fig-BR-haadf-b} a une taille de pixel de \np[nm]{2}, soit approximativement 20 colonnes atomiques, ou encore 2 fois (resp. 20 fois) le pouvoir de séparation du VG-HB501 (resp. du Nion UltraSTEM 200) dont dispose le \gls{lps}.
 %
-Il en résulte que, dans le cas d'une acquisition complète du spectre-image, un problème de super-résolution (couplé à du débruitage) peut être posé afin de restituer une image dont la résolution est identique au pouvoir séparateur de l'appareil. \`A cela vient s'ajouter le problème d'inpainting formulé dans la section précédente lorsque l'acquisition est incomplète. Dans le cadre de cette étude, le problème de super-résolution ne sera pas considéré et les résolutions des images acquise et reconstruite seront les mêmes.
+Il en résulte que, dans le cas d'une acquisition complète du spectre-image, un problème de super-résolution\footnote{La super-résolution ne fait pas référence ici aux techniques de microscopie par émission stimulée mises au point pour dépasser la limite de résolution imposée par la diffraction. Il s'agit ici d'un problème en traitement de l'image permettant d'augmenter la résolution, \ie{} le nombre de pixels par unité de longueur.} (couplé à du débruitage) peut être posé afin de restituer une image dont la résolution est identique au pouvoir séparateur de l'appareil. \`A cela vient s'ajouter le problème d'inpainting formulé dans la section précédente lorsque l'acquisition est incomplète. Dans le cadre de cette étude, le problème de super-résolution ne sera pas considéré et les résolutions des images acquise et reconstruite seront les mêmes.
 
 En ce qui concerne les images basse résolution, les distorsions associées à l'acquisition, en particulier la dérive de l'échantillon, sont supposées être négligeables par rapport à la taille du pixel (ce qui n'est pas vrai pour les données haute résolution comme nous le verrons au \cref{ch-chapter_4}). Et puisque la résolution de l'image est faible, celle-ci est généralement spatialement lisse et rentre dans le cadre de ce chapitre.
 
@@ -66,7 +66,7 @@ Dans ces situations, l'image haute-résolution peut être suffisamment lisse pou
 
 \subsection{Information a priori et régularisations}\label{subsec-BR-reguls}
 
-Dans le chapitre précédent~\ref{ch-chapter_2}, nous avons montré l'intérêt d'une technique par \gls{mc} régularisés en vue de reconstruire une image \gls{eels} sous-échantillonnée de manière efficace et rapide. Plus précisément, restituer un spectre-image complet \gls{X} à partir de mesures partielles \gls{Yi} est un problème inverse mal posé et la qualité de la méthode par \gls{mc} régularisés repose sur le choix de régularisations appropriées.
+Dans le chapitre précédent, nous avons montré l'intérêt d'une technique par \gls{mc} régularisés en vue de reconstruire une image \gls{eels} sous-échantillonnée de manière efficace et rapide. Plus précisément, restituer un spectre-image complet \gls{X} à partir de mesures partielles \gls{Yi} est un problème inverse mal posé et la qualité de la méthode par \gls{mc} régularisés repose sur le choix de régularisations appropriées.
 %
 Les travaux présentés dans ce chapitre exploitent deux types différents d'information intrinsèque partagé par les données \gls{eels} spatialement lisses, à savoir la régularité spatiale et la propriété faible-rang dans le domaine spectral discutées ci-dessous.
 
@@ -92,12 +92,12 @@ Les régularisations spatiale et spectrale décrites précédemment conduisent �
     \frac{\gls{ls2n}}{2} \frobnorm{\gls{X}\gls{D}} + 
     \gls{ms2n} ||\gls{X}||_*
 \end{equation}
-où \gls{D} est l'opérateur de gradient spatial discret appliqué à tous les canaux indépendamment. Ce problème d'optimisation appelé \gls{s2n} repose sur deux paramètres \gls{ls2n} et \gls{ms2n} ajustant respectivement les poids des régularisations spatiale et spectrales. Le choix de ces paramètres est discuté dans la section suivante.
+où \gls{D} est l'opérateur de gradient spatial discret appliqué à tous les canaux indépendamment. Ce problème d'optimisation appelé \gls{s2n} repose sur deux paramètres \gls{ls2n} et \gls{ms2n} ajustant respectivement les poids des régularisations spatiale et spectrale. Le choix de ces paramètres est discuté dans la section suivante.
 
 
 \subsection{Estimation des paramètres de régularisation}\label{sec-s2n-param-tuning}
 
-Nous allons à présent discuter le choix des paramètres \gls{ls2n} et \gls{ms2n} ajustant les régularisations spatiale et spectrale dans la fonction objectif de \gls{s2n} décrite à l'équation~\eqref{eq-s2n}. Afin d'ajuster correctement la paire de paramètres\footnote{Afin d'alléger les notations, les lettres \gls{s2n} en indice sont omises dans cette section.} $(\lambda,\mu)$, et en notant $y_{m,\gls{I}(n)}$ la $m$\textsuperscript{ième} composante du spectre  $\gls{Y}_{\gls{I}(n)}$ mesuré à la position spatiale indexée par $\gls{I}(n)$, la stratégie proposée repose sur l'hypothèse suivante
+Nous allons à présent discuter le choix des paramètres \gls{ls2n} et \gls{ms2n} ajustant les régularisations spatiale et spectrale dans la fonction objectif de \gls{s2n} décrite à l'équation~\eqref{eq-s2n}. Afin d'ajuster correctement la paire de paramètres\footnote{Afin d'alléger les notations, les lettres \gls{s2n} en indice sont omises dans cette section.} $(\lambda,\mu)$, et en notant $y_{m,\gls{I}(n)}$ la $m$\textsuperscript{ème} composante du spectre  $\gls{Y}_{\gls{I}(n)}$ mesuré à la position spatiale indexée par $\gls{I}(n)$, la stratégie proposée repose sur l'hypothèse suivante
 \begin{equation}
     \mathrm{E}\left[ \left(  y_{m,\gls{I}(n)} - x_{m,\gls{I}(n)}  \right)^2 \right] = \gls{sig}^2
 \end{equation}
@@ -172,7 +172,7 @@ La borne peut être supérieure à $\gls{sig}^2$, elle peut valoir par exemple $
 En pratique, une estimation $\gls{hsig}^2$ de la variance du bruit  $\gls{sig}^2$ et une estimation \gls{R} de \gls{Rt} peuvent être obtenus à partir d'une décomposition en éléments propres de la matrice de covariance empirique des observations (\cf\ sections~\ref{subsec-3s-poids} et \ref{subsec-3s-acp}). L'image reconstruite est finalement définie comme\footnote{Afin d'alléger l'écriture, et ce malgré un léger abus de notations, les indices $\cdot_{1:\gls{R}}$ et $\cdot_{1:\gls{R}, :}$ seront omis dans la suite du chapitre.} $\gls{Xh} = \gls{H}_{1:\gls{R}}\gls{S}_{1:\gls{R}, :}$.
 Il y a un triple avantage à formuler le problème de reconstruction comme énoncé ci-dessus. 
 %
-D'abord, l'ACP impose explicitement une structure faible rang du spectre-image à reconstruire (comme le fait la norme nucléaire pour S2N). Ensuite, comme cela sera vu dans la \cref{subsec-implementation-3s} concernant l'implémentation de \gls{3s}, elle réduit fortement la charge calculatoire de l'algorithme de minimisation résultant puisque $R$ est censé être significativement inférieur à $M$ et, contrairement à S2N, il n’y a plus besoin de réaliser une SVD. Enfin, la norme nucléaire n'est pas une relaxation optimale du rang puisqu'il biaise fortement les données.
+D'abord, l'ACP impose explicitement une structure faible rang du spectre-image à reconstruire (comme le fait la norme nucléaire pour S2N). Ensuite, comme cela sera vu dans la \cref{subsec-implementation-3s} concernant l'implémentation de \gls{3s}, elle réduit fortement la charge calculatoire de l'algorithme de minimisation résultant puisque $R$ est censé être significativement inférieur à $M$ et, contrairement à S2N, il n’y a plus besoin de réaliser une SVD. Enfin, la norme nucléaire n'est pas une relaxation optimale du rang puisqu'elle biaise fortement les données.
 
 
 \subsection{Estimation des poids et de la dimension du sous-espace}\label{subsec-3s-poids}
@@ -197,7 +197,7 @@ Les lignes $(\gls{S}_{m, :})_{m=1,\dots,\gls{M}}$ de \gls{S} sont supposées i.i
 \end{equation}
 Calculer l'estimateur du \gls{map} de \gls{S} consiste à résoudre
 \begin{equation}
-\argmin_{\gls{S}} \frobnorm{\gls{H}^T-\gls{S}} + \sum_{m = 1}^{\gls{M}} \frac{\gls{sig}^2}{\eta^2_m}\twonorm{\gls{S}_{m,:}}.
+\argmin_{\gls{S}} \frobnorm{\gls{H}^T\gls{Y}-\gls{S}} + \sum_{m = 1}^{\gls{M}} \frac{\gls{sig}^2}{\eta^2_m}\twonorm{\gls{S}_{m,:}}.
 \label{eq-3S_OP_2_Bayesian}
 \end{equation}
 En comparant le problème \gls{3s}~\eqref{eq-3s} avec la formulation du MAP~\eqref{eq-3S_OP_2_Bayesian}, un choix naturel pour les poids $\gls{w}_m$ est
@@ -240,7 +240,7 @@ Cependant, cet estimateur n'impose pas la propriété de non-croissance et quelq
 %
 \section{Implémentation}
 
-Cette section décrit les algorithmes pour résoudre les problèmes d'optimisation~\eqref{eq-s2n} et \eqref{eq-3s}. Tous deux reposent sur l'algorithme \gls{fista}~\cite{beck_fast_2009} dont la formulation générique est rappelée dans la section suivante..
+Cette section décrit les algorithmes pour résoudre les problèmes d'optimisation~\eqref{eq-s2n} et \eqref{eq-3s}. Tous deux reposent sur l'algorithme \gls{fista}~\cite{beck_fast_2009} dont la formulation générique est rappelée dans la section suivante.
 
 \subsection{L'algorithme FISTA}\label{sec-fista}
 
@@ -393,7 +393,7 @@ Les performances des méthodes proposées sont évaluées à l'aide d'expérienc
 où \gls{X} est le spectre-image non bruité et \gls{E} est la matrice de bruit gaussien.
 Afin de mimer une aquisition synthétique réaliste, l'image idéale \gls{X} est obtenue par mélange linéaire suivant le modèle $\gls{X} = \mathbf{M}\mathbf{A}$ donné à la section~\ref{sec-demelange} qui décrit la répartition spatiale de matériaux au sein d'un échantillon observé. La matrice $\mathbf{M}=[\mathbf{m}_1, \dots, \mathbf{m}_{N_c}]$ de taille $M\times N_c$ rassemble les $N_c$ spectres associés aux endmembers et $\mathbf{A} = [\mathbf{a}_1, \dots, \mathbf{a}_P]$ de taille $N_c\times P$ correspond aux abondances des endmembers pour chaque pixel.
 
-\paragraph{Choix de la matrice d'endmembers $\mathbf{M}$.} Simuler un spectre EELS complet avec différents seuils et des structures fines associées à chaque seuil est compliqué. C'est pourquoi des spectres représentatifs $\mathbf{m}_1,\dots,\mathbf{m}_{N_c}$ ont été directement extraits de données réelles déjà étudiées pour leur intérêt médical : une section de rein (tissu biologique) incrustée dans une résine et contenant des calcifications~\cite{gay2020nanoscale}. Pour des échantillons biologiques aussi complets, le nombre d'endmembers $N_c$ doit être ajusté pour chaque jeu de données et est généralement compris entre 3 et 5. Ici, le nombre d'endmembers extraits est fixé à $N_c=4$. L'extraction des endmembers est réalisée en utilisant l'algorithme VCA, un algorithme d'extraction d'endmember populaire initialement développé pour l'imagerie hyperspectrale mais qui est maintenant fréquemment utilisé dans la communauté \gls{eels}, sa description est donnée à la section~\ref{sec-demelange}.
+\paragraph{Choix de la matrice d'endmembers $\mathbf{M}$.} Simuler un spectre EELS complet avec différents seuils et des structures fines associées à chaque seuil est compliqué. C'est pourquoi des spectres représentatifs $\mathbf{m}_1,\dots,\mathbf{m}_{N_c}$ ont été directement extraits de données réelles déjà étudiées pour leur intérêt médical : une section de rein (tissu biologique) incrustée dans une résine et contenant des calcifications~\cite{gay2020nanoscale}. Pour des échantillons biologiques aussi complets, le nombre d'endmembers $N_c$ doit être ajusté pour chaque jeu de données et est généralement compris entre 3 et 5. Ici, le nombre d'endmembers extraits est fixé à $N_c=4$. L'extraction des endmembers est réalisée en utilisant l'algorithme VCA~\cite{nascimento2005vertex}, un algorithme d'extraction d'endmember populaire initialement développé pour l'imagerie hyperspectrale mais qui est maintenant fréquemment utilisé dans la communauté \gls{eels}, sa description est donnée à la section~\ref{sec-demelange}.
 %
 Les spectres sont représentés à la figure~\ref{fig-spectres-synth} où quatre seuils caractéristiques révèlent la présence d'éléments particuliers : carbone ($K$-seuil à 285~eV), calcium ($L_{2,3}$-seuil à 350~eV), azote ($K$-seuil à 400~eV) et oxygène ($K$-seuil à 530~eV). Ces composantes ne correspondent pas à des composés chimiques bien déterminés. Néanmoins, pour plus de simplicité, par la suite, les endmembers vont être associés à des matériaux particuliers et seront désignés sous les noms de calcification (avec le seuil Ca-$L_{2, 3}$), résine, organique 1 (avec le seuil N-$K$) et organique 2. Le nombre de bandes (correspondant au nombre de canaux du spectromètre) est $M=\np{1337}$.
 

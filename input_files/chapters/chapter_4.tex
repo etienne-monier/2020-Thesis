@@ -10,16 +10,19 @@ Les images haute résolution déjà présentées à la \cref{sec-prop-eels} sont
 %
 Contrairement aux données basse résolution détaillées à la section~\ref{sec-donnees-sous-echantillonnees}, la résolution de l'image n'est pas limitée par l'expérimentateur en vue de préserver l'échantillon mais par le pouvoir séparateur du microscope. On dit alors que l'image est \emph{haute résolution}. Comme détaillé à la section~\ref{sec-positionnement-these}, le pouvoir séparateur du VG-HB501 (resp. du Nion UltraSTEM 200) dont dispose le LPS est de l'ordre du nanomètre (resp. du dixième de nanomètre). Pour imager les colonnes atomiques, le Nion UltraSTEM 200 est donc préféré.
 
-Dans le cadre applicatif de ce chapitre, nous étudierons les structures spatialement périodiques, comme les réseaux cristallins dont un exemple d'image HAADF est donné à la figure~\ref{fig-chap2-haadf-ex-b}. Acquérir ce type de structure nécessite d'orienter correctement le réseau cristallin. 
+Dans le cadre applicatif de ce chapitre, nous étudierons les structures spatialement périodiques, comme les réseaux cristallins dont un exemple d'image HAADF est donné à la figure~\ref{fig-chap4-HR-crist-a}. Acquérir ce type de structure nécessite d'orienter correctement le réseau cristallin. 
 %
-Comme détaillé à la section~\ref{sec-ech-sensibles}, les acquisitions haute résolution sont particulièrement sensibles aux distorsions liées à l'acquisition. En particulier, la dérive de l'échantillon peut déformer le réseau cristallin, comme le montre la figure~\ref{fig-drift}.
+Comme détaillé à la section~\ref{sec-ech-sensibles}, les acquisitions haute résolution sont particulièrement sensibles aux distorsions liées à l'acquisition. En particulier, la dérive de l'échantillon peut déformer le réseau cristallin, comme le montre la figure~\ref{fig-chap4-HR-crist-b}.
 
-%\begin{figure}[b]
-%    \centering
-%    \includegraphics[width=0.4\textwidth]{img/chapitre1/figure4/haadf-HR-sc.png}
-%    %
-%    \caption{\protect\label{fig-chap4-HR-crist}Exemple d'image HAADF haute résolution d'une structure cristalline.}
-%\end{figure}
+\begin{figure}
+   \centering
+   \subfigure[\label{fig-chap4-HR-crist-a}]%
+        {\includegraphics[height=0.4\textwidth]{img/chapitre1/figure4/haadf-HR-sc.png}}
+    \subfigure[\label{fig-chap4-HR-crist-b}]%
+        {\includegraphics[height=0.4\textwidth]{img/chapitre1/figure7/drift-sc.png}}
+   %
+   \caption{\protect\label{fig-chap4-HR-crist}Exemples d'images HAADF haute résolution de structures cristallines.}
+\end{figure}
 
 
 
@@ -29,7 +32,7 @@ Le chapitre~\ref{ch-chapter_2} concluait sur l'intérêt de l'approche par \gls{
 %
 Dans le cadre de ce chapitre, une méthode par \gls{mc} régularisés est également envisagée pour répondre aux contraintes en temps et en performances et une régularisation appropriée aux images haute résolution d'échantillons cristallins spatialement périodiques est requise.
 %
-Puisque les image haute résolution présentent des contours plus marqués que pour les images basse-résolution, un premier choix pourrait être la régularisation TV qui conserve mieux les contours que Sobolev. Cependant, cette régularisation ne tire pas parti de la redondance spatiale induite par le réseau cristallin, ce qui est une information a priori forte, et une méthode non-locale sous forme variationelle comme celles décrites à la section~\ref{sec-art-patch} peut être envisagée. Toutefois, plus que la redondance spatiale, c'est la \emph{périodicité} du réseau cristallin qui constitue la source d'information la plus forte. C'est pourquoi une méthode par \gls{mc} régularisés exploitant la parcimonie dans une base appropriée sera préférée dans ce chapitre. 
+Puisque les images haute résolution présentent des contours plus marqués que pour les images basse-résolution, un premier choix pourrait être la régularisation TV qui conserve mieux les contours que Sobolev. Cependant, cette régularisation ne tire pas parti de la redondance spatiale induite par le réseau cristallin, ce qui est une information a priori forte, et une méthode non-locale sous forme variationelle comme celles décrites à la section~\ref{sec-art-patch} peut être envisagée. Toutefois, plus que la redondance spatiale, c'est la \emph{périodicité} du réseau cristallin qui constitue la source d'information la plus forte. C'est pourquoi une méthode par \gls{mc} régularisés exploitant la parcimonie dans une base appropriée sera préférée dans ce chapitre. 
 
 En particulier, afin de respecter les contraintes en temps de calcul, cette base ou dictionnaire peut être choisi a priori en exploitant des propriétés attendues concernant les images à reconstruire. Apprendre ce dictionnaire durant une étape de pré-traitement serait trop long pour notre application et les performances de reconstruction dépendraient fortement des données d'entraînement. Par conséquent, une base analytique tel que la base de Fourier, la \gls{dct} ou les ondelettes seront préférées pour leur expression explicite. Le choix de cette base sera discuté à la section~\ref{sec-appropriate-basis} en se basant sur des expériences.
 %
@@ -269,7 +272,7 @@ Les cartes d'erreur en NMSE sont représentées à la figure~\ref{fig-results-HR
     \subfigure[Composante $\mathrm{Nd-M}_{4, 5}$]{
         \includegraphics{img/chapitre4/figure8/histogramme_3.pdf}}
     %
-    \caption{Histogrammes des erreurs de reconstruction pour $\mathsf{R}_2^*$ en terme de NMSE autour de 3 seuils particuliers ($\mathrm{O-K}$, $\mathrm{La-M}_{4, 5}$ et $\mathrm{Nd-M}_{4, 5}$). Le seuil utilisé pour saturer les images de la figure~\protect\ref{fig-results-HR2_synth-bands} est représenté par une ligne grise en tirets. On observe que les erreurs de PPV sont généralement plus grandes que pour les autres méthodes.
+    \caption{Histogrammes des erreurs de reconstruction pour $\mathsf{R}_2^*$ en terme de NMSE autour de 3 seuils particuliers ($\mathrm{O-K}$, $\mathrm{La-M}_{4, 5}$ et $\mathrm{Nd-M}_{4, 5}$). Les axes des abscisses sont en échelle logarithmique pour mieux distinguer les histogrammes. Le seuil utilisé pour saturer les images de la figure~\protect\ref{fig-results-HR2_synth-bands} est représenté par une ligne grise en tirets. On observe que les erreurs de PPV sont généralement plus grandes que pour les autres méthodes.
         \protect\label{fig-qu1-21-histograms}}    
 \end{normalfigure*}
 
@@ -362,7 +365,7 @@ Comme précédemment observé, les méthodes par \gls{ad} donnent des images rec
  
 \subsection{Résultats des approches DL-CLS}\label{sec-DL-CLS}
 
-Les sections précédentes ont comparés les performances de reconstruction en se basant sur des images synthétique, semi-réelles et réelles. elles ont illustré l'intérêt de CLS en tant que méthode à la fois rapide et efficace pour reconstruire un spectre-image sous-échantillonné de réseau cristallin périodique. De plus, les méthodes de reconstruction par \gls{ad} ont affiché des performances meilleures pour une charge de calcul plus grande. Toutefois, une fois couplées à CLS, ces méthodes pourraient être utilisées comme raffinement après l'expérimentation. 
+Les sections précédentes ont comparé les performances de reconstruction en se basant sur des images synthétiques, semi-réelles et réelles. elles ont illustré l'intérêt de CLS en tant que méthode à la fois rapide et efficace pour reconstruire un spectre-image sous-échantillonné de réseau cristallin périodique. De plus, les méthodes de reconstruction par \gls{ad} ont affiché des performances meilleures pour une charge de calcul plus grande. Toutefois, une fois couplées à CLS, ces méthodes pourraient être utilisées comme raffinement après l'expérimentation. 
 %
 Dans cette section, cet intérêt sera confirmé en se basant sur des expériences additionelles conduites sur l'image semi-réelle $\mathsf{R}_2^*$. De manière similaire à la section~\ref{sec-results-hr-synth}, cette image a été sous-échantillonnée, puis reconstruite avec \gls{wksvd} en considérant deux initialisations distinctes. 
 %

@@ -1,3 +1,10 @@
 /build
 These_Etienne_Monier.pdf
 style/pdfpcnotes.sty
+
+*.aux
+*.fdb_latexmk
+*.fls
+*.log
+
+__pycache__/

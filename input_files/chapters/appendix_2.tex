@@ -38,7 +38,7 @@
     \bigskip\noindent%
     \textbf{Etape 2 :} Ré-ordonner les rapports $d_m/\alpha_m$ jusqu'à ce qu'ils soient ordonnés par ordre décroissant.
     
-    Lister tous les rapports $d_m/\alpha_m$ à la droite de chaque pair $(d_m, \alpha_m)$ obtenus de l'étape 1. Une paire $(d_m, \alpha_m)$ (à l'exception de la paire située en bas de la liste) est appelée \emph{erronée} si le ratio $d_m/\alpha_m$ n'est pas supérieur au ratio $d_{m+1}/\alpha_{m-1m+1}$.
+    Lister tous les rapports $d_m/\alpha_m$ à la droite de chaque paire $(d_m, \alpha_m)$ obtenus de l'étape 1. Une paire $(d_m, \alpha_m)$ (à l'exception de la paire située en bas de la liste) est appelée \emph{erronée} si le ratio $d_m/\alpha_m$ n'est pas supérieur au ratio $d_{m+1}/\alpha_{m-1m+1}$.
     \begin{enumerate}[label={(\alph*)}]
         \item Commencer en bas de la liste obtenue de l'étape 1 et remonter la liste jusqu'à ce que la première paire erronée, notons-la $(d_m, \alpha_m)$, soit atteinte.
         \item Fusionner cette paire erronée avec la paire immédiatement inférieure en remplaçant ces paires et leur ratio par la paire $(d_m + d_{m+1},\alpha_m + \alpha_{m-1m+1})$ et le ratio $(d_m + d_{m+1})/(\alpha_m + \alpha_{m+1})$. La liste obtenue est donc d'une paire plus courte.\label{sein-iso-2-2}
@@ -51,7 +51,7 @@
     \textbf{Etape 3 :} Chacun des rapports présents dans la liste finale a été obtenu en fusionnant un bloc d'une ou plusieurs paires consécutives $(d_m,\alpha_m)$ issues de la liste initiale. Pour obtenir les estimées de Stein corrigées, on assigne ce rapport à toutes les paires du bloc.
     
     \bigskip\noindent%
-    \textbf{Exemple :} Un exemple est donné à la \tabname~\ref{tab-stein-corr-example} afin d'illustrer les trois étapes détaillées ci-dessus. Une matrice aléatoire $\mathbf{A}$ de taille $10\times 10$ dont les éléments sont des réalisations d'une varible aléatoire gaussienne centrée réduite est générée. Les valeurs propres $d_m$ de $\mathbf{A}^T\mathbf{A}$ et les valeurs $\alpha_m$ ont été calculées et sont affichées sur les colonnes de gauche. Puisque $\alpha_6$ est négatif, les deux colonnes suivantes, \ie\ la nouvelle liste de paires $(d_m, \alpha_m)$, sont obtenus lors de la première étape en fusionnant les paires $(d_5, \alpha_5)$ et $(d_6,\alpha_6)$ de la liste originale. Pour améliorer la lisibilité, les paires n'étant pas modifiées par l'étape~1 n'ont pas été réécrites dans la nouvelle liste. Lors de l'étape~2, la première colonne liste les rapports $d_m/\alpha_m$ correspondants aux paires $(d_m, \alpha_m)$ issues de la première étape. Puisque les quatre rapports du haut ne sont pas triés par ordre décroissant, les quatre paires correspondantes sont fusionnées afin d'obtenir le nouveau rapport \np{11.96}. La nouvelle liste de rapports, \ie{} la seconde colonne de l'étape 2, est maintenant dans l'ordre décroissant, donc aucune nouvelle fusion n'est nécessaire. Dans l'étape 3, nous assignons simplement chaque rapport issu de l'étape 2 à l'ensemble des paires qui ont été fusionnées au cours des deux premières étapes afin d'obtenir ce rapport.
+    \textbf{Exemple :} Un exemple est donné à la \tabname~\ref{tab-stein-corr-example} afin d'illustrer les trois étapes détaillées ci-dessus. Une matrice aléatoire $\mathbf{A}$ de taille $10\times 10$ dont les éléments sont des réalisations d'une variable aléatoire gaussienne centrée réduite est générée. Les valeurs propres $d_m$ de $\mathbf{A}^T\mathbf{A}$ et les valeurs $\alpha_m$ ont été calculées et sont affichées sur les colonnes de gauche. Puisque $\alpha_6$ est négatif, les deux colonnes suivantes, \ie\ la nouvelle liste de paires $(d_m, \alpha_m)$, sont obtenus lors de la première étape en fusionnant les paires $(d_5, \alpha_5)$ et $(d_6,\alpha_6)$ de la liste originale. Pour améliorer la lisibilité, les paires n'étant pas modifiées par l'étape~1 n'ont pas été réécrites dans la nouvelle liste. Lors de l'étape~2, la première colonne liste les rapports $d_m/\alpha_m$ correspondants aux paires $(d_m, \alpha_m)$ issues de la première étape. Puisque les quatre rapports du haut ne sont pas triés par ordre décroissant, les quatre paires correspondantes sont fusionnées afin d'obtenir le nouveau rapport \np{11.96}. La nouvelle liste de rapports, \ie{} la seconde colonne de l'étape 2, est maintenant dans l'ordre décroissant, donc aucune nouvelle fusion n'est nécessaire. Dans l'étape 3, nous assignons simplement chaque rapport issu de l'étape 2 à l'ensemble des paires qui ont été fusionnées au cours des deux premières étapes afin d'obtenir ce rapport.
     
     
     
@@ -68,11 +68,11 @@
             3&19.42&	1.21&&16.05&&11.96\\
             4&13.95&	0.85&&16.41&&11.96\\
             5&7.33&	2.70&\rdelim\}{2}{*}[\parbox{2.5cm}{\centering 13.96\quad 1.53}]&\multirow{2}{*}{9.12}&&9.12\\
-            6&6.63&	-1.17&&&&9.12\\
+            6&6.63&	$-$1.17&&&&9.12\\
             7&3.01&	0.45&&6.69&&6.69\\
             8&1.35&	0.28&&4.82&&4.82\\
             9&0.35&	0.33&\rdelim\}{2}{*}[\parbox{2.5cm}{\centering 0.50\quad 0.22}]&\multirow{2}{*}{2.27}&&2.27\\
-            10&0.15&	-0.11&&&&2.27\\
+            10&0.15&	$-$0.11&&&&2.27\\
             \bottomrule
         \end{tabular}
         \vspace{1em}

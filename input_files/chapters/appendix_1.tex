@@ -11,7 +11,7 @@
         \begin{figure}
             \centering
             \includegraphics{img/chapitre1/figure16/data_variance.pdf}
-            \caption{Le spectre moyen (en vert) et l'éccart-type associé aux canaux (en orange) sont affichés pour le spectre-image $\mathsf{R}_2$ présenté à la \cref{sec-donnees-hr}.
+            \caption{Le spectre moyen (en vert) et l'écart-type associé aux canaux (en orange) sont affichés pour le spectre-image $\mathsf{R}_2$ présenté à la \cref{sec-donnees-hr}.
                 \protect\label{fig-pca-variance-data}}
         \end{figure}
         On observe entre autre une divergence assez importante entre les écarts-types correspondants aux premiers seuils et ceux associés aux deux seuils centraux. En particulier, les pics dont la variance est la plus importante correspond à des signatures caractéristiques d'éléments présents en abondance à certaines positions et absents à d'autres. Les seuils de variances plus faibles correspondent, au contraire, à des éléments présents en petite quantité sur l'ensemble de l'échantillon. \`A la vue de cet écart de variance, on peut s'attendre à une différence marquée entre les composantes principales issues des deux matrices de covariance et de corrélation. Pour confirmer cela, les cinq premières composantes principales issues des matrices de covariance et de corrélation sont affichées à la \cref{fig-pca-comps_matrices}.
@@ -39,7 +39,7 @@
 
         En considérant les spectres, l'on observe que le premier spectre associé à la matrice de covariance ne regroupe que les seuils de variance supérieure (les deux pics centraux et le dernier pic) tandis que le seuil situé vers \np[eV]{550} est d'amplitude réduite. La deuxième composante capture un fond décroissant, mais seule la paire de pics est capturée. Il faut attendre les composantes 3 et 4 afin de capturer des pics de variance moindre. Enfin, la composante 5 présente des variations mineures et de hautes fréquences dues au bruit. A contrario, les spectres associés à la matrice de corrélation ne capturent pas uniquement les seuils les plus puissants, mais également un nombre important de petites variations, rendant compliqué l'interprétation.
         %
-        Ainsi, les résultats issus de la matrice de covariance sont bel et bien \guillemets{aimantés} par les seuils de variance supérieure tandis que les spectres issus de la matrice de corrélation présentent davantage de seuils mineurs, voir de bruit pour les dernières composantes. Utiliser la matrice de corrélation permet donc de mettre en évidence que certains pics participent de manière modérée dans certaines signatures spectrales (il s'agit de seuils associés à de faibles structures spatiales), mais elle risque également de capturer des motifs parasites correspondant au bruit.
+        Ainsi, les résultats issus de la matrice de covariance sont bel et bien \guillemets{aimantés} par les seuils de variance supérieure tandis que les spectres issus de la matrice de corrélation présentent davantage de seuils mineurs, voire de bruit pour les dernières composantes. Utiliser la matrice de corrélation permet donc de mettre en évidence que certains pics participent de manière modérée dans certaines signatures spectrales (il s'agit de seuils associés à de faibles structures spatiales), mais elle risque également de capturer des motifs parasites correspondant au bruit.
 
         De plus, la proportion de la puissance totale reflète la variance des pics capturés. En effet, la première composante de la matrice de covariance compte pour 60\% de la puissance totale puisqu'elle capture uniquement les seuils de variance élevée. Au contraire, celle issue de la matrice de corrélation ne compte que pour 35\% de la puissance totale puisqu'elle capture principalement des seuils de variance réduite, mais les rapports suivants sont tous supérieurs par rapport à la matrice de covariance.
 
@@ -48,7 +48,7 @@
             \item Si l'on s'intéresse à un élément dont l'abondance est très variable, alors la variance associée à ses seuils sera élevée et ceux-ci seront capturés efficacement par l'\gls{acp} si la matrice de covariance est utilisée. C'est notamment le cas pour les images à échelle atomique lorsque l'on s'intéresse à la signature associée à un atome présent en abondance dans une partie importante de l'image. La contrepartie est que les seuils plus mineurs ne seront que peu conservés.
             \item Si l'on s'intéresse à un élément peu abondant et localisé, sa variance sera faible et les seuils associés seront bien mieux conservés en utilisant la matrice de corrélation. Ainsi, les structures fines aux interfaces seront mieux restituées avec cette matrice. Le défaut, c'est que certaines structures parasites pourraient également apparaître à cause du bruit capturé par l'ACP.
         \end{itemize}
-        Dans cette étude, la matrice de covariance a été utilisé puisque les éléments étudiés étaient suffisamment abondants.
+        Dans cette étude, la matrice de covariance a été utilisée puisque les éléments étudiés étaient suffisamment abondants.
         
             \section{Diagrammes de Voronoi et triangulation de Delaunay}\label{abstr-voronoi-delaunay}
         
