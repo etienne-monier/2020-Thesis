@@ -1,15 +1,16 @@
-# Construction and output folder
+# build and output files
 /build
 
-# Exclude all img folder
-/img
-
-# but .tikz, .png, .jpg and .dat files
-!/img/*.tikz
-!/img/*.png
-!/img/*.jpg
-!/img/*.dat
-
 # My local final versions
-These_*.pdf
+/These*
+
+# Build files in /img
+*.aux
+*.dm3
+*.dvi
+*.fdb_latexmk
+*.fls
+*.log
+*.mat
+*.py
 
