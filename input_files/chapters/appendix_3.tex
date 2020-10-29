@@ -180,6 +180,70 @@ où $r(\tau)$ est la fonction d'autocorrélation 2D. Plus la valeur est élevée
 
 
 
+\section{Implémentation pratique de CLS}\label{annexe-implementation-cls}
+
+    \'A la section~\ref{subsec-implementation-cls}, la résolution de la méthode CLS a été détaillée en se basant sur l'algorithme FISTA. De même que pour 3S, l'implémentation pratique nécessite plusieurs étapes en prétraitement. C'est pourquoi la mise en \oe{}uvre de CLS sans estimation du paramètre optimal est détaillée à l'algorithme~\ref{algo-cls-sans-param}. La recherche du paramètre \gls{lcls} peut être réalisée de la même manière que 3S, comme détaillé à l'algorithme~\ref{algo-3S-avec-param}.
+
+    \begin{normalalgorithme*}[t]
+        \begin{minipage}{\textwidth}
+            \begin{algorithm}[H]
+                \SetKwInOut{Input}{Entrée}
+                \SetKwInOut{Output}{Sortie}
+                \SetKwInOut{Init}{Initialisation}
+                %
+                \SetKwComment{Comment}{}{}
+                %
+                \Input{Observation $\gls{Y}_{\gls{I}}$, ensemble \gls{I}, paramètre \gls{lcls}}
+                
+                %
+                \medskip
+                Appliquer une ACP à $\gls{Y}_{\gls{I}}$ et obtenir la base \gls{H} des composantes principales et les valeurs propres empiriques $\tilde{d}_m^2$\;
+                %
+                Corriger les valeurs propres empiriques (estimateur de Stein) $\rightarrow$ $\hat{d}_m^2 = \frac{\tilde{d}^2_m}{1+ \frac{1}{N}\sum_{\substack{j=1\\j\neq m }}^M \frac{\tilde{d}^2_m+\tilde{d}^2_j}{\tilde{d}^2_m-\tilde{d}^2_j}}$\;
+                %
+                Estimer la dimension $R = \argmax_m {m}$ tel que $\hat{d}_m^2 > \hat{d}_M^2$\;
+
+                \medskip
+
+                \Init{Fixer $\mathbf{Z}^{(1)} = \mathbf{W}^{(0)} = \mathbf{S}^{(0)} \in \mathbb{R}^{R\times P}$, $\theta^{(1)}=1$, $i=1$}
+
+                \medskip
+
+                \While{critère d'arrêt n'est pas satisfait}{
+                    %
+                    $\mathbf{W}^{(i)} = \mathbf{Z}^{(i)} - \left\{\gls{X}\gls{Phi} - \gls{Yi}\right\}\gls{Phi}^T$\;
+                    %
+                    $\mathbf{W}^{(i)}\leftarrow \mathbf{W}^{(i)}\boldsymbol\Psi$  \hfill\Comment{Transformation DCT}
+
+                    \For{$p = 1$ \KwTo $P$}{
+                        \If{$||\mathbf{w}^{(i)}_p||_2 > \gls{lcls}$}{
+                            %
+                            $\mathbf{s}^{(i)}_p = \left(1-\frac{\gls{lcls}}{||\mathbf{w}^{(i)}_p||_2}\right)\mathbf{w}^{(i)}_p$
+                        }
+                        \Else{
+                            $\mathbf{s}^{(i)}_p = 0$
+                        }
+                    }
+                    %
+                    $\mathbf{S}^{(i)} = \mathbf{S}^{(i)}\boldsymbol\Psi^T$  \hfill\Comment{Transformation inverse}
+                    %
+                    $\theta^{(i+1)} = \frac{1}{2} \left(1+\sqrt{1+4(\theta^{(i)})^2}\right)$\;
+                    %
+                    $\mathbf{Z}^{(i+1)} = \mathbf{S}^{(i)} + \left( \frac{\theta^{(i)}-1}{\theta^{(i+1)}} \right) \left(\mathbf{S}^{(i)}-\mathbf{S}^{(i-1)} \right)$\;
+                    %
+                    $i \leftarrow i+1$
+                }
+                %
+                \medskip
+                \Output{$\gls{Xh}(\mu) = \gls{H}\gls{S}^{(i-1)}$}
+            \end{algorithm}
+        \end{minipage}
+        \caption{CLS sans recherche de paramètres.\protect\label{algo-cls-sans-param}}
+    \end{normalalgorithme*}
+
+
+
+
 \section{Correction de CLS par refitting}
 
 Dans la section~\ref{s2n-formulation}, la méthode proposée S2N favorise les images de rang faible en contraignant la norme nucléaire du spectre-image. De même, la méthode CLS proposée à la section~\ref{sec-formulation-cls} promeut les représentations parcimonieuses dans la base \gls{dct} à l'aide de la norme $\ell_{1}$. Ces deux normes proposées comme relaxations convexes du rang et de la pseudo-norme $\ell_0$ respectivement ne sont cependant pas optimales puisqu'elles introduisent un biais systématique dans les images reconstruites.

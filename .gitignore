@@ -1,10 +1,15 @@
+# Construction and output folder
 /build
-These_Etienne_Monier.pdf
-style/pdfpcnotes.sty
 
-*.aux
-*.fdb_latexmk
-*.fls
-*.log
+# Exclude all img folder
+/img
 
-__pycache__/
+# but .tikz, .png, .jpg and .dat files
+!/img/*.tikz
+!/img/*.png
+!/img/*.jpg
+!/img/*.dat
+
+# My local final versions
+These_*.pdf
+

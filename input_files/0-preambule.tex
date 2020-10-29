@@ -317,8 +317,9 @@ savewrites]{glossaries}
 % Solution to create new tufte-like algorithme environments.
 % cf. https://tex.stackexchange.com/questions/113631/caption-placement-for-new-float-in-tufte-book-class
 \newcounter{algorithme}[chapter]
-\newcommand\algorithmename{Algorithme}
+\newcommand\algorithmename{\textsc{Algorithme}}
 \newcommand\listalgorithmename{Liste d'algorithmes}
+
 \makeatletter
 \newcommand\listofalgorithmes{%
     \ifthenelse{\equal{\@tufte@class}{book}}%
@@ -333,9 +334,19 @@ savewrites]{glossaries}
 \def\ftype@algorithme{1}
 \def\ext@algorithme{loe}
 \def\fnum@algorithme{\algorithmename\nobreakspace\thealgorithme}
+
 \newenvironment{algorithme}[1][htbp]
     {\begin{@tufte@float}[#1]{algorithme}{}}
     {\end{@tufte@float}}
+
+\newenvironment{algorithme*}[1][htbp]
+    {\begin{@tufte@float}[#1]{algorithme}{star}}
+    {\end{@tufte@float}}
+
+\newenvironment{normalalgorithme*}[1][htbp]
+    {\normalfloatstyle\ifvmode\else\unskip\fi\begin{@tufte@float}[#1]{algorithme}{star}}
+    {\end{@tufte@float}}
+
 \let\l@algorithme\l@figure
 \makeatother
 
@@ -446,6 +457,7 @@ savewrites]{glossaries}
 \newcommand{\taille}[2]{\ensuremath{\gls{#1}\times\gls{#2}}}
 
 \newcommand{\argmin}{\ensuremath{\operatornamewithlimits{argmin}}}
+\newcommand{\argmax}{\ensuremath{\operatornamewithlimits{argmax}}}
 
 
 

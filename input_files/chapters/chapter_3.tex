@@ -238,7 +238,7 @@ où $\mathbf{G} = \mathrm{diag}(\tilde{d}_1^2, \dots, \tilde{d}_{\gls{M}}^2)$. \
 Cependant, cet estimateur n'impose pas la propriété de non-croissance et quelques valeurs propres corrigées $(\hat{d}_m)_{m=1,\dots,\gls{M}}$ peuvent être négatives. Pour corriger ce problème, une régression isotonique a été proposée dans~\cite{LinPerl1985} comme post-traitement. Cette procédure détaillée à l'annexe~\ref{abstr-regression-isotonique} renvoie généralement un ensemble de valeur propres corrigées et leur multiplicités associées. De plus, une estimation $\gls{hsig}^2$ de la variance du bruit $\gls{sig}^2$ requise dans la définition des poids~\eqref{eq-weights-form} peut être définie comme la valeur propre corrigée de valeur minimale dont la multiplicité est $\gls{M} - \gls{R}$.
 
 %
-\section{Implémentation}
+\section{Implémentation}\label{ch-3-implementation}
 
 Cette section décrit les algorithmes pour résoudre les problèmes d'optimisation~\eqref{eq-s2n} et \eqref{eq-3s}. Tous deux reposent sur l'algorithme \gls{fista}~\cite{beck_fast_2009} dont la formulation générique est rappelée dans la section suivante.
 
@@ -291,6 +291,7 @@ Afin de résoudre~\eqref{eq-s2n}, la méthode \gls{s2n} consiste à adopter la d
 \end{align}
 Le gradient associé à $f(\cdot)$ requis à la ligne \ref{algostep:gradient} de l'algorithme~\ref{algo-FISTA} est donné par
 \begin{equation}
+    \label{nablaf-s2n}
     \nabla f(\gls{X}) = (\gls{X}\gls{Phi} - \gls{Yi})\gls{Phi}^T - \gls{ls2n} \gls{X} \Delta
 \end{equation}
 où $\Delta = -\gls{D}\gls{D}^T$ est l'opérateur de laplacien spatial discret et \gls{Phi} est l'opérateur de sous-échantillonnage tel que $\gls{X}_{\gls{I}} = \gls{X}\gls{Phi}$.
@@ -304,13 +305,15 @@ De plus, en notant $\gls{X}=\mathbf{U}\boldsymbol{\Sigma} \mathbf{V}^T$ la déco
 \begin{align}
     \mathrm{prox}_{g/L}(\gls{X}) &\triangleq \argmin_{\mathbf{T}} 
                                     \left\{ \frac{g(\mathbf{T})}{L} + \frac{1}{2}\frobnorm{\mathbf{T} - \gls{X}} \right\}\\
-                               &= {\mathbf{U}} \bar{\boldsymbol{\Sigma}} {\mathbf{V}}^T,
+                               &= {\mathbf{U}} \bar{\boldsymbol{\Sigma}} {\mathbf{V}}^T, \label{prox-s2n}
 \end{align}
 où $\bar{\boldsymbol{\Sigma}} = \mathrm{diag}(\bar{\mu}_i)$ contient les valeurs singulières après seuillage doux de seuil \gls{ms2n}, \ie{}
 \begin{equation}
     \bar{\mu}_i = \mathrm{sgn}(\mu_i)\left(|\mu_i|-\frac{\gls{ms2n}}{L}\right)\iota_{\mu_i>\gls{ms2n}}(\mu_i)
 \end{equation}
 où $\mathrm{sgn}$ est la fonction signe et où $\iota$ est la fonction indicatrice.
+
+Le pseudo-code complet permettant l'implémentation de S2N avec ou sans recherche de paramètres optimaux est disponible à l'annexe~\ref{annexe-implementation-3s-s2n}.
 
 
 \subsection{Application à 3S}\label{subsec-implementation-3s}
@@ -336,7 +339,7 @@ où
 \end{equation}
 est la fonction indicatrice relative à l'ensemble $\mathcal{A}$ et $\mathcal{B}(x_0,r)$ est la boule fermée en norme $\ell_2$ de centre $x_0$ et de rayon $r$.
 Le gradient de $f(\cdot)$ est
-\begin{equation}
+\begin{equation}\label{nabla-f-3s}
     \nabla f(\gls{S}) = -\frac{1}{\gls{R}} \gls{S}\Delta + \gls{m3s}\mathbf{W}\gls{S}\\
 \end{equation}
 où $\mathbf{W}=\mathrm{diag}\left\{w_1,\ldots,w_{\gls{R}}\right\}$ est la matrice diagonale contenant les poids.
@@ -349,6 +352,8 @@ De manière similaire à \gls{s2n}, une borne supérieure de $L_f$ est obtenue p
 conduisant à $L = 8+\gls{m3s}\max_{m}\left\{\gls{w}_{m}\right\}$.
 
 De plus, comme nous le voyons à l'équation~\eqref{eq-3S_g}, la fonction $g(\cdot)$ est séparable relativement aux indices des pixels $n \in \llbracket 1,\gls{N}\rrbracket$. Par conséquent, l'opérateur proximal associé à $g(\cdot)$ consiste à projeter $\mathbf{s}_{\gls{I}(n)}$ sur $\mathcal{B}(\gls{H}^T\mathbf{y}_{\gls{I}(n)},\sqrt{\gls{R}}\gls{hsig})$ pour tout $n\in \llbracket 1,\gls{N}\rrbracket$.
+
+Le pseudo-code complet permettant l'implémentation de 3S avec ou sans recherche de paramètres optimaux est disponible à l'annexe~\ref{annexe-implementation-3s-s2n}.
 
 \subsection{Etude de la complexité}
 

@@ -81,4 +81,267 @@
     \end{table*} 
     
 
+    \section{Implémentation pratique des méthodes S2N et 3S}\label{annexe-implementation-3s-s2n}
+
+    \'A la section~\ref{ch-3-implementation}, l'implémentation des méthodes S2N et 3S a été détaillée en se basant sur l'algorithme FISTA. Si le codage de la méthode S2N reste facile pour un jeu de paramètres fixe, cela devient plus compliqué pour 3S qui nécessite de nombreuses étapes. De plus, la méthode détaillée à la section~\ref{sec-s2n-param-tuning} permettant d'obtenir une estimation des paramètres de régularisation optimaux n'est pas triviale à implémenter. Dans cette section, l'implémentation pratique des méthodes est donc détaillée.
+
+    \subsection{Implémentation sans recherche de paramètre}
+
+    Dans le cas où les paramètres de régularisation sont fixés, la méthode S2N s'implémente facilement à l'aide de l'algorithme FISTA (\cf\ algorithme~\ref{algo-FISTA}) pour donner l'algorithme~\ref{algo-S2N-sans-param}. La méthode 3S, quant à elle, nécessite quelques étapes en prétraitement pour obtenir les données dans la base des composantes principales et estimer la dimension du sous-espace signal $R$, les puissances corrigées $\hat{d}_m^2$, le niveau de bruit $\hat{\sigma}^2$ et les poids $w_m$. L'algorithme~\ref{algo-3S-sans-param} résume l'ensemble de ces étapes et constitue un appui pour implémenter 3S. 
+
+    \begin{normalalgorithme*}
+        \begin{minipage}{\textwidth}
+            \begin{algorithm}[H]
+                \SetKwInOut{Input}{Entrée}
+                \SetKwInOut{Output}{Sortie}
+                \SetKwInOut{Init}{Initialisation}
+                %
+                \SetKwComment{Comment}{}{}
+                %
+                \Input{Observation $\gls{Y}_{\gls{I}}$, ensemble \gls{I}, paramètres $(\gls{ls2n}, \gls{ms2n})$}
+                \Init{Fixer $\mathbf{Z}^{(1)} = \mathbf{W}^{(0)} = \mathbf{X}^{(0)} \in \mathbb{R}^{M\times P}$, $\theta^{(1)}=1$, $i=1$, $L=1+8\gls{ls2n}$}
+                %
+                \medskip
+                \While{critère d'arrêt n'est pas satisfait}{
+                    %
+                    $\mathbf{W}^{(i)} = \mathbf{Z}^{(i)} -\frac{1}{L} \left\{ (\mathbf{Z}^{(i)}\gls{Phi} - \gls{Yi})\gls{Phi}^T - \gls{ls2n} \mathbf{Z}^{(i)} \Delta \right\}$\;
+                    %
+                    Calcul de la SVD de $\mathbf{W}^{(i)} = \mathbf{U\boldsymbol\Sigma V}^T$ avec $\boldsymbol\Sigma = \mathrm{diag}(\mu_i)$\;
+                    %
+                    Calcul des $\bar{\mu}_i = \mathrm{sgn}(\mu_i)\left(|\mu_i|-\frac{\gls{ms2n}}{L}\right)\iota_{\mu_i>\gls{ms2n}}(\mu_i)$\;
+                    %
+                    $\mathbf{X}^{(i)} = \mathbf{U\bar{\boldsymbol\Sigma} V}^T$ avec $\bar{\boldsymbol\Sigma} = \mathrm{diag}(\bar{\mu}_i)$\;
+                    %
+                    $\theta^{(i+1)} = \frac{1}{2} \left(1+\sqrt{1+4(\theta^{(i)})^2}\right)$\;
+                    %
+                    $\mathbf{Z}^{(i+1)} = \mathbf{X}^{(i)} + \left( \frac{\theta^{(i)}-1}{\theta^{(i+1)}} \right) \left(\mathbf{X}^{(i)}-\mathbf{X}^{(i-1)} \right)$\;
+                    %
+                    $i \leftarrow i+1$
+                }
+                %
+                \medskip
+                \Output{$\gls{Xh}(\lambda, \mu) = \gls{X}^{(i-1)}$}
+            \end{algorithm}
+        \end{minipage}
+        \caption{S2N sans recherche de paramètres.\protect\label{algo-S2N-sans-param}}
+    \end{normalalgorithme*}
+
+
+
+    \begin{normalalgorithme*}
+        \begin{minipage}{\textwidth}
+            \begin{algorithm}[H]
+                \SetKwInOut{Input}{Entrée}
+                \SetKwInOut{Output}{Sortie}
+                \SetKwInOut{Init}{Initialisation}
+                %
+                \SetKwComment{Comment}{}{}
+                %
+                \Input{Observation $\gls{Y}_{\gls{I}}$, ensemble \gls{I}, paramètre \gls{m3s}}
+                
+                %
+                \medskip
+                Appliquer une ACP à $\gls{Y}_{\gls{I}}$ et obtenir la base \gls{H} des composantes principales et les valeurs propres empiriques $\tilde{d}_m^2$\;
+                %
+                Corriger les valeurs propres empiriques (estimateur de Stein) $\rightarrow$ $\hat{d}_m^2 = \frac{\tilde{d}^2_m}{1+ \frac{1}{N}\sum_{\substack{j=1\\j\neq m }}^M \frac{\tilde{d}^2_m+\tilde{d}^2_j}{\tilde{d}^2_m-\tilde{d}^2_j}}$\;
+                %
+                Estimer la dimension $R = \argmax_m {m}$ tel que $\hat{d}_m^2 > \hat{d}_M^2$ et le niveau de bruit $\hat{\sigma}^2 = \hat{d}_M^2$\;
+
+                Calcul des poids $w_m = \frac{\gls{hsig}^2}{\hat{d}_m^2 - \gls{hsig}^2}$\;
+
+                \medskip
+
+                \Init{Fixer $\mathbf{Z}^{(1)} = \mathbf{W}^{(0)} = \mathbf{S}^{(0)} \in \mathbb{R}^{R\times P}$, $\theta^{(1)}=1$, $i=1$, $L=8+\gls{m3s} \max_m\{w_m\}$}
+
+                \medskip
+
+                \While{critère d'arrêt n'est pas satisfait}{
+                    %
+                    $\mathbf{W}^{(i)} = \mathbf{Z}^{(i)} -\frac{1}{L} \left\{ -\frac{1}{\gls{R}} \gls{S}\Delta + \gls{m3s}\mathbf{W}\gls{S} \right\}$\;
+
+                    \For{$p = 1$ \KwTo $P$}{
+                        \If{$p\in\mathcal{I}$ et $||\mathbf{w}^{(i)}_p - \gls{H}^T\mathbf{y}_p|| > \sqrt{R}\hat{\sigma}$}{
+                            %
+                            $\mathbf{s}^{(i)}_p = \sqrt{R}\hat{\sigma} \frac{\mathbf{w}^{(i)}_p - \gls{H}^T\mathbf{y}_p}{||\mathbf{w}^{(i)}_p - \gls{H}^T\mathbf{y}_p||}$
+                        }
+                        \Else{
+                            $\mathbf{s}^{(i)}_p = \mathbf{w}^{(i)}_p$
+                        }
+                    }
+                    %
+                    $\theta^{(i+1)} = \frac{1}{2} \left(1+\sqrt{1+4(\theta^{(i)})^2}\right)$\;
+                    %
+                    $\mathbf{Z}^{(i+1)} = \mathbf{S}^{(i)} + \left( \frac{\theta^{(i)}-1}{\theta^{(i+1)}} \right) \left(\mathbf{S}^{(i)}-\mathbf{S}^{(i-1)} \right)$\;
+                    %
+                    $i \leftarrow i+1$
+                }
+                %
+                \medskip
+                \Output{$\gls{Xh}(\mu) = \gls{H}\gls{S}^{(i-1)}$}
+            \end{algorithm}
+        \end{minipage}
+        \caption{3S sans recherche de paramètres.\protect\label{algo-3S-sans-param}}
+    \end{normalalgorithme*}
+
+
+    \subsection{Estimation des paramètres de régularisation optimaux}
+
+    \'A la section~\ref{sec-s2n-param-tuning}, nous avons présenté une méthode d'estimation des paramètres de régularisation maximisant la qualité de reconstruction. Celle-ci consiste à minimiser la fonction
+\begin{equation}
+\mathcal{J}\left(\lambda,\mu\right) \triangleq \left(\frac{1}{\gls{M}\gls{N}}\left\|\gls{Yi}-\gls{Xh}_{\gls{I}}{(\lambda,\mu)}\right\|_{\mathrm{F}}^2-\hat{\gls{sig}}^2\right)^2
+\end{equation}
+relativement à $\lambda$ d'abord, puis par rapport à $\mu$, et enfin par rapport à un facteur d'échelle $c$. Une façon plus commode d'implémenter cette méthode consiste non pas à minimiser $\mathcal{J}$, mais plutôt à déterminer le zéro de la fonction
+\begin{equation}
+\mathcal{J}'\left(\lambda,\mu\right) \triangleq \frac{1}{\gls{M}\gls{N}}\left\|\gls{Yi}-\gls{Xh}_{\gls{I}}{(\lambda,\mu)}\right\|_{\mathrm{F}}^2-\hat{\gls{sig}}^2.
+\end{equation}
+En effet, pour un paramètre de régularisation nul, le terme $\frac{1}{\gls{M}\gls{N}}\left\|\gls{Yi}-\gls{Xh}_{\gls{I}}{(\lambda,\mu)}\right\|_{\mathrm{F}}^2$ s'annule tandis qu'il s'approche de la puissance du signal pour un paramètre infini.
+
+L'implémentation de cette méthode s'est faite par dichotomie. Par exemple, le zéro de $\mathcal{J}'\left(\cdot,0\right)$ a été obtenu à partir d'un segment de recherche initial $[\lambda_{\mathrm{min}}^{(0)}, \lambda_{\mathrm{max}}^{(0)}]$ mis à jour au fur et à mesure des itérations en fonction du signe du centre du segment courant. Ainsi, la recherche des paramètres optimaux pour la méthode S2N correspond à l'algorithme~\ref{algo-S2N-avec-param}. L'application à 3S détaillé à l'algorithme~\ref{algo-3S-avec-param} est plus aisée puisque seul un paramètre est à estimer.
+
+
+
+
+
+    \begin{normalalgorithme*}
+        \begin{minipage}{\textwidth}
+            \begin{algorithm}[H]
+                \SetKwInOut{Input}{Entrée}
+                \SetKwInOut{Output}{Sortie}
+                \SetKwInOut{Init}{Initialisation}
+                %
+                \SetKwComment{Comment}{}{}
+                %
+                \Input{Observation $\gls{Y}_{\gls{I}}$, ensemble \gls{I}, %
+                segments $[\lambda_{\mathrm{min}}^{(0)}, \lambda_{\mathrm{max}}^{(0)}]$,
+                $[\mu_{\mathrm{min}}^{(0)}, \mu_{\mathrm{max}}^{(0)}]$ et 
+                $[c_{\mathrm{min}}^{(0)}, c_{\mathrm{max}}^{(0)}]$}
+                %
+                
+                \medskip
+                \Comment{Estimation de $\lambda^{\circ}$} 
+
+                $\gls{Xh}(\lambda_{\mathrm{min}}^{(0)}, 0) = \mathrm{S2N}\{\gls{Y}_{\gls{I}}, \gls{I}, (\lambda_{\mathrm{min}}^{(0)}, 0)\}$ et 
+                $\gls{Xh}(\lambda_{\mathrm{max}}^{(0)}, 0) = \mathrm{S2N}\{\gls{Y}_{\gls{I}}, \gls{I}, (\lambda_{\mathrm{max}}^{(0)}, 0)\}$\;
+                i = 0\;
+
+                %
+                \medskip
+                \While{critère d'arrêt n'est pas satisfait}{
+                    %
+                    $\lambda_{\mathrm{mean}}^{(i)} = \frac{1}{2}(\lambda_{\mathrm{min}}^{(i)} + \lambda_{\mathrm{max}}^{(i)})$\;
+                    %
+                    $\gls{Xh}(\lambda_{\mathrm{mean}}^{(i)}, 0) = \mathrm{S2N}\{\gls{Y}_{\gls{I}}, \gls{I}, (\lambda_{\mathrm{mean}}^{(i)}, 0)\}$\;
+                    %
+                    \If{$\mathcal{J}'\left(\lambda_{\mathrm{mean}}^{(i)},0 \right) > 0$}{
+                        $\lambda_{\mathrm{max}}^{(i+1)} =  \lambda_{\mathrm{mean}}^{(i)}$\;
+                    }
+                    \Else{
+                        $\lambda_{\mathrm{min}}^{(i+1)} =  \lambda_{\mathrm{mean}}^{(i)}$\;
+                    }
+                    $i = i+1$ \;
+                }
+                $\lambda^{\circ} = \frac{1}{2}(\gls{Xh}(\lambda_{\mathrm{min}}^{(i-1)} + \lambda_{\mathrm{max}}^{(i-1)})$
+
+                \medskip
+                \Comment{Estimation de $\mu^{\circ}$} 
+
+                $\gls{Xh}(0, \mu_{\mathrm{min}}^{(0)}) = \mathrm{S2N}\{\gls{Y}_{\gls{I}}, \gls{I}, (0, \mu_{\mathrm{min}}^{(0)})\}$ et 
+                $\gls{Xh}(0, \mu_{\mathrm{max}}^{(0)}) = \mathrm{S2N}\{\gls{Y}_{\gls{I}}, \gls{I}, (0, \mu_{\mathrm{max}}^{(0)})\}$\;
+                i = 0\;
+
+                \While{critère d'arrêt n'est pas satisfait}{
+                    %
+                    $\mu_{\mathrm{mean}}^{(i)} = \frac{1}{2}(\mu_{\mathrm{min}}^{(i)} + \mu_{\mathrm{max}}^{(i)})$\;
+                    %
+                    $\gls{Xh}(0, \mu_{\mathrm{mean}}^{(i)}) = \mathrm{S2N}\{\gls{Y}_{\gls{I}}, \gls{I}, (0, \mu_{\mathrm{mean}}^{(i)})\}$\;
+                    %
+                    \If{$\mathcal{J}'\left(0, \mu_{\mathrm{mean}}^{(i)} \right) > 0$}{
+                        $\mu_{\mathrm{max}}^{(i+1)} =  \mu_{\mathrm{mean}}^{(i)}$\;
+                    }
+                    \Else{
+                        $\mu_{\mathrm{min}}^{(i+1)} =  \mu_{\mathrm{mean}}^{(i)}$\;
+                    }
+                    $i = i+1$ \;
+                }
+                $\mu^{\circ} = \frac{1}{2}(\gls{Xh}(\mu_{\mathrm{min}}^{(i-1)} + \mu_{\mathrm{max}}^{(i-1)})$
+
+                \medskip
+                \Comment{Estimation de $c^{\circ}$} 
+
+                $\gls{Xh}(c_{\mathrm{min}}^{(0)}\lambda^{\circ}, c_{\mathrm{min}}^{(0)}\mu^{\circ}) = \mathrm{S2N}\{\gls{Y}_{\gls{I}}, \gls{I}, (c_{\mathrm{min}}^{(0)}\lambda^{\circ}, c_{\mathrm{min}}^{(0)}\mu^{\circ})\}$ et 
+                $\gls{Xh}(c_{\mathrm{max}}^{(0)}\lambda^{\circ}, c_{\mathrm{max}}^{(0)}\mu^{\circ}) = \mathrm{S2N}\{\gls{Y}_{\gls{I}}, \gls{I}, (c_{\mathrm{max}}^{(0)}\lambda^{\circ}, c_{\mathrm{max}}^{(0)}\mu^{\circ})\}$\;
+                i = 0\;
+
+                \While{critère d'arrêt n'est pas satisfait}{
+                    %
+                    $c_{\mathrm{mean}}^{(i)} = \frac{1}{2}(c_{\mathrm{min}}^{(i)} + c_{\mathrm{max}}^{(i)})$\;
+                    
+                    $\gls{Xh}(
+                    c_{\mathrm{mean}}^{(i)}\lambda^{\circ}, c_{\mathrm{mean}}^{(i)}\mu^{\circ}
+                    ) = \mathrm{S2N}\{\gls{Y}_{\gls{I}}, \gls{I}, 
+                    (c_{\mathrm{mean}}^{(i)}\lambda^{\circ}, c_{\mathrm{mean}}^{(i)}\mu^{\circ})
+                    \}$\;
+                    %
+                    \If{
+                        $\mathcal{J}'\left(c_{\mathrm{mean}}^{(i)}\lambda^{\circ}, c_{\mathrm{mean}}^{(i)}\mu^{\circ} \right) > 0$
+                    }{
+                       $c_{\mathrm{max}}^{(i+1)} =  c_{\mathrm{mean}}^{(i)}$\;
+                    }
+                    \Else{
+                        $c_{\mathrm{min}}^{(i+1)} =  c_{\mathrm{mean}}^{(i)}$\;
+                    }
+                    $i = i+1$ \;
+                }
+                $c^{\circ} = \frac{1}{2}(c_{\mathrm{min}}^{(i-1)} + c_{\mathrm{max}}^{(i-1)})$
+
+                %
+                \medskip
+                \Output{$\gls{Xh}(c^{\circ}\lambda^{\circ}, c^{\circ}\mu^{\circ})$}
+            \end{algorithm}
+        \end{minipage}
+        \caption{S2N avec recherche de paramètres.\protect\label{algo-S2N-avec-param}}
+    \end{normalalgorithme*}
+
+    \begin{normalalgorithme*}
+        \begin{minipage}{\textwidth}
+            \begin{algorithm}[H]
+                \SetKwInOut{Input}{Entrée}
+                \SetKwInOut{Output}{Sortie}
+                \SetKwInOut{Init}{Initialisation}
+                %
+                \SetKwComment{Comment}{}{}
+                %
+                \Input{Observation $\gls{Y}_{\gls{I}}$, ensemble \gls{I}, %
+                segments $[\mu_{\mathrm{min}}^{(0)}, \mu_{\mathrm{max}}^{(0)}]$}
+                %
+                
+                \medskip
+
+                $\gls{Xh}(\mu_{\mathrm{min}}^{(0)}) = \mathrm{3S}\{\gls{Y}_{\gls{I}}, \gls{I}, \mu_{\mathrm{min}}^{(0)}\}$ et 
+                $\gls{Xh}(\mu_{\mathrm{max}}^{(0)}) = \mathrm{S2N}\{\gls{Y}_{\gls{I}}, \gls{I}, \mu_{\mathrm{max}}^{(0)}\}$\;
+                i = 0\;
+
+                \While{critère d'arrêt n'est pas satisfait}{
+                    %
+                    $\mu_{\mathrm{mean}}^{(i)} = \frac{1}{2}(\mu_{\mathrm{min}}^{(i)} + \mu_{\mathrm{max}}^{(i)})$\;
+                    %
+                    $\gls{Xh}(\mu_{\mathrm{mean}}^{(i)}) = \mathrm{3S}\{\gls{Y}_{\gls{I}}, \gls{I}, (\mu_{\mathrm{mean}}^{(i)})\}$\;
+                    %
+                    \If{$\frac{1}{\gls{M}\gls{N}}\left\|\gls{Yi}-\gls{Xh}_{\gls{I}}{(\mu_{\mathrm{mean}}^{(i)})}\right\|_{\mathrm{F}}^2-\hat{\gls{sig}}^2>0$}{
+                        $\mu_{\mathrm{max}}^{(i+1)} =  \mu_{\mathrm{mean}}^{(i)}$\;
+                    }
+                    \Else{
+                        $\mu_{\mathrm{min}}^{(i+1)} =  \mu_{\mathrm{mean}}^{(i)}$\;
+                    }
+                    $i = i+1$ \;
+                }
+                $\mu^{\circ} = \frac{1}{2}(\gls{Xh}(\mu_{\mathrm{min}}^{(i-1)} + \mu_{\mathrm{max}}^{(i-1)})$
+
+                %
+                \medskip
+                \Output{$\gls{Xh}(\mu^{\circ})$}
+            \end{algorithm}
+        \end{minipage}
+        \caption{3S avec recherche de paramètres.\protect\label{algo-3S-avec-param}}
+    \end{normalalgorithme*}
     

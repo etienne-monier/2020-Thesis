@@ -92,7 +92,7 @@ Le choix du paramètre de régularisation \gls{lcls} dans~\eqref{eq-cls-formulat
 %
 De même que dans la section~\ref{sec-s2n-param-tuning} pour S2N, cette connaissance a priori peut être utilisée pour évaluer la qualité de la reconstruction $\gls{Xh}_{\gls{lcls}}$ obtenue avec CLS pour une paramètre de régularisation $\gls{lcls}$ donné. Par exemple, pour une solution pertinente, le terme d'attache aux données doit être de l'ordre de grandeur du niveau de bruit. Une recherche dichotomique peut alors être conduite afin d'ajuster automatiquement le paramètre de régularisation. En d'autres termes, CLS est executé pour une valeur de paramètre donnée et le terme d'attache aux données est évalué à la convergence. Puisque le terme d'attache aux données croît avec \gls{lcls}, si sa valeur est inférieure (resp. supérieure) au niveau de bruit, \gls{lcls} devra être augmenté (resp. diminué) et CLS devra être de nouveau exécuté. Cette stratégie est testée à l'annexe~\ref{sec-lcls-param-estim} en se basant sur une image semi-réelle.
 
-\subsection{Implémentation}
+\subsection{Implémentation}\label{subsec-implementation-cls}
 
 Reconstruire le spectre-image \gls{X} complet à partir de \gls{Yi} peut être formulé selon le problème d'optimisation suivant
 \begin{equation}
@@ -118,7 +118,7 @@ Enfin, l'opérateur proximal est séparable suivant les colonnes, et est évalu�
 \end{equation}
 Comme expliqué à la section~\ref{sec-formulation-cls}, la méthode de reconstruction peut être appliquée à la matrice d'observation \gls{Yi} ou à sa représentation $\gls{H}_{1:\gls{R}}^T\gls{Yi}$ dans un sous-espace de dimension réduite identifié par ACP. Le seuil $R$ à fixer peut être choisi en suivant les stratégies décrites à la section~\ref{subsec-3s-poids} et à l'annexe~\ref{sec-spim-creation-hr}.
 
-
+Le pseudo-code complet permettant l'implémentation de CLS est disponible à l'annexe~\ref{annexe-implementation-cls}.
 
 \subsection{La méthode DL-CLS}
 
